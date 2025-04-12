@@ -1,0 +1,46 @@
+services:
+    frankenphp:
+      build: 
+        context: .
+        args:
+          UID: 1000  # Ganti dengan hasil `id -u` di host
+          GID: 1000  # Ganti dengan hasil `id -g` di host
+      ports:
+        - "7000:8000"
+      volumes:
+        - .:/app:delegated
+      env_file:
+        - .env
+      depends_on:
+        mysql-nurfa:
+          condition: service_healthy
+
+    mysql-nurfa:
+      image: mysql:8
+      environment:
+        MYSQL_DATABASE: db-nurfa
+        MYSQL_USER: nurfa
+        MYSQL_PASSWORD: dbnurfa
+        MYSQL_ROOT_PASSWORD: root
+      ports:
+        - "3307:3306"
+      volumes:
+        - mysql_data:/var/lib/mysql
+      healthcheck:
+        test: ["CMD", "mysqladmin", "ping", "-h", "localhost"]
+        interval: 10s
+        retries: 5
+        start_period: 20s
+
+    phpmyadmin-nurfa:
+      image: phpmyadmin/phpmyadmin
+      environment:
+        PMA_HOST: mysql-nurfa
+        MYSQL_ROOT_PASSWORD: root
+      ports:
+        - "7080:80"
+      depends_on:
+        - mysql-nurfa
+
+volumes:
+    mysql_data:
