@@ -188,8 +188,8 @@
                                             <div class="form-check form-check-custom form-check-solid">
                                                 <!--begin::Input-->
                                                 <input class="form-check-input me-3" name="jkel" type="radio"
-                                                    value="Pria" id="jkel_Pria"
-                                                    {{ old('jkel') == 'Pria' ? 'checked' : '' }} />
+                                                    value="pria" id="jkel_Pria"
+                                                    {{ old('jkel') == 'pria' ? 'checked' : '' }} />
                                                 <!--end::Input-->
                                                 <!--begin::Label-->
                                                 <label class="form-check-label" for="jkel_laki2">
@@ -207,8 +207,8 @@
                                             <div class="form-check form-check-custom form-check-solid">
                                                 <!--begin::Input-->
                                                 <input class="form-check-input me-3" name="jkel" type="radio"
-                                                    value="Wanita" id="jkel_Wanita"
-                                                    {{ old('jkel') == 'Wanita' ? 'checked' : '' }} />
+                                                    value="wanita" id="jkel_Wanita"
+                                                    {{ old('jkel') == 'wanita' ? 'checked' : '' }} />
                                                 <!--end::Input-->
                                                 <!--begin::Label-->
                                                 <label class="form-check-label" for="jkel_perempuan">
@@ -231,7 +231,7 @@
                                         <!--end::Label-->
                                         <!--begin::Input-->
                                         <input type="text" class="form-control form-control-solid"
-                                            placeholder="Nama Lengkap" name="no_telp" />
+                                            placeholder="No. Telp" name="no_telp" />
                                         <!--end::Input-->
                                     </div>
                                     <!--end::Input group-->

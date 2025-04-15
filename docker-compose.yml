@@ -1,14 +1,11 @@
 services:
     frankenphp:
-      build: 
-        context: .
-        args:
-          UID: 1000  # Ganti dengan hasil `id -u` di host
-          GID: 1000  # Ganti dengan hasil `id -g` di host
+      build: .
       ports:
         - "7000:8000"
       volumes:
-        - .:/app:delegated
+        - .:/app
+        - /app/vendor
       env_file:
         - .env
       depends_on:

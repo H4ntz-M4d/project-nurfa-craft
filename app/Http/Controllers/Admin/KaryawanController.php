@@ -25,7 +25,7 @@ class KaryawanController extends Controller
                 })
                 ->addColumn('action', function($row){
                     return '
-                    <button href="#" class="btn btn-sm btn-light btn-flex btn-center btn-active-light-primary" data-kt-menu-trigger="click" data-kt-menu-placement="bottom-end">Actions 
+                    <button href="#" class="btn btn-sm btn-light btn-flex btn-center btn-active-light-primary" data-kt-menu-trigger="click" data-kt-menu-placement="bottom-end">Actions
                     <i class="ki-duotone ki-down fs-5 ms-1"></i></button>
                     <!--begin::Menu-->
                     <div class="menu menu-sub menu-sub-dropdown menu-column menu-rounded menu-gray-600 menu-state-bg-light-primary fw-semibold fs-7 w-125px py-4" data-kt-menu="true">
@@ -41,7 +41,7 @@ class KaryawanController extends Controller
                         <!--end::Menu item-->
                     </div>
                     ';
-                })                
+                })
                 ->rawColumns(['checkbox', 'action'])
                 ->make(true);
         }
@@ -49,21 +49,21 @@ class KaryawanController extends Controller
 
     public function store(Request $request)
     {
-        
+
         // Validasi input
         $request->validate([
             'nama' => 'required|string|max:255',
             'email' => 'required|email|unique:karyawan,email',
-            'jkel' => 'required|in:laki2,perempuan',
+            'jkel' => 'required|in:pria,wanita',
             'no_telp' => 'required|string|max:15',
             'alamat' => 'required|string',
             'tempat_lahir' => 'required|string',
         ]);
-    
+
         Karyawan::create($request->all());
 
         // Kirim response JSON jika request berasal dari AJAX
-        return response()->json([ 
+        return response()->json([
             'success' => true,
             'message' => 'Data berhasil disimpan'
         ]);
@@ -109,14 +109,14 @@ class KaryawanController extends Controller
     {
         $karyawan = Karyawan::where('slug', $id);
         $karyawan->delete();
-    
+
         return response()->json(['success' => true, 'message' => 'Karyawan berhasil dihapus']);
     }
-    
+
     public function destroySelected(Request $request)
     {
         $ids = $request->ids;
-        
+
         if (!$ids || !is_array($ids)) {
             return response()->json(['success' => false, 'message' => 'ID tidak valid'], 400);
         }
