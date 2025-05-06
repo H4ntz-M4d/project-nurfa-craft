@@ -23,58 +23,23 @@ var KTCustomersList = (function () {
                         cancelButton: "btn fw-bold btn-active-light-primary",
                     },
                 }).then(function (result) {
-                    if (result.isConfirmed) {
-                        fetch(`/customers/${id}`, {
-                            method: "DELETE",
-                            headers: {
-                                "X-CSRF-TOKEN": document
-                                    .querySelector('meta[name="csrf-token"]')
-                                    .getAttribute("content"),
-                                Accept: "application/json",
-                            },
-                        })
-                        .then((res) => res.json())
-                        .then((data) => {
-                            if (data.success) {
-                                Swal.fire({
-                                    text: `${nama} berhasil dihapus!`,
-                                    icon: "success",
-                                    buttonsStyling: false,
-                                    confirmButtonText: "Ok",
-                                    customClass: {
-                                        confirmButton:
-                                            "btn fw-bold btn-primary",
-                                    },
-                                }).then(() => {
-                                    t.row($(row)).remove().draw();
-                                });
-                            } else {
-                                throw new Error(
-                                    data.message || "Gagal menghapus"
-                                );
-                            }
-                        })
-                        .catch(() => {
-                            Swal.fire({
-                                text: `Gagal menghapus ${nama}.`,
-                                icon: "error",
-                                buttonsStyling: false,
-                                confirmButtonText: "Ok",
-                                customClass: {
-                                    confirmButton:
-                                        "btn fw-bold btn-primary",
-                                },
-                            });
+                    if (result.value) {
+                        Swal.fire({
+                            text: `You have deleted "${nama}".`,
+                            icon: "success",
+                            buttonsStyling: false,
+                            confirmButtonText: "Ok, got it!",
+                            customClass: { confirmButton: "btn fw-bold btn-primary" },
+                        }).then(function () {
+                            t.row($(row)).remove().draw();
                         });
                     } else if (result.dismiss === "cancel") {
                         Swal.fire({
-                            text: `${nama} was not deleted.`,
+                            text: `"${nama}" was not deleted.`,
                             icon: "error",
                             buttonsStyling: false,
                             confirmButtonText: "Ok, got it!",
-                            customClass: {
-                                confirmButton: "btn fw-bold btn-primary",
-                            },
+                            customClass: { confirmButton: "btn fw-bold btn-primary" },
                         });
                     }
                 });

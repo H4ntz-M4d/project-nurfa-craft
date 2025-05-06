@@ -1,5 +1,5 @@
 "use strict";
-var KTModalCustomersAdd = (function () {
+var KTModalKaryawanAdd = (function () {
     var t, e, o, n, r, i;
     return {
         init: function () {
@@ -194,5 +194,5 @@ var KTModalCustomersAdd = (function () {
 })();
 
 KTUtil.onDOMContentLoaded(function () {
-    KTModalCustomersAdd.init();
+    KTModalKaryawanAdd.init();
 });

@@ -1,61 +1,4 @@
 <x-layout>
-    <!--begin::Toolbar-->
-    <div id="kt_app_toolbar" class="app-toolbar py-3 py-lg-6">
-        <!--begin::Toolbar container-->
-        <div id="kt_app_toolbar_container" class="app-container container-xxl d-flex flex-stack">
-            <!--begin::Page title-->
-            <div class="page-title d-flex flex-column justify-content-center flex-wrap me-3">
-                <!--begin::Title-->
-                <h1 class="page-heading d-flex text-gray-900 fw-bold fs-3 flex-column justify-content-center my-0">
-                    Account Settings</h1>
-                <!--end::Title-->
-                <!--begin::Breadcrumb-->
-                <ul class="breadcrumb breadcrumb-separatorless fw-semibold fs-7 my-0 pt-1">
-                    <!--begin::Item-->
-                    <li class="breadcrumb-item text-muted">
-                        <a href="index.html" class="text-muted text-hover-primary">Home</a>
-                    </li>
-                    <!--end::Item-->
-                    <!--begin::Item-->
-                    <li class="breadcrumb-item">
-                        <span class="bullet bg-gray-500 w-5px h-2px"></span>
-                    </li>
-                    <!--end::Item-->
-                    <!--begin::Item-->
-                    <li class="breadcrumb-item text-muted">Account</li>
-                    <!--end::Item-->
-                </ul>
-                <!--end::Breadcrumb-->
-            </div>
-            <!--end::Page title-->
-            <!--begin::Actions-->
-            <div class="d-flex align-items-center gap-2 gap-lg-3">
-                <!--begin::Filter menu-->
-                <div class="d-flex">
-                    <select name="campaign-type" data-control="select2" data-hide-search="true"
-                        class="form-select form-select-sm bg-body border-body w-175px">
-                        <option value="Twitter" selected="selected">Select Campaign</option>
-                        <option value="Twitter">Twitter Campaign</option>
-                        <option value="Twitter">Facebook Campaign</option>
-                        <option value="Twitter">Adword Campaign</option>
-                        <option value="Twitter">Carbon Campaign</option>
-                    </select>
-                    <a href="#" class="btn btn-icon btn-sm btn-success flex-shrink-0 ms-4" data-bs-toggle="modal"
-                        data-bs-target="#kt_modal_create_campaign">
-                        <i class="ki-duotone ki-plus fs-2"></i>
-                    </a>
-                </div>
-                <!--end::Filter menu-->
-                <!--begin::Secondary button-->
-                <!--end::Secondary button-->
-                <!--begin::Primary button-->
-                <!--end::Primary button-->
-            </div>
-            <!--end::Actions-->
-        </div>
-        <!--end::Toolbar container-->
-    </div>
-    <!--end::Toolbar-->
     <!--begin::Content-->
     <div id="kt_app_content" class="app-content flex-column-fluid">
         <!--begin::Content container-->
@@ -116,7 +59,7 @@
             <!--begin::Nav items-->
             <div id="kt_user_profile_nav" class="rounded bg-gray-200 d-flex flex-stack flex-wrap mb-9 p-2"
             data-kt-page-scroll-position="400" data-kt-sticky="true" data-kt-sticky-name="sticky-profile-navs"
-            data-kt-sticky-offset="{default: false, lg: '200px'}"
+            data-kt-sticky-offset="{default: false, lg: '500px'}"
             data-kt-sticky-width="{target: '#kt_user_profile_panel'}" data-kt-sticky-left="auto"
             data-kt-sticky-top="70px" data-kt-sticky-animation="false" data-kt-sticky-zindex="95">
                 <!--begin::Nav-->

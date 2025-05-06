@@ -27,7 +27,7 @@ class Karyawan extends Model
 
     public function users()
     {
-        return $this->belongsTo(User::class);
+        return $this->belongsTo(User::class,'id_user');
     }
 
     protected static function boot()

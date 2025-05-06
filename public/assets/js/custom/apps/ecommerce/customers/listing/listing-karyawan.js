@@ -227,7 +227,9 @@ var KTKaryawanList = (function () {
                     { data: 'nama', name: 'nama' },
                     { data: 'email', name: 'email' },
                     { data: 'no_telp', name: 'no_telp' },
-                    { data: 'tgl_lahir', name: 'tgl_lahir' },
+                    { data: 'tgl_lahir', name: 'tgl_lahir',render: function(data) {
+                        return moment(data).format('DD-MM-YYYY');
+                    }},
                     { data: 'action', orderable: false, searchable: false }
                 ],
                 order: [],

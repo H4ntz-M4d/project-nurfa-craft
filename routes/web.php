@@ -2,14 +2,15 @@
 
 use App\Http\Controllers\Admin\CustomersController;
 use App\Http\Controllers\Admin\KaryawanController;
+use App\Http\Controllers\Admin\KategoriProdukController;
 use App\Http\Controllers\Admin\UsersController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
-    return view('admin.coba');
-});
+    return view('dashboard');
 
+})->middleware(['auth', 'verified'])->name('dashboard');
 Route::get('/dashboard', function () {
     return view('dashboard');
 })->middleware(['auth', 'verified'])->name('dashboard');
@@ -17,7 +18,6 @@ Route::get('/dashboard', function () {
 Route::get( '/produk', function () {
     return view('admin.catalog.produk');
 });
-
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
@@ -29,7 +29,6 @@ Route::middleware('auth')->group(function () {
     Route::get('/users-data', [UsersController::class, 'data'])->name('user.data'); // json data user
     Route::delete('/users/{id}', [UsersController::class, 'destroy'])->name('users.destroy');
     Route::post('/users/delete-selected', [UsersController::class, 'destroySelected'])->name('users.destroySelected');
-
     // end Route user
 
     // Begin Route Karyawan
@@ -54,6 +53,15 @@ Route::middleware('auth')->group(function () {
     Route::post('/customers/store', [CustomersController::class, 'store'])->name('customers.store');
     Route::delete('/customers/{id}', [CustomersController::class, 'destroy'])->name('customers.destroy');
     Route::post('/customers/delete-selected', [CustomersController::class, 'destroySelected'])->name('customers.destroySelected');
+    // end route customers
+
+    // begin route kategori
+    Route::get('/list-kategori', [KategoriProdukController::class, 'index'])->name('kategori.index');
+    Route::get('/kategori-data', [KategoriProdukController::class, 'data'])->name('kategori.data'); // json data kategori
+    Route::get('/kategori-add', [KategoriProdukController::class, 'create'])->name('kategori.add-data');
+    Route::post('/kategori-store', [KategoriProdukController::class, 'store'])->name('kategori.store');
+    Route::delete('/kategori/{slug}', [KategoriProdukController::class, 'destroy'])->name('kategori.destroy');
+    Route::delete('/kategori-delete-selected', [KategoriProdukController::class, 'destroySelected'])->name('kategori.destroySelected');
 
 });
 

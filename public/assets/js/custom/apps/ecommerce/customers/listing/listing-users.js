@@ -235,7 +235,9 @@ var KTUsersList = (function () {
                     },
                     { data: "username", name: "username" },
                     { data: "email", name: "email" },
-                    { data: "created_at", name: "created_at" },
+                    { data: "created_at", name: "created_at", render: function(data) {
+                        return moment(data).format('DD-MM-YYYY:mm:ss');
+                    }},
                     { data: "action", orderable: false, searchable: false },
                 ],
                 order: [],

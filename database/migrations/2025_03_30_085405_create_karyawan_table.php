@@ -15,7 +15,6 @@ return new class extends Migration
             $table->id('id_karyawan');
             $table->unsignedBigInteger('id_user')->nullable();
             $table->string('nama')->nullable();
-            $table->string('email')->nullable()->unique();
             $table->enum('jkel',["pria","wanita"])->nullable();
             $table->string('no_telp')->nullable();
             $table->text('alamat')->nullable();

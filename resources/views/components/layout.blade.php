@@ -5,8 +5,8 @@
 <head>
     <base href="../" />
     <title>Admin - Nurfa Craft</title>
+	<meta name="csrf-token" content="{{ csrf_token() }}">
     <meta charset="utf-8" />
-    <meta name="csrf-token" content="{{ csrf_token() }}">
     <meta name="description"
         content="The most advanced Bootstrap Admin Theme on Bootstrap Market trusted by over 4,000 beginners and professionals. Multi-demo, Dark Mode, RTL support. Grab your copy now and get life-time updates for free." />
     <meta name="keywords"
@@ -17,30 +17,26 @@
     <meta property="og:title" content="Keen - Multi-demo Bootstrap 5 HTML Admin Dashboard Template by KeenThemes" />
     <meta property="og:url" content="https://keenthemes.com/keen" />
     <meta property="og:site_name" content="Keen by Keenthemes" />
-    <link rel="canonical" href="http://preview.keenthemes.comlayouts/light-header.html" />
+    <link rel="canonical" href="http://preview.keenthemes.comdashboards/ecommerce.html" />
     <link rel="shortcut icon" href="assets/media/logos/favicon.ico" />
     <!--begin::Fonts(mandatory for all pages)-->
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Inter:300,400,500,600,700" />
     <!--end::Fonts-->
     <!--begin::Vendor Stylesheets(used for this page only)-->
-    <link href="{{ asset('assets/plugins/custom/datatables/datatables.bundle.css') }}" rel="stylesheet"
-        type="text/css" />
-	<link href="assets/plugins/custom/fullcalendar/fullcalendar.bundle.css" rel="stylesheet" type="text/css" />
+    <link href="assets/plugins/custom/datatables/datatables.bundle.css" rel="stylesheet" type="text/css" />
+    <link href="assets/plugins/custom/vis-timeline/vis-timeline.bundle.css" rel="stylesheet" type="text/css" />
     <!--end::Vendor Stylesheets-->
     <!--begin::Global Stylesheets Bundle(mandatory for all pages)-->
-    <link href="{{ asset('assets/plugins/global/plugins.bundle.css') }}" rel="stylesheet" type="text/css" />
-    <link href="{{ asset('assets/css/style.bundle.css') }}" rel="stylesheet" type="text/css" />
+    <link href="assets/plugins/global/plugins.bundle.css" rel="stylesheet" type="text/css" />
+    <link href="assets/css/style.bundle.css" rel="stylesheet" type="text/css" />
     <!--end::Global Stylesheets Bundle-->
-    <script>
-        // Frame-busting to prevent site from being loaded within a frame without permission (click-jacking) if (window.top != window.self) { window.top.location.replace(window.self.location.href); }
-    </script>
-    
 </head>
 <!--end::Head-->
 <!--begin::Body-->
 
-<body id="kt_app_body" data-kt-app-layout="light-header" data-kt-app-header-fixed="true"
-    data-kt-app-toolbar-enabled="true" class="app-default">
+<body id="kt_app_body" data-kt-app-header-fixed-mobile="true" data-kt-app-sidebar-enabled="true"
+    data-kt-app-sidebar-fixed="true" data-kt-app-sidebar-push-header="true" data-kt-app-sidebar-push-toolbar="true"
+    data-kt-app-sidebar-push-footer="true" class="app-default">
     <!--begin::Theme mode setup on page load-->
     <script>
         var defaultThemeMode = "light";
@@ -71,21 +67,25 @@
             <!--end::Header-->
             <!--begin::Wrapper-->
             <div class="app-wrapper flex-column flex-row-fluid" id="kt_app_wrapper">
+                <!--begin::Sidebar-->
+                <x-sidebar></x-sidebar>
+                <!--end::Sidebar-->
                 <!--begin::Main-->
                 <div class="app-main flex-column flex-row-fluid" id="kt_app_main">
                     <!--begin::Content wrapper-->
                     <div class="d-flex flex-column flex-column-fluid">
+                        <!--begin::Content-->
                         {{ $slot }}
+                        <!--end::Content-->
                     </div>
                     <!--end::Content wrapper-->
-
+                    <!--begin::Footer-->
+                    <x-footer></x-footer>
+                    <!--end::Footer-->
                 </div>
                 <!--end:::Main-->
             </div>
             <!--end::Wrapper-->
-            <!--begin::Footer-->
-            <x-footer></x-footer>
-            <!--end::Footer-->
         </div>
         <!--end::Page-->
     </div>
@@ -1454,559 +1454,6 @@
     </div>
     <!--end::Scrolltop-->
     <!--begin::Modals-->
-    <!--begin::Modal - Upgrade plan-->
-    <div class="modal fade" id="kt_modal_upgrade_plan" tabindex="-1" aria-hidden="true">
-        <!--begin::Modal dialog-->
-        <div class="modal-dialog modal-xl">
-            <!--begin::Modal content-->
-            <div class="modal-content rounded">
-                <!--begin::Modal header-->
-                <div class="modal-header justify-content-end border-0 pb-0">
-                    <!--begin::Close-->
-                    <div class="btn btn-sm btn-icon btn-active-color-primary" data-bs-dismiss="modal">
-                        <i class="ki-duotone ki-cross fs-1">
-                            <span class="path1"></span>
-                            <span class="path2"></span>
-                        </i>
-                    </div>
-                    <!--end::Close-->
-                </div>
-                <!--end::Modal header-->
-                <!--begin::Modal body-->
-                <div class="modal-body pt-0 pb-15 px-5 px-xl-20">
-                    <!--begin::Heading-->
-                    <div class="mb-13 text-center">
-                        <h1 class="mb-3">Upgrade a Plan</h1>
-                        <div class="text-muted fw-semibold fs-5">If you need more info, please check
-                            <a href="#" class="link-primary fw-bold">Pricing Guidelines</a>.
-                        </div>
-                    </div>
-                    <!--end::Heading-->
-                    <!--begin::Plans-->
-                    <div class="d-flex flex-column">
-                        <!--begin::Nav group-->
-                        <div class="nav-group nav-group-outline mx-auto" data-kt-buttons="true">
-                            <button
-                                class="btn btn-color-gray-500 btn-active btn-active-secondary px-6 py-3 me-2 active"
-                                data-kt-plan="month">Monthly</button>
-                            <button class="btn btn-color-gray-500 btn-active btn-active-secondary px-6 py-3"
-                                data-kt-plan="annual">Annual</button>
-                        </div>
-                        <!--end::Nav group-->
-                        <!--begin::Row-->
-                        <div class="row mt-10">
-                            <!--begin::Col-->
-                            <div class="col-lg-6 mb-10 mb-lg-0">
-                                <!--begin::Tabs-->
-                                <div class="nav flex-column">
-                                    <!--begin::Tab link-->
-                                    <label
-                                        class="nav-link btn btn-outline btn-outline-dashed btn-color-dark btn-active btn-active-primary d-flex flex-stack text-start p-6 active mb-6"
-                                        data-bs-toggle="tab" data-bs-target="#kt_upgrade_plan_startup">
-                                        <!--end::Description-->
-                                        <div class="d-flex align-items-center me-2">
-                                            <!--begin::Radio-->
-                                            <div
-                                                class="form-check form-check-custom form-check-solid form-check-success flex-shrink-0 me-6">
-                                                <input class="form-check-input" type="radio" name="plan"
-                                                    checked="checked" value="startup" />
-                                            </div>
-                                            <!--end::Radio-->
-                                            <!--begin::Info-->
-                                            <div class="flex-grow-1">
-                                                <div class="d-flex align-items-center fs-2 fw-bold flex-wrap">Startup
-                                                </div>
-                                                <div class="fw-semibold opacity-75">Best for startups</div>
-                                            </div>
-                                            <!--end::Info-->
-                                        </div>
-                                        <!--end::Description-->
-                                        <!--begin::Price-->
-                                        <div class="ms-5">
-                                            <span class="mb-2">$</span>
-                                            <span class="fs-3x fw-bold" data-kt-plan-price-month="39"
-                                                data-kt-plan-price-annual="399">39</span>
-                                            <span class="fs-7 opacity-50">/
-                                                <span data-kt-element="period">Mon</span></span>
-                                        </div>
-                                        <!--end::Price-->
-                                    </label>
-                                    <!--end::Tab link-->
-                                    <!--begin::Tab link-->
-                                    <label
-                                        class="nav-link btn btn-outline btn-outline-dashed btn-color-dark btn-active btn-active-primary d-flex flex-stack text-start p-6 mb-6"
-                                        data-bs-toggle="tab" data-bs-target="#kt_upgrade_plan_advanced">
-                                        <!--end::Description-->
-                                        <div class="d-flex align-items-center me-2">
-                                            <!--begin::Radio-->
-                                            <div
-                                                class="form-check form-check-custom form-check-solid form-check-success flex-shrink-0 me-6">
-                                                <input class="form-check-input" type="radio" name="plan"
-                                                    value="advanced" />
-                                            </div>
-                                            <!--end::Radio-->
-                                            <!--begin::Info-->
-                                            <div class="flex-grow-1">
-                                                <div class="d-flex align-items-center fs-2 fw-bold flex-wrap">Advanced
-                                                </div>
-                                                <div class="fw-semibold opacity-75">Best for 100+ team size</div>
-                                            </div>
-                                            <!--end::Info-->
-                                        </div>
-                                        <!--end::Description-->
-                                        <!--begin::Price-->
-                                        <div class="ms-5">
-                                            <span class="mb-2">$</span>
-                                            <span class="fs-3x fw-bold" data-kt-plan-price-month="339"
-                                                data-kt-plan-price-annual="3399">339</span>
-                                            <span class="fs-7 opacity-50">/
-                                                <span data-kt-element="period">Mon</span></span>
-                                        </div>
-                                        <!--end::Price-->
-                                    </label>
-                                    <!--end::Tab link-->
-                                    <!--begin::Tab link-->
-                                    <label
-                                        class="nav-link btn btn-outline btn-outline-dashed btn-color-dark btn-active btn-active-primary d-flex flex-stack text-start p-6 mb-6"
-                                        data-bs-toggle="tab" data-bs-target="#kt_upgrade_plan_enterprise">
-                                        <!--end::Description-->
-                                        <div class="d-flex align-items-center me-2">
-                                            <!--begin::Radio-->
-                                            <div
-                                                class="form-check form-check-custom form-check-solid form-check-success flex-shrink-0 me-6">
-                                                <input class="form-check-input" type="radio" name="plan"
-                                                    value="enterprise" />
-                                            </div>
-                                            <!--end::Radio-->
-                                            <!--begin::Info-->
-                                            <div class="flex-grow-1">
-                                                <div class="d-flex align-items-center fs-2 fw-bold flex-wrap">
-                                                    Enterprise
-                                                    <span
-                                                        class="badge badge-light-success ms-2 py-2 px-3 fs-7">Popular</span>
-                                                </div>
-                                                <div class="fw-semibold opacity-75">Best value for 1000+ team</div>
-                                            </div>
-                                            <!--end::Info-->
-                                        </div>
-                                        <!--end::Description-->
-                                        <!--begin::Price-->
-                                        <div class="ms-5">
-                                            <span class="mb-2">$</span>
-                                            <span class="fs-3x fw-bold" data-kt-plan-price-month="999"
-                                                data-kt-plan-price-annual="9999">999</span>
-                                            <span class="fs-7 opacity-50">/
-                                                <span data-kt-element="period">Mon</span></span>
-                                        </div>
-                                        <!--end::Price-->
-                                    </label>
-                                    <!--end::Tab link-->
-                                    <!--begin::Tab link-->
-                                    <label
-                                        class="nav-link btn btn-outline btn-outline-dashed btn-color-dark btn-active btn-active-primary d-flex flex-stack text-start p-6 mb-6"
-                                        data-bs-toggle="tab" data-bs-target="#kt_upgrade_plan_custom">
-                                        <!--end::Description-->
-                                        <div class="d-flex align-items-center me-2">
-                                            <!--begin::Radio-->
-                                            <div
-                                                class="form-check form-check-custom form-check-solid form-check-success flex-shrink-0 me-6">
-                                                <input class="form-check-input" type="radio" name="plan"
-                                                    value="custom" />
-                                            </div>
-                                            <!--end::Radio-->
-                                            <!--begin::Info-->
-                                            <div class="flex-grow-1">
-                                                <div class="d-flex align-items-center fs-2 fw-bold flex-wrap">Custom
-                                                </div>
-                                                <div class="fw-semibold opacity-75">Requet a custom license</div>
-                                            </div>
-                                            <!--end::Info-->
-                                        </div>
-                                        <!--end::Description-->
-                                        <!--begin::Price-->
-                                        <div class="ms-5">
-                                            <a href="#" class="btn btn-sm btn-success">Contact Us</a>
-                                        </div>
-                                        <!--end::Price-->
-                                    </label>
-                                    <!--end::Tab link-->
-                                </div>
-                                <!--end::Tabs-->
-                            </div>
-                            <!--end::Col-->
-                            <!--begin::Col-->
-                            <div class="col-lg-6">
-                                <!--begin::Tab content-->
-                                <div class="tab-content rounded h-100 bg-light p-10">
-                                    <!--begin::Tab Pane-->
-                                    <div class="tab-pane fade show active" id="kt_upgrade_plan_startup">
-                                        <!--begin::Heading-->
-                                        <div class="pb-5">
-                                            <h2 class="fw-bold text-gray-900">What’s in Startup Plan?</h2>
-                                            <div class="text-muted fw-semibold">Optimal for 10+ team size and new
-                                                startup</div>
-                                        </div>
-                                        <!--end::Heading-->
-                                        <!--begin::Body-->
-                                        <div class="pt-1">
-                                            <!--begin::Item-->
-                                            <div class="d-flex align-items-center mb-7">
-                                                <span class="fw-semibold fs-5 text-gray-700 flex-grow-1">Up to 10
-                                                    Active Users</span>
-                                                <i class="ki-duotone ki-check-circle fs-1 text-success">
-                                                    <span class="path1"></span>
-                                                    <span class="path2"></span>
-                                                </i>
-                                            </div>
-                                            <!--end::Item-->
-                                            <!--begin::Item-->
-                                            <div class="d-flex align-items-center mb-7">
-                                                <span class="fw-semibold fs-5 text-gray-700 flex-grow-1">Up to 30
-                                                    Project Integrations</span>
-                                                <i class="ki-duotone ki-check-circle fs-1 text-success">
-                                                    <span class="path1"></span>
-                                                    <span class="path2"></span>
-                                                </i>
-                                            </div>
-                                            <!--end::Item-->
-                                            <!--begin::Item-->
-                                            <div class="d-flex align-items-center mb-7">
-                                                <span class="fw-semibold fs-5 text-gray-700 flex-grow-1">Analytics
-                                                    Module</span>
-                                                <i class="ki-duotone ki-check-circle fs-1 text-success">
-                                                    <span class="path1"></span>
-                                                    <span class="path2"></span>
-                                                </i>
-                                            </div>
-                                            <!--end::Item-->
-                                            <!--begin::Item-->
-                                            <div class="d-flex align-items-center mb-7">
-                                                <span class="fw-semibold fs-5 text-muted flex-grow-1">Finance
-                                                    Module</span>
-                                                <i class="ki-duotone ki-cross-circle fs-1">
-                                                    <span class="path1"></span>
-                                                    <span class="path2"></span>
-                                                </i>
-                                            </div>
-                                            <!--end::Item-->
-                                            <!--begin::Item-->
-                                            <div class="d-flex align-items-center mb-7">
-                                                <span class="fw-semibold fs-5 text-muted flex-grow-1">Accounting
-                                                    Module</span>
-                                                <i class="ki-duotone ki-cross-circle fs-1">
-                                                    <span class="path1"></span>
-                                                    <span class="path2"></span>
-                                                </i>
-                                            </div>
-                                            <!--end::Item-->
-                                            <!--begin::Item-->
-                                            <div class="d-flex align-items-center mb-7">
-                                                <span class="fw-semibold fs-5 text-muted flex-grow-1">Network
-                                                    Platform</span>
-                                                <i class="ki-duotone ki-cross-circle fs-1">
-                                                    <span class="path1"></span>
-                                                    <span class="path2"></span>
-                                                </i>
-                                            </div>
-                                            <!--end::Item-->
-                                            <!--begin::Item-->
-                                            <div class="d-flex align-items-center">
-                                                <span class="fw-semibold fs-5 text-muted flex-grow-1">Unlimited Cloud
-                                                    Space</span>
-                                                <i class="ki-duotone ki-cross-circle fs-1">
-                                                    <span class="path1"></span>
-                                                    <span class="path2"></span>
-                                                </i>
-                                            </div>
-                                            <!--end::Item-->
-                                        </div>
-                                        <!--end::Body-->
-                                    </div>
-                                    <!--end::Tab Pane-->
-                                    <!--begin::Tab Pane-->
-                                    <div class="tab-pane fade" id="kt_upgrade_plan_advanced">
-                                        <!--begin::Heading-->
-                                        <div class="pb-5">
-                                            <h2 class="fw-bold text-gray-900">What’s in Startup Plan?</h2>
-                                            <div class="text-muted fw-semibold">Optimal for 100+ team size and grown
-                                                company</div>
-                                        </div>
-                                        <!--end::Heading-->
-                                        <!--begin::Body-->
-                                        <div class="pt-1">
-                                            <!--begin::Item-->
-                                            <div class="d-flex align-items-center mb-7">
-                                                <span class="fw-semibold fs-5 text-gray-700 flex-grow-1">Up to 10
-                                                    Active Users</span>
-                                                <i class="ki-duotone ki-check-circle fs-1 text-success">
-                                                    <span class="path1"></span>
-                                                    <span class="path2"></span>
-                                                </i>
-                                            </div>
-                                            <!--end::Item-->
-                                            <!--begin::Item-->
-                                            <div class="d-flex align-items-center mb-7">
-                                                <span class="fw-semibold fs-5 text-gray-700 flex-grow-1">Up to 30
-                                                    Project Integrations</span>
-                                                <i class="ki-duotone ki-check-circle fs-1 text-success">
-                                                    <span class="path1"></span>
-                                                    <span class="path2"></span>
-                                                </i>
-                                            </div>
-                                            <!--end::Item-->
-                                            <!--begin::Item-->
-                                            <div class="d-flex align-items-center mb-7">
-                                                <span class="fw-semibold fs-5 text-gray-700 flex-grow-1">Analytics
-                                                    Module</span>
-                                                <i class="ki-duotone ki-check-circle fs-1 text-success">
-                                                    <span class="path1"></span>
-                                                    <span class="path2"></span>
-                                                </i>
-                                            </div>
-                                            <!--end::Item-->
-                                            <!--begin::Item-->
-                                            <div class="d-flex align-items-center mb-7">
-                                                <span class="fw-semibold fs-5 text-gray-700 flex-grow-1">Finance
-                                                    Module</span>
-                                                <i class="ki-duotone ki-check-circle fs-1 text-success">
-                                                    <span class="path1"></span>
-                                                    <span class="path2"></span>
-                                                </i>
-                                            </div>
-                                            <!--end::Item-->
-                                            <!--begin::Item-->
-                                            <div class="d-flex align-items-center mb-7">
-                                                <span class="fw-semibold fs-5 text-gray-700 flex-grow-1">Accounting
-                                                    Module</span>
-                                                <i class="ki-duotone ki-check-circle fs-1 text-success">
-                                                    <span class="path1"></span>
-                                                    <span class="path2"></span>
-                                                </i>
-                                            </div>
-                                            <!--end::Item-->
-                                            <!--begin::Item-->
-                                            <div class="d-flex align-items-center mb-7">
-                                                <span class="fw-semibold fs-5 text-muted flex-grow-1">Network
-                                                    Platform</span>
-                                                <i class="ki-duotone ki-cross-circle fs-1">
-                                                    <span class="path1"></span>
-                                                    <span class="path2"></span>
-                                                </i>
-                                            </div>
-                                            <!--end::Item-->
-                                            <!--begin::Item-->
-                                            <div class="d-flex align-items-center">
-                                                <span class="fw-semibold fs-5 text-muted flex-grow-1">Unlimited Cloud
-                                                    Space</span>
-                                                <i class="ki-duotone ki-cross-circle fs-1">
-                                                    <span class="path1"></span>
-                                                    <span class="path2"></span>
-                                                </i>
-                                            </div>
-                                            <!--end::Item-->
-                                        </div>
-                                        <!--end::Body-->
-                                    </div>
-                                    <!--end::Tab Pane-->
-                                    <!--begin::Tab Pane-->
-                                    <div class="tab-pane fade" id="kt_upgrade_plan_enterprise">
-                                        <!--begin::Heading-->
-                                        <div class="pb-5">
-                                            <h2 class="fw-bold text-gray-900">What’s in Startup Plan?</h2>
-                                            <div class="text-muted fw-semibold">Optimal for 1000+ team and enterpise
-                                            </div>
-                                        </div>
-                                        <!--end::Heading-->
-                                        <!--begin::Body-->
-                                        <div class="pt-1">
-                                            <!--begin::Item-->
-                                            <div class="d-flex align-items-center mb-7">
-                                                <span class="fw-semibold fs-5 text-gray-700 flex-grow-1">Up to 10
-                                                    Active Users</span>
-                                                <i class="ki-duotone ki-check-circle fs-1 text-success">
-                                                    <span class="path1"></span>
-                                                    <span class="path2"></span>
-                                                </i>
-                                            </div>
-                                            <!--end::Item-->
-                                            <!--begin::Item-->
-                                            <div class="d-flex align-items-center mb-7">
-                                                <span class="fw-semibold fs-5 text-gray-700 flex-grow-1">Up to 30
-                                                    Project Integrations</span>
-                                                <i class="ki-duotone ki-check-circle fs-1 text-success">
-                                                    <span class="path1"></span>
-                                                    <span class="path2"></span>
-                                                </i>
-                                            </div>
-                                            <!--end::Item-->
-                                            <!--begin::Item-->
-                                            <div class="d-flex align-items-center mb-7">
-                                                <span class="fw-semibold fs-5 text-gray-700 flex-grow-1">Analytics
-                                                    Module</span>
-                                                <i class="ki-duotone ki-check-circle fs-1 text-success">
-                                                    <span class="path1"></span>
-                                                    <span class="path2"></span>
-                                                </i>
-                                            </div>
-                                            <!--end::Item-->
-                                            <!--begin::Item-->
-                                            <div class="d-flex align-items-center mb-7">
-                                                <span class="fw-semibold fs-5 text-gray-700 flex-grow-1">Finance
-                                                    Module</span>
-                                                <i class="ki-duotone ki-check-circle fs-1 text-success">
-                                                    <span class="path1"></span>
-                                                    <span class="path2"></span>
-                                                </i>
-                                            </div>
-                                            <!--end::Item-->
-                                            <!--begin::Item-->
-                                            <div class="d-flex align-items-center mb-7">
-                                                <span class="fw-semibold fs-5 text-gray-700 flex-grow-1">Accounting
-                                                    Module</span>
-                                                <i class="ki-duotone ki-check-circle fs-1 text-success">
-                                                    <span class="path1"></span>
-                                                    <span class="path2"></span>
-                                                </i>
-                                            </div>
-                                            <!--end::Item-->
-                                            <!--begin::Item-->
-                                            <div class="d-flex align-items-center mb-7">
-                                                <span class="fw-semibold fs-5 text-gray-700 flex-grow-1">Network
-                                                    Platform</span>
-                                                <i class="ki-duotone ki-check-circle fs-1 text-success">
-                                                    <span class="path1"></span>
-                                                    <span class="path2"></span>
-                                                </i>
-                                            </div>
-                                            <!--end::Item-->
-                                            <!--begin::Item-->
-                                            <div class="d-flex align-items-center">
-                                                <span class="fw-semibold fs-5 text-gray-700 flex-grow-1">Unlimited
-                                                    Cloud Space</span>
-                                                <i class="ki-duotone ki-check-circle fs-1 text-success">
-                                                    <span class="path1"></span>
-                                                    <span class="path2"></span>
-                                                </i>
-                                            </div>
-                                            <!--end::Item-->
-                                        </div>
-                                        <!--end::Body-->
-                                    </div>
-                                    <!--end::Tab Pane-->
-                                    <!--begin::Tab Pane-->
-                                    <div class="tab-pane fade" id="kt_upgrade_plan_custom">
-                                        <!--begin::Heading-->
-                                        <div class="pb-5">
-                                            <h2 class="fw-bold text-gray-900">What’s in Startup Plan?</h2>
-                                            <div class="text-muted fw-semibold">Optimal for corporations</div>
-                                        </div>
-                                        <!--end::Heading-->
-                                        <!--begin::Body-->
-                                        <div class="pt-1">
-                                            <!--begin::Item-->
-                                            <div class="d-flex align-items-center mb-7">
-                                                <span class="fw-semibold fs-5 text-gray-700 flex-grow-1">Unlimited
-                                                    Users</span>
-                                                <i class="ki-duotone ki-check-circle fs-1 text-success">
-                                                    <span class="path1"></span>
-                                                    <span class="path2"></span>
-                                                </i>
-                                            </div>
-                                            <!--end::Item-->
-                                            <!--begin::Item-->
-                                            <div class="d-flex align-items-center mb-7">
-                                                <span class="fw-semibold fs-5 text-gray-700 flex-grow-1">Unlimited
-                                                    Project Integrations</span>
-                                                <i class="ki-duotone ki-check-circle fs-1 text-success">
-                                                    <span class="path1"></span>
-                                                    <span class="path2"></span>
-                                                </i>
-                                            </div>
-                                            <!--end::Item-->
-                                            <!--begin::Item-->
-                                            <div class="d-flex align-items-center mb-7">
-                                                <span class="fw-semibold fs-5 text-gray-700 flex-grow-1">Analytics
-                                                    Module</span>
-                                                <i class="ki-duotone ki-check-circle fs-1 text-success">
-                                                    <span class="path1"></span>
-                                                    <span class="path2"></span>
-                                                </i>
-                                            </div>
-                                            <!--end::Item-->
-                                            <!--begin::Item-->
-                                            <div class="d-flex align-items-center mb-7">
-                                                <span class="fw-semibold fs-5 text-gray-700 flex-grow-1">Finance
-                                                    Module</span>
-                                                <i class="ki-duotone ki-check-circle fs-1 text-success">
-                                                    <span class="path1"></span>
-                                                    <span class="path2"></span>
-                                                </i>
-                                            </div>
-                                            <!--end::Item-->
-                                            <!--begin::Item-->
-                                            <div class="d-flex align-items-center mb-7">
-                                                <span class="fw-semibold fs-5 text-gray-700 flex-grow-1">Accounting
-                                                    Module</span>
-                                                <i class="ki-duotone ki-check-circle fs-1 text-success">
-                                                    <span class="path1"></span>
-                                                    <span class="path2"></span>
-                                                </i>
-                                            </div>
-                                            <!--end::Item-->
-                                            <!--begin::Item-->
-                                            <div class="d-flex align-items-center mb-7">
-                                                <span class="fw-semibold fs-5 text-gray-700 flex-grow-1">Network
-                                                    Platform</span>
-                                                <i class="ki-duotone ki-check-circle fs-1 text-success">
-                                                    <span class="path1"></span>
-                                                    <span class="path2"></span>
-                                                </i>
-                                            </div>
-                                            <!--end::Item-->
-                                            <!--begin::Item-->
-                                            <div class="d-flex align-items-center">
-                                                <span class="fw-semibold fs-5 text-gray-700 flex-grow-1">Unlimited
-                                                    Cloud Space</span>
-                                                <i class="ki-duotone ki-check-circle fs-1 text-success">
-                                                    <span class="path1"></span>
-                                                    <span class="path2"></span>
-                                                </i>
-                                            </div>
-                                            <!--end::Item-->
-                                        </div>
-                                        <!--end::Body-->
-                                    </div>
-                                    <!--end::Tab Pane-->
-                                </div>
-                                <!--end::Tab content-->
-                            </div>
-                            <!--end::Col-->
-                        </div>
-                        <!--end::Row-->
-                    </div>
-                    <!--end::Plans-->
-                    <!--begin::Actions-->
-                    <div class="d-flex flex-center flex-row-fluid pt-12">
-                        <button type="reset" class="btn btn-light me-3" data-bs-dismiss="modal">Cancel</button>
-                        <button type="submit" class="btn btn-primary" id="kt_modal_upgrade_plan_btn">
-                            <!--begin::Indicator label-->
-                            <span class="indicator-label">Upgrade Plan</span>
-                            <!--end::Indicator label-->
-                            <!--begin::Indicator progress-->
-                            <span class="indicator-progress">Please wait...
-                                <span class="spinner-border spinner-border-sm align-middle ms-2"></span></span>
-                            <!--end::Indicator progress-->
-                        </button>
-                    </div>
-                    <!--end::Actions-->
-                </div>
-                <!--end::Modal body-->
-            </div>
-            <!--end::Modal content-->
-        </div>
-        <!--end::Modal dialog-->
-    </div>
-    <!--end::Modal - Upgrade plan-->
     <!--begin::Modal - Create Campaign-->
     <div class="modal fade" id="kt_modal_create_campaign" tabindex="-1" aria-hidden="true">
         <!--begin::Modal dialog-->
@@ -2097,8 +1544,7 @@
                                         <label class="required form-label mb-3">Campaign Name</label>
                                         <!--end::Label-->
                                         <!--begin::Input-->
-                                        <input type="text"
-                                            class="form-control form-control-lg form-control-solid"
+                                        <input type="text" class="form-control form-control-lg form-control-solid"
                                             name="campaign_name" placeholder="" value="" />
                                         <!--end::Input-->
                                     </div>
@@ -2190,9 +1636,9 @@
                                             <!--begin::Radio-->
                                             <div class="form-check form-check-custom form-check-solid">
                                                 <!--begin::Input-->
-                                                <input class="form-check-input me-3" name="user_role"
-                                                    type="radio" value="0"
-                                                    id="kt_modal_update_role_option_0" checked='checked' />
+                                                <input class="form-check-input me-3" name="user_role" type="radio"
+                                                    value="0" id="kt_modal_update_role_option_0"
+                                                    checked='checked' />
                                                 <!--end::Input-->
                                                 <!--begin::Label-->
                                                 <label class="form-check-label" for="kt_modal_update_role_option_0">
@@ -2211,9 +1657,8 @@
                                             <!--begin::Radio-->
                                             <div class="form-check form-check-custom form-check-solid">
                                                 <!--begin::Input-->
-                                                <input class="form-check-input me-3" name="user_role"
-                                                    type="radio" value="1"
-                                                    id="kt_modal_update_role_option_1" />
+                                                <input class="form-check-input me-3" name="user_role" type="radio"
+                                                    value="1" id="kt_modal_update_role_option_1" />
                                                 <!--end::Input-->
                                                 <!--begin::Label-->
                                                 <label class="form-check-label" for="kt_modal_update_role_option_1">
@@ -2232,9 +1677,8 @@
                                             <!--begin::Radio-->
                                             <div class="form-check form-check-custom form-check-solid">
                                                 <!--begin::Input-->
-                                                <input class="form-check-input me-3" name="user_role"
-                                                    type="radio" value="2"
-                                                    id="kt_modal_update_role_option_2" />
+                                                <input class="form-check-input me-3" name="user_role" type="radio"
+                                                    value="2" id="kt_modal_update_role_option_2" />
                                                 <!--end::Input-->
                                                 <!--begin::Label-->
                                                 <label class="form-check-label" for="kt_modal_update_role_option_2">
@@ -2253,9 +1697,8 @@
                                             <!--begin::Radio-->
                                             <div class="form-check form-check-custom form-check-solid">
                                                 <!--begin::Input-->
-                                                <input class="form-check-input me-3" name="user_role"
-                                                    type="radio" value="3"
-                                                    id="kt_modal_update_role_option_3" />
+                                                <input class="form-check-input me-3" name="user_role" type="radio"
+                                                    value="3" id="kt_modal_update_role_option_3" />
                                                 <!--end::Input-->
                                                 <!--begin::Label-->
                                                 <label class="form-check-label" for="kt_modal_update_role_option_3">
@@ -2274,9 +1717,8 @@
                                             <!--begin::Radio-->
                                             <div class="form-check form-check-custom form-check-solid">
                                                 <!--begin::Input-->
-                                                <input class="form-check-input me-3" name="user_role"
-                                                    type="radio" value="4"
-                                                    id="kt_modal_update_role_option_4" />
+                                                <input class="form-check-input me-3" name="user_role" type="radio"
+                                                    value="4" id="kt_modal_update_role_option_4" />
                                                 <!--end::Input-->
                                                 <!--begin::Label-->
                                                 <label class="form-check-label" for="kt_modal_update_role_option_4">
@@ -2860,6 +2302,551 @@
         </div>
     </div>
     <!--end::Modal - Create Campaign-->
+    <!--begin::Modal - View Users-->
+    <div class="modal fade" id="kt_modal_view_users" tabindex="-1" aria-hidden="true">
+        <!--begin::Modal dialog-->
+        <div class="modal-dialog mw-650px">
+            <!--begin::Modal content-->
+            <div class="modal-content">
+                <!--begin::Modal header-->
+                <div class="modal-header pb-0 border-0 justify-content-end">
+                    <!--begin::Close-->
+                    <div class="btn btn-sm btn-icon btn-active-color-primary" data-bs-dismiss="modal">
+                        <i class="ki-duotone ki-cross fs-1">
+                            <span class="path1"></span>
+                            <span class="path2"></span>
+                        </i>
+                    </div>
+                    <!--end::Close-->
+                </div>
+                <!--begin::Modal header-->
+                <!--begin::Modal body-->
+                <div class="modal-body scroll-y mx-5 mx-xl-18 pt-0 pb-15">
+                    <!--begin::Heading-->
+                    <div class="text-center mb-13">
+                        <!--begin::Title-->
+                        <h1 class="mb-3">Browse Users</h1>
+                        <!--end::Title-->
+                        <!--begin::Description-->
+                        <div class="text-muted fw-semibold fs-5">If you need more info, please check out our
+                            <a href="#" class="link-primary fw-bold">Users Directory</a>.
+                        </div>
+                        <!--end::Description-->
+                    </div>
+                    <!--end::Heading-->
+                    <!--begin::Users-->
+                    <div class="mb-15">
+                        <!--begin::List-->
+                        <div class="mh-375px scroll-y me-n7 pe-7">
+                            <!--begin::User-->
+                            <div class="d-flex flex-stack py-5 border-bottom border-gray-300 border-bottom-dashed">
+                                <!--begin::Details-->
+                                <div class="d-flex align-items-center">
+                                    <!--begin::Avatar-->
+                                    <div class="symbol symbol-35px symbol-circle">
+                                        <img alt="Pic" src="assets/media/avatars/300-6.jpg" />
+                                    </div>
+                                    <!--end::Avatar-->
+                                    <!--begin::Details-->
+                                    <div class="ms-6">
+                                        <!--begin::Name-->
+                                        <a href="#"
+                                            class="d-flex align-items-center fs-5 fw-bold text-gray-900 text-hover-primary">Emma
+                                            Smith
+                                            <span class="badge badge-light fs-8 fw-semibold ms-2">Art
+                                                Director</span></a>
+                                        <!--end::Name-->
+                                        <!--begin::Email-->
+                                        <div class="fw-semibold text-muted">smith@kpmg.com</div>
+                                        <!--end::Email-->
+                                    </div>
+                                    <!--end::Details-->
+                                </div>
+                                <!--end::Details-->
+                                <!--begin::Stats-->
+                                <div class="d-flex">
+                                    <!--begin::Sales-->
+                                    <div class="text-end">
+                                        <div class="fs-5 fw-bold text-gray-900">$23,000</div>
+                                        <div class="fs-7 text-muted">Sales</div>
+                                    </div>
+                                    <!--end::Sales-->
+                                </div>
+                                <!--end::Stats-->
+                            </div>
+                            <!--end::User-->
+                            <!--begin::User-->
+                            <div class="d-flex flex-stack py-5 border-bottom border-gray-300 border-bottom-dashed">
+                                <!--begin::Details-->
+                                <div class="d-flex align-items-center">
+                                    <!--begin::Avatar-->
+                                    <div class="symbol symbol-35px symbol-circle">
+                                        <span class="symbol-label bg-light-danger text-danger fw-semibold">M</span>
+                                    </div>
+                                    <!--end::Avatar-->
+                                    <!--begin::Details-->
+                                    <div class="ms-6">
+                                        <!--begin::Name-->
+                                        <a href="#"
+                                            class="d-flex align-items-center fs-5 fw-bold text-gray-900 text-hover-primary">Melody
+                                            Macy
+                                            <span class="badge badge-light fs-8 fw-semibold ms-2">Marketing
+                                                Analytic</span></a>
+                                        <!--end::Name-->
+                                        <!--begin::Email-->
+                                        <div class="fw-semibold text-muted">melody@altbox.com</div>
+                                        <!--end::Email-->
+                                    </div>
+                                    <!--end::Details-->
+                                </div>
+                                <!--end::Details-->
+                                <!--begin::Stats-->
+                                <div class="d-flex">
+                                    <!--begin::Sales-->
+                                    <div class="text-end">
+                                        <div class="fs-5 fw-bold text-gray-900">$50,500</div>
+                                        <div class="fs-7 text-muted">Sales</div>
+                                    </div>
+                                    <!--end::Sales-->
+                                </div>
+                                <!--end::Stats-->
+                            </div>
+                            <!--end::User-->
+                            <!--begin::User-->
+                            <div class="d-flex flex-stack py-5 border-bottom border-gray-300 border-bottom-dashed">
+                                <!--begin::Details-->
+                                <div class="d-flex align-items-center">
+                                    <!--begin::Avatar-->
+                                    <div class="symbol symbol-35px symbol-circle">
+                                        <img alt="Pic" src="assets/media/avatars/300-1.jpg" />
+                                    </div>
+                                    <!--end::Avatar-->
+                                    <!--begin::Details-->
+                                    <div class="ms-6">
+                                        <!--begin::Name-->
+                                        <a href="#"
+                                            class="d-flex align-items-center fs-5 fw-bold text-gray-900 text-hover-primary">Max
+                                            Smith
+                                            <span class="badge badge-light fs-8 fw-semibold ms-2">Software
+                                                Enginer</span></a>
+                                        <!--end::Name-->
+                                        <!--begin::Email-->
+                                        <div class="fw-semibold text-muted">max@kt.com</div>
+                                        <!--end::Email-->
+                                    </div>
+                                    <!--end::Details-->
+                                </div>
+                                <!--end::Details-->
+                                <!--begin::Stats-->
+                                <div class="d-flex">
+                                    <!--begin::Sales-->
+                                    <div class="text-end">
+                                        <div class="fs-5 fw-bold text-gray-900">$75,900</div>
+                                        <div class="fs-7 text-muted">Sales</div>
+                                    </div>
+                                    <!--end::Sales-->
+                                </div>
+                                <!--end::Stats-->
+                            </div>
+                            <!--end::User-->
+                            <!--begin::User-->
+                            <div class="d-flex flex-stack py-5 border-bottom border-gray-300 border-bottom-dashed">
+                                <!--begin::Details-->
+                                <div class="d-flex align-items-center">
+                                    <!--begin::Avatar-->
+                                    <div class="symbol symbol-35px symbol-circle">
+                                        <img alt="Pic" src="assets/media/avatars/300-5.jpg" />
+                                    </div>
+                                    <!--end::Avatar-->
+                                    <!--begin::Details-->
+                                    <div class="ms-6">
+                                        <!--begin::Name-->
+                                        <a href="#"
+                                            class="d-flex align-items-center fs-5 fw-bold text-gray-900 text-hover-primary">Sean
+                                            Bean
+                                            <span class="badge badge-light fs-8 fw-semibold ms-2">Web
+                                                Developer</span></a>
+                                        <!--end::Name-->
+                                        <!--begin::Email-->
+                                        <div class="fw-semibold text-muted">sean@dellito.com</div>
+                                        <!--end::Email-->
+                                    </div>
+                                    <!--end::Details-->
+                                </div>
+                                <!--end::Details-->
+                                <!--begin::Stats-->
+                                <div class="d-flex">
+                                    <!--begin::Sales-->
+                                    <div class="text-end">
+                                        <div class="fs-5 fw-bold text-gray-900">$10,500</div>
+                                        <div class="fs-7 text-muted">Sales</div>
+                                    </div>
+                                    <!--end::Sales-->
+                                </div>
+                                <!--end::Stats-->
+                            </div>
+                            <!--end::User-->
+                            <!--begin::User-->
+                            <div class="d-flex flex-stack py-5 border-bottom border-gray-300 border-bottom-dashed">
+                                <!--begin::Details-->
+                                <div class="d-flex align-items-center">
+                                    <!--begin::Avatar-->
+                                    <div class="symbol symbol-35px symbol-circle">
+                                        <img alt="Pic" src="assets/media/avatars/300-25.jpg" />
+                                    </div>
+                                    <!--end::Avatar-->
+                                    <!--begin::Details-->
+                                    <div class="ms-6">
+                                        <!--begin::Name-->
+                                        <a href="#"
+                                            class="d-flex align-items-center fs-5 fw-bold text-gray-900 text-hover-primary">Brian
+                                            Cox
+                                            <span class="badge badge-light fs-8 fw-semibold ms-2">UI/UX
+                                                Designer</span></a>
+                                        <!--end::Name-->
+                                        <!--begin::Email-->
+                                        <div class="fw-semibold text-muted">brian@exchange.com</div>
+                                        <!--end::Email-->
+                                    </div>
+                                    <!--end::Details-->
+                                </div>
+                                <!--end::Details-->
+                                <!--begin::Stats-->
+                                <div class="d-flex">
+                                    <!--begin::Sales-->
+                                    <div class="text-end">
+                                        <div class="fs-5 fw-bold text-gray-900">$20,000</div>
+                                        <div class="fs-7 text-muted">Sales</div>
+                                    </div>
+                                    <!--end::Sales-->
+                                </div>
+                                <!--end::Stats-->
+                            </div>
+                            <!--end::User-->
+                            <!--begin::User-->
+                            <div class="d-flex flex-stack py-5 border-bottom border-gray-300 border-bottom-dashed">
+                                <!--begin::Details-->
+                                <div class="d-flex align-items-center">
+                                    <!--begin::Avatar-->
+                                    <div class="symbol symbol-35px symbol-circle">
+                                        <span class="symbol-label bg-light-warning text-warning fw-semibold">C</span>
+                                    </div>
+                                    <!--end::Avatar-->
+                                    <!--begin::Details-->
+                                    <div class="ms-6">
+                                        <!--begin::Name-->
+                                        <a href="#"
+                                            class="d-flex align-items-center fs-5 fw-bold text-gray-900 text-hover-primary">Mikaela
+                                            Collins
+                                            <span class="badge badge-light fs-8 fw-semibold ms-2">Head Of
+                                                Marketing</span></a>
+                                        <!--end::Name-->
+                                        <!--begin::Email-->
+                                        <div class="fw-semibold text-muted">mik@pex.com</div>
+                                        <!--end::Email-->
+                                    </div>
+                                    <!--end::Details-->
+                                </div>
+                                <!--end::Details-->
+                                <!--begin::Stats-->
+                                <div class="d-flex">
+                                    <!--begin::Sales-->
+                                    <div class="text-end">
+                                        <div class="fs-5 fw-bold text-gray-900">$9,300</div>
+                                        <div class="fs-7 text-muted">Sales</div>
+                                    </div>
+                                    <!--end::Sales-->
+                                </div>
+                                <!--end::Stats-->
+                            </div>
+                            <!--end::User-->
+                            <!--begin::User-->
+                            <div class="d-flex flex-stack py-5 border-bottom border-gray-300 border-bottom-dashed">
+                                <!--begin::Details-->
+                                <div class="d-flex align-items-center">
+                                    <!--begin::Avatar-->
+                                    <div class="symbol symbol-35px symbol-circle">
+                                        <img alt="Pic" src="assets/media/avatars/300-9.jpg" />
+                                    </div>
+                                    <!--end::Avatar-->
+                                    <!--begin::Details-->
+                                    <div class="ms-6">
+                                        <!--begin::Name-->
+                                        <a href="#"
+                                            class="d-flex align-items-center fs-5 fw-bold text-gray-900 text-hover-primary">Francis
+                                            Mitcham
+                                            <span class="badge badge-light fs-8 fw-semibold ms-2">Software
+                                                Arcitect</span></a>
+                                        <!--end::Name-->
+                                        <!--begin::Email-->
+                                        <div class="fw-semibold text-muted">f.mit@kpmg.com</div>
+                                        <!--end::Email-->
+                                    </div>
+                                    <!--end::Details-->
+                                </div>
+                                <!--end::Details-->
+                                <!--begin::Stats-->
+                                <div class="d-flex">
+                                    <!--begin::Sales-->
+                                    <div class="text-end">
+                                        <div class="fs-5 fw-bold text-gray-900">$15,000</div>
+                                        <div class="fs-7 text-muted">Sales</div>
+                                    </div>
+                                    <!--end::Sales-->
+                                </div>
+                                <!--end::Stats-->
+                            </div>
+                            <!--end::User-->
+                            <!--begin::User-->
+                            <div class="d-flex flex-stack py-5 border-bottom border-gray-300 border-bottom-dashed">
+                                <!--begin::Details-->
+                                <div class="d-flex align-items-center">
+                                    <!--begin::Avatar-->
+                                    <div class="symbol symbol-35px symbol-circle">
+                                        <span class="symbol-label bg-light-danger text-danger fw-semibold">O</span>
+                                    </div>
+                                    <!--end::Avatar-->
+                                    <!--begin::Details-->
+                                    <div class="ms-6">
+                                        <!--begin::Name-->
+                                        <a href="#"
+                                            class="d-flex align-items-center fs-5 fw-bold text-gray-900 text-hover-primary">Olivia
+                                            Wild
+                                            <span class="badge badge-light fs-8 fw-semibold ms-2">System
+                                                Admin</span></a>
+                                        <!--end::Name-->
+                                        <!--begin::Email-->
+                                        <div class="fw-semibold text-muted">olivia@corpmail.com</div>
+                                        <!--end::Email-->
+                                    </div>
+                                    <!--end::Details-->
+                                </div>
+                                <!--end::Details-->
+                                <!--begin::Stats-->
+                                <div class="d-flex">
+                                    <!--begin::Sales-->
+                                    <div class="text-end">
+                                        <div class="fs-5 fw-bold text-gray-900">$23,000</div>
+                                        <div class="fs-7 text-muted">Sales</div>
+                                    </div>
+                                    <!--end::Sales-->
+                                </div>
+                                <!--end::Stats-->
+                            </div>
+                            <!--end::User-->
+                            <!--begin::User-->
+                            <div class="d-flex flex-stack py-5 border-bottom border-gray-300 border-bottom-dashed">
+                                <!--begin::Details-->
+                                <div class="d-flex align-items-center">
+                                    <!--begin::Avatar-->
+                                    <div class="symbol symbol-35px symbol-circle">
+                                        <span class="symbol-label bg-light-primary text-primary fw-semibold">N</span>
+                                    </div>
+                                    <!--end::Avatar-->
+                                    <!--begin::Details-->
+                                    <div class="ms-6">
+                                        <!--begin::Name-->
+                                        <a href="#"
+                                            class="d-flex align-items-center fs-5 fw-bold text-gray-900 text-hover-primary">Neil
+                                            Owen
+                                            <span class="badge badge-light fs-8 fw-semibold ms-2">Account
+                                                Manager</span></a>
+                                        <!--end::Name-->
+                                        <!--begin::Email-->
+                                        <div class="fw-semibold text-muted">owen.neil@gmail.com</div>
+                                        <!--end::Email-->
+                                    </div>
+                                    <!--end::Details-->
+                                </div>
+                                <!--end::Details-->
+                                <!--begin::Stats-->
+                                <div class="d-flex">
+                                    <!--begin::Sales-->
+                                    <div class="text-end">
+                                        <div class="fs-5 fw-bold text-gray-900">$45,800</div>
+                                        <div class="fs-7 text-muted">Sales</div>
+                                    </div>
+                                    <!--end::Sales-->
+                                </div>
+                                <!--end::Stats-->
+                            </div>
+                            <!--end::User-->
+                            <!--begin::User-->
+                            <div class="d-flex flex-stack py-5 border-bottom border-gray-300 border-bottom-dashed">
+                                <!--begin::Details-->
+                                <div class="d-flex align-items-center">
+                                    <!--begin::Avatar-->
+                                    <div class="symbol symbol-35px symbol-circle">
+                                        <img alt="Pic" src="assets/media/avatars/300-23.jpg" />
+                                    </div>
+                                    <!--end::Avatar-->
+                                    <!--begin::Details-->
+                                    <div class="ms-6">
+                                        <!--begin::Name-->
+                                        <a href="#"
+                                            class="d-flex align-items-center fs-5 fw-bold text-gray-900 text-hover-primary">Dan
+                                            Wilson
+                                            <span class="badge badge-light fs-8 fw-semibold ms-2">Web
+                                                Desinger</span></a>
+                                        <!--end::Name-->
+                                        <!--begin::Email-->
+                                        <div class="fw-semibold text-muted">dam@consilting.com</div>
+                                        <!--end::Email-->
+                                    </div>
+                                    <!--end::Details-->
+                                </div>
+                                <!--end::Details-->
+                                <!--begin::Stats-->
+                                <div class="d-flex">
+                                    <!--begin::Sales-->
+                                    <div class="text-end">
+                                        <div class="fs-5 fw-bold text-gray-900">$90,500</div>
+                                        <div class="fs-7 text-muted">Sales</div>
+                                    </div>
+                                    <!--end::Sales-->
+                                </div>
+                                <!--end::Stats-->
+                            </div>
+                            <!--end::User-->
+                            <!--begin::User-->
+                            <div class="d-flex flex-stack py-5 border-bottom border-gray-300 border-bottom-dashed">
+                                <!--begin::Details-->
+                                <div class="d-flex align-items-center">
+                                    <!--begin::Avatar-->
+                                    <div class="symbol symbol-35px symbol-circle">
+                                        <span class="symbol-label bg-light-danger text-danger fw-semibold">E</span>
+                                    </div>
+                                    <!--end::Avatar-->
+                                    <!--begin::Details-->
+                                    <div class="ms-6">
+                                        <!--begin::Name-->
+                                        <a href="#"
+                                            class="d-flex align-items-center fs-5 fw-bold text-gray-900 text-hover-primary">Emma
+                                            Bold
+                                            <span class="badge badge-light fs-8 fw-semibold ms-2">Corporate
+                                                Finance</span></a>
+                                        <!--end::Name-->
+                                        <!--begin::Email-->
+                                        <div class="fw-semibold text-muted">emma@intenso.com</div>
+                                        <!--end::Email-->
+                                    </div>
+                                    <!--end::Details-->
+                                </div>
+                                <!--end::Details-->
+                                <!--begin::Stats-->
+                                <div class="d-flex">
+                                    <!--begin::Sales-->
+                                    <div class="text-end">
+                                        <div class="fs-5 fw-bold text-gray-900">$5,000</div>
+                                        <div class="fs-7 text-muted">Sales</div>
+                                    </div>
+                                    <!--end::Sales-->
+                                </div>
+                                <!--end::Stats-->
+                            </div>
+                            <!--end::User-->
+                            <!--begin::User-->
+                            <div class="d-flex flex-stack py-5 border-bottom border-gray-300 border-bottom-dashed">
+                                <!--begin::Details-->
+                                <div class="d-flex align-items-center">
+                                    <!--begin::Avatar-->
+                                    <div class="symbol symbol-35px symbol-circle">
+                                        <img alt="Pic" src="assets/media/avatars/300-12.jpg" />
+                                    </div>
+                                    <!--end::Avatar-->
+                                    <!--begin::Details-->
+                                    <div class="ms-6">
+                                        <!--begin::Name-->
+                                        <a href="#"
+                                            class="d-flex align-items-center fs-5 fw-bold text-gray-900 text-hover-primary">Ana
+                                            Crown
+                                            <span class="badge badge-light fs-8 fw-semibold ms-2">Customer
+                                                Relationship</span></a>
+                                        <!--end::Name-->
+                                        <!--begin::Email-->
+                                        <div class="fw-semibold text-muted">ana.cf@limtel.com</div>
+                                        <!--end::Email-->
+                                    </div>
+                                    <!--end::Details-->
+                                </div>
+                                <!--end::Details-->
+                                <!--begin::Stats-->
+                                <div class="d-flex">
+                                    <!--begin::Sales-->
+                                    <div class="text-end">
+                                        <div class="fs-5 fw-bold text-gray-900">$70,000</div>
+                                        <div class="fs-7 text-muted">Sales</div>
+                                    </div>
+                                    <!--end::Sales-->
+                                </div>
+                                <!--end::Stats-->
+                            </div>
+                            <!--end::User-->
+                            <!--begin::User-->
+                            <div class="d-flex flex-stack py-5">
+                                <!--begin::Details-->
+                                <div class="d-flex align-items-center">
+                                    <!--begin::Avatar-->
+                                    <div class="symbol symbol-35px symbol-circle">
+                                        <span class="symbol-label bg-light-info text-info fw-semibold">A</span>
+                                    </div>
+                                    <!--end::Avatar-->
+                                    <!--begin::Details-->
+                                    <div class="ms-6">
+                                        <!--begin::Name-->
+                                        <a href="#"
+                                            class="d-flex align-items-center fs-5 fw-bold text-gray-900 text-hover-primary">Robert
+                                            Doe
+                                            <span class="badge badge-light fs-8 fw-semibold ms-2">Marketing
+                                                Executive</span></a>
+                                        <!--end::Name-->
+                                        <!--begin::Email-->
+                                        <div class="fw-semibold text-muted">robert@benko.com</div>
+                                        <!--end::Email-->
+                                    </div>
+                                    <!--end::Details-->
+                                </div>
+                                <!--end::Details-->
+                                <!--begin::Stats-->
+                                <div class="d-flex">
+                                    <!--begin::Sales-->
+                                    <div class="text-end">
+                                        <div class="fs-5 fw-bold text-gray-900">$45,500</div>
+                                        <div class="fs-7 text-muted">Sales</div>
+                                    </div>
+                                    <!--end::Sales-->
+                                </div>
+                                <!--end::Stats-->
+                            </div>
+                            <!--end::User-->
+                        </div>
+                        <!--end::List-->
+                    </div>
+                    <!--end::Users-->
+                    <!--begin::Notice-->
+                    <div class="d-flex justify-content-between">
+                        <!--begin::Label-->
+                        <div class="fw-semibold">
+                            <label class="fs-6">Adding Users by Team Members</label>
+                            <div class="fs-7 text-muted">If you need more info, please check budget planning</div>
+                        </div>
+                        <!--end::Label-->
+                        <!--begin::Switch-->
+                        <label class="form-check form-switch form-check-custom form-check-solid">
+                            <input class="form-check-input" type="checkbox" value="" checked="checked" />
+                            <span class="form-check-label fw-semibold text-muted">Allowed</span>
+                        </label>
+                        <!--end::Switch-->
+                    </div>
+                    <!--end::Notice-->
+                </div>
+                <!--end::Modal body-->
+            </div>
+            <!--end::Modal content-->
+        </div>
+        <!--end::Modal dialog-->
+    </div>
+    <!--end::Modal - View Users-->
     <!--begin::Modal - Users Search-->
     <div class="modal fade" id="kt_modal_users_search" tabindex="-1" aria-hidden="true">
         <!--begin::Modal dialog-->
@@ -3700,15 +3687,16 @@
                                             <!--end::Checkbox-->
                                             <!--begin::Avatar-->
                                             <div class="symbol symbol-35px symbol-circle">
-                                                <img alt="Pic" src="assets/media/avatars/300-21.jpg" />
+                                                <span
+                                                    class="symbol-label bg-light-info text-info fw-semibold">A</span>
                                             </div>
                                             <!--end::Avatar-->
                                             <!--begin::Details-->
                                             <div class="ms-5">
                                                 <a href="#"
-                                                    class="fs-5 fw-bold text-gray-900 text-hover-primary mb-2">Ethan
-                                                    Wilder</a>
-                                                <div class="fw-semibold text-muted">ethan@loop.com.au</div>
+                                                    class="fs-5 fw-bold text-gray-900 text-hover-primary mb-2">Robert
+                                                    Doe</a>
+                                                <div class="fw-semibold text-muted">robert@benko.com</div>
                                             </div>
                                             <!--end::Details-->
                                         </div>
@@ -3766,644 +3754,29 @@
         <!--end::Modal dialog-->
     </div>
     <!--end::Modal - Users Search-->
-    <!--begin::Modal - Invite Friends-->
-    <div class="modal fade" id="kt_modal_invite_friends" tabindex="-1" aria-hidden="true">
-        <!--begin::Modal dialog-->
-        <div class="modal-dialog mw-650px">
-            <!--begin::Modal content-->
-            <div class="modal-content">
-                <!--begin::Modal header-->
-                <div class="modal-header pb-0 border-0 justify-content-end">
-                    <!--begin::Close-->
-                    <div class="btn btn-sm btn-icon btn-active-color-primary" data-bs-dismiss="modal">
-                        <i class="ki-duotone ki-cross fs-1">
-                            <span class="path1"></span>
-                            <span class="path2"></span>
-                        </i>
-                    </div>
-                    <!--end::Close-->
-                </div>
-                <!--begin::Modal header-->
-                <!--begin::Modal body-->
-                <div class="modal-body scroll-y mx-5 mx-xl-18 pt-0 pb-15">
-                    <!--begin::Heading-->
-                    <div class="text-center mb-13">
-                        <!--begin::Title-->
-                        <h1 class="mb-3">Invite a Friend</h1>
-                        <!--end::Title-->
-                        <!--begin::Description-->
-                        <div class="text-muted fw-semibold fs-5">If you need more info, please check out
-                            <a href="#" class="link-primary fw-bold">FAQ Page</a>.
-                        </div>
-                        <!--end::Description-->
-                    </div>
-                    <!--end::Heading-->
-                    <!--begin::Google Contacts Invite-->
-                    <div class="btn btn-light-primary fw-bold w-100 mb-8">
-                        <img alt="Logo" src="assets/media/svg/brand-logos/google-icon.svg"
-                            class="h-20px me-3" />Invite Gmail Contacts
-                    </div>
-                    <!--end::Google Contacts Invite-->
-                    <!--begin::Separator-->
-                    <div class="separator d-flex flex-center mb-8">
-                        <span class="text-uppercase bg-body fs-7 fw-semibold text-muted px-3">or</span>
-                    </div>
-                    <!--end::Separator-->
-                    <!--begin::Textarea-->
-                    <textarea class="form-control form-control-solid mb-8" rows="3" placeholder="Type or paste emails here"></textarea>
-                    <!--end::Textarea-->
-                    <!--begin::Users-->
-                    <div class="mb-10">
-                        <!--begin::Heading-->
-                        <div class="fs-6 fw-semibold mb-2">Your Invitations</div>
-                        <!--end::Heading-->
-                        <!--begin::List-->
-                        <div class="mh-300px scroll-y me-n7 pe-7">
-                            <!--begin::User-->
-                            <div class="d-flex flex-stack py-4 border-bottom border-gray-300 border-bottom-dashed">
-                                <!--begin::Details-->
-                                <div class="d-flex align-items-center">
-                                    <!--begin::Avatar-->
-                                    <div class="symbol symbol-35px symbol-circle">
-                                        <img alt="Pic" src="assets/media/avatars/300-6.jpg" />
-                                    </div>
-                                    <!--end::Avatar-->
-                                    <!--begin::Details-->
-                                    <div class="ms-5">
-                                        <a href="#"
-                                            class="fs-5 fw-bold text-gray-900 text-hover-primary mb-2">Emma Smith</a>
-                                        <div class="fw-semibold text-muted">smith@kpmg.com</div>
-                                    </div>
-                                    <!--end::Details-->
-                                </div>
-                                <!--end::Details-->
-                                <!--begin::Access menu-->
-                                <div class="ms-2 w-100px">
-                                    <select class="form-select form-select-solid form-select-sm"
-                                        data-control="select2" data-dropdown-parent="#kt_modal_invite_friends"
-                                        data-hide-search="true">
-                                        <option value="1">Guest</option>
-                                        <option value="2" selected="selected">Owner</option>
-                                        <option value="3">Can Edit</option>
-                                    </select>
-                                </div>
-                                <!--end::Access menu-->
-                            </div>
-                            <!--end::User-->
-                            <!--begin::User-->
-                            <div class="d-flex flex-stack py-4 border-bottom border-gray-300 border-bottom-dashed">
-                                <!--begin::Details-->
-                                <div class="d-flex align-items-center">
-                                    <!--begin::Avatar-->
-                                    <div class="symbol symbol-35px symbol-circle">
-                                        <span class="symbol-label bg-light-danger text-danger fw-semibold">M</span>
-                                    </div>
-                                    <!--end::Avatar-->
-                                    <!--begin::Details-->
-                                    <div class="ms-5">
-                                        <a href="#"
-                                            class="fs-5 fw-bold text-gray-900 text-hover-primary mb-2">Melody Macy</a>
-                                        <div class="fw-semibold text-muted">melody@altbox.com</div>
-                                    </div>
-                                    <!--end::Details-->
-                                </div>
-                                <!--end::Details-->
-                                <!--begin::Access menu-->
-                                <div class="ms-2 w-100px">
-                                    <select class="form-select form-select-solid form-select-sm"
-                                        data-control="select2" data-dropdown-parent="#kt_modal_invite_friends"
-                                        data-hide-search="true">
-                                        <option value="1" selected="selected">Guest</option>
-                                        <option value="2">Owner</option>
-                                        <option value="3">Can Edit</option>
-                                    </select>
-                                </div>
-                                <!--end::Access menu-->
-                            </div>
-                            <!--end::User-->
-                            <!--begin::User-->
-                            <div class="d-flex flex-stack py-4 border-bottom border-gray-300 border-bottom-dashed">
-                                <!--begin::Details-->
-                                <div class="d-flex align-items-center">
-                                    <!--begin::Avatar-->
-                                    <div class="symbol symbol-35px symbol-circle">
-                                        <img alt="Pic" src="assets/media/avatars/300-1.jpg" />
-                                    </div>
-                                    <!--end::Avatar-->
-                                    <!--begin::Details-->
-                                    <div class="ms-5">
-                                        <a href="#"
-                                            class="fs-5 fw-bold text-gray-900 text-hover-primary mb-2">Max Smith</a>
-                                        <div class="fw-semibold text-muted">max@kt.com</div>
-                                    </div>
-                                    <!--end::Details-->
-                                </div>
-                                <!--end::Details-->
-                                <!--begin::Access menu-->
-                                <div class="ms-2 w-100px">
-                                    <select class="form-select form-select-solid form-select-sm"
-                                        data-control="select2" data-dropdown-parent="#kt_modal_invite_friends"
-                                        data-hide-search="true">
-                                        <option value="1">Guest</option>
-                                        <option value="2">Owner</option>
-                                        <option value="3" selected="selected">Can Edit</option>
-                                    </select>
-                                </div>
-                                <!--end::Access menu-->
-                            </div>
-                            <!--end::User-->
-                            <!--begin::User-->
-                            <div class="d-flex flex-stack py-4 border-bottom border-gray-300 border-bottom-dashed">
-                                <!--begin::Details-->
-                                <div class="d-flex align-items-center">
-                                    <!--begin::Avatar-->
-                                    <div class="symbol symbol-35px symbol-circle">
-                                        <img alt="Pic" src="assets/media/avatars/300-5.jpg" />
-                                    </div>
-                                    <!--end::Avatar-->
-                                    <!--begin::Details-->
-                                    <div class="ms-5">
-                                        <a href="#"
-                                            class="fs-5 fw-bold text-gray-900 text-hover-primary mb-2">Sean Bean</a>
-                                        <div class="fw-semibold text-muted">sean@dellito.com</div>
-                                    </div>
-                                    <!--end::Details-->
-                                </div>
-                                <!--end::Details-->
-                                <!--begin::Access menu-->
-                                <div class="ms-2 w-100px">
-                                    <select class="form-select form-select-solid form-select-sm"
-                                        data-control="select2" data-dropdown-parent="#kt_modal_invite_friends"
-                                        data-hide-search="true">
-                                        <option value="1">Guest</option>
-                                        <option value="2" selected="selected">Owner</option>
-                                        <option value="3">Can Edit</option>
-                                    </select>
-                                </div>
-                                <!--end::Access menu-->
-                            </div>
-                            <!--end::User-->
-                            <!--begin::User-->
-                            <div class="d-flex flex-stack py-4 border-bottom border-gray-300 border-bottom-dashed">
-                                <!--begin::Details-->
-                                <div class="d-flex align-items-center">
-                                    <!--begin::Avatar-->
-                                    <div class="symbol symbol-35px symbol-circle">
-                                        <img alt="Pic" src="assets/media/avatars/300-25.jpg" />
-                                    </div>
-                                    <!--end::Avatar-->
-                                    <!--begin::Details-->
-                                    <div class="ms-5">
-                                        <a href="#"
-                                            class="fs-5 fw-bold text-gray-900 text-hover-primary mb-2">Brian Cox</a>
-                                        <div class="fw-semibold text-muted">brian@exchange.com</div>
-                                    </div>
-                                    <!--end::Details-->
-                                </div>
-                                <!--end::Details-->
-                                <!--begin::Access menu-->
-                                <div class="ms-2 w-100px">
-                                    <select class="form-select form-select-solid form-select-sm"
-                                        data-control="select2" data-dropdown-parent="#kt_modal_invite_friends"
-                                        data-hide-search="true">
-                                        <option value="1">Guest</option>
-                                        <option value="2">Owner</option>
-                                        <option value="3" selected="selected">Can Edit</option>
-                                    </select>
-                                </div>
-                                <!--end::Access menu-->
-                            </div>
-                            <!--end::User-->
-                            <!--begin::User-->
-                            <div class="d-flex flex-stack py-4 border-bottom border-gray-300 border-bottom-dashed">
-                                <!--begin::Details-->
-                                <div class="d-flex align-items-center">
-                                    <!--begin::Avatar-->
-                                    <div class="symbol symbol-35px symbol-circle">
-                                        <span class="symbol-label bg-light-warning text-warning fw-semibold">C</span>
-                                    </div>
-                                    <!--end::Avatar-->
-                                    <!--begin::Details-->
-                                    <div class="ms-5">
-                                        <a href="#"
-                                            class="fs-5 fw-bold text-gray-900 text-hover-primary mb-2">Mikaela
-                                            Collins</a>
-                                        <div class="fw-semibold text-muted">mik@pex.com</div>
-                                    </div>
-                                    <!--end::Details-->
-                                </div>
-                                <!--end::Details-->
-                                <!--begin::Access menu-->
-                                <div class="ms-2 w-100px">
-                                    <select class="form-select form-select-solid form-select-sm"
-                                        data-control="select2" data-dropdown-parent="#kt_modal_invite_friends"
-                                        data-hide-search="true">
-                                        <option value="1">Guest</option>
-                                        <option value="2" selected="selected">Owner</option>
-                                        <option value="3">Can Edit</option>
-                                    </select>
-                                </div>
-                                <!--end::Access menu-->
-                            </div>
-                            <!--end::User-->
-                            <!--begin::User-->
-                            <div class="d-flex flex-stack py-4 border-bottom border-gray-300 border-bottom-dashed">
-                                <!--begin::Details-->
-                                <div class="d-flex align-items-center">
-                                    <!--begin::Avatar-->
-                                    <div class="symbol symbol-35px symbol-circle">
-                                        <img alt="Pic" src="assets/media/avatars/300-9.jpg" />
-                                    </div>
-                                    <!--end::Avatar-->
-                                    <!--begin::Details-->
-                                    <div class="ms-5">
-                                        <a href="#"
-                                            class="fs-5 fw-bold text-gray-900 text-hover-primary mb-2">Francis
-                                            Mitcham</a>
-                                        <div class="fw-semibold text-muted">f.mit@kpmg.com</div>
-                                    </div>
-                                    <!--end::Details-->
-                                </div>
-                                <!--end::Details-->
-                                <!--begin::Access menu-->
-                                <div class="ms-2 w-100px">
-                                    <select class="form-select form-select-solid form-select-sm"
-                                        data-control="select2" data-dropdown-parent="#kt_modal_invite_friends"
-                                        data-hide-search="true">
-                                        <option value="1">Guest</option>
-                                        <option value="2">Owner</option>
-                                        <option value="3" selected="selected">Can Edit</option>
-                                    </select>
-                                </div>
-                                <!--end::Access menu-->
-                            </div>
-                            <!--end::User-->
-                            <!--begin::User-->
-                            <div class="d-flex flex-stack py-4 border-bottom border-gray-300 border-bottom-dashed">
-                                <!--begin::Details-->
-                                <div class="d-flex align-items-center">
-                                    <!--begin::Avatar-->
-                                    <div class="symbol symbol-35px symbol-circle">
-                                        <span class="symbol-label bg-light-danger text-danger fw-semibold">O</span>
-                                    </div>
-                                    <!--end::Avatar-->
-                                    <!--begin::Details-->
-                                    <div class="ms-5">
-                                        <a href="#"
-                                            class="fs-5 fw-bold text-gray-900 text-hover-primary mb-2">Olivia Wild</a>
-                                        <div class="fw-semibold text-muted">olivia@corpmail.com</div>
-                                    </div>
-                                    <!--end::Details-->
-                                </div>
-                                <!--end::Details-->
-                                <!--begin::Access menu-->
-                                <div class="ms-2 w-100px">
-                                    <select class="form-select form-select-solid form-select-sm"
-                                        data-control="select2" data-dropdown-parent="#kt_modal_invite_friends"
-                                        data-hide-search="true">
-                                        <option value="1">Guest</option>
-                                        <option value="2" selected="selected">Owner</option>
-                                        <option value="3">Can Edit</option>
-                                    </select>
-                                </div>
-                                <!--end::Access menu-->
-                            </div>
-                            <!--end::User-->
-                            <!--begin::User-->
-                            <div class="d-flex flex-stack py-4 border-bottom border-gray-300 border-bottom-dashed">
-                                <!--begin::Details-->
-                                <div class="d-flex align-items-center">
-                                    <!--begin::Avatar-->
-                                    <div class="symbol symbol-35px symbol-circle">
-                                        <span class="symbol-label bg-light-primary text-primary fw-semibold">N</span>
-                                    </div>
-                                    <!--end::Avatar-->
-                                    <!--begin::Details-->
-                                    <div class="ms-5">
-                                        <a href="#"
-                                            class="fs-5 fw-bold text-gray-900 text-hover-primary mb-2">Neil Owen</a>
-                                        <div class="fw-semibold text-muted">owen.neil@gmail.com</div>
-                                    </div>
-                                    <!--end::Details-->
-                                </div>
-                                <!--end::Details-->
-                                <!--begin::Access menu-->
-                                <div class="ms-2 w-100px">
-                                    <select class="form-select form-select-solid form-select-sm"
-                                        data-control="select2" data-dropdown-parent="#kt_modal_invite_friends"
-                                        data-hide-search="true">
-                                        <option value="1" selected="selected">Guest</option>
-                                        <option value="2">Owner</option>
-                                        <option value="3">Can Edit</option>
-                                    </select>
-                                </div>
-                                <!--end::Access menu-->
-                            </div>
-                            <!--end::User-->
-                            <!--begin::User-->
-                            <div class="d-flex flex-stack py-4 border-bottom border-gray-300 border-bottom-dashed">
-                                <!--begin::Details-->
-                                <div class="d-flex align-items-center">
-                                    <!--begin::Avatar-->
-                                    <div class="symbol symbol-35px symbol-circle">
-                                        <img alt="Pic" src="assets/media/avatars/300-23.jpg" />
-                                    </div>
-                                    <!--end::Avatar-->
-                                    <!--begin::Details-->
-                                    <div class="ms-5">
-                                        <a href="#"
-                                            class="fs-5 fw-bold text-gray-900 text-hover-primary mb-2">Dan Wilson</a>
-                                        <div class="fw-semibold text-muted">dam@consilting.com</div>
-                                    </div>
-                                    <!--end::Details-->
-                                </div>
-                                <!--end::Details-->
-                                <!--begin::Access menu-->
-                                <div class="ms-2 w-100px">
-                                    <select class="form-select form-select-solid form-select-sm"
-                                        data-control="select2" data-dropdown-parent="#kt_modal_invite_friends"
-                                        data-hide-search="true">
-                                        <option value="1">Guest</option>
-                                        <option value="2">Owner</option>
-                                        <option value="3" selected="selected">Can Edit</option>
-                                    </select>
-                                </div>
-                                <!--end::Access menu-->
-                            </div>
-                            <!--end::User-->
-                            <!--begin::User-->
-                            <div class="d-flex flex-stack py-4 border-bottom border-gray-300 border-bottom-dashed">
-                                <!--begin::Details-->
-                                <div class="d-flex align-items-center">
-                                    <!--begin::Avatar-->
-                                    <div class="symbol symbol-35px symbol-circle">
-                                        <span class="symbol-label bg-light-danger text-danger fw-semibold">E</span>
-                                    </div>
-                                    <!--end::Avatar-->
-                                    <!--begin::Details-->
-                                    <div class="ms-5">
-                                        <a href="#"
-                                            class="fs-5 fw-bold text-gray-900 text-hover-primary mb-2">Emma Bold</a>
-                                        <div class="fw-semibold text-muted">emma@intenso.com</div>
-                                    </div>
-                                    <!--end::Details-->
-                                </div>
-                                <!--end::Details-->
-                                <!--begin::Access menu-->
-                                <div class="ms-2 w-100px">
-                                    <select class="form-select form-select-solid form-select-sm"
-                                        data-control="select2" data-dropdown-parent="#kt_modal_invite_friends"
-                                        data-hide-search="true">
-                                        <option value="1">Guest</option>
-                                        <option value="2" selected="selected">Owner</option>
-                                        <option value="3">Can Edit</option>
-                                    </select>
-                                </div>
-                                <!--end::Access menu-->
-                            </div>
-                            <!--end::User-->
-                            <!--begin::User-->
-                            <div class="d-flex flex-stack py-4 border-bottom border-gray-300 border-bottom-dashed">
-                                <!--begin::Details-->
-                                <div class="d-flex align-items-center">
-                                    <!--begin::Avatar-->
-                                    <div class="symbol symbol-35px symbol-circle">
-                                        <img alt="Pic" src="assets/media/avatars/300-12.jpg" />
-                                    </div>
-                                    <!--end::Avatar-->
-                                    <!--begin::Details-->
-                                    <div class="ms-5">
-                                        <a href="#"
-                                            class="fs-5 fw-bold text-gray-900 text-hover-primary mb-2">Ana Crown</a>
-                                        <div class="fw-semibold text-muted">ana.cf@limtel.com</div>
-                                    </div>
-                                    <!--end::Details-->
-                                </div>
-                                <!--end::Details-->
-                                <!--begin::Access menu-->
-                                <div class="ms-2 w-100px">
-                                    <select class="form-select form-select-solid form-select-sm"
-                                        data-control="select2" data-dropdown-parent="#kt_modal_invite_friends"
-                                        data-hide-search="true">
-                                        <option value="1" selected="selected">Guest</option>
-                                        <option value="2">Owner</option>
-                                        <option value="3">Can Edit</option>
-                                    </select>
-                                </div>
-                                <!--end::Access menu-->
-                            </div>
-                            <!--end::User-->
-                            <!--begin::User-->
-                            <div class="d-flex flex-stack py-4 border-bottom border-gray-300 border-bottom-dashed">
-                                <!--begin::Details-->
-                                <div class="d-flex align-items-center">
-                                    <!--begin::Avatar-->
-                                    <div class="symbol symbol-35px symbol-circle">
-                                        <span class="symbol-label bg-light-info text-info fw-semibold">A</span>
-                                    </div>
-                                    <!--end::Avatar-->
-                                    <!--begin::Details-->
-                                    <div class="ms-5">
-                                        <a href="#"
-                                            class="fs-5 fw-bold text-gray-900 text-hover-primary mb-2">Robert Doe</a>
-                                        <div class="fw-semibold text-muted">robert@benko.com</div>
-                                    </div>
-                                    <!--end::Details-->
-                                </div>
-                                <!--end::Details-->
-                                <!--begin::Access menu-->
-                                <div class="ms-2 w-100px">
-                                    <select class="form-select form-select-solid form-select-sm"
-                                        data-control="select2" data-dropdown-parent="#kt_modal_invite_friends"
-                                        data-hide-search="true">
-                                        <option value="1">Guest</option>
-                                        <option value="2">Owner</option>
-                                        <option value="3" selected="selected">Can Edit</option>
-                                    </select>
-                                </div>
-                                <!--end::Access menu-->
-                            </div>
-                            <!--end::User-->
-                            <!--begin::User-->
-                            <div class="d-flex flex-stack py-4 border-bottom border-gray-300 border-bottom-dashed">
-                                <!--begin::Details-->
-                                <div class="d-flex align-items-center">
-                                    <!--begin::Avatar-->
-                                    <div class="symbol symbol-35px symbol-circle">
-                                        <img alt="Pic" src="assets/media/avatars/300-13.jpg" />
-                                    </div>
-                                    <!--end::Avatar-->
-                                    <!--begin::Details-->
-                                    <div class="ms-5">
-                                        <a href="#"
-                                            class="fs-5 fw-bold text-gray-900 text-hover-primary mb-2">John Miller</a>
-                                        <div class="fw-semibold text-muted">miller@mapple.com</div>
-                                    </div>
-                                    <!--end::Details-->
-                                </div>
-                                <!--end::Details-->
-                                <!--begin::Access menu-->
-                                <div class="ms-2 w-100px">
-                                    <select class="form-select form-select-solid form-select-sm"
-                                        data-control="select2" data-dropdown-parent="#kt_modal_invite_friends"
-                                        data-hide-search="true">
-                                        <option value="1">Guest</option>
-                                        <option value="2">Owner</option>
-                                        <option value="3" selected="selected">Can Edit</option>
-                                    </select>
-                                </div>
-                                <!--end::Access menu-->
-                            </div>
-                            <!--end::User-->
-                            <!--begin::User-->
-                            <div class="d-flex flex-stack py-4 border-bottom border-gray-300 border-bottom-dashed">
-                                <!--begin::Details-->
-                                <div class="d-flex align-items-center">
-                                    <!--begin::Avatar-->
-                                    <div class="symbol symbol-35px symbol-circle">
-                                        <span class="symbol-label bg-light-success text-success fw-semibold">L</span>
-                                    </div>
-                                    <!--end::Avatar-->
-                                    <!--begin::Details-->
-                                    <div class="ms-5">
-                                        <a href="#"
-                                            class="fs-5 fw-bold text-gray-900 text-hover-primary mb-2">Lucy Kunic</a>
-                                        <div class="fw-semibold text-muted">lucy.m@fentech.com</div>
-                                    </div>
-                                    <!--end::Details-->
-                                </div>
-                                <!--end::Details-->
-                                <!--begin::Access menu-->
-                                <div class="ms-2 w-100px">
-                                    <select class="form-select form-select-solid form-select-sm"
-                                        data-control="select2" data-dropdown-parent="#kt_modal_invite_friends"
-                                        data-hide-search="true">
-                                        <option value="1">Guest</option>
-                                        <option value="2" selected="selected">Owner</option>
-                                        <option value="3">Can Edit</option>
-                                    </select>
-                                </div>
-                                <!--end::Access menu-->
-                            </div>
-                            <!--end::User-->
-                            <!--begin::User-->
-                            <div class="d-flex flex-stack py-4 border-bottom border-gray-300 border-bottom-dashed">
-                                <!--begin::Details-->
-                                <div class="d-flex align-items-center">
-                                    <!--begin::Avatar-->
-                                    <div class="symbol symbol-35px symbol-circle">
-                                        <img alt="Pic" src="assets/media/avatars/300-21.jpg" />
-                                    </div>
-                                    <!--end::Avatar-->
-                                    <!--begin::Details-->
-                                    <div class="ms-5">
-                                        <a href="#"
-                                            class="fs-5 fw-bold text-gray-900 text-hover-primary mb-2">Ethan
-                                            Wilder</a>
-                                        <div class="fw-semibold text-muted">ethan@loop.com.au</div>
-                                    </div>
-                                    <!--end::Details-->
-                                </div>
-                                <!--end::Details-->
-                                <!--begin::Access menu-->
-                                <div class="ms-2 w-100px">
-                                    <select class="form-select form-select-solid form-select-sm"
-                                        data-control="select2" data-dropdown-parent="#kt_modal_invite_friends"
-                                        data-hide-search="true">
-                                        <option value="1" selected="selected">Guest</option>
-                                        <option value="2">Owner</option>
-                                        <option value="3">Can Edit</option>
-                                    </select>
-                                </div>
-                                <!--end::Access menu-->
-                            </div>
-                            <!--end::User-->
-                            <!--begin::User-->
-                            <div class="d-flex flex-stack py-4">
-                                <!--begin::Details-->
-                                <div class="d-flex align-items-center">
-                                    <!--begin::Avatar-->
-                                    <div class="symbol symbol-35px symbol-circle">
-                                        <span class="symbol-label bg-light-danger text-danger fw-semibold">M</span>
-                                    </div>
-                                    <!--end::Avatar-->
-                                    <!--begin::Details-->
-                                    <div class="ms-5">
-                                        <a href="#"
-                                            class="fs-5 fw-bold text-gray-900 text-hover-primary mb-2">Melody Macy</a>
-                                        <div class="fw-semibold text-muted">melody@altbox.com</div>
-                                    </div>
-                                    <!--end::Details-->
-                                </div>
-                                <!--end::Details-->
-                                <!--begin::Access menu-->
-                                <div class="ms-2 w-100px">
-                                    <select class="form-select form-select-solid form-select-sm"
-                                        data-control="select2" data-dropdown-parent="#kt_modal_invite_friends"
-                                        data-hide-search="true">
-                                        <option value="1">Guest</option>
-                                        <option value="2">Owner</option>
-                                        <option value="3" selected="selected">Can Edit</option>
-                                    </select>
-                                </div>
-                                <!--end::Access menu-->
-                            </div>
-                            <!--end::User-->
-                        </div>
-                        <!--end::List-->
-                    </div>
-                    <!--end::Users-->
-                    <!--begin::Notice-->
-                    <div class="d-flex flex-stack">
-                        <!--begin::Label-->
-                        <div class="me-5 fw-semibold">
-                            <label class="fs-6">Adding Users by Team Members</label>
-                            <div class="fs-7 text-muted">If you need more info, please check budget planning</div>
-                        </div>
-                        <!--end::Label-->
-                        <!--begin::Switch-->
-                        <label class="form-check form-switch form-check-custom form-check-solid">
-                            <input class="form-check-input" type="checkbox" value="1" checked="checked" />
-                            <span class="form-check-label fw-semibold text-muted">Allowed</span>
-                        </label>
-                        <!--end::Switch-->
-                    </div>
-                    <!--end::Notice-->
-                </div>
-                <!--end::Modal body-->
-            </div>
-            <!--end::Modal content-->
-        </div>
-        <!--end::Modal dialog-->
-    </div>
-    <!--end::Modal - Invite Friend-->
     <!--end::Modals-->
     <!--begin::Javascript-->
     <script>
         var hostUrl = "assets/";
     </script>
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-    
     <!--begin::Global Javascript Bundle(mandatory for all pages)-->
     <script src="{{ asset('assets/plugins/global/plugins.bundle.js') }}"></script>
     <script src="{{ asset('assets/js/scripts.bundle.js') }}"></script>
     <!--end::Global Javascript Bundle-->
     <!--begin::Vendors Javascript(used for this page only)-->
-    <script src="{{ asset('assets/plugins/custom/fullcalendar/fullcalendar.bundle.js') }}"></script>
-    <script src="{{ asset('assets/plugins/custom/datatables/datatables.bundle.js') }}"></script>
+    <script src="assets/plugins/custom/datatables/datatables.bundle.js"></script>
+    <script src="assets/plugins/custom/vis-timeline/vis-timeline.bundle.js"></script>
     <!--end::Vendors Javascript-->
     <!--begin::Custom Javascript(used for this page only)-->
-    <script src="{{ asset('assets/js/custom/apps/chat/chat.js') }}"></script>
-    <script src="{{ asset('assets/js/custom/utilities/modals/upgrade-plan.js') }}"></script>
-    <script src="{{ asset('assets/js/custom/utilities/modals/users-search.js') }}"></script>
-    <script src="{{ asset('assets/js/widgets.bundle.js') }}"></script>
-    <script src="{{ asset('assets/js/custom/apps/chat/chat.js') }}"></script>
-
-    @stack('scripts')
-
-    {{-- calender --}}
-    <script src="{{ asset('assets/js/custom/apps/projects/settings/settings.js') }}"></script>
-
+    <script src="{{ asset('assets/plugins/custom/ckeditor/ckeditor-classic.bundle.js') }}"></script>
+    <script src="{{ asset('assets/plugins/custom/formrepeater/formrepeater.bundle.js') }}"></script>
+    <script src="{{ asset('assets/js/custom/apps/ecommerce/catalog/save-category.js') }}"></script>
+	@stack('scripts')
+    <script src="assets/js/widgets.bundle.js"></script>
+    <script src="assets/js/custom/apps/chat/chat.js"></script>
+    <script src="assets/js/custom/utilities/modals/create-campaign.js"></script>
+    <script src="assets/js/custom/utilities/modals/users-search.js"></script>
+	<script src="{{ asset('assets/js/custom/apps/projects/settings/settings.js') }}"></script>
     <!--end::Custom Javascript-->
     <!--end::Javascript-->
 </body>
