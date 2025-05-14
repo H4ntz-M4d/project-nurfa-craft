@@ -3,6 +3,7 @@
 use App\Http\Controllers\Admin\CustomersController;
 use App\Http\Controllers\Admin\KaryawanController;
 use App\Http\Controllers\Admin\KategoriProdukController;
+use App\Http\Controllers\Admin\ProdukController;
 use App\Http\Controllers\Admin\UsersController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
@@ -59,9 +60,21 @@ Route::middleware('auth')->group(function () {
     Route::get('/list-kategori', [KategoriProdukController::class, 'index'])->name('kategori.index');
     Route::get('/kategori-data', [KategoriProdukController::class, 'data'])->name('kategori.data'); // json data kategori
     Route::get('/kategori-add', [KategoriProdukController::class, 'create'])->name('kategori.add-data');
+    Route::get('/kategori-edit/{slug}', [KategoriProdukController::class, 'edit'])->name('kategori.edit-data');
+    Route::post('/kategori-update/{slug}', [KategoriProdukController::class, 'update'])->name('kategori.update');
     Route::post('/kategori-store', [KategoriProdukController::class, 'store'])->name('kategori.store');
     Route::delete('/kategori/{slug}', [KategoriProdukController::class, 'destroy'])->name('kategori.destroy');
     Route::delete('/kategori-delete-selected', [KategoriProdukController::class, 'destroySelected'])->name('kategori.destroySelected');
+
+    // begin route Produk
+    Route::get('/list-produk', [ProdukController::class, 'index'])->name('produk.index');
+    Route::get('/produk-data', [ProdukController::class, 'data'])->name('produk.data'); // json data produk
+    Route::get('/produk-add', [ProdukController::class, 'create'])->name('produk.add-data');
+    Route::get('/produk-edit/{slug}', [ProdukController::class, 'edit'])->name('produk.edit-data');
+    Route::post('/produk-store', [ProdukController::class, 'store'])->name('produk.store');
+    Route::post('/produk-update/{slug}', [ProdukController::class, 'update'])->name('produk.update');
+    Route::delete('/produk/{slug}', [ProdukController::class, 'destroy'])->name('produk.destroy');
+    Route::delete('/produk-delete-selected', [ProdukController::class, 'destroySelected'])->name('produk.destroySelected');
 
 });
 

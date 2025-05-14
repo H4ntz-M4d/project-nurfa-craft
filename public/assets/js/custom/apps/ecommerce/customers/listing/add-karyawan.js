@@ -215,60 +215,60 @@ var KTModalEmployeeDetails = (function () {
                     console.log("validated!"),
                     "Valid" == t
                         ? (e.setAttribute("data-kt-indicator", "on"),
-                          saveEmployeeDetails().then(function(response) {
-                              if (response.success) {
-                                  e.removeAttribute("data-kt-indicator");
-                                  e.disabled = !1;
-                                  o.goNext();
-                                  // Show success message in the final step
-                                  Swal.fire({
-                                      text: "Employee data has been successfully saved!",
-                                      icon: "success",
-                                      buttonsStyling: !1,
-                                      confirmButtonText: "Ok, got it!",
-                                      customClass: {
-                                          confirmButton: "btn btn-primary",
-                                      },
-                                  }).then(function() {
-                                      // Optional: redirect or other action after completion
-                                      // window.location.href = response.redirect;
-                                  });
-                              } else {
-                                  e.removeAttribute("data-kt-indicator");
-                                  e.disabled = !1;
-                                  Swal.fire({
-                                      text: response.message || "Sorry, looks like there are some errors detected, please try again.",
-                                      icon: "error",
-                                      buttonsStyling: !1,
-                                      confirmButtonText: "Ok, got it!",
-                                      customClass: {
-                                          confirmButton: "btn btn-primary",
-                                      },
-                                  });
-                              }
-                          }).catch(function(error) {
-                              e.removeAttribute("data-kt-indicator");
-                              e.disabled = !1;
-                              Swal.fire({
-                                  text: "Sorry, looks like there are some errors detected, please try again.",
-                                  icon: "error",
-                                  buttonsStyling: !1,
-                                  confirmButtonText: "Ok, got it!",
-                                  customClass: {
-                                      confirmButton: "btn btn-primary",
-                                  },
-                              });
-                          }))
-                        : ((e.disabled = !1),
-                          Swal.fire({
-                              text: "Sorry, looks like there are some errors detected, please try again.",
-                              icon: "error",
-                              buttonsStyling: !1,
-                              confirmButtonText: "Ok, got it!",
-                              customClass: {
-                                  confirmButton: "btn btn-primary",
-                              },
-                          }));
+                        saveEmployeeDetails().then(function(response) {
+                            if (response.success) {
+                                e.removeAttribute("data-kt-indicator");
+                                e.disabled = !1;
+                                o.goNext();
+                                // Show success message in the final step
+                                Swal.fire({
+                                    text: "Employee data has been successfully saved!",
+                                    icon: "success",
+                                    buttonsStyling: !1,
+                                    confirmButtonText: "Ok, got it!",
+                                    customClass: {
+                                        confirmButton: "btn btn-primary",
+                                    },
+                                }).then(function() {
+                                    // Optional: redirect or other action after completion
+                                    // window.location.href = response.redirect;
+                                });
+                            } else {
+                                e.removeAttribute("data-kt-indicator");
+                                e.disabled = !1;
+                                Swal.fire({
+                                    text: response.message || "Sorry, looks like there are some errors detected, please try again.",
+                                    icon: "error",
+                                    buttonsStyling: !1,
+                                    confirmButtonText: "Ok, got it!",
+                                    customClass: {
+                                        confirmButton: "btn btn-primary",
+                                    },
+                                });
+                            }
+                        }).catch(function(error) {
+                            e.removeAttribute("data-kt-indicator");
+                            e.disabled = !1;
+                            Swal.fire({
+                                text: "Sorry, looks like there are some errors detected, please try again.",
+                                icon: "error",
+                                buttonsStyling: !1,
+                                confirmButtonText: "Ok, got it!",
+                                customClass: {
+                                    confirmButton: "btn btn-primary",
+                                },
+                            });
+                        }))
+                    : ((e.disabled = !1),
+                        Swal.fire({
+                            text: "Sorry, looks like there are some errors detected, please try again.",
+                            icon: "error",
+                            buttonsStyling: !1,
+                            confirmButtonText: "Ok, got it!",
+                            customClass: {
+                                confirmButton: "btn btn-primary",
+                            },
+                        }));
                 });
             }),
             

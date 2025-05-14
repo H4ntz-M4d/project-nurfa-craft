@@ -109,7 +109,7 @@
                 </div>
                 <!--end:Menu item-->
                 <!--begin:Menu item-->
-                <div data-kt-menu-trigger="click" class="menu-item">
+                <div data-kt-menu-trigger="click" class="menu-item  {{ Route::is('kategori.*','produk.*') ? 'here show' : '' }}">
                     <!--begin:Menu link-->
                     <span class="menu-link">
                         <span class="menu-icon">
@@ -119,9 +119,9 @@
                     </span>
                     <!--end:Menu link-->
                     <!--begin:Menu sub-->
-                    <div class="menu-sub menu-sub-accordion {{ Route::is('kategori.*') ? 'here show' : '' }}">
+                    <div class="menu-sub menu-sub-accordion">
                         <!--begin:Menu item-->
-                        <div data-kt-menu-trigger="click" class="menu-item menu-accordion {{ Route::is('kategori.*') ? 'here show' : '' }}">
+                        <div data-kt-menu-trigger="click" class="menu-item menu-accordion">
                             <!--begin:Menu link-->
                             <a class="menu-link {{ Route::is('kategori.*') ? 'active' : '' }}" href="/list-kategori">
                                 <span class="menu-bullet">
@@ -135,12 +135,12 @@
                         <!--begin:Menu item-->
                         <div data-kt-menu-trigger="click" class="menu-item menu-accordion">
                             <!--begin:Menu link-->
-                            <span class="menu-link">
+                            <a class="menu-link {{ Route::is('produk.*') ? 'active' : '' }}" href="/list-produk">
                                 <span class="menu-bullet">
                                     <span class="bullet bullet-dot"></span>
                                 </span>
                                 <span class="menu-title">Produk</span>
-                            </span>
+                            </a>
                             <!--end:Menu link-->
                         </div>
                         <!--end:Menu item-->

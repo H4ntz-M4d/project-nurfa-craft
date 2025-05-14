@@ -1,5 +1,12 @@
+networks:
+  nurfa-network:
+
+volumes:
+  nurfa-data:
+
 services:
-    frankenphp:
+    nurfa-app:
+      container_name: nurfa-app
       build: .
       ports:
         - "7000:8000"
@@ -9,11 +16,12 @@ services:
       env_file:
         - .env
       depends_on:
-        mysql-nurfa:
+        nurfa-mysql:
           condition: service_healthy
 
-    mysql-nurfa:
-      image: mysql:8
+    nurfa-mysql:
+      container_name: nurfa-mysql
+      image: mysql:latest
       environment:
         MYSQL_DATABASE: db-nurfa
         MYSQL_USER: nurfa
@@ -22,22 +30,20 @@ services:
       ports:
         - "3307:3306"
       volumes:
-        - mysql_data:/var/lib/mysql
+        - nurfa-data:/var/lib/mysql
       healthcheck:
         test: ["CMD", "mysqladmin", "ping", "-h", "localhost"]
         interval: 10s
         retries: 5
         start_period: 20s
 
-    phpmyadmin-nurfa:
+    nurfa-phpmyadmin:
+      container_name: nurfa-phpmyadmin
       image: phpmyadmin/phpmyadmin
       environment:
-        PMA_HOST: mysql-nurfa
+        PMA_HOST: nurfa-mysql
         MYSQL_ROOT_PASSWORD: root
       ports:
         - "7080:80"
       depends_on:
-        - mysql-nurfa
-
-volumes:
-    mysql_data:
+        - nurfa-mysql
