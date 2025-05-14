@@ -182,7 +182,7 @@
                                 <!--begin::Col-->
                                 <div class="col-lg-8 fv-row">
                                     <input type="text" class="form-control form-control-lg form-control-solid"
-                                        placeholder="cont: example@gmail.com" value="{{ $vk->email }}" disabled/>
+                                        placeholder="cont: example@gmail.com" value="{{ $vk->users->email }}" disabled/>
                                 </div>
                                 <!--end::Col-->
                             </div>

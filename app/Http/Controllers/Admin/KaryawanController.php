@@ -114,14 +114,14 @@ class KaryawanController extends Controller
 
     public function view($id)
     {
-        $vk = Karyawan::select('nama','no_telp','alamat','tempat_lahir','tgl_lahir','slug')
+        $vk = Karyawan::with('users:id,email')->select('id_user','nama','no_telp','alamat','tempat_lahir','tgl_lahir','slug')
             ->where('slug',$id)->first();
         return view('admin.users-management.karyawans.details-karyawan', compact('vk'));
     }
 
     public function edit($id)
     {
-        $vk = Karyawan::select('nama','no_telp','alamat','tempat_lahir','tgl_lahir','slug')
+        $vk = Karyawan::with('users:id,email')->select('id_user','nama','no_telp','alamat','tempat_lahir','tgl_lahir','slug')
             ->where('slug',$id)->first();
         return view('admin.users-management.karyawans.edit-karyawan', compact('vk'));
     }
@@ -156,7 +156,7 @@ class KaryawanController extends Controller
         return response()->json(['success' => true, 'message' => 'Karyawan berhasil dihapus']);
     }
 
-    public function destroySelected(Request $request): JsonResponse|mixed
+    public function destroySelected(Request $request)
     {
         $ids = $request->ids;
 
