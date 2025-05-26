@@ -45,20 +45,6 @@ services:
       networks:
         - nurfa-network
 
-
-    nurfa-phpmyadmin:
-      container_name: nurfa-phpmyadmin
-      image: phpmyadmin/phpmyadmin
-      environment:
-        PMA_HOST: nurfa-mysql
-        MYSQL_ROOT_PASSWORD: root
-      ports:
-        - "7080:80"
-      depends_on:
-        - nurfa-mysql
-      networks:
-        - nurfa-network
-
     nurfa-caddy:
       container_name: nurfa-caddy
       image: caddy:alpine
