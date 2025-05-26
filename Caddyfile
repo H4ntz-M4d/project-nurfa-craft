@@ -1,0 +1,15 @@
+nurfa-craft.store {
+    reverse_proxy nurfa-app:8000
+
+    encode gzip
+    php_fastcgi nurfa-app:8000
+    file_server
+    root * /app/public
+
+    header {
+        Strict-Transport-Security "max-age=31536000; includeSubDomains; preload"
+        X-Content-Type-Options "nosniff"
+        X-Frame-Options "DENY"
+        Referrer-Policy "no-referrer-when-downgrade"
+    }
+}

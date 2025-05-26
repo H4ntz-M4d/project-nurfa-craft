@@ -12,7 +12,6 @@ class KategoriProduk extends Model
     protected $fillable = [
         'nama_kategori',
         'deskripsi',
-        'deskripsi',
         'status',
         'meta_keywords',
         'meta_desc',

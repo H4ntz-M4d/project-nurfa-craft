@@ -19,6 +19,7 @@ return new class extends Migration
             $table->string('meta_keywords')->nullable();
             $table->string('meta_desc')->nullable();
             $table->string('gambar')->nullable();
+            $table->string('slug')->nullable();
             $table->timestamps();
         });
     }

@@ -92,10 +92,10 @@
                             <!--end::Separator-->
                             <!--begin::Input group=-->
                             <div class="fv-row mb-8">
-                                <!--begin::Email-->
-                                <input type="text" placeholder="Username" name="name" autocomplete="off"
+                                <!--begin::Nama Lengkap-->
+                                <input type="text" placeholder="Nama Lengkap" name="name" autocomplete="off"
                                     class="form-control bg-transparent" />
-                                <!--end::Email-->
+                                <!--end::Nama Lengkap-->
                             </div>
                             <!--begin::Input group-->
                             <!--begin::Input group=-->

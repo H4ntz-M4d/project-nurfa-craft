@@ -177,28 +177,27 @@ var KTCustomersList = (function () {
             t = $(e).DataTable({
                 processing: true,
                 serverSide: true,
-                ajax: "/customers-data", // ganti sesuai route kamu
+                ajax: "/customers-data",
                 columns: [
                     { data: 'checkbox', orderable: false, searchable: false, class: 'form-check form-check-sm form-check-custom form-check-solid' },
-                    { 
-                        data: null, 
-                        name: 'no', 
-                        render: function (data, type, row, meta) {
-                            return meta.row + meta.settings._iDisplayStart + 1;
-                        },
-                        orderable: false,
-                        searchable: false
-                    },
                     { data: 'nama', name: 'nama' },
                     { data: 'email', name: 'email' },
-                    { data: 'no_telp', name: 'no_telp' },
-                    { data: 'alamat', name: 'alamat' },
+                    {
+                        data: 'no_telp', name: 'no_telp', render: function(data, type, row) {
+                            return data ? data : '-';
+                        }
+                    },
+                    {
+                        data: 'created_at', name: 'created_at', render: function(data) {
+                            return moment(data).format('D MMMM YYYY, hh:mm A');
+                        }
+                    },
                     { data: 'action', orderable: false, searchable: false }
                 ],
                 order: [],
                 columnDefs: [
                     { orderable: false, targets: 0 },
-                    { orderable: false, targets: 6 }
+                    { orderable: false, targets: 5 }
                 ],
                 drawCallback: function () {
                     handleBulkDelete();

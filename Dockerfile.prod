@@ -1,0 +1,46 @@
+FROM dunglas/frankenphp:latest
+
+# Argument untuk UID/GID agar sesuai dengan user host
+ARG UID=1000
+ARG GID=1000
+
+# Buat user & group dengan UID/GID yang sesuai
+RUN groupadd -g ${GID} appgroup && \
+    useradd -m -u ${UID} -g ${GID} -s /bin/bash appuser
+
+# Install ekstensi tambahan jika diperlukan
+RUN install-php-extensions \
+    pdo_mysql \
+    gd \
+    intl \
+    zip \
+    opcache \
+    xml \
+    dom \
+    pcntl
+
+# Install unzip, git, nodejs, npm
+RUN apt-get update && apt-get install -y \
+    unzip \
+    git \
+    && rm -rf /var/lib/apt/lists/*
+
+# Set direktori kerja dalam container
+WORKDIR /app
+
+COPY --chown=appuser:appgroup . /app
+
+# Install Composer (opsional jika tidak ada di FrankenPHP)
+RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer
+
+RUN composer install --no-dev --optimize-autoloader
+
+RUN php artisan config:cache && php artisan route:cache && php artisan view:cache
+
+# Pindah ke user yang dibuat
+USER appuser
+
+EXPOSE 7000
+
+# Default command
+CMD ["php", "artisan", "octane:start", "--server=frankenphp"]

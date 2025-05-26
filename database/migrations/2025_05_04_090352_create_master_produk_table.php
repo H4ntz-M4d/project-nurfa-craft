@@ -13,7 +13,7 @@ return new class extends Migration
     {
         Schema::create('produk_master', function (Blueprint $table) {
             $table->id('id_master_produk');
-            $table->unsignedBigInteger('id_ktg_produk')->nullable();
+            $table->foreignId('id_ktg_produk')->references('id_ktg_produk')->on('kategori_produk')->onDelete('cascade');
             $table->string('nama_produk')->nullable();
             $table->text('deskripsi')->nullable();
             $table->enum('status',['published','unpublished'])->nullable();

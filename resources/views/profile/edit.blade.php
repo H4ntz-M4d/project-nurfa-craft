@@ -1,4 +1,4 @@
-<x-layout>
+<x-admin.layout>
     <!--begin::Content-->
     <div id="kt_app_content" class="app-content flex-column-fluid">
         <!--begin::Content container-->

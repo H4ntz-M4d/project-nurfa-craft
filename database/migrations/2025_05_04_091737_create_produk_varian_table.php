@@ -14,6 +14,7 @@ return new class extends Migration
         Schema::create('produk_variant', function (Blueprint $table) {
             $table->id('id_var_produk');
             $table->unsignedBigInteger('id_master_produk')->nullable();
+            $table->foreignId('id_master_produk')->references('id_master_produk')->on('produk_master')->onDelete('cascade');
             $table->string('sku')->nullable();
             $table->double('harga')->nullable();
             $table->string('stok')->nullable();

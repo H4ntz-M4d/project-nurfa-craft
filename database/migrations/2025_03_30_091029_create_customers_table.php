@@ -15,11 +15,10 @@ return new class extends Migration
             $table->id('id_customers');
             $table->unsignedBigInteger('id_user')->nullable();
             $table->string('nama')->nullable();
-            $table->string('email')->nullable()->unique();
             $table->string('no_telp')->nullable();
-            $table->text('alamat')->nullable();
-            $table->timestamps();
+            $table->enum('jkel',["pria","wanita"])->nullable();
             $table->string('slug')->nullable();
+            $table->timestamps();
 
 
             $table->foreign('id_user')->references('id')->on( 'users')->onDelete('cascade');

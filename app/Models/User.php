@@ -17,15 +17,28 @@ class User extends Authenticatable
      *
      * @var list<string>
      */
+    const ROLE_ADMIN = 'admin';
+    const ROLE_CUSTOMER = 'customers';
+
     protected $fillable = [
         'username',
         'email',
         'password',
+        'role',
     ];
 
     public function karyawan()
     {
         return $this->hasOne(Karyawan::class);
+    }
+
+    protected static function boot()
+    {
+        parent::boot();
+
+        static::creating(function ($customers) {
+            $customers->slug = md5(now()->timestamp);
+        });
     }
 
     /**

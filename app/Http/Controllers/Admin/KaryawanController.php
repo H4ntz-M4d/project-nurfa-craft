@@ -85,6 +85,7 @@ class KaryawanController extends Controller
                 'username' => $request->username,
                 'email' => $request->email,
                 'password' => Hash::make($request->password),
+                'role' => 'admin',
             ]);
     
             // Simpan data karyawan dengan id_user

@@ -17,10 +17,17 @@ class CustomersController extends Controller
     public function data(Request $request)
     {
         if($request->ajax()){
-            $data = Customers::select('id_customers','nama','email','no_telp','alamat','created_at','updated_at','slug');
+            $data = Customers::with('users:id,email,role')
+            ->select('id_customers','id_user','nama','no_telp','created_at','slug')
+            ->whereHas('users', function ($query) {
+                $query->where('role', 'customers');
+            });
             return DataTables::of($data)
             ->addColumn('checkbox', function($row){
                 return '<input type="checkbox" class="form-check-input" value="'.$row->slug.'">';
+            })
+            ->addColumn('email', function($row){
+                return $row->users->email;
             })
             ->addColumn('action', function($row){
                 return '
@@ -41,7 +48,7 @@ class CustomersController extends Controller
                 </div>
                 ';
             })                
-            ->rawColumns(['checkbox', 'action'])
+            ->rawColumns(['checkbox', 'action','email'])
             ->make(true);
         }
     }

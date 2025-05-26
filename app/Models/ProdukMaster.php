@@ -30,6 +30,11 @@ class ProdukMaster extends Model
         return $this->hasMany(ProdukVariant::class, 'id_master_produk', 'id_master_produk');
     }
 
+    public function keranjang()
+    {
+        return $this->hasMany(ProdukVariant::class, 'id_master_produk', 'id_master_produk');
+    }
+
     protected static function boot()
     {
         parent::boot();

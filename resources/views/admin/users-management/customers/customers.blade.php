@@ -1,4 +1,4 @@
-<x-layout>
+<x-admin.layout>
     <div id="kt_app_content" class="app-content flex-column-fluid">
         <!--begin::Content container-->
         <div id="kt_app_content_container" class="app-container container-xxl">
@@ -48,11 +48,10 @@
                                                 value="1" />
                                         </div>
                                     </th>
-                                    <th>No</th>
                                     <th>Nama</th>
                                     <th>Email</th>
                                     <th>No Telp</th>
-                                    <th>Alamat</th>
+                                    <th>Tanggal dibuat</th>
                                     <th>Aksi</th>
                                 </tr>
                             </thead>

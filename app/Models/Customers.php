@@ -14,14 +14,13 @@ class Customers extends Model
     [
         'id_user',
         'nama',
-        'email',
         'no_telp',
-        'alamat',
+        'jkel',
     ];
 
     public function users()
     {
-        return $this->belongsTo(User::class);
+        return $this->belongsTo(User::class, 'id_user', 'id');
     }
 
     protected static function boot()
