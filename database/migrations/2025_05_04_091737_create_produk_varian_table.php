@@ -13,7 +13,6 @@ return new class extends Migration
     {
         Schema::create('produk_variant', function (Blueprint $table) {
             $table->id('id_var_produk');
-            $table->unsignedBigInteger('id_master_produk')->nullable();
             $table->foreignId('id_master_produk')->references('id_master_produk')->on('produk_master')->onDelete('cascade');
             $table->string('sku')->nullable();
             $table->double('harga')->nullable();
@@ -25,7 +24,7 @@ return new class extends Migration
         
         Schema::create('variant_attributes', function (Blueprint $table) {
             $table->id('id_variant_attributes');
-            $table->string('nama-variant');  // Color, Size, etc.
+            $table->string('nama_variant');  // Color, Size, etc.
             $table->string('slug')->unique();
             $table->timestamps();
         });
