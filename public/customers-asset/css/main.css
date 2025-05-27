@@ -3339,4 +3339,19 @@ input.num-product::-webkit-inner-spin-button {
     padding: 20px;
   }
 
+  /*---------------------------------------------
+  [Comment List]*/
+  .comment-list {
+    border-bottom: #00000076 3px solid ;
+    margin-top: 20px;
+    padding: 15px;
+    list-style: none;
+    max-height: 500px; /* Atur tinggi maksimal sesuai kebutuhan */
+  overflow-y: auto; /* Munculkan scroll vertikal jika diperlukan */
+  
+  /* Optional: styling untuk scrollbar */
+  scrollbar-width: thin;
+  scrollbar-color: #888 #f1f1f1;
+  }
+
 }

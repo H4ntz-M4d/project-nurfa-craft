@@ -76,13 +76,21 @@ Route::middleware(['auth', 'verified', RoleUsers::class.':admin'])->group(functi
 
 });
 
-Route::middleware(['auth', 'verified', RoleUsers::class.':customers'])->group(function () {
-
     Route::get('/', [HomeController::class, 'index'])->name('home');
     Route::get('/home', [HomeController::class, 'index'])->name('home');
     
     //product detail
     Route::get('/product', [ProdukCustomerController::class, 'index'])->name('product-shop');
+
+    Route::get('/blog', [BlogController::class, 'index'])->name('blog');
+
+    Route::get('/about', [AboutController::class, 'index'])->name('about');
+
+    Route::get('/contact', [ContactController::class, 'index'])->name('contact');
+
+Route::middleware(['auth', 'verified', RoleUsers::class.':customers'])->group(function () {
+
+    
     Route::get('/produk-shop-detail/{slug?}', [ProdukDetailController::class, 'index'])->name('produk-shop.detail');
     Route::post('/keranjang-add', [ProdukDetailController::class, 'addToCart'])->name('produk-shop.cart-add');
 
@@ -91,15 +99,9 @@ Route::middleware(['auth', 'verified', RoleUsers::class.':customers'])->group(fu
     Route::delete('/delete-shopping-cart/{slug?}', [KeranjangController::class, 'deleteItem'])->name('shopping.delete');
     Route::post('/update-shopping-cart', [KeranjangController::class, 'updateCart'])->name('shopping.update');
 
-    Route::get('/blog', function(){
-        return view('customers.blog');
-    })->name('blog');
-    Route::get('/about', function(){
-        return view('customers.about');
-    })->name('about');
-    Route::get('/contact', function(){
-        return view('customers.contact');
-    })->name('contact');
+    Route::get('/blog-detail/{slug}', [BlogController::class, 'detail'])->name('blog.detail');
+    Route::post('/blog/store-comment', [BlogController::class, 'storeComment'])->name('blog.store-comment');
+   
     Route::get('/get-provinsi', [KeranjangController::class, 'getProvinsi']);
     Route::get('/get-kabupaten/{id}', [KeranjangController::class, 'getKabupaten']);
 

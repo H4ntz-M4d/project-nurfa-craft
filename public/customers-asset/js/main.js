@@ -366,6 +366,35 @@
         $('.js-modal1').removeClass('show-modal1');
     });
 
+    /*==================================================================
+    [ Comment Post ]*/
+    $(document).ready(function() {
+        $('#commentForm').on('submit', function(e) {
+            e.preventDefault();
+            let blogId = $('#blogId').val();
+
+            $.ajax({
+                url: "/blog/store-comment", 
+                method: "POST",
+                data: $(this).serialize(),
+                success: function(response) {
+                    $('#commentList').prepend(`
+                        <div class="m-b-20">
+                            <strong>${response.username}</strong><br>
+                            <p>${response.comment}</p>
+                            <small>Baru saja</small>
+                        </div>
+                    `);
+
+                    $('#commentText').val('');
+                },
+                error: function(xhr) {
+                    alert('Komentar gagal ditambahkan.');
+                }
+            });
+        });
+    });
+
 
 
 })(jQuery);
