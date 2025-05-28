@@ -13,7 +13,7 @@ services:
         context: .
         dockerfile: Dockerfile.prod
       ports:
-        - "7000:8000"
+        - "8000:8000"
       volumes:
         - /app/vendor
       env_file:

@@ -3764,19 +3764,20 @@
     <script src="{{ asset('assets/js/scripts.bundle.js') }}"></script>
     <!--end::Global Javascript Bundle-->
     <!--begin::Vendors Javascript(used for this page only)-->
-    <script src="assets/plugins/custom/datatables/datatables.bundle.js"></script>
-    <script src="assets/plugins/custom/vis-timeline/vis-timeline.bundle.js"></script>
+    <script src="{{ ('assets/plugins/custom/datatables/datatables.bundle.js') }}"></script>
+    <script src="{{ ('assets/plugins/custom/vis-timeline/vis-timeline.bundle.js') }}"></script>
     <!--end::Vendors Javascript-->
     <!--begin::Custom Javascript(used for this page only)-->
     <script src="{{ asset('assets/plugins/custom/ckeditor/ckeditor-classic.bundle.js') }}"></script>
     <script src="{{ asset('assets/plugins/custom/formrepeater/formrepeater.bundle.js') }}"></script>
     <script src="{{ asset('assets/js/custom/apps/ecommerce/catalog/save-category.js') }}"></script>
-	@stack('scripts')
     <script src="assets/js/widgets.bundle.js"></script>
     <script src="assets/js/custom/apps/chat/chat.js"></script>
     <script src="assets/js/custom/utilities/modals/create-campaign.js"></script>
     <script src="assets/js/custom/utilities/modals/users-search.js"></script>
 	<script src="{{ asset('assets/js/custom/apps/projects/settings/settings.js') }}"></script>
+    
+	@stack('scripts')
     <!--end::Custom Javascript-->
     <!--end::Javascript-->
 </body>

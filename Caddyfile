@@ -1,12 +1,5 @@
-nurfa-craft.store {
-    root * /app/public
-
-    php_frankenphp
-
-    encode gzip
-    file_server
-
-    reverse_proxy /nurfa-status nurfa-app:8000  # opsional untuk healthcheck
+nurfa-craft.store, www.nurfa-craft.store {
+    reverse_proxy nurfa-app:8000
 
     header {
         Strict-Transport-Security "max-age=31536000; includeSubDomains; preload"

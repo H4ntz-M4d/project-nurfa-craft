@@ -5,88 +5,80 @@
             <div class="wrap-slick1 rs1-slick1">
                 <div class="slick1">
                     <div class="item-slick1"
-                        style="background-image: url({{ asset('customers-asset/images/slide-03.jpg') }});">
+                        style="background-image: url({{ asset('assets/media/misc/layout/auth-bg-1.png') }});">
                         <div class="container h-full">
                             <div class="flex-col-l-m h-full p-t-100 p-b-30">
-                                <div class="layer-slick1 animated visible-false" data-appear="fadeInDown" data-delay="0">
+                                <div class="layer-slick1 animated visible-false" data-appear="fadeInDown"
+                                    data-delay="0">
                                     <span class="ltext-202 cl2 respon2">
-                                        Men Collection 2018
+                                        Hi Customers
                                     </span>
                                 </div>
 
                                 <div class="layer-slick1 animated visible-false" data-appear="fadeInUp"
                                     data-delay="800">
-                                    <h2 class="ltext-104 cl2 p-t-19 p-b-43 respon1">
-                                        New arrivals
+                                    <h2 class="ltext-105 cl2 p-t-19 p-b-43 respon1">
+                                        Welcome to Our Store
                                     </h2>
                                 </div>
 
-                                <div class="layer-slick1 animated visible-false" data-appear="zoomIn" data-delay="1600">
-                                    <a href="product.html"
-                                        class="flex-c-m stext-101 cl0 size-101 bg1 bor1 hov-btn1 p-lr-15 trans-04">
-                                        Shop Now
-                                    </a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="item-slick1"
-                        style="background-image: url({{ asset('customers-asset/images/slide-02.jpg') }});">
-                        <div class="container h-full">
-                            <div class="flex-col-l-m h-full p-t-100 p-b-30">
-                                <div class="layer-slick1 animated visible-false" data-appear="rollIn" data-delay="0">
-                                    <span class="ltext-202 cl2 respon2">
-                                        Men New-Season
-                                    </span>
-                                </div>
-
-                                <div class="layer-slick1 animated visible-false" data-appear="lightSpeedIn"
-                                    data-delay="800">
-                                    <h2 class="ltext-104 cl2 p-t-19 p-b-43 respon1">
-                                        Jackets & Coats
-                                    </h2>
-                                </div>
-
-                                <div class="layer-slick1 animated visible-false" data-appear="slideInUp"
+                                <div class="layer-slick1 animated visible-false" data-appear="zoomIn"
                                     data-delay="1600">
                                     <a href="product.html"
                                         class="flex-c-m stext-101 cl0 size-101 bg1 bor1 hov-btn1 p-lr-15 trans-04">
                                         Shop Now
                                     </a>
                                 </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="item-slick1"
-                        style="background-image: url({{ asset('customers-asset/images/slide-04.jpg') }});">
-                        <div class="container h-full">
-                            <div class="flex-col-l-m h-full p-t-100 p-b-30">
-                                <div class="layer-slick1 animated visible-false" data-appear="rotateInDownLeft"
-                                    data-delay="0">
-                                    <span class="ltext-202 cl2 respon2">
-                                        Women Collection 2018
-                                    </span>
-                                </div>
-
-                                <div class="layer-slick1 animated visible-false" data-appear="rotateInUpRight"
-                                    data-delay="800">
-                                    <h2 class="ltext-104 cl2 p-t-19 p-b-43 respon1">
-                                        NEW SEASON
-                                    </h2>
-                                </div>
-
-                                <div class="layer-slick1 animated visible-false" data-appear="rotateIn"
-                                    data-delay="1600">
-                                    <a href="product.html"
-                                        class="flex-c-m stext-101 cl0 size-101 bg1 bor1 hov-btn1 p-lr-15 trans-04">
-                                        Shop Now
-                                    </a>
+                                <style>
+                                    .content-banner {
+                                        position: absolute;
+                                        height: 65%;
+                                        top: 50%;
+                                        right: 10%;
+                                        transform: translateY(-50%);
+                                        margin-right: 20px;
+                                        max-width: 75%;
+                                        border-radius: 0.5rem;
+                                        box-shadow: 0 10px 12px rgba(0, 0, 0, 0.1);
+                                    }
+                                </style>
+                                <div class="flex">
+                                    <img class="d-none d-xl-block content-banner"
+                                        src="{{ asset('assets/media/logos/logo-project.png') }}" alt="" />
                                 </div>
                             </div>
                         </div>
                     </div>
+                    @foreach ($banner as $banners)
+                        <div class="item-slick1"
+                            style="background-image: url({{ asset('storage/' . $banners->gambar) }});">
+                            <div class="container h-full">
+                                <div class="flex-col-l-m h-full p-t-100 p-b-30">
+                                    <div class="layer-slick1 animated visible-false" data-appear="fadeInDown"
+                                        data-delay="0">
+                                        <span class="ltext-202 cl2 respon2">
+                                            {{ $banners->judul }}
+                                        </span>
+                                    </div>
+
+                                    <div class="layer-slick1 animated visible-false" data-appear="fadeInUp"
+                                        data-delay="800">
+                                        <h2 class="ltext-104 cl2 p-t-19 p-b-43 respon1">
+                                            {{ $banners->label }}
+                                        </h2>
+                                    </div>
+
+                                    <div class="layer-slick1 animated visible-false" data-appear="zoomIn"
+                                        data-delay="1600">
+                                        <a href="product.html"
+                                            class="flex-c-m stext-101 cl0 size-101 bg1 bor1 hov-btn1 p-lr-15 trans-04">
+                                            Shop Now
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    @endforeach
                 </div>
             </div>
         </section>
@@ -221,25 +213,25 @@
                                                 <div class="block2-pic hov-img0">
                                                     <img src="{{ asset('storage/' . $item->variant->first()->gambar) }}"
                                                         alt="IMG-PRODUCT">
-    
+
                                                     <a href="/produk-shop-detail/{{ $item->slug }}"
                                                         class="block2-btn flex-c-m stext-103 cl2 size-102 bg0 bor2 hov-btn1 p-lr-15 trans-04">
                                                         Quick View
                                                     </a>
                                                 </div>
-    
+
                                                 <div class="block2-txt flex-w flex-t p-t-14">
                                                     <div class="block2-txt-child1 flex-col-l ">
                                                         <a href="product-detail.html"
                                                             class="stext-104 cl4 hov-cl1 trans-04 js-name-b2 p-b-6">
                                                             {{ $item->nama_produk }}
                                                         </a>
-    
+
                                                         <span class="stext-105 cl3">
                                                             Rp{{ $item->variant->first()->harga }}
                                                         </span>
                                                     </div>
-    
+
                                                     <div class="block2-txt-child2 flex-r p-t-3">
                                                         <a href="#"
                                                             class="btn-addwish-b2 dis-block pos-relative js-addwish-b2">
@@ -1298,11 +1290,12 @@
                 </div>
 
                 <div class="row">
-                    <div class="col-sm-6 col-md-4 p-b-40">
+                    @foreach ($blog as $blogs )
+                        <div class="col-sm-6 col-md-4 p-b-40">
                         <div class="blog-item">
                             <div class="hov-img0">
-                                <a href="blog-detail.html">
-                                    <img src="{{ asset('customers-asset/images/blog-01.jpg') }}" alt="IMG-BLOG">
+                                <a href="blog-detail/{{ $blogs->id_blog }}">
+                                    <img src="{{ asset('storage/'. $blogs->gambar) }}" alt="IMG-BLOG">
                                 </a>
                             </div>
 
@@ -1324,115 +1317,25 @@
                                         </span>
 
                                         <span class="cl5">
-                                            July 22, 2017
+                                            {{ \Carbon\Carbon::parse($blogs->created_at)->format('M d Y') }}
                                         </span>
                                     </span>
                                 </div>
 
                                 <h4 class="p-b-12">
-                                    <a href="blog-detail.html" class="mtext-101 cl2 hov-cl1 trans-04">
-                                        8 Inspiring Ways to Wear Dresses in the Winter
+                                    <a href="blog-detail/{{ $blogs->id_blog }}" class="mtext-101 cl2 hov-cl1 trans-04">
+                                        {{ $blogs->judul }}
                                     </a>
                                 </h4>
 
                                 <p class="stext-108 cl6">
-                                    Duis ut velit gravida nibh bibendum commodo. Suspendisse pellentesque mattis augue
-                                    id
-                                    euismod. Interdum et male-suada fames
+                                    {{ $blogs->deskripsi }}
                                 </p>
                             </div>
                         </div>
-                    </div>
-
-                    <div class="col-sm-6 col-md-4 p-b-40">
-                        <div class="blog-item">
-                            <div class="hov-img0">
-                                <a href="blog-detail.html">
-                                    <img src="{{ asset('customers-asset/images/blog-02.jpg') }}" alt="IMG-BLOG">
-                                </a>
-                            </div>
-
-                            <div class="p-t-15">
-                                <div class="stext-107 flex-w p-b-14">
-                                    <span class="m-r-3">
-                                        <span class="cl4">
-                                            By
-                                        </span>
-
-                                        <span class="cl5">
-                                            Nancy Ward
-                                        </span>
-                                    </span>
-
-                                    <span>
-                                        <span class="cl4">
-                                            on
-                                        </span>
-
-                                        <span class="cl5">
-                                            July 18, 2017
-                                        </span>
-                                    </span>
-                                </div>
-
-                                <h4 class="p-b-12">
-                                    <a href="blog-detail.html" class="mtext-101 cl2 hov-cl1 trans-04">
-                                        The Great Big List of Men’s Gifts for the Holidays
-                                    </a>
-                                </h4>
-
-                                <p class="stext-108 cl6">
-                                    Nullam scelerisque, lacus sed consequat laoreet, dui enim iaculis leo, eu viverra ex
-                                    nulla in tellus. Nullam nec ornare tellus, ac fringilla lacus. Ut sit ame
-                                </p>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="col-sm-6 col-md-4 p-b-40">
-                        <div class="blog-item">
-                            <div class="hov-img0">
-                                <a href="blog-detail.html">
-                                    <img src="{{ asset('customers-asset/images/blog-03.jpg') }}" alt="IMG-BLOG">
-                                </a>
-                            </div>
-
-                            <div class="p-t-15">
-                                <div class="stext-107 flex-w p-b-14">
-                                    <span class="m-r-3">
-                                        <span class="cl4">
-                                            By
-                                        </span>
-
-                                        <span class="cl5">
-                                            Nancy Ward
-                                        </span>
-                                    </span>
-
-                                    <span>
-                                        <span class="cl4">
-                                            on
-                                        </span>
-
-                                        <span class="cl5">
-                                            July 2, 2017
-                                        </span>
-                                    </span>
-                                </div>
-
-                                <h4 class="p-b-12">
-                                    <a href="blog-detail.html" class="mtext-101 cl2 hov-cl1 trans-04">
-                                        5 Winter-to-Spring Fashion Trends to Try Now
-                                    </a>
-                                </h4>
-
-                                <p class="stext-108 cl6">
-                                    Proin nec vehicula lorem, a efficitur ex. Nam vehicula nulla vel erat tincidunt, sed
-                                    hendrerit ligula porttitor. Fusce sit amet maximus nunc
-                                </p>
-                            </div>
-                        </div>
-                    </div>
+                    </div>    
+                    @endforeach
+                    
                 </div>
             </div>
         </section>

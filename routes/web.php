@@ -2,10 +2,14 @@
 
 use App\Http\Controllers\Admin\CustomersController;
 use App\Http\Controllers\Admin\Dashboard;
+use App\Http\Controllers\Admin\HomeBannerController;
 use App\Http\Controllers\Admin\KaryawanController;
 use App\Http\Controllers\Admin\KategoriProdukController;
 use App\Http\Controllers\Admin\ProdukController;
 use App\Http\Controllers\Admin\UsersController;
+use App\Http\Controllers\Customers\AboutController;
+use App\Http\Controllers\Customers\BlogController;
+use App\Http\Controllers\Customers\ContactController;
 use App\Http\Controllers\Customers\HomeController;
 use App\Http\Controllers\Customers\KeranjangController;
 use App\Http\Controllers\Customers\ProdukCustomerController;
@@ -74,19 +78,12 @@ Route::middleware(['auth', 'verified', RoleUsers::class.':admin'])->group(functi
     Route::delete('/produk/{slug}', [ProdukController::class, 'destroy'])->name('produk.destroy');
     Route::delete('/produk-delete-selected', [ProdukController::class, 'destroySelected'])->name('produk.destroySelected');
 
+    // begin route home banner
+    Route::get('/home-banner', [HomeBannerController::class, 'index'])->name('home-banner.index');
+    Route::get('/home-banner-data', [HomeBannerController::class, 'data'])->name('home-banner.data'); // json data home banner
+    Route::post('/home-banner/store', [HomeBannerController::class, 'store'])->name('home-banner.store');
+
 });
-
-    Route::get('/', [HomeController::class, 'index'])->name('home');
-    Route::get('/home', [HomeController::class, 'index'])->name('home');
-    
-    //product detail
-    Route::get('/product', [ProdukCustomerController::class, 'index'])->name('product-shop');
-
-    Route::get('/blog', [BlogController::class, 'index'])->name('blog');
-
-    Route::get('/about', [AboutController::class, 'index'])->name('about');
-
-    Route::get('/contact', [ContactController::class, 'index'])->name('contact');
 
 Route::middleware(['auth', 'verified', RoleUsers::class.':customers'])->group(function () {
 
@@ -106,5 +103,17 @@ Route::middleware(['auth', 'verified', RoleUsers::class.':customers'])->group(fu
     Route::get('/get-kabupaten/{id}', [KeranjangController::class, 'getKabupaten']);
 
 });
+
+Route::get('/', [HomeController::class, 'index'])->name('home');
+Route::get('/home', [HomeController::class, 'index'])->name('home');
+
+//product detail
+Route::get('/product', [ProdukCustomerController::class, 'index'])->name('product-shop');
+
+Route::get('/blog', [BlogController::class, 'index'])->name('blog');
+
+Route::get('/about', [AboutController::class, 'index'])->name('about');
+
+Route::get('/contact', [ContactController::class, 'index'])->name('contact');
 
 require __DIR__.'/auth.php';

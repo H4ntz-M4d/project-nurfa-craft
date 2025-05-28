@@ -31,7 +31,7 @@
                                 <!--end::Preview existing avatar-->
                                 <!--begin::Label-->
                                 <label class="btn btn-icon btn-circle btn-active-color-primary w-25px h-25px bg-body shadow" data-kt-image-input-action="change" data-bs-toggle="tooltip" title="Change avatar">
-                                    <!--begin::Icon-->
+                                    <!--begin::Icon-->  
                                     <i class="ki-duotone ki-pencil fs-7">
                                         <span class="path1"></span>
                                         <span class="path2"></span>

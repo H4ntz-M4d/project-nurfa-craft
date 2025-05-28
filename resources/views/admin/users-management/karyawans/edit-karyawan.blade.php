@@ -475,4 +475,4 @@
         <script src="{{ asset('assets/js/custom/account/settings/deactivate-account.js') }}"></script>
         <script src="{{ asset('assets/js/custom/pages/user-profile/general.js') }}"></script>
     @endpush
-</x-layout>
+</x-admin.layout>

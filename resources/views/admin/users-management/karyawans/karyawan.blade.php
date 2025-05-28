@@ -83,185 +83,6 @@
             </div>
             <!--end::Card-->
             <!--begin::Modals-->
-            <div class="modal fade" id="kt_modal_add_customer" tabindex="-1" aria-hidden="false">
-                <!--begin::Modal dialog-->
-                <div class="modal-dialog modal-dialog-centered mw-650px">
-                    <!--begin::Modal content-->
-                    <div class="modal-content">
-                        <!--begin::Form-->
-                        <form class="form" method="POST" action="{{ route('karyawan.store') }}"
-                            id="kt_modal_add_customer_form" data-kt-redirect="{{ route('karyawan.list') }}">
-                            @csrf
-                            <!--begin::Modal header-->
-                            <div class="modal-header" id="kt_modal_add_customer_header">
-                                <!--begin::Modal title-->
-                                <h2 class="fw-bold">Add a Customer</h2>
-                                <!--end::Modal title-->
-                                <!--begin::Close-->
-                                <div id="kt_modal_add_customer_close"
-                                    class="btn btn-icon btn-sm btn-active-icon-primary">
-                                    <i class="ki-duotone ki-cross fs-1">
-                                        <span class="path1"></span>
-                                        <span class="path2"></span>
-                                    </i>
-                                </div>
-                                <!--end::Close-->
-                            </div>
-                            <!--end::Modal header-->
-                            <!--begin::Modal body-->
-                            <div class="modal-body py-10 px-lg-17">
-                                <!--begin::Scroll-->
-                                <div class="scroll-y me-n7 pe-7" id="kt_modal_add_customer_scroll" data-kt-scroll="true"
-                                    data-kt-scroll-activate="{default: false, lg: true}"
-                                    data-kt-scroll-max-height="auto"
-                                    data-kt-scroll-dependencies="#kt_modal_add_customer_header"
-                                    data-kt-scroll-wrappers="#kt_modal_add_customer_scroll"
-                                    data-kt-scroll-offset="300px">
-                                    <!--begin::Input group-->
-                                    <div class="fv-row mb-7">
-                                        <!--begin::Label-->
-                                        <label class="required fs-6 fw-semibold mb-2">Nama</label>
-                                        <!--end::Label-->
-                                        <!--begin::Input-->
-                                        <input type="text" class="form-control form-control-solid"
-                                            placeholder="Nama Lengkap" name="nama" />
-                                        <!--end::Input-->
-                                    </div>
-                                    <!--end::Input group-->
-                                    <!--begin::Input group-->
-                                    <div class="fv-row mb-7">
-                                        <!--begin::Label-->
-                                        <label class="fs-6 fw-semibold mb-2">
-                                            <span class="required">Email</span>
-                                            <span class="ms-1" data-bs-toggle="tooltip"
-                                                title="Email address must be active">
-                                                <i class="ki-duotone ki-information-5 text-gray-500 fs-6">
-                                                    <span class="path1"></span>
-                                                    <span class="path2"></span>
-                                                    <span class="path3"></span>
-                                                </i>
-                                            </span>
-                                        </label>
-                                        <!--end::Label-->
-                                        <!--begin::Input-->
-                                        <input type="email" class="form-control form-control-solid"
-                                            placeholder="contoh@gmail.com" name="email" />
-                                        <!--end::Input-->
-                                    </div>
-                                    <!--end::Input group-->
-                                    <!--begin::Input group-->
-                                    <div class="mb-15">
-                                        <!--begin::Label-->
-                                        <label class="required fw-semibold fs-6 mb-5">Jenis Kelamin</label>
-                                        <!--end::Label-->
-                                        <!--begin::Input row-->
-                                        <div class="d-flex fv-row">
-                                            <!--begin::Radio-->
-                                            <div class="form-check form-check-custom form-check-solid">
-                                                <!--begin::Input-->
-                                                <input class="form-check-input me-3" name="jkel" type="radio"
-                                                    value="pria" id="jkel_Pria"
-                                                    {{ old('jkel') == 'pria' ? 'checked' : '' }} />
-                                                <!--end::Input-->
-                                                <!--begin::Label-->
-                                                <label class="form-check-label" for="jkel_laki2">
-                                                    <div class="fw-bold text-gray-800">Pria</div>
-                                                </label>
-                                                <!--end::Label-->
-                                            </div>
-                                            <!--end::Radio-->
-                                        </div>
-                                        <!--end::Input row-->
-                                        <div class='separator separator-dashed my-5'></div>
-                                        <!--begin::Input row-->
-                                        <div class="d-flex fv-row">
-                                            <!--begin::Radio-->
-                                            <div class="form-check form-check-custom form-check-solid">
-                                                <!--begin::Input-->
-                                                <input class="form-check-input me-3" name="jkel" type="radio"
-                                                    value="wanita" id="jkel_Wanita"
-                                                    {{ old('jkel') == 'wanita' ? 'checked' : '' }} />
-                                                <!--end::Input-->
-                                                <!--begin::Label-->
-                                                <label class="form-check-label" for="jkel_perempuan">
-                                                    <div class="fw-bold text-gray-800">Wanita</div>
-                                                </label>
-                                                <!--end::Label-->
-                                            </div>
-                                            <!--end::Radio-->
-                                        </div>
-                                        <!--end::Input row-->
-                                        <div class='separator separator-dashed my-5'></div>
-                                        <!--begin::Input row-->
-                                        <!--end::Roles-->
-                                    </div>
-                                    <!--end::Input group-->
-                                    <!--begin::Input group-->
-                                    <div class="fv-row mb-7">
-                                        <!--begin::Label-->
-                                        <label class="required fs-6 fw-semibold mb-2">No. Telepon</label>
-                                        <!--end::Label-->
-                                        <!--begin::Input-->
-                                        <input type="text" class="form-control form-control-solid"
-                                            placeholder="No. Telp" name="no_telp" />
-                                        <!--end::Input-->
-                                    </div>
-                                    <!--end::Input group-->
-                                    <!--begin::Input group-->
-                                    <div class="fv-row mb-7">
-                                        <!--begin::Label-->
-                                        <label class="required fs-6 fw-semibold mb-2">Alamat</label>
-                                        <!--end::Label-->
-                                        <!--begin::Input-->
-                                        <textarea class="form-control" placeholder="Isi alamat rumah anda di sini" id="floatingTextarea2"
-                                            style="height: 100px" name="alamat"></textarea>
-                                        <!--end::Input-->
-                                    </div>
-                                    <!--end::Input-->
-                                    <!--begin::Input group-->
-                                    <div class="fv-row mb-7">
-                                        <!--begin::Label-->
-                                        <label class="required fs-6 fw-semibold mb-2">Tempat Lahir</label>
-                                        <!--end::Label-->
-                                        <!--begin::Input-->
-                                        <input type="text" class="form-control form-control-solid"
-                                            placeholder="Tempat lahir" name="tempat_lahir" />
-                                        <!--end::Input-->
-                                    </div>
-                                    <!--end::Input group-->
-                                    <!--begin::Input group-->
-                                    <div class="fv-row mb-7">
-                                        <!--begin::Label-->
-                                        <label for="" class="form-label">Tanggal Lahir</label>
-                                        <input class="form-control form-control-solid" placeholder="Pick a date"
-                                            id="kt_datepicker_1" name="tgl_lahir" /> <!--end::Input-->
-                                    </div>
-                                    <!--end::Input group-->
-
-                                </div>
-                                <!--end::Scroll-->
-                            </div>
-                            <!--end::Modal body-->
-                            <!--begin::Modal footer-->
-                            <div class="modal-footer flex-center">
-                                <!--begin::Button-->
-                                <button type="reset" id="kt_modal_add_customer_cancel"
-                                    class="btn btn-light me-3">Discard</button>
-                                <!--end::Button-->
-                                <!--begin::Button-->
-                                <button type="submit" id="kt_modal_add_customer_submit" class="btn btn-primary">
-                                    <span class="indicator-label">Submit</span>
-                                    <span class="indicator-progress">Please wait...
-                                        <span class="spinner-border spinner-border-sm align-middle ms-2"></span></span>
-                                </button>
-                                <!--end::Button-->
-                            </div>
-                            <!--end::Modal footer-->
-                        </form>
-                        <!--end::Form-->
-                    </div>
-                </div>
-            </div>
 
             <!--end::Modals-->
 
@@ -928,7 +749,7 @@
                                                     </label>
                                                     <!--end::Label-->
                                                     <!--begin::Input-->
-                                                    <input type="date" class="form-control form-control-lg form-control-solid" name="tgl_lahir" placeholder="Pilih tanggal lahir" value="" />
+                                                    <input type="date" class="form-control form-control-solid" id="kt_datepicker_1" name="tgl_lahir" placeholder="Pilih tanggal lahir" value="" />
                                                     <!--end::Input-->
                                                 </div>
                                             </div>
@@ -1086,8 +907,7 @@
         {{-- ecommerce !!! --}}
         <script src="{{ asset('assets/js/custom/apps/ecommerce/customers/listing/listing-karyawan.js') }}"></script>
         <script src="{{ asset('assets/js/custom/apps/ecommerce/customers/listing/add-karyawan.js') }}"></script>
-        {{-- <script src="{{ asset('assets/js/custom/apps/ecommerce/customers/listing/export.js') }}"></script> --}}
 		<script src="{{ asset('assets/js/custom/utilities/modals/top-up-wallet.js') }}"></script>
         
     @endpush
-</x-layout>
+</x-admin.layout>
