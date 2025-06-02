@@ -20,7 +20,7 @@
 								</h3>
 
 								<p class="stext-113 cl6 p-b-26">
-									{{ $abouts->deskripsi }}
+									{{ strip_tags($abouts->deskripsi) }}
 								</p>
 							</div>
 						</div>
@@ -34,7 +34,7 @@
 						</div>
 					@else
 						<div class="col-11 col-md-5 col-lg-4 m-lr-auto">
-							<div class="how-bor1 ">
+							<div class="how-bor2 ">
 								<div class="hov-img0">
 									<img src="{{ asset('storage/'. $abouts->gambar) }}" alt="IMG">
 								</div>
@@ -47,7 +47,7 @@
 								</h3>
 
 								<p class="stext-113 cl6 p-b-26">
-									{{ $abouts->deskripsi }}
+									{!! $abouts->deskripsi !!}
 								</p>
 							</div>
 						</div>

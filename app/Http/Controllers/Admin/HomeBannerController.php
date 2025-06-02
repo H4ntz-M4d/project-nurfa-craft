@@ -12,7 +12,7 @@ class HomeBannerController extends Controller
 {
     public function index()
     {
-        return view('admin.utilities.home-banner');
+        return view('admin.utilities.home-banner.list-home-banner');
     }
 
     public function data(Request $request)
@@ -65,7 +65,7 @@ class HomeBannerController extends Controller
         ]);
 
         if ($request->hasFile('gambar')) {
-            $path = $request->file('gambar')->store('kategori', 'public');
+            $path = $request->file('gambar')->store('banner', 'public');
         } else {
             $path = null;
         }
@@ -80,5 +80,25 @@ class HomeBannerController extends Controller
             'success' => true,
             'message' => 'Kategori berhasil disimpan',
         ]);
+    }
+
+    public function destroy($id_banner)
+    {
+        $kategori = DB::table('home_banner')->where('id_banner', $id_banner)->firstOrFail();
+        $kategori->delete();
+    
+        return response()->json(['success' => true, 'message' => 'Karyawan berhasil dihapus']);
+    }
+    
+    public function destroySelected(Request $request)
+    {
+        $ids = $request->ids;
+        if (!$ids || !is_array($ids)) {
+            return response()->json(['success' => false, 'message' => 'ID tidak valid'], 400);
+        }
+
+        DB::table('home_banner')->whereIn('id_banner', $ids)->delete();
+
+        return response()->json(['success' => true, 'message' => 'Data Kategori berhasil dihapus']);
     }
 }

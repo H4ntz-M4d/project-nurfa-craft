@@ -43,16 +43,10 @@
 							</span>
 
 							<h4 class="ltext-109 cl2 p-b-28">
-								{{ $data->judul }}
+								{!! $data->judul !!}
 							</h4>
 
-							<p class="stext-117 cl6 p-b-26">
-                                {{ $data->deskripsi }}
-							</p>
-
-							<p class="stext-117 cl6 p-b-26">
-                                {{ $data->deskripsi }}
-							</p>
+							{!! $data->deskripsi !!}
 						</div>
 
 						<div class="flex-w flex-t p-t-16">
@@ -61,9 +55,11 @@
 							</span>
 
 							<div class="flex-w size-217">
-								<a href="#" class="flex-c-m stext-107 cl6 size-301 bor7 p-lr-15 hov-tag1 trans-04 m-r-5 m-b-5">
-									{{ $data->tag }}
-								</a>
+								@foreach(json_decode($data->tag, true) as $tag)
+									<span class="flex-c-m stext-107 cl6 size-301 bor7 p-lr-15 hov-tag1 trans-04 m-r-5 m-b-5">
+										{{ $tag['value'] }}
+									</span>
+								@endforeach
 
 								<a href="#" class="flex-c-m stext-107 cl6 size-301 bor7 p-lr-15 hov-tag1 trans-04 m-r-5 m-b-5">
 									Crafts

@@ -13,9 +13,9 @@ return new class extends Migration
     {
         Schema::create('about', function (Blueprint $table) {
             $table->id('id_about');
-            $table->string('judul');
-            $table->text('deskripsi');
-            $table->string('gambar');
+            $table->string('judul')->nullable();
+            $table->text('deskripsi')->nullable();
+            $table->string('gambar')->nullable();
             $table->timestamps();
         });
     }

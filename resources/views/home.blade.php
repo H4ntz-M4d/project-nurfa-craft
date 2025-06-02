@@ -1307,7 +1307,7 @@
                                         </span>
 
                                         <span class="cl5">
-                                            Nancy Ward
+                                            Admin
                                         </span>
                                     </span>
 
@@ -1324,12 +1324,12 @@
 
                                 <h4 class="p-b-12">
                                     <a href="blog-detail/{{ $blogs->id_blog }}" class="mtext-101 cl2 hov-cl1 trans-04">
-                                        {{ $blogs->judul }}
+                                        {!! $blogs->judul !!}
                                     </a>
                                 </h4>
 
                                 <p class="stext-108 cl6">
-                                    {{ $blogs->deskripsi }}
+                                    {!! Str::words(strip_tags($blogs->deskripsi), 20, '...') !!}
                                 </p>
                             </div>
                         </div>

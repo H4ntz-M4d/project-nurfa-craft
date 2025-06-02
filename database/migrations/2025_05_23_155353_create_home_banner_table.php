@@ -13,9 +13,9 @@ return new class extends Migration
     {
         Schema::create('home_banner', function (Blueprint $table) {
             $table->id('id_banner');
-            $table->string('gambar');
-            $table->string('judul');
-            $table->string('label');
+            $table->string('gambar')->nullable();
+            $table->string('judul')->nullable();
+            $table->string('label')->nullable();
             $table->timestamps();
         });
     }

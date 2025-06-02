@@ -1,13 +1,13 @@
 "use strict";
-var KTHomeBannerList = (function () {
+var KTVariantList = (function () {
     var t, e;
 
     const handleDeleteButtons = () => {
-        e.querySelectorAll('[data-kt-banner-table-filter="delete_row"]').forEach((el) => {
+        e.querySelectorAll('[data-kt-variant-table-filter="delete_row"]').forEach((el) => {
             el.addEventListener("click", function (ev) {
                 ev.preventDefault();
                 const row = el.closest("tr"),
-                    nama = row.querySelectorAll("td")[2].innerText;
+                    nama = row.querySelectorAll("td")[1].innerText;
                 Swal.fire({
                     text: `Are you sure you want to delete "${nama}"?`,
                     icon: "warning",
@@ -22,7 +22,7 @@ var KTHomeBannerList = (function () {
                 }).then(function (result) {
                     if (result.value) {
                         $.ajax({
-                            url: `/home-banner/${row.dataset.slug}`, // Pastikan `data-slug` ada di <tr>
+                            url: `/variant/${row.dataset.slug}`, // Pastikan `data-slug` ada di <tr>
                             type: 'DELETE',
                             data: {
                                 _token: $('meta[name="csrf-token"]').attr('content')
@@ -57,7 +57,7 @@ var KTHomeBannerList = (function () {
 
     const handleGroupActions = () => {
         const checkboxes = e.querySelectorAll('[type="checkbox"]');
-        const deleteSelectedBtn = document.querySelector('[data-kt-banner-table-select="delete_selected"]');
+        const deleteSelectedBtn = document.querySelector('[data-kt-variant-table-select="delete_selected"]');
 
         checkboxes.forEach((checkbox) => {
             checkbox.addEventListener("click", function () {
@@ -86,7 +86,7 @@ var KTHomeBannerList = (function () {
             }).then(function (result) {
                 if (result.value) {
                     $.ajax({
-                        url: '/home-banner-delete-selected',
+                        url: '/variant-delete-selected',
                         type: 'DELETE',
                         data: {
                             _token: $('meta[name="csrf-token"]').attr('content'),
@@ -126,9 +126,9 @@ var KTHomeBannerList = (function () {
     };
 
     const updateToolbar = () => {
-        const baseToolbar = document.querySelector('[data-kt-banner-table-toolbar="base"]');
-        const selectedToolbar = document.querySelector('[data-kt-banner-table-toolbar="selected"]');
-        const selectedCount = document.querySelector('[data-kt-banner-table-select="selected_count"]');
+        const baseToolbar = document.querySelector('[data-kt-variant-table-toolbar="base"]');
+        const selectedToolbar = document.querySelector('[data-kt-variant-table-toolbar="selected"]');
+        const selectedCount = document.querySelector('[data-kt-variant-table-select="selected_count"]');
         const checkboxes = e.querySelectorAll('tbody [type="checkbox"]');
 
         let count = 0;
@@ -148,22 +148,24 @@ var KTHomeBannerList = (function () {
 
     return {
         init: function () {
-            e = document.querySelector("#kt_home_banner_table");
+            e = document.querySelector("#kt_variant_table");
 
             if (!e) return;
 
             t = $(e).DataTable({
                 processing: true,
                 serverSide: true,
-                ajax: "/home-banner-data",
+                ajax: "/variant-data",
                 columns: [
                     { data: 'checkbox', orderable: false, searchable: false, class: 'form-check form-check-sm form-check-custom form-check-solid' },
-                    { data: 'gambar' },
-                    { data: 'judul' },
-                    { data: 'label' },
+                    { data: 'nama_variant' },
+                    { data: 'variant_used' },
+                    { data: 'created_at', render: function(data) {
+                        return moment(data).format('DD-MM-YYYY mm:ss');
+                    }},
                     { data: 'action', orderable: false, searchable: false },
                 ],createdRow: function (row, data, dataIndex) {
-                    $(row).attr('data-slug', data.id_banner); // penting agar row.dataset.slug bisa dipakai
+                    $(row).attr('data-slug', data.id_variant_attributes); // penting agar row.dataset.slug bisa dipakai
                 },                
                 order: [],
                 columnDefs: [
@@ -184,7 +186,7 @@ var KTHomeBannerList = (function () {
             handleDeleteButtons();
 
             // Search input
-            document.querySelector('[data-kt-banner-table-filter="search"]')
+            document.querySelector('[data-kt-variant-table-filter="search"]')
             .addEventListener("keyup", function (event) {
                 t.search(event.target.value).draw();
             });
@@ -194,5 +196,5 @@ var KTHomeBannerList = (function () {
 })();
 
 KTUtil.onDOMContentLoaded(function () {
-    KTHomeBannerList.init();
+    KTVariantList.init();
 });

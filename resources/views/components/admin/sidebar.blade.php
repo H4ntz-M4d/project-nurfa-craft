@@ -109,7 +109,7 @@
                 </div>
                 <!--end:Menu item-->
                 <!--begin:Menu item-->
-                <div data-kt-menu-trigger="click" class="menu-item  {{ Route::is('kategori.*','produk.*') ? 'here show' : '' }}">
+                <div data-kt-menu-trigger="click" class="menu-item menu-accordion {{ Route::is('kategori.*','produk.*') ? 'here show' : '' }}">
                     <!--begin:Menu link-->
                     <span class="menu-link">
                         <span class="menu-icon">
@@ -149,7 +149,7 @@
                 </div>
                 <!--end:Menu item-->
                 <!--begin:Menu item-->
-                <div data-kt-menu-trigger="click" class="menu-item">
+                <div data-kt-menu-trigger="click" class="menu-item menu-accordion">
                     <!--begin:Menu link-->
                     <span class="menu-link">
                         <span class="menu-icon">
@@ -201,7 +201,7 @@
                 </div>
                 <!--end:Menu item-->
                 <!--begin:Menu item-->
-                <div data-kt-menu-trigger="click" class="menu-item {{ Route::is('home-banner.*') ? 'here show' : '' }}">
+                <div data-kt-menu-trigger="click" class="menu-item menu-accordion {{ Route::is('home-banner.*','blog-post.*','variant.*','about.*') ? 'here show' : '' }}">
                     <!--begin:Menu link-->
                     <span class="menu-link">
                         <span class="menu-icon">
@@ -227,35 +227,35 @@
                         <!--begin:Menu item-->
                         <div data-kt-menu-trigger="click" class="menu-item menu-accordion">
                             <!--begin:Menu link-->
-                            <span class="menu-link">
+                            <a class="menu-link {{ Route::is('blog-post.*') ? 'active' : '' }}" href="/blog-post">
                                 <span class="menu-bullet">
                                     <span class="bullet bullet-dot"></span>
                                 </span>
                                 <span class="menu-title">Postingan Blog</span>
-                            </span>
+                            </a>
                             <!--end:Menu link-->
                         </div>
                         <!--end:Menu item-->
                         <!--begin:Menu item-->
                         <div data-kt-menu-trigger="click" class="menu-item menu-accordion">
                             <!--begin:Menu link-->
-                            <span class="menu-link">
+                            <a class="menu-link {{ Route::is('about.*') ? 'active' : '' }}" href="/list-about">
                                 <span class="menu-bullet">
                                     <span class="bullet bullet-dot"></span>
                                 </span>
                                 <span class="menu-title">Tentang Kami</span>
-                            </span>
+                            </a>
                             <!--end:Menu link-->
                         </div>
                         <!--end:Menu item-->
                         <div data-kt-menu-trigger="click" class="menu-item menu-accordion">
                             <!--begin:Menu link-->
-                            <span class="menu-link">
+                            <a class="menu-link {{ Route::is('variant.*') ? 'active' : '' }}" href="/list-variant">
                                 <span class="menu-bullet">
                                     <span class="bullet bullet-dot"></span>
                                 </span>
                                 <span class="menu-title">Variant Produk</span>
-                            </span>
+                            </a>
                             <!--end:Menu link-->
                         </div>
                         <!--end:Menu item-->
@@ -264,7 +264,7 @@
                 </div>
                 <!--end:Menu item-->
                 <!--begin:Menu item-->
-                <div class="menu-item">
+                {{-- <div class="menu-item">
                     <!--begin:Menu link-->
                     <a class="menu-link" href="authentication/layouts/corporate/sign-in.html">
                         <span class="menu-icon">
@@ -276,7 +276,7 @@
                         <span class="menu-title">Logout</span>
                     </a>
                     <!--end:Menu link-->
-                </div>
+                </div> --}}
                 <!--end:Menu item-->
             </div>
             <!--end::Menu-->

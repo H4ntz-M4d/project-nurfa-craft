@@ -3,7 +3,6 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Models\KategoriProduk;
-use App\Models\ProdukMaster;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Storage;
@@ -142,7 +141,7 @@ class KategoriProdukController extends Controller
 
     public function destroy($slug)
     {
-        $kategori = ProdukMaster::where('slug', $slug)->firstOrFail();
+        $kategori = KategoriProduk::where('slug', $slug)->firstOrFail();
         $kategori->delete();
     
         return response()->json(['success' => true, 'message' => 'Karyawan berhasil dihapus']);
@@ -155,7 +154,7 @@ class KategoriProdukController extends Controller
             return response()->json(['success' => false, 'message' => 'ID tidak valid'], 400);
         }
 
-        ProdukMaster::whereIn('slug', $ids)->delete();
+        KategoriProduk::whereIn('slug', $ids)->delete();
 
         return response()->json(['success' => true, 'message' => 'Data Kategori berhasil dihapus']);
     }

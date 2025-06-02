@@ -32,12 +32,12 @@
 							<div class="p-t-32">
 								<h4 class="p-b-15">
 									<a href="blog-detail/{{ $blog->id_blog }}" class=" ltext-108 cl2 hov-cl1 trans-04">
-										{{ $blog->judul }}	
+										{!! $blog->judul !!}	
 									</a>
 								</h4>
 
 								<p class="stext-117 cl6">
-									{{ $blog->deskripsi }}
+                                    {!! Str::words(strip_tags($blog->deskripsi), 30, '...') !!}
 								</p>
 
 								<div class="flex-w flex-sb-m p-t-18">

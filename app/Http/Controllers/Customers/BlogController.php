@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Customers;
 
 use App\Http\Controllers\Controller;
+use App\Models\Blog;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
@@ -11,8 +12,7 @@ class BlogController extends Controller
 {
     public function index()
     {
-        $data = DB::table('blog')
-            ->select("id_blog", "judul", "deskripsi", "gambar", "created_at")
+        $data = Blog::select("id_blog", "judul", "deskripsi", "gambar", "created_at")
             ->orderBy("created_at", "desc")
             ->get();
 
@@ -21,8 +21,7 @@ class BlogController extends Controller
 
     public function detail($slug)
     {
-        $data = DB::table('blog')
-            ->where("id_blog", $slug)
+        $data = Blog::where("id_blog", $slug)
             ->first();
 
         $komentar = DB::table('comment_post')

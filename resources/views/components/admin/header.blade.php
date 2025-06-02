@@ -11,8 +11,8 @@
             </div>
             <!--begin::Logo image-->
             <a href="index.html">
-                <img alt="Logo" src="assets/media/logos/demo3-dark.svg" class="h-35px theme-light-show" />
-                <img alt="Logo" src="assets/media/logos/demo3-dark.svg" class="h-35px theme-dark-show" />
+                <img alt="Logo" src="{{ asset('assets/media/logos/icon-logo-nurfa.png') }}" class="h-35px theme-light-show" />
+                <img alt="Logo" src="{{ asset('assets/media/logos/icon-logo-nurfa-dark.png') }}" class="h-35px theme-dark-show" />
             </a>
             <!--end::Logo image-->
         </div>

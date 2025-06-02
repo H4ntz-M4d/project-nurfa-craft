@@ -2,11 +2,11 @@
     <div id="kt_app_content" class="app-content flex-column-fluid">
         <!--begin::Content container-->
         <div id="kt_app_content_container" class="app-container container-fluid">
-            <form id="kt_ecommerce_add_category_form" class="form d-flex flex-column flex-lg-row" 
-                data-kt-redirect="{{ route('kategori.index') }}" enctype="multipart/form-data"
-                data-store-kategori-url="{{ route('kategori.store') }}">
+            <form id="kt_ecommerce_about_form" class="form d-flex flex-column flex-lg-row" 
+                data-kt-redirect="{{ route('about.index') }}" enctype="multipart/form-data"
+                data-store-about-url="{{ route('about.store') }}">
                 <!--begin::Aside column-->
-                <div class="d-flex flex-column gap-7 gap-lg-10 w-100 w-lg-300px mb-7 me-lg-10">
+                <div class="d-flex flex-column gap-7 gap-lg-10 w-100 w-lg-350px mb-7 me-lg-10">
                     <!--begin::Thumbnail settings-->
                     <div class="card card-flush py-4">
                         <!--begin::Card header-->
@@ -27,7 +27,7 @@
                             <!--begin::Image input-->
                             <div class="image-input image-input-empty image-input-outline image-input-placeholder mb-3" data-kt-image-input="true">
                                 <!--begin::Preview existing avatar-->
-                                <div class="image-input-wrapper w-150px h-150px"></div>
+                                <div class="image-input-wrapper w-250px h-250px"></div>
                                 <!--end::Preview existing avatar-->
                                 <!--begin::Label-->
                                 <label class="btn btn-icon btn-circle btn-active-color-primary w-25px h-25px bg-body shadow" data-kt-image-input-action="change" data-bs-toggle="tooltip" title="Change avatar">
@@ -67,35 +67,6 @@
                         <!--end::Card body-->
                     </div>
                     <!--end::Thumbnail settings-->
-                    <!--begin::Status-->
-                    <div class="card card-flush py-4">
-                        <!--begin::Card header-->
-                        <div class="card-header">
-                            <!--begin::Card title-->
-                            <div class="card-title">
-                                <h2>Status</h2>
-                            </div>
-                            <!--end::Card title-->
-                            <!--begin::Card toolbar-->
-                            <div class="card-toolbar">
-                                <div class="rounded-circle bg-success w-15px h-15px" id="kt_ecommerce_add_category_status"></div>
-                            </div>
-                            <!--begin::Card toolbar-->
-                        </div>
-                        <!--end::Card header-->
-                        <!--begin::Card body-->
-                        <div class="card-body pt-0">
-                            <!--begin::Select2-->
-                            <select class="form-select mb-2" data-control="select2" data-hide-search="true" data-placeholder="Select an option" id="kt_ecommerce_add_category_status_select">
-                                <option></option>
-                                <option value="published" selected="selected">Published</option>
-                                <option value="unpublished">Unpublished</option>
-                            </select>
-                            <!--end::Select2-->
-                        </div>
-                        <!--end::Card body-->
-                    </div>
-                    <!--end::Status-->
                 </div>
                 <!--end::Aside column-->
                 <!--begin::Main column-->
@@ -105,7 +76,7 @@
                         <!--begin::Card header-->
                         <div class="card-header">
                             <div class="card-title">
-                                <h2>General</h2>
+                                <h2>Content</h2>
                             </div>
                         </div>
                         <!--end::Card header-->
@@ -114,14 +85,11 @@
                             <!--begin::Input group-->
                             <div class="mb-10 fv-row">
                                 <!--begin::Label-->
-                                <label class="required form-label">Category Name</label>
+                                <label class="required form-label">Title</label>
                                 <!--end::Label-->
                                 <!--begin::Input-->
-                                <input type="text" name="nama_kategori" class="form-control mb-2" placeholder="Product name" value="" />
+                                <input type="text" name="judul" class="form-control mb-2" placeholder="Title" value="" />
                                 <!--end::Input-->
-                                <!--begin::Description-->
-                                <div class="text-muted fs-7">A category name is required and recommended to be unique.</div>
-                                <!--end::Description-->
                             </div>
                             <!--end::Input group-->
                             <!--begin::Input group-->
@@ -130,7 +98,7 @@
                                 <label class="form-label">Description</label>
                                 <!--end::Label-->
                                 <!--begin::Editor-->
-                                <textarea id="kt_ecommerce_add_category_description" class="form-control" name="deskripsi"></textarea>
+                                <div id="kt_ecommerce_about_description" name="deskripsi" class="min-h-200px mb-2"></div>
                                 <!--end::Editor-->
                                 <!--begin::Description-->
                                 <div class="text-muted fs-7">Set a description to the category for better visibility.</div>
@@ -141,54 +109,12 @@
                         <!--end::Card header-->
                     </div>
                     <!--end::General options-->
-                    <!--begin::Meta options-->
-                    <div class="card card-flush py-4">
-                        <!--begin::Card header-->
-                        <div class="card-header">
-                            <div class="card-title">
-                                <h2>Meta Options</h2>
-                            </div>
-                        </div>
-                        <!--end::Card header-->
-                        <!--begin::Card body-->
-                        <div class="card-body pt-0">
-                            <!--begin::Input group-->
-                            <div class="mb-10">
-                                <!--begin::Label-->
-                                <label class="form-label">Meta Tag Description</label>
-                                <!--end::Label-->
-                                <!--begin::Editor-->
-                                <textarea id="kt_ecommerce_add_category_meta_description" name="meta_desc" class="min-h-100px mb-2"></textarea>
-                                <!--end::Editor-->
-                                <!--begin::Description-->
-                                <div class="text-muted fs-7">Set a meta tag description to the category for increased SEO ranking.</div>
-                                <!--end::Description-->
-                            </div>
-                            <!--end::Input group-->
-                            <!--begin::Input group-->
-                            <div>
-                                <!--begin::Label-->
-                                <label class="form-label">Meta Tag Keywords</label>
-                                <!--end::Label-->
-                                <!--begin::Editor-->
-                                <input id="kt_ecommerce_add_category_meta_keywords" name="meta_keywords" class="form-control mb-2" />
-                                <!--end::Editor-->
-                                <!--begin::Description-->
-                                <div class="text-muted fs-7">Set a list of keywords that the category is related to. Separate the keywords by adding a comma 
-                                <code>,</code>between each keyword.</div>
-                                <!--end::Description-->
-                            </div>
-                            <!--end::Input group-->
-                        </div>
-                        <!--end::Card header-->
-                    </div>
-                    <!--end::Meta options-->
                     <div class="d-flex justify-content-end">
                         <!--begin::Button-->
-                        <a href="apps/ecommerce/catalog/products.html" id="kt_ecommerce_add_product_cancel" class="btn btn-light me-5">Cancel</a>
+                        <a href="apps/ecommerce/catalog/products.html" id="kt_ecommerce_about_cancel" class="btn btn-light me-5">Cancel</a>
                         <!--end::Button-->
                         <!--begin::Button-->
-                        <button type="submit" id="kt_ecommerce_add_category_submit" class="btn btn-primary">
+                        <button type="submit" id="kt_ecommerce_about_submit" class="btn btn-primary">
                             <span class="indicator-label">Save Changes</span>
                             <span class="indicator-progress">Please wait... 
                             <span class="spinner-border spinner-border-sm align-middle ms-2"></span></span>
@@ -201,4 +127,7 @@
         </div>
         <!--end::Content container-->
     </div>
+    @push('scripts')
+        <script src="{{ asset('assets/js/custom/apps/ecommerce/utilities/about-post/add-about.js') }}"></script>
+    @endpush
 </x-admin.layout>

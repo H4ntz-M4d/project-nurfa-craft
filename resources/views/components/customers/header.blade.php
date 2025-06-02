@@ -23,7 +23,7 @@
                                 </li>
 
                                 <li class="{{ Route::is('shoping') ? 'active-menu' : '' }}" {{-- class="label1" data-label1="hot" --}}>
-                                    <a href="/shopping">Features</a>
+                                    <a href="/shopping/{{ Auth::user()->slug }}">Features</a>
                                 </li>
 
                                 <li class="{{ Route::is('blog') ? 'active-menu' : '' }}">
@@ -89,8 +89,9 @@
         <div class="wrap-header-mobile">
             <!-- Logo moblie -->
             <div class="logo-mobile">
-                <a href="index.html"><img src="{{ asset('customers-asset/images/icons/logo-01.png') }}"
-                        alt="IMG-LOGO"></a>
+                <a href="index.html">
+                    <img alt="Logo" src="{{ asset('assets/media/logos/icon-logo-nurfa.png') }}" />
+                </a>
             </div>
 
             <!-- Icon header -->
@@ -131,7 +132,7 @@
                     </li>
 
                     <li class="{{ Route::is('shoping') ? 'active-menu' : '' }}" {{-- class="label1" data-label1="hot" --}}>
-                        <a href="/shopping">Features</a>
+                        <a href="/shopping/{{ Auth::user()->slug }}">Features</a>
                     </li>
 
                     <li class="{{ Route::is('blog') ? 'active-menu' : '' }}">

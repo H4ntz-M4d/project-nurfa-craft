@@ -13,10 +13,11 @@ return new class extends Migration
     {
         Schema::create('blog', function (Blueprint $table) {
             $table->id('id_blog');
-            $table->string('judul');
-            $table->text('deskripsi');
-            $table->string('tag');
-            $table->string('gambar');
+            $table->foreignId('id_user')->constrained('users','id')->onDelete('cascade');
+            $table->string('judul')->nullable();
+            $table->text('deskripsi')->nullable();
+            $table->string('tag')->nullable();
+            $table->string('gambar')->nullable();
             $table->timestamps();
         });
     }

@@ -2264,7 +2264,7 @@ input.num-product::-webkit-inner-spin-button {
 [ M-Text 16 - 25 ]*/
 .mtext-101 {
   font-family: Poppins-Medium;
-  font-size: 18px;
+  font-size: 12px;
   line-height: 1.333333;
 }
 
@@ -3068,7 +3068,7 @@ input.num-product::-webkit-inner-spin-button {
 }
 
 .hov-img0 img{
-  height: 300px;
+  height: 400px;
   width: 100%;
   object-fit: cover;
   object-position: center;

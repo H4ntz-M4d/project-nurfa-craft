@@ -38,7 +38,7 @@ RUN composer install --no-dev --optimize-autoloader
 # Pindah ke user yang dibuat
 USER appuser
 
-EXPOSE 8000
+EXPOSE 80
 
 # Default command
 CMD ["php", "artisan", "octane:start", "--server=frankenphp"]

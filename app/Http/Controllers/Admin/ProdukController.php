@@ -70,7 +70,7 @@ class ProdukController extends Controller
                 })
                 ->addColumn('status', function($row){
                     $class = $row->status === 'published' ? 'badge-light-success' : 'badge-light-danger';
-                    $label = ucfirst($row->status); // Kapital huruf pertama (optional)
+                    $label = ucfirst($row->status); 
                     
                     return '<div class="badge '.$class.'">'.$label.'</div>';
                 })
