@@ -1432,9 +1432,9 @@ Input, textarea : 14px/1.6 '', Arial, sans-serif;
 .wrap-slick3-arrows {
   position: absolute;
   z-index: 100;
-  width: 83.333333%;
+  width: 100%;
   right: 0;
-  top: calc(50% - 20px);
+  top: calc(50% - 80px);
 }
 
 .arrow-slick3 {
@@ -1462,36 +1462,59 @@ Input, textarea : 14px/1.6 '', Arial, sans-serif;
 
 /*---------------------------------------------*/
 .wrap-slick3-dots {
-  width: 11.111111%;
+  width: 100%;
+  overflow: hidden;
+}
+
+.slick3-dots-container {
+    display: flex;
+    justify-content: center;
+    overflow: hidden;
+    padding-left: 120px;
+    width: 100%;
+    max-width: 700px; /* sesuaikan dengan lebar maks dots yang ingin ditampilkan */
+    margin: 0 auto;
+    position: relative;
 }
 
 .slick3 {
-  width: 83.333333%;
+  width: 100%;
+}
+
+.slick3-dots{
+  display: flex;
+  width: max-content;
+  transition: transform 0.5s ease;
+  padding: 0 50px; /* ruang untuk navigasi */
+
 }
 
 .slick3-dots li {
-  display: block;
   position: relative;
-  width: 100%;
-  margin-bottom: 27px;
+    margin: 27px 10px 0; /* mengurangi margin-right untuk lebih rapat */
+    flex-shrink: 0;
+    list-style: none;
+
 }
 
 .slick3-dots li img {
-  width: 100%;
+  width: 130px;
+  object-fit: cover;
+  height: 130px;
+  border-radius: 4px;
+  display: block;
 }
 
 .slick3-dot-overlay {
-  position: absolute;
-  width: 100%;
-  height: 100%;
-  top: 0;
-  left: 0;
-  cursor: pointer;
-  border: 2px solid transparent;
-  -webkit-transition: all 0.4s;
-  -o-transition: all 0.4s;
-  -moz-transition: all 0.4s;
-  transition: all 0.4s;
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    cursor: pointer;
+    border: 2px solid transparent;
+    transition: all 0.3s ease;
+    border-radius: 4px;
 }
 
 .slick3-dot-overlay:hover {
@@ -1502,6 +1525,63 @@ Input, textarea : 14px/1.6 '', Arial, sans-serif;
   border-color: #ccc;
 }
 
+.dots-navigation {
+    position: absolute;
+    top: 50%;
+    left: 0;
+    right: 0;
+    transform: translateY(-50%);
+    display: flex;
+    justify-content: space-between;
+    pointer-events: none;
+    z-index: 1;
+}
+
+.dots-navigation button {
+    background: white;
+    border: none;
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    cursor: pointer;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.15);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    pointer-events: all;
+    transition: all 0.3s ease;
+    color: #333;
+}
+
+.dots-navigation button:hover {
+    background: #e65540;
+    color: white;
+}
+
+.dots-navigation button i {
+    font-size: 16px;
+}
+
+.dots-navigation button.dots-prev {
+    margin-left: 10px;
+}
+
+.dots-navigation button.dots-next {
+    margin-right: 10px;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .slick3-dots li img {
+        width: 80px;
+        height: 80px;
+    }
+    
+    .dots-navigation button {
+        width: 30px;
+        height: 30px;
+    }
+}
 
 
 /*//////////////////////////////////////////////////////////////////
@@ -2049,6 +2129,7 @@ input.num-product::-webkit-inner-spin-button {
 [ Block2 ]*/
 .block2-pic {
   position: relative;
+  height: 300px;
 }
 
 .block2-btn {
@@ -2331,7 +2412,7 @@ input.num-product::-webkit-inner-spin-button {
 }
 
 .mtext-112 {
-  font-family: Poppins-Bold;
+  font-family: Poppins-semiBold;
   font-size: 22px;
   line-height: 1.333333;
 }
@@ -3063,12 +3144,11 @@ input.num-product::-webkit-inner-spin-button {
 
 /*---------------------------------------------*/
 .hov-img0 {
-  display: block;
+  display: flex;
   overflow: hidden;
 }
 
 .hov-img0 img{
-  height: 400px;
   width: 100%;
   object-fit: cover;
   object-position: center;

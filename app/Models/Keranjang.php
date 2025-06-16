@@ -11,12 +11,24 @@ class Keranjang extends Model
     protected $fillable = [
         'id_user',
         'id_master_produk',
-        'jumlah'
+        'jumlah',
+        'status_produk',
     ];
+
+    public function user()
+    {
+        return $this->belongsTo(User::class, 'id_user');
+    }
 
     public function produk_master()
     {
         return $this->belongsTo(ProdukMaster::class,'id_master_produk','id_master_produk');
+    }
+
+    public function keranjang_variant()
+    {
+        return $this->hasMany(KeranjangVariant::class, 'id_keranjang', 'id_keranjang')
+            ->with('produk_variant_value.variantAttribute', 'produk_variant_value.variantValues');
     }
 
     protected static function boot()

@@ -142,7 +142,10 @@
         /*==================================================================
         [ Slick3 ]*/
         $('.wrap-slick3').each(function(){
-            $(this).find('.slick3').slick({
+            var $slider = $(this).find('.slick3');
+            var $dotsContainer = $(this).find('.wrap-slick3-dots');
+            
+            $slider.slick({
                 slidesToShow: 1,
                 slidesToScroll: 1,
                 fade: true,
@@ -156,13 +159,56 @@
                 nextArrow:'<button class="arrow-slick3 next-slick3"><i class="fa fa-angle-right" aria-hidden="true"></i></button>',
 
                 dots: true,
-                appendDots: $(this).find('.wrap-slick3-dots'),
+                appendDots: $dotsContainer,
                 dotsClass:'slick3-dots',
                 customPaging: function(slick, index) {
                     var portrait = $(slick.$slides[index]).data('thumb');
-                    return '<img src=" ' + portrait + ' "/><div class="slick3-dot-overlay"></div>';
-                },  
+                    return '<img src="' + portrait + '"/><div class="slick3-dot-overlay"></div>';
+                },
             });
+            
+            $dotsContainer.find('.slick3-dots').wrap('<div class="slick3-dots-container"></div>');
+            
+            // Add navigation if more than 4 thumbnails
+            if ($slider.find('.slick-slide').length > 4) {
+                var $dotsWrapper = $dotsContainer.find('.slick3-dots-container');
+                $dotsWrapper.append(`
+                    <div class="dots-navigation">
+                        <button class="dots-prev"><i class="fa fa-angle-left"></i></button>
+                        <button class="dots-next"><i class="fa fa-angle-right"></i></button>
+                    </div>
+                `);
+                
+                var $dots = $dotsContainer.find('.slick3-dots');
+                var dotWidth = 120; // 100px + margin
+                var visibleDots = 4;
+                var currentPosition = 0;
+                var maxPosition = 0;
+                
+                function updateNavigation() {
+                    var totalDots = $slider.find('.slick-slide').length;
+                    maxPosition = Math.max(0, (totalDots - visibleDots) * dotWidth);
+                    
+                    // Disable/enable buttons based on position
+                    $dotsContainer.find('.dots-prev').toggleClass('disabled', currentPosition >= 0);
+                    $dotsContainer.find('.dots-next').toggleClass('disabled', currentPosition <= -maxPosition);
+                }
+                
+                $dotsContainer.on('click', '.dots-prev:not(.disabled)', function() {
+                    currentPosition = Math.min(0, currentPosition + (dotWidth * 2));
+                    $dots.css('transform', 'translateX(' + currentPosition + 'px)');
+                    updateNavigation();
+                });
+                
+                $dotsContainer.on('click', '.dots-next:not(.disabled)', function() {
+                    currentPosition = Math.max(-maxPosition, currentPosition - (dotWidth * 2));
+                    $dots.css('transform', 'translateX(' + currentPosition + 'px)');
+                    updateNavigation();
+                });
+                
+                updateNavigation();
+                $(window).on('resize', updateNavigation);
+            }
         });
             
                 

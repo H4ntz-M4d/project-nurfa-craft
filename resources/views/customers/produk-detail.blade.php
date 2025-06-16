@@ -24,41 +24,33 @@
 			<div class="row">
 				<div class="col-md-6 col-lg-7 p-b-30">
 					<div class="p-l-25 p-r-30 p-lr-0-lg">
-						<div class="wrap-slick3 flex-sb flex-w">
-							<div class="wrap-slick3-dots"></div>
-							<div class="wrap-slick3-arrows flex-sb-m flex-w"></div>
-
+						<div class="wrap-slick3">
 							<div class="slick3 gallery-lb">
-								<div class="item-slick3" data-thumb="{{ asset('storage/'. $pro_detail->variant->first()->gambar) }}">
-									<div class="wrap-pic-w pos-relative">
-										<img src="{{ asset('storage/'. $pro_detail->variant->first()->gambar) }}" alt="IMG-PRODUCT">
-
-										<a class="flex-c-m size-108 how-pos1 bor0 fs-16 cl10 bg0 hov-btn3 trans-04" href="{{ asset('storage/'. $pro_detail->variant->first()->gambar) }}">
+								<div class="item-slick3" data-thumb="{{ asset('storage/'. $pro_detail->gambar) }}">
+									<div class="wrap-pic-s pos-relative">
+										<img src="{{ asset('storage/'. $pro_detail->gambar) }}" style="object-fit: cover; height: 500px;" alt="IMG-PRODUCT">
+	
+										<a class="flex-c-m size-108 how-pos1 bor0 fs-16 cl10 bg0 hov-btn3 trans-04" href="{{ asset('storage/'. $pro_detail->gambar) }}">
 											<i class="fa fa-expand"></i>
 										</a>
 									</div>
 								</div>
-
-								<div class="item-slick3" data-thumb="{{ asset('customers-asset/images/product-detail-02.jpg') }}">
-									<div class="wrap-pic-w pos-relative">
-										<img src="{{ asset('customers-asset/images/product-detail-02.jpg') }}" alt="IMG-PRODUCT">
-
-										<a class="flex-c-m size-108 how-pos1 bor0 fs-16 cl10 bg0 hov-btn3 trans-04" href="{{ asset('customers-asset/images/product-detail-02.jpg') }}">
-											<i class="fa fa-expand"></i>
-										</a>
+	
+								@foreach ($produk_img as $item) 
+									<div class="item-slick3" data-thumb="{{ asset('storage/'. $item->gambar) }}">
+										<div class="wrap-pic-s pos-relative">
+											<img src="{{ asset('storage/'. $item->gambar) }}" style="object-fit: cover; height: 500px;" alt="IMG-PRODUCT">
+	
+											<a class="flex-c-m size-108 how-pos1 bor0 fs-16 cl10 bg0 hov-btn3 trans-04" href="{{ asset('storage/'. $item->gambar) }}">
+												<i class="fa fa-expand"></i>
+											</a>
+										</div>
 									</div>
-								</div>
-
-								<div class="item-slick3" data-thumb="{{ asset('customers-asset/images/product-detail-03.jpg') }}">
-									<div class="wrap-pic-w pos-relative">
-										<img src="{{ asset('customers-asset/images/product-detail-03.jpg') }}" alt="IMG-PRODUCT">
-
-										<a class="flex-c-m size-108 how-pos1 bor0 fs-16 cl10 bg0 hov-btn3 trans-04" href="{{ asset('customers-asset/images/product-detail-03.jpg') }}">
-											<i class="fa fa-expand"></i>
-										</a>
-									</div>
-								</div>
+								@endforeach
+	
 							</div>
+							<div class="wrap-slick3-arrows flex-sb-m flex-w"></div>
+							<div class="wrap-slick3-dots"></div>
 						</div>
 					</div>
 				</div>
@@ -69,13 +61,26 @@
 							{{ $pro_detail->nama_produk }}
 						</h4>
 
-						<span class="mtext-106 cl2">
-							Rp{{ $pro_detail->variant->first()->harga }}
+						<span id="variant-harga" class="ltext-102 cl2">
+							{{ $pro_detail->formatted_harga }}
 						</span>
 
 						<h4 class="mtext-102 cl3 p-t-23">
-							Stok : {!! $pro_detail->variant->first()->stok !!}
+							Stok : <span id="variant-stok">{!! $pro_detail->stok ?? '-' !!}</span>
 						</h4>
+
+						@if ($pro_detail->is_out_of_stock)
+							<div class="alert alert-warning d-flex align-items-center p-5">
+								<i class="ki-duotone ki-warning fs-2hx text-warning me-4"><span class="path1"></span><span class="path2"></span></i>
+								<div class="d-flex flex-column">
+									<h4 class="mb-1 text-warning">Stok Habis!</h4>
+									<span>Produk ini sedang tidak tersedia saat ini. Silakan cek kembali nanti.</span>
+								</div>
+							</div>
+						@endif
+						<div id="stok-warning" class="alert alert-warning d-none mt-3"></div>
+
+
 						
 						<!--  -->
 						<form id="form-cart">
@@ -112,9 +117,9 @@
 												<i class="fs-16 zmdi zmdi-plus"></i>
 											</div>
 										</div>
-										<button type="button" data-url="{{ route('produk-shop.cart-add') }}"
+										<button id="btn-tambah-keranjang" type="button" data-url="{{ route('produk-shop.cart-add') }}"
 										class="flex-c-m stext-101 cl0 size-101 bg1 bor1 hov-btn1 p-lr-15 trans-04 js-addcart-detail">
-											Add to cart
+											+Keranjang
 										</button>
 									</div>
 								</div>
@@ -322,7 +327,7 @@
 
 		<div class="bg6 flex-c-m flex-w size-302 m-t-73 p-tb-15">
 			<span class="stext-107 cl6 p-lr-25">
-				SKU: {{ $pro_detail->variant->first()->sku }}
+				SKU: {{ $pro_detail->sku }}
 			</span>
 
 			<span class="stext-107 cl6 p-lr-25">
@@ -330,4 +335,58 @@
 			</span>
 		</div>
 	</section>
+
+	@push('scripts')
+		<script>
+			$(document).ready(function () {
+				function getSelectedVariants() {
+					let values = [];
+					$('select[name="variant_values[]"]').each(function () {
+						let val = $(this).val();
+						if (val) {
+							values.push(parseInt(val));
+						}
+					});
+					return values;
+				}
+
+				$('select[name="variant_values[]"]').on('change', function () {
+					const variantValues = getSelectedVariants();
+
+					// Hanya jalankan kalau semua varian dipilih
+					if (variantValues.length === $('select[name="variant_values[]"]').length) {
+						$.ajax({
+							url: '{{ route("produk-shop.check-variant") }}',
+							method: 'POST',
+							data: {
+								_token: '{{ csrf_token() }}',
+								variant_values: variantValues,
+								id_master_produk: '{{ $pro_detail->id_master_produk }}'
+							},
+							success: function (res) {
+								$('#variant-harga').text('Rp' + new Intl.NumberFormat('id-ID').format(res.harga));
+								$('#variant-stok').text(res.stok);
+
+								if (res.out_of_stock) {
+									$('#stok-warning').removeClass('d-none').text('Stok untuk kombinasi varian ini kosong!');
+								} else {
+									$('#stok-warning').addClass('d-none').text('');
+								}
+							},
+
+							error: function () {
+								$('#variant-harga').text('Rp0');
+								$('#variant-stok').text('-');
+							}
+						});
+					} else {
+						$('#variant-harga').html();
+						$('#variant-stok').html()
+
+					}
+				});
+			});
+		</script>
+
+	@endpush
 </x-customers.layout>

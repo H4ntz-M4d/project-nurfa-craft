@@ -17,7 +17,6 @@ return new class extends Migration
             $table->string('sku')->nullable();
             $table->double('harga')->nullable();
             $table->string('stok')->nullable();
-            $table->string('gambar')->nullable();
             $table->string('slug')->unique();
             $table->timestamps();
         });
@@ -34,7 +33,7 @@ return new class extends Migration
             $table->foreignId('id_variant_attributes')->references('id_variant_attributes')
                 ->on('variant_attributes')
                 ->onDelete('cascade');
-            $table->string('value'); // Merah, Biru, M, L, dsb
+            $table->string('value');
             $table->timestamps();
         });
         

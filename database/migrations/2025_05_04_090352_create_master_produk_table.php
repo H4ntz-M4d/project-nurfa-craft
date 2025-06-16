@@ -17,12 +17,24 @@ return new class extends Migration
             $table->string('nama_produk')->nullable();
             $table->text('deskripsi')->nullable();
             $table->enum('status',['published','unpublished'])->nullable();
+            $table->enum('use_variant',['yes','no'])->default('no');
             $table->string('meta_keywords')->nullable();
-            $table->string('meta_desc')->nullable();
+            $table->text('meta_desc')->nullable();
             $table->string('gambar')->nullable();
             $table->string('slug')->unique();
             $table->timestamps();
         });
+
+        Schema::create('detail_produk_master', function (Blueprint $table) {
+            $table->id('id_detail_produk');
+            $table->foreignId('id_master_produk')->references('id_master_produk')->on('produk_master')->onDelete('cascade');
+            $table->string('sku')->nullable();
+            $table->double('harga')->nullable();
+            $table->string('stok')->nullable();
+            $table->string('slug')->unique();
+            $table->timestamps();
+        });
+
     }
 
     /**

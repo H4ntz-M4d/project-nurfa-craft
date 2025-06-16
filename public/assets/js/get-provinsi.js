@@ -99,8 +99,6 @@ $(function() {
     // Inisialisasi halaman
     async function initialize() {
         await loadProvinsi();
-        createOptionGender();
-        createDateInput();
 
         // Jika ada nilai lama untuk provinsi, muat kabupaten terkait
         if (oldProvinsi !== "") {

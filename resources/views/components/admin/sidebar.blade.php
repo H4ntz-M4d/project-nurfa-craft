@@ -109,7 +109,7 @@
                 </div>
                 <!--end:Menu item-->
                 <!--begin:Menu item-->
-                <div data-kt-menu-trigger="click" class="menu-item menu-accordion {{ Route::is('kategori.*','produk.*') ? 'here show' : '' }}">
+                <div data-kt-menu-trigger="click" class="menu-item menu-accordion {{ Route::is('kategori.*','produk.*','stocks.*') ? 'here show' : '' }}">
                     <!--begin:Menu link-->
                     <span class="menu-link">
                         <span class="menu-icon">
@@ -143,13 +143,24 @@
                             </a>
                             <!--end:Menu link-->
                         </div>
+                        <!--begin:Menu item-->
+                        <div data-kt-menu-trigger="click" class="menu-item menu-accordion">
+                            <!--begin:Menu link-->
+                            <a class="menu-link {{ Route::is('stocks.*') ? 'active' : '' }}" href="/list-stocks-produk">
+                                <span class="menu-bullet">
+                                    <span class="bullet bullet-dot"></span>
+                                </span>
+                                <span class="menu-title">Kelola Stok</span>
+                            </a>
+                            <!--end:Menu link-->
+                        </div>
                         <!--end:Menu item-->
                     </div>
                     <!--end:Menu sub-->
                 </div>
                 <!--end:Menu item-->
                 <!--begin:Menu item-->
-                <div data-kt-menu-trigger="click" class="menu-item menu-accordion">
+                <div data-kt-menu-trigger="click" class="menu-item menu-accordion {{ Route::is('laporan.*') ? 'here show' : '' }}">
                     <!--begin:Menu link-->
                     <span class="menu-link">
                         <span class="menu-icon">
@@ -169,6 +180,18 @@
                                 </span>
                                 <span class="menu-title">Produk dilihat</span>
                             </span>
+                            <!--end:Menu link-->
+                        </div>
+                        <!--end:Menu item-->
+                        <!--begin:Menu item-->
+                        <div data-kt-menu-trigger="click" class="menu-item menu-accordion">
+                            <!--begin:Menu link-->
+                            <a class="menu-link {{ Route::is('laporan.*') ? 'active' : '' }}" href="/list-stocks-record">
+                                <span class="menu-bullet">
+                                    <span class="bullet bullet-dot"></span>
+                                </span>
+                                <span class="menu-title">Laporan Stok</span>
+                            </a>
                             <!--end:Menu link-->
                         </div>
                         <!--end:Menu item-->

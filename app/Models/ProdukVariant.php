@@ -13,7 +13,7 @@ class ProdukVariant extends Model
         'sku',
         'harga',
         'stok',
-        'gambar',
+        'status',
         'slug'
     ];
     public $timestamps = true;
@@ -28,12 +28,17 @@ class ProdukVariant extends Model
         return $this->hasMany(ProdukVariantValues::class, 'id_var_produk', 'id_var_produk');
     }
 
+    public function stokRecords()
+    {
+        return $this->hasMany(StokRecord::class, 'id_var_produk', 'id_var_produk');
+    }
+
     protected static function boot()
     {
         parent::boot();
 
         static::creating(function ($produk_variant) {
-            $produk_variant->slug = md5(now()->timestamp);
+            $produk_variant->slug = md5(now()->valueOf());
         });
     }
 }

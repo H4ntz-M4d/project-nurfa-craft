@@ -9,7 +9,7 @@ class TransactionDetailVariants extends Model
     protected $table = 'transaction_detail_variants';
     
     protected $fillable = [
-        'id_transaction_detail', 'id_variant_attributes', 'id_variant_value'
+        'id_transaction_detail', 'id_variant_attributes', 'id_variant_value', 'nama_atribut', 'nilai_variant'
     ];
 
     public function detail()

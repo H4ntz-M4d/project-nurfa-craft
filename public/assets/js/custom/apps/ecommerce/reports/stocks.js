@@ -1,9 +1,9 @@
 "use strict";
-var KTProdukList = (function () {
+var KTStocksList = (function () {
     var t, e;
 
     const handleDeleteButtons = () => {
-        e.querySelectorAll('[data-kt-produk-table-filter="delete_row"]').forEach((el) => {
+        e.querySelectorAll('[data-kt-stocks-table-filter="delete_row"]').forEach((el) => {
             el.addEventListener("click", function (ev) {
                 ev.preventDefault();
                 const row = el.closest("tr"),
@@ -57,7 +57,7 @@ var KTProdukList = (function () {
 
     const handleGroupActions = () => {
         const checkboxes = e.querySelectorAll('[type="checkbox"]');
-        const deleteSelectedBtn = document.querySelector('[data-kt-produk-table-select="delete_selected"]');
+        const deleteSelectedBtn = document.querySelector('[data-kt-stocks-table-select="delete_selected"]');
 
         checkboxes.forEach((checkbox) => {
             checkbox.addEventListener("click", function () {
@@ -73,7 +73,7 @@ var KTProdukList = (function () {
                 if (slug) selectedSlugsArray.push(slug);
             });
             Swal.fire({
-                text: "Are you sure you want to delete selected Produk?",
+                text: "Are you sure you want to delete selected Stocks?",
                 icon: "warning",
                 showCancelButton: true,
                 buttonsStyling: false,
@@ -126,9 +126,9 @@ var KTProdukList = (function () {
     };
 
     const updateToolbar = () => {
-        const baseToolbar = document.querySelector('[data-kt-produk-table-toolbar="base"]');
-        const selectedToolbar = document.querySelector('[data-kt-produk-table-toolbar="selected"]');
-        const selectedCount = document.querySelector('[data-kt-produk-table-select="selected_count"]');
+        const baseToolbar = document.querySelector('[data-kt-stocks-table-toolbar="base"]');
+        const selectedToolbar = document.querySelector('[data-kt-stocks-table-toolbar="selected"]');
+        const selectedCount = document.querySelector('[data-kt-stocks-table-select="selected_count"]');
         const checkboxes = e.querySelectorAll('tbody [type="checkbox"]');
 
         let count = 0;
@@ -148,22 +148,22 @@ var KTProdukList = (function () {
 
     return {
         init: function () {
-            e = document.querySelector("#kt_produk_table");
+            e = document.querySelector("#kt_stok_table");
 
             if (!e) return;
 
             t = $(e).DataTable({
                 processing: true,
                 serverSide: true,
-                ajax: "/produk-data",
+                ajax: "/stocks-data",
                 columns: [
                     { data: 'checkbox', orderable: false, searchable: false, class: 'form-check form-check-sm form-check-custom form-check-solid' },
+                    { data: 'nama_user' },
                     { data: 'nama_produk' },
-                    { data: 'nama_kategori' },
-                    { data: 'use_variant', class: 'text-center' },
-                    { data: 'harga' },
-                    { data: 'stok' },
-                    { data: 'status' },
+                    { data: 'stok_awal' },
+                    { data: 'stok_masuk' },
+                    { data: 'stok_akhir' },
+                    { data: 'tanggal' },
                     { data: 'action', orderable: false, searchable: false },
                 ],createdRow: function (row, data, dataIndex) {
                     $(row).attr('data-slug', data.slug); // penting agar row.dataset.slug bisa dipakai
@@ -187,7 +187,7 @@ var KTProdukList = (function () {
             handleDeleteButtons();
 
             // Search input
-            document.querySelector('[data-kt-produk-table-filter="search"]')
+            document.querySelector('[data-kt-stocks-table-filter="search"]')
             .addEventListener("keyup", function (event) {
                 t.search(event.target.value).draw();
             });
@@ -197,5 +197,5 @@ var KTProdukList = (function () {
 })();
 
 KTUtil.onDOMContentLoaded(function () {
-    KTProdukList.init();
+    KTStocksList.init();
 });

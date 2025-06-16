@@ -11,7 +11,7 @@ class TransactionDetails extends Model
     protected $primaryKey = 'id_transaction_detail';
 
     protected $fillable = [
-        'id_transaction', 'id_master_produk', 'jumlah', 'harga'
+        'id_transaction', 'id_master_produk', 'nama_produk', 'jumlah', 'harga'
     ];
 
     public function transaction()

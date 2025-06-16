@@ -211,7 +211,7 @@
                                             <!-- Block2 -->
                                             <div class="block2">
                                                 <div class="block2-pic hov-img0">
-                                                    <img src="{{ asset('storage/' . $item->variant->first()->gambar) }}"
+                                                    <img src="{{ asset('storage/' . $item->gambar) }}"
                                                         alt="IMG-PRODUCT">
 
                                                     <a href="/produk-shop-detail/{{ $item->slug }}"
@@ -228,7 +228,7 @@
                                                         </a>
 
                                                         <span class="stext-105 cl3">
-                                                            Rp{{ $item->variant->first()->harga }}
+                                                            {{ $item->formatted_harga }}
                                                         </span>
                                                     </div>
 

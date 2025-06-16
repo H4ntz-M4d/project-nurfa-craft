@@ -12,4 +12,10 @@ class KeranjangVariant extends Model
         'id_keranjang',
         'id_product_variant_value',
     ];
+
+    public function produk_variant_value()
+    {
+        return $this->belongsTo(ProdukVariantValues::class, 'id_product_variant_value');
+    }
+
 }

@@ -1,14 +1,30 @@
 "use strict";
 var KTAppEcommerceSaveProduct = (function () {
     const e = () => {
-        $("#kt_ecommerce_add_product_options").repeater({
+
+        $('#kt_docs_repeater_nested').repeater({
             initEmpty: !1,
             defaultValues: { "text-input": "foo" },
+            repeaters: [{
+                selector: '.inner-repeater',
+                show: function () {
+                    $(this).slideDown();
+                },
+
+                hide: function (deleteElement) {
+                    $(this).slideUp(deleteElement);
+                }
+            }],
+
             show: function () {
-                $(this).slideDown(), t();
+                $(this).slideDown();
+
+                $(this).find('[data-kt-repeater="select2"]').select2();
+
             },
-            hide: function (e) {
-                $(this).slideUp(e);
+
+            hide: function (deleteElement) {
+                $(this).slideUp(deleteElement);
             },
         });
     },
@@ -18,10 +34,10 @@ var KTAppEcommerceSaveProduct = (function () {
                     '[data-kt-ecommerce-catalog-add-product="product_option"]'
                 )
                 .forEach((e) => {
-                    $(e).hasClass("select2-hidden-accessible") ||
-                        $(e).select2({ minimumResultsForSearch: -1 });
+                    $(e).select2({ minimumResultsForSearch: -1 });
                 });
         };
+
     return {
         init: function () {
             var o, a;
@@ -97,17 +113,76 @@ var KTAppEcommerceSaveProduct = (function () {
                     (a.innerHTML = Math.round(e[t])),
                         t && (a.innerHTML = Math.round(e[t]));
                 }),
-                e(),
-                new Dropzone("#kt_ecommerce_add_product_media", {
-                    url: "https://keenthemes.com/scripts/void.php",
-                    paramName: "file",
+                e();
+                let myDropzone = new Dropzone("#kt_ecommerce_add_product_media", {
+                    url: "/produk/upload-gambar",
+                    paramName: "gambar",
                     maxFiles: 10,
                     maxFilesize: 10,
-                    addRemoveLinks: !0,
-                    accept: function (e, t) {
-                        "wow.jpg" == e.name ? t("Naha, you don't.") : t();
+                    addRemoveLinks: true,
+                    autoProcessQueue: false, // <--- penting!
+                    uploadMultiple: false,
+                    parallelUploads: 10,
+                    acceptedFiles: ".png,.jpg,.jpeg",
+                    headers: {
+                        "X-CSRF-TOKEN": document.querySelector('meta[name="csrf-token"]').getAttribute("content")
                     },
-                }),
+                    init: function () {
+                        const dropzone = this;
+
+                        dropzone.uploadStarted = false;
+
+                        dropzone.removedFiles = []; // ⬅ langsung set ke property Dropzone
+
+                        dropzone.on("removedfile", function (file) {
+                            if (file.name && !file.upload) {
+                                dropzone.removedFiles.push(file.name); // ⬅ pastikan masuk ke properti
+                            }
+                        });
+
+                        // Jika halaman edit, preload gambar
+                        const isEdit = document.getElementById('edit_mode');
+                        const produkId = document.getElementById('produk_id')?.value;
+
+                        if (isEdit && produkId) {
+                            fetch(`/produk/get-gambar/${produkId}`)
+                                .then(res => res.json())
+                                .then(files => {
+                                    files.forEach(file => {
+                                        let mockFile = {
+                                            name: file.name,
+                                            size: file.size,
+                                            type: 'image/*', // atau sesuaikan dengan mime type
+                                        };
+
+                                        dropzone.emit("addedfile", mockFile);
+                                        dropzone.emit("thumbnail", mockFile, file.url);
+                                        dropzone.emit("complete", mockFile);
+
+                                        dropzone.files.push(mockFile);
+                                        
+                                    });
+                                });
+                        }
+
+                        dropzone.on("queuecomplete", function () {
+                            if (dropzone.uploadStarted) {
+                                Swal.fire({
+                                    text: "Produk berhasil disimpan!",
+                                    icon: "success",
+                                    buttonsStyling: false,
+                                    confirmButtonText: "Ok, mengerti!",
+                                    customClass: {
+                                        confirmButton: "btn btn-primary",
+                                    },
+                                }).then(() => {
+                                    window.location = document.querySelector("#kt_ecommerce_add_product_form").getAttribute("data-kt-redirect");
+                                });
+                            }
+                        });
+
+                    }
+                });
                 t(),
                 (() => {
                     const e = document.getElementById(
@@ -188,6 +263,25 @@ var KTAppEcommerceSaveProduct = (function () {
                     });
                 })(),
                 (() => {
+                    const e = document.getElementById(
+                        "kt_ecommerce_add_product_variant_checkbox"
+                    ),
+                        t = document.getElementById("kt_ecommerce_add_product_variant"),
+                        o = document.getElementById("kt_ecommerce_add_product_pricing"),
+                        a = document.getElementById("kt_ecommerce_add_product_inventory");
+                    e.addEventListener("change", (e) => {
+                        e.target.checked
+                            ? t.classList.remove("d-none")
+                            : t.classList.add("d-none");
+                        e.target.checked
+                            ? o.classList.add("d-none")
+                            : o.classList.remove("d-none");
+                        e.target.checked
+                            ? a.classList.add("d-none")
+                            : a.classList.remove("d-none");
+                    });
+                })(),
+                (() => {
                     let e;
                     const t = document.getElementById(
                         "kt_ecommerce_add_product_form"
@@ -201,33 +295,6 @@ var KTAppEcommerceSaveProduct = (function () {
                                 validators: {
                                     notEmpty: {
                                         message: "Nama produk wajib diisi",
-                                    },
-                                },
-                            },
-                            harga: {
-                                validators: {
-                                    notEmpty: {
-                                        message: "Harga wajib diisi",
-                                    },
-                                    numeric: {
-                                        message: "Harga harus berupa angka",
-                                    },
-                                },
-                            },
-                            stok: {
-                                validators: {
-                                    notEmpty: {
-                                        message: "Stok wajib diisi",
-                                    },
-                                    integer: {
-                                        message: "Stok harus bilangan bulat",
-                                    },
-                                },
-                            },
-                            sku: {
-                                validators: {
-                                    notEmpty: {
-                                        message: "SKU wajib diisi",
                                     },
                                 },
                             },
@@ -280,6 +347,9 @@ var KTAppEcommerceSaveProduct = (function () {
                                             }
                                         });
 
+                                        // Tambahkan data file yang dihapus ke FormData
+                                        formData.append('removed_files', JSON.stringify(myDropzone.removedFiles || []));
+
                                         // Kirim ke server
                                         fetch(t.getAttribute("data-store-produk-url"), {
                                             method: "POST",
@@ -290,18 +360,47 @@ var KTAppEcommerceSaveProduct = (function () {
                                         })
                                         .then(response => response.json())
                                         .then(data => {
-                                            if(data.success) {
-                                                Swal.fire({
-                                                    text: "Produk berhasil disimpan!",
-                                                    icon: "success",
-                                                    buttonsStyling: false,
-                                                    confirmButtonText: "Ok, mengerti!",
-                                                    customClass: {
-                                                        confirmButton: "btn btn-primary",
-                                                    },
-                                                }).then(() => {
-                                                    window.location = t.getAttribute("data-kt-redirect");
-                                                });
+                                            if (data.success) {
+                                                const produkId = data.produkId;
+                                                console.log('Produk ID:', produkId);
+
+                                                // Set ID produk ke Dropzone params agar dikirim di upload gambar
+                                                myDropzone.options.params = {
+                                                    id_master_produk: produkId
+                                                };
+
+                                                if (myDropzone.getQueuedFiles().length > 0) {
+                                                    // Tunggu semua file selesai diunggah
+                                                    myDropzone.on("queuecomplete", function () {
+                                                        Swal.fire({
+                                                            text: "Produk berhasil disimpan!",
+                                                            icon: "success",
+                                                            buttonsStyling: false,
+                                                            confirmButtonText: "Ok, mengerti!",
+                                                            customClass: {
+                                                                confirmButton: "btn btn-primary",
+                                                            },
+                                                        }).then(() => {
+                                                            window.location = t.getAttribute("data-kt-redirect");
+                                                        });
+                                                    });
+                                                    
+                                                    myDropzone.uploadStarted = true;
+                                                    myDropzone.processQueue(); // ⏫ Mulai upload gambar
+                                                } else {
+                                                    // Tidak ada gambar, langsung tampilkan notifikasi dan redirect
+                                                    Swal.fire({
+                                                        text: "Produk berhasil disimpan!",
+                                                        icon: "success",
+                                                        buttonsStyling: false,
+                                                        confirmButtonText: "Ok, mengerti!",
+                                                        customClass: {
+                                                            confirmButton: "btn btn-primary",
+                                                        },
+                                                    }).then(() => {
+                                                        window.location = t.getAttribute("data-kt-redirect");
+                                                    });
+                                                }
                                             } else {
                                                 throw new Error(data.message || 'Terjadi kesalahan');
                                             }

@@ -29,7 +29,7 @@
                                 <!--end::Image input placeholder-->
                                 <div class="image-input image-input-empty image-input-outline image-input-placeholder mb-3" data-kt-image-input="true">
                                     <!--begin::Preview existing avatar-->
-                                    <div class="image-input-wrapper w-150px h-150px"></div>
+                                    <div class="image-input-wrapper w-150px h-150px bgi-position-center bgi-size-cover"></div>
                                     <!--end::Preview existing avatar-->
                                     <!--begin::Label-->
                                     <label class="btn btn-icon btn-circle btn-active-color-primary w-25px h-25px bg-body shadow" data-kt-image-input-action="change" data-bs-toggle="tooltip" title="Change avatar">
@@ -241,6 +241,7 @@
                                         <!--end::Card header-->
                                     </div>
                                     <!--end::Media-->
+
                                     <!--begin::Variations-->
                                     <div class="card card-flush py-4">
                                         <!--begin::Card header-->
@@ -252,56 +253,84 @@
                                         <!--end::Card header-->
                                         <!--begin::Card body-->
                                         <div class="card-body pt-0">
-                                            <!--begin::Input group-->
-                                            <div class="" data-kt-ecommerce-catalog-add-product="auto-options">
-                                                <!--begin::Label-->
-                                                <label class="form-label">Add Product Variations</label>
-                                                <!--end::Label-->
-                                                <!--begin::Repeater-->
-                                                <div id="kt_ecommerce_add_product_options">
-                                                    <!--begin::Form group-->
-                                                    <div class="form-group">
-                                                        <div data-repeater-list="kt_ecommerce_add_product_options" class="d-flex flex-column gap-3">
-                                                            <div data-repeater-item="" class="form-group d-flex flex-wrap align-items-center gap-5">
-                                                                <!--begin::Select2-->
-                                                                <div class="w-100 w-md-200px">
-                                                                    <select class="form-select" name="product_option" data-placeholder="Select a variation" data-kt-ecommerce-catalog-add-product="product_option">
-                                                                        <option></option>
-                                                                        @foreach ($variant as $item)
-                                                                            <option value="{{ $item->id_variant_attributes }}">{{ $item->nama_variant }}</option>
-                                                                        @endforeach
-                                                                    </select>
+                                            <div class="fv-row">
+                                                <!--begin::Input-->
+                                                <div class="form-check form-check-custom form-check-solid mb-2">
+                                                    <input class="form-check-input" name="use_variant" type="checkbox" id="kt_ecommerce_add_product_variant_checkbox" value="yes" />
+                                                    <label class="form-check-label">Klik untuk menampilkan form variant</label>
+                                                </div>
+                                                <!--end::Input-->
+                                                <!--begin::Description-->
+                                                <div class="text-muted fs-7">Klik jika product memiliki variant. Kemudian akan menampilkan form input menambahkan variant</div>
+                                                <!--end::Description-->
+                                            </div>
+                                            <!--begin::Repeater-->
+                                            <div id="kt_ecommerce_add_product_variant" class="d-none mt-10">
+                                                <div class="" data-kt-ecommerce-catalog-add-product="auto-options">
+                                                    <div id="kt_docs_repeater_nested">
+                                                        <!--begin::Form group-->
+                                                        <div class="form-group">
+                                                            <div data-repeater-list="kt_docs_repeater_nested_outer">
+                                                                <div data-repeater-item>
+                                                                    <div class="form-group row mb-5">
+                                                                        <div class="col-md-3">
+                                                                            <label class="form-label">Variant:</label>
+                                                                            <select class="form-select" name="product_option" data-kt-repeater="select2" data-placeholder="Select a variation" data-kt-ecommerce-catalog-add-product="product_option">
+                                                                                <option></option>
+                                                                                @foreach ($variant as $item)
+                                                                                    <option value="{{ $item->id_variant_attributes }}">{{ $item->nama_variant }}</option>
+                                                                                @endforeach
+                                                                            </select>
+                                                                        </div>
+                                                                        <div class="col-12 col-md-4 d-flex">
+                                                                            <div class="inner-repeater">
+                                                                                <div data-repeater-list="kt_docs_repeater_nested_inner" class="mb-5">
+                                                                                    <label class="form-label">Nilai:</label>
+                                                                                    <div data-repeater-item class="d-flex gap-3">
+                                                                                        <div class="pb-3 d-flex gap-3">
+                                                                                            <input type="text" class="form-control" name="nilai_variant" placeholder="Nilai variant" />
+                                                                                        </div>
+                                                                                        <button class="border border-secondary btn btn-icon btn-flex btn-light-danger w-25" data-repeater-delete type="button">
+                                                                                            <i class="ki-duotone ki-trash fs-5"><span class="path1"></span><span class="path2"></span><span class="path3"></span><span class="path4"></span><span class="path5"></span></i>
+                                                                                        </button>
+                                                                                    </div>
+                                                                                </div>
+                                                                                <button class="btn btn-sm btn-flex btn-light-primary" data-repeater-create type="button">
+                                                                                    <i class="ki-duotone ki-plus fs-5"></i>
+                                                                                    Tambah Nilai
+                                                                                </button>
+                                                                            </div>
+                                                                        </div>
+                                                                        <div class="col-md-4">
+                                                                            <a href="javascript:;" data-repeater-delete class="btn btn-sm btn-flex btn-light-danger mt-3 mt-md-9">
+                                                                                <i class="ki-duotone ki-trash fs-5"><span class="path1"></span><span class="path2"></span><span class="path3"></span><span class="path4"></span><span class="path5"></span></i>
+                                                                                Delete Row
+                                                                            </a>
+                                                                        </div>
+                                                                    </div>
                                                                 </div>
-                                                                <!--end::Select2-->
-                                                                <!--begin::Input-->
-                                                                <input type="text" class="form-control mw-100 w-150px" name="nilai_variant" placeholder="Variation" />
-                                                                <!--end::Input-->
-                                                                <button type="button" data-repeater-delete="" class="btn btn-sm btn-icon btn-light-danger">
-                                                                    <i class="ki-duotone ki-cross fs-1">
-                                                                        <span class="path1"></span>
-                                                                        <span class="path2"></span>
-                                                                    </i>
-                                                                </button>
                                                             </div>
                                                         </div>
+                                                        <!--end::Form group-->
+                                                        <!--begin::Form group-->
+                                                        <div class="form-group">
+                                                            <button type="button" data-repeater-create class="btn btn-flex btn-light-primary">
+                                                                <i class="ki-duotone ki-plus fs-3"></i>
+                                                                Tambah Variasi
+                                                            </button>
+                                                        </div>
+                                                        <!--end::Form group-->
                                                     </div>
-                                                    <!--end::Form group-->
-                                                    <!--begin::Form group-->
-                                                    <div class="form-group mt-5">
-                                                        <button type="button" data-repeater-create="" class="btn btn-sm btn-light-primary">
-                                                        <i class="ki-duotone ki-plus fs-2"></i>Add another variation</button>
-                                                    </div>
-                                                    <!--end::Form group-->
                                                 </div>
-                                                <!--end::Repeater-->
                                             </div>
-                                            <!--end::Input group-->
+                                            <!--end::Repeater-->
                                         </div>
                                         <!--end::Card header-->
                                     </div>
                                     <!--end::Variations-->
+
                                     <!--begin::Pricing-->
-                                    <div class="card card-flush py-4">
+                                    <div id="kt_ecommerce_add_product_pricing" class="card card-flush py-4">
                                         <!--begin::Card header-->
                                         <div class="card-header">
                                             <div class="card-title">
@@ -317,7 +346,7 @@
                                                 <label class="required form-label">Base Price</label>
                                                 <!--end::Label-->
                                                 <!--begin::Input-->
-                                                <input type="text" name="harga" class="form-control mb-2" placeholder="Harga Produk" value="" />
+                                                <input type="number" name="harga" class="form-control mb-2" min="0" onkeydown="return isNumberKey(event)" placeholder="Harga Produk" value="" />
                                                 <!--end::Input-->
                                                 <!--begin::Description-->
                                                 <div class="text-muted fs-7">Set the product price.</div>
@@ -425,7 +454,7 @@
                             <!--begin::Tab pane-->
                             <div class="tab-pane fade" id="kt_ecommerce_add_product_advanced" role="tab-panel">
                                 <div class="d-flex flex-column gap-7 gap-lg-10">
-                                    <div class="card card-flush py-4">
+                                    <div id="kt_ecommerce_add_product_inventory" class="card card-flush py-4">
                                         <!--begin::Card header-->
                                         <div class="card-header">
                                             <div class="card-title">
@@ -455,7 +484,7 @@
                                                 <!--end::Label-->
                                                 <!--begin::Input-->
                                                 <div class="d-flex gap-3">
-                                                    <input type="number" name="stok" class="form-control mb-2" placeholder="On shelf" />
+                                                    <input type="number" name="stok" min="0" onkeydown="return isNumberKey(event)" class="form-control mb-2" placeholder="On shelf" />
                                                 </div>
                                                 <!--end::Input-->
                                                 <!--begin::Description-->
@@ -537,5 +566,15 @@
 
     @push('scripts')
         <script src="{{ asset('assets/js/custom/apps/ecommerce/catalog/save-product.js') }}"></script>
+        <script src="{{ asset('assets/plugins/custom/formrepeater/formrepeater.bundle.js') }}"></script>
+        <script>
+            function isNumberKey(evt) {
+                const invalidKeys = ["e", "E", "+", "-", ".", ","];
+                if (invalidKeys.includes(evt.key)) {
+                    evt.preventDefault();
+                    return false;
+                }
+            }
+        </script>
     @endpush
 </x-layout>

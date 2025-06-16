@@ -30,6 +30,8 @@ RUN apt-get update && apt-get install -y \
 # Install Chokidar (agar bisa pakai --watch di Laravel Octane)
 RUN npm install -g chokidar-cli
 
+RUN echo "upload_max_filesize=10M\npost_max_size=12M" > /usr/local/etc/php/conf.d/99-upload-limit.ini
+
 # Set direktori kerja dalam container
 WORKDIR /app
 

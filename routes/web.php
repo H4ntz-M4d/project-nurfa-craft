@@ -8,6 +8,8 @@ use App\Http\Controllers\Admin\KategoriProdukController;
 use App\Http\Controllers\Admin\PostinganBlogController;
 use App\Http\Controllers\Admin\PostTentangKamiController;
 use App\Http\Controllers\Admin\ProdukController;
+use App\Http\Controllers\Admin\StokController;
+use App\Http\Controllers\Admin\StokRecordController;
 use App\Http\Controllers\Admin\UsersController;
 use App\Http\Controllers\Admin\VariantProduk;
 use App\Http\Controllers\Customers\AboutController;
@@ -17,6 +19,7 @@ use App\Http\Controllers\Customers\HomeController;
 use App\Http\Controllers\Customers\KeranjangController;
 use App\Http\Controllers\Customers\ProdukCustomerController;
 use App\Http\Controllers\Customers\ProdukDetailController;
+use App\Http\Controllers\Customers\TransaksiController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Middleware\RoleUsers;
 use Illuminate\Support\Facades\Route;
@@ -74,12 +77,33 @@ Route::middleware(['auth', 'verified', RoleUsers::class.':admin'])->group(functi
     // begin route Produk
     Route::get('/list-produk', [ProdukController::class, 'index'])->name('produk.index');
     Route::get('/produk-data', [ProdukController::class, 'data'])->name('produk.data'); // json data produk
+
     Route::get('/produk-add', [ProdukController::class, 'create'])->name('produk.add-data');
-    Route::get('/produk-edit/{slug}', [ProdukController::class, 'edit'])->name('produk.edit-data');
     Route::post('/produk-store', [ProdukController::class, 'store'])->name('produk.store');
+    
+    Route::get('/produk-edit/{slug}', [ProdukController::class, 'edit'])->name('produk.edit-data');
     Route::post('/produk-update/{slug}', [ProdukController::class, 'update'])->name('produk.update');
+    
+    Route::get('/produk-variant/{slug}', [ProdukController::class, 'kelolaVariant'])->name('produk.variant.data');
+    Route::post('/produk-variant/{slug}/variant/store', [ProdukController::class, 'storeVariant'])->name('produk.variant.store');
+
+    Route::get('/produk/get-gambar/{slug}', [ProdukController::class, 'getGambar'])->name('produk.getGambar');
+    Route::post('/produk/upload-gambar', [ProdukController::class, 'uploadGambar'])->name('produk.gambar');
+
     Route::delete('/produk/{slug}', [ProdukController::class, 'destroy'])->name('produk.destroy');
     Route::delete('/produk-delete-selected', [ProdukController::class, 'destroySelected'])->name('produk.destroySelected');
+
+    // begin route Stocks
+    Route::get('/list-stocks-produk', [StokController::class, 'index'])->name('stocks.index');
+    Route::get('/stocks-produk-data', [StokController::class, 'data'])->name('stocks.produk.data'); // json data home banner
+    Route::post('/stocks/store', [StokController::class, 'store'])->name('stocks.store');
+    Route::delete('/stocks/{slug}', [StokController::class, 'destroy'])->name('stocks.destroy');
+    Route::delete('/stocks-delete-selected', [StokController::class, 'destroySelected'])->name('stocks.destroySelected');
+
+    // laporan stok
+    Route::get('/list-stocks-record', [StokRecordController::class, 'index'])->name('laporan.stocks.index');
+    Route::get('/stocks-data', [StokRecordController::class, 'data'])->name('stocks.data');
+
 
     // begin route home banner
     Route::get('/home-banner', [HomeBannerController::class, 'index'])->name('home-banner.index');
@@ -121,12 +145,17 @@ Route::middleware(['auth', 'verified', RoleUsers::class.':customers,admin'])->gr
 
     
     Route::get('/produk-shop-detail/{slug?}', [ProdukDetailController::class, 'index'])->name('produk-shop.detail');
+    Route::post('/produk/check-variant', [ProdukDetailController::class, 'checkVariant'])->name('produk-shop.check-variant');
+
     Route::post('/keranjang-add', [ProdukDetailController::class, 'addToCart'])->name('produk-shop.cart-add');
 
     //shopping cart
     Route::get('/shopping/{slug?}', [KeranjangController::class, 'index'])->name('shopping');
     Route::delete('/delete-shopping-cart/{slug?}', [KeranjangController::class, 'deleteItem'])->name('shopping.delete');
     Route::post('/update-shopping-cart', [KeranjangController::class, 'updateCart'])->name('shopping.update');
+
+    // begin transaksi
+    Route::post('/checkout', [TransaksiController::class, 'storeTransaction'])->name('checkout');
 
     Route::get('/blog-detail/{slug}', [BlogController::class, 'detail'])->name('blog.detail');
     Route::post('/blog/store-comment', [BlogController::class, 'storeComment'])->name('blog.store-comment');

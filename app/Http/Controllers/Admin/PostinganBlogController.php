@@ -90,22 +90,26 @@ class PostinganBlogController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'gambar' => 'required|image|mimes:jpeg,png,jpg,|max:5048',
             'judul' => 'required|string|max:255',
             'deskripsi' => 'required|string',
             'tag' => 'nullable|string|max:100',
+            'gambar' => 'nullable|image|max:5120', // 5MB max
         ]);
 
-        $gambarPath = $request->file('gambar')->store('blog_images', 'public');
+        if ($request->hasFile('gambar')) {
+            $gambarPath = $request->file('gambar')->store('blog_images', 'public');
+        } else {
+            $gambarPath = null;
+        }
 
         DB::table('blog')->insert([
-            'gambar' => $gambarPath,
             'id_user' => Auth::id(),
             'judul' => $request->judul,
             'deskripsi' => $request->deskripsi,
             'tag' => $request->tag,
             'created_at' => now(),
             'updated_at' => now(),
+            'gambar' => $gambarPath,
         ]);
 
         return response()->json([
@@ -117,7 +121,7 @@ class PostinganBlogController extends Controller
     public function update(Request $request, $slug)
     {
         $request->validate(rules: [
-            'gambar' => 'nullable|image|mimes:jpeg,png,jpg,|max:5048',
+            'gambar' => 'nullable|image|mimes:jpeg,png,jpg',
             'judul' => 'required|string|max:255',
             'deskripsi' => 'required|string',
             'tag' => 'nullable|string',

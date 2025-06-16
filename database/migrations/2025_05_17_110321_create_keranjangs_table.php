@@ -17,7 +17,7 @@ return new class extends Migration
             $table->foreignId('id_master_produk')->constrained('produk_master', 'id_master_produk')
             ->onDelete('cascade');
             $table->integer('jumlah');
-            $table->decimal('total_harga');
+            $table->enum('status_produk',['ada', 'habis']);
             $table->string('slug')->unique();
             $table->timestamps();
         });

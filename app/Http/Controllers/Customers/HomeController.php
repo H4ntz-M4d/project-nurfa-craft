@@ -11,7 +11,29 @@ class HomeController extends Controller
 {
     public function index()
     {
-        $product_best = ProdukMaster::with('variant:id_master_produk,harga,gambar')->get();
+        $product_best = ProdukMaster::with(
+            [
+            'detailProduk',
+            'variant',
+            ]
+        )
+        ->get()
+        ->map(function ($item) {
+            // Jika produk punya variant
+            if ($item->variant->isNotEmpty()) {
+                $variantHarga = $item->variant->first()->harga;
+
+                $item->formatted_harga = 'Rp' . number_format($variantHarga, 0, ',', '.');
+            }
+            elseif ($item->detailProduk->isNotEmpty()) {
+                $item->formatted_harga = 'Rp' . number_format($item->detailProduk->first()->harga, 0, ',', '.');
+            }
+            else {
+                $item->formatted_harga = 'Rp0';
+            }
+
+            return $item;
+        });
         
         $banner = DB::table('home_banner')
             ->latest()->take(3)

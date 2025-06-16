@@ -14,10 +14,10 @@ return new class extends Migration
         Schema::create('kategori_produk', function (Blueprint $table) {
             $table->id('id_ktg_produk');
             $table->string('nama_kategori',100)->nullable();
-            $table->string('deskripsi')->nullable();
+            $table->text('deskripsi')->nullable();
             $table->enum('status',['published','unpublished'])->nullable();
             $table->string('meta_keywords')->nullable();
-            $table->string('meta_desc')->nullable();
+            $table->text('meta_desc')->nullable();
             $table->string('gambar')->nullable();
             $table->string('slug')->nullable();
             $table->timestamps();

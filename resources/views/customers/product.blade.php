@@ -7,10 +7,6 @@
 						All Products
 					</button>
 
-					<button class="stext-106 cl6 hov1 bor3 trans-04 m-r-32 m-tb-5" data-filter=".women">
-						Women
-					</button>
-
 					@foreach ($kategori as $item) 
 						<button class="stext-106 cl6 hov1 bor3 trans-04 m-r-32 m-tb-5" data-filter=".{{ $item->id_ktg_produk }}">
 							{{ $item->nama_kategori }}
@@ -22,7 +18,7 @@
 					<div class="flex-c-m stext-106 cl6 size-104 bor4 pointer hov-btn3 trans-04 m-r-8 m-tb-4 js-show-filter">
 						<i class="icon-filter cl2 m-r-6 fs-15 trans-04 zmdi zmdi-filter-list"></i>
 						<i class="icon-close-filter cl2 m-r-6 fs-15 trans-04 zmdi zmdi-close dis-none"></i>
-						 Filter
+						Filter
 					</div>
 
 					<div class="flex-c-m stext-106 cl6 size-105 bor4 pointer hov-btn3 trans-04 m-tb-4 js-show-search">
@@ -239,7 +235,7 @@
 						<!-- Block2 -->
 						<div class="block2">
 							<div class="block2-pic hov-img0">
-								<img src="{{ asset('storage/' . $item->variant->first()->gambar) }}" alt="IMG-PRODUCT">
+								<img src="{{ asset('storage/' . $item->gambar) }}" alt="IMG-PRODUCT">
 	
 								<a href="/produk-shop-detail/{{ $item->slug }}"
 									class="block2-btn flex-c-m stext-103 cl2 size-102 bg0 bor2 hov-btn1 p-lr-15 trans-04">
@@ -254,7 +250,7 @@
 									</a>
 	
 									<span class="stext-105 cl3">
-										<strong>{{ $item->variant->first()->formatted_harga }}</strong>
+										<strong>{{ $item->formatted_harga ?? '0' }}</strong>
 									</span>
 								</div>
 	
@@ -268,38 +264,6 @@
 						</div>
 					</div>
 				@endforeach
-
-				<div class="col-sm-6 col-md-4 col-lg-3 p-b-35 isotope-item women">
-					<!-- Block2 -->
-					<div class="block2">
-						<div class="block2-pic hov-img0">
-							<img src="{{ asset('customers-asset/images/product-02.jpg') }}" alt="IMG-PRODUCT">
-
-							<a href="#" class="block2-btn flex-c-m stext-103 cl2 size-102 bg0 bor2 hov-btn1 p-lr-15 trans-04 js-show-modal1">
-								Quick View
-							</a>
-						</div>
-
-						<div class="block2-txt flex-w flex-t p-t-14">
-							<div class="block2-txt-child1 flex-col-l ">
-								<a href="product-detail.html" class="stext-104 cl4 hov-cl1 trans-04 js-name-b2 p-b-6">
-									Herschel supply
-								</a>
-
-								<span class="stext-105 cl3">
-									$35.31
-								</span>
-							</div>
-
-							<div class="block2-txt-child2 flex-r p-t-3">
-								<a href="#" class="btn-addwish-b2 dis-block pos-relative js-addwish-b2">
-                                    <img class="icon-heart1 dis-block trans-04" src="{{ asset('customers-asset/images/icons/icon-heart-01.png') }}" alt="ICON">
-									<img class="icon-heart2 dis-block trans-04 ab-t-l" src="{{ asset('customers-asset/images/icons/icon-heart-02.png') }}" alt="ICON">
-								</a>
-							</div>
-						</div>
-					</div>
-				</div>
 			</div>
 
 			<!-- Load more -->

@@ -29,7 +29,7 @@ class User extends Authenticatable
 
     public function karyawan()
     {
-        return $this->hasOne(Karyawan::class);
+        return $this->hasOne(Karyawan::class, 'id_user', 'id');
     }
 
     protected static function boot()

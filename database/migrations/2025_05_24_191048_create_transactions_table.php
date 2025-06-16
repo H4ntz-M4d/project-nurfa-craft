@@ -31,6 +31,7 @@ return new class extends Migration
             $table->id('id_transaction_detail');
             $table->foreignId('id_transaction')->constrained('transactions','id_transaction')->onDelete('cascade');
             $table->foreignId('id_master_produk')->constrained('produk_master','id_master_produk')->onDelete('cascade');
+            $table->string('nama_produk');
             $table->integer('jumlah');
             $table->decimal('harga', 12, 2);
             $table->timestamps();
@@ -46,7 +47,8 @@ return new class extends Migration
 
             $table->foreignId('id_variant_value')->constrained('variant_values','id_variant_value')
                 ->nullable()->onDelete('cascade');
-
+            $table->string('nama_atribut');
+            $table->string('nilai_variant');
             $table->timestamps();
         });
     }
