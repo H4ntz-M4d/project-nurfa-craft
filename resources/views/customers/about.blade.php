@@ -1,6 +1,6 @@
 <x-customers.layout>
     <!-- Title page -->
-	<section class="bg-img1 txt-center p-lr-15 p-tb-92" style="background-image: url('{{ asset('customers-asset/images/bg-01.jpg') }}');">
+	<section class="bg-img1 txt-center p-lr-15 p-tb-92" style="background-image: url('{{ asset('customers-asset/images/bg-about.jpg') }}');">
 		<h2 class="ltext-105 cl0 txt-center">
 			About
 		</h2>
@@ -20,7 +20,7 @@
 								</h3>
 
 								<p class="stext-113 cl6 p-b-26">
-									{{ strip_tags($abouts->deskripsi) }}
+									{{ html_entity_decode(strip_tags($abouts->deskripsi)) }}
 								</p>
 							</div>
 						</div>
@@ -28,7 +28,7 @@
 						<div class="col-11 col-md-5 col-lg-4 m-lr-auto">
 							<div class="how-bor1 ">
 								<div class="hov-img0">
-									<img src="{{ asset('storage/'. $abouts->gambar) }}" alt="IMG">
+									<img height="400px" src="{{ asset('storage/'. $abouts->gambar) }}" alt="IMG">
 								</div>
 							</div>
 						</div>
@@ -36,7 +36,7 @@
 						<div class="col-11 col-md-5 col-lg-4 m-lr-auto">
 							<div class="how-bor2 ">
 								<div class="hov-img0">
-									<img src="{{ asset('storage/'. $abouts->gambar) }}" alt="IMG">
+									<img height="400px" src="{{ asset('storage/'. $abouts->gambar) }}" alt="IMG">
 								</div>
 							</div>
 						</div>
@@ -47,7 +47,7 @@
 								</h3>
 
 								<p class="stext-113 cl6 p-b-26">
-									{!! $abouts->deskripsi !!}
+									{{ html_entity_decode(strip_tags($abouts->deskripsi)) }}
 								</p>
 							</div>
 						</div>

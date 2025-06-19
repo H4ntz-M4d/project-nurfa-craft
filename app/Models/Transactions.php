@@ -13,6 +13,7 @@ class Transactions extends Model
     protected $fillable = [
         'id_user', 'tanggal', 'total', 'status',
         'provinsi', 'kota', 'alamat_pengiriman', 'telepon',
+        'order_id', 'snap_token'
     ];
 
     public function user()
@@ -23,5 +24,13 @@ class Transactions extends Model
     public function details()
     {
         return $this->hasMany(TransactionDetails::class, 'id_transaction');
+    }
+    protected static function boot()
+    {
+        parent::boot();
+
+        static::creating(function ($transaksi) {
+            $transaksi->slug = md5(now()->valueOf());
+        });
     }
 }

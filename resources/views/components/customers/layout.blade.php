@@ -231,8 +231,6 @@
         });
 
         /*---------------------------------------------*/
-
-
     </script>
     <!--===============================================================================================-->
     <script src="{{ asset('customers-asset/vendor/perfect-scrollbar/perfect-scrollbar.min.js') }}"></script>
@@ -253,6 +251,7 @@
     </script>
     <!--===============================================================================================-->
     <script src="{{ asset('customers-asset/js/main.js') }}"></script>
+    <script src="https://unpkg.com/imagesloaded@4/imagesloaded.pkgd.min.js"></script>
     @stack('scripts')
 
 </body>

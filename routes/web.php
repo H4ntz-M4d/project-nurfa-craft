@@ -156,6 +156,7 @@ Route::middleware(['auth', 'verified', RoleUsers::class.':customers,admin'])->gr
 
     // begin transaksi
     Route::post('/checkout', [TransaksiController::class, 'storeTransaction'])->name('checkout');
+    Route::delete('/delete-keranjang', [TransaksiController::class, 'deleteKeranjang'])->name('checkout.delete-keranjang');
 
     Route::get('/blog-detail/{slug}', [BlogController::class, 'detail'])->name('blog.detail');
     Route::post('/blog/store-comment', [BlogController::class, 'storeComment'])->name('blog.store-comment');
@@ -169,7 +170,9 @@ Route::get('/', [HomeController::class, 'index'])->name('home');
 Route::get('/home', [HomeController::class, 'index'])->name('home');
 
 //product detail
-Route::get('/product', [ProdukCustomerController::class, 'index'])->name('product-shop');
+Route::get('/product', [ProdukCustomerController::class, 'index'])->name('product.index');
+Route::get('/product/kategori/{id}', [ProdukCustomerController::class, 'sortByCategory'])->name('product.sort-by-category');
+
 
 Route::get('/blog', [BlogController::class, 'index'])->name('blog');
 

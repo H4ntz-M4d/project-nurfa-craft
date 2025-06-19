@@ -9,49 +9,80 @@ use Illuminate\Http\Request;
 
 class ProdukCustomerController extends Controller
 {
-    public function index()
+    public function index(Request $request)
     {
-        $kategori = KategoriProduk::select('id_ktg_produk','nama_kategori')->get();
-        $product_all = ProdukMaster::with([
-            'detailProduk',
-            'variant',
-        ])
-        ->get()
-        ->filter(function ($item) {
-            // Jika punya varian
-            if ($item->variant->isNotEmpty()) {
-                return $item->variant->contains(function ($variant) {
-                    return $variant->stok > 0;
-                });
-            }
+        $limit = $request->input('limit', 16);
 
-            // Jika tidak punya varian
-            if ($item->detailProduk->isNotEmpty()) {
-                return $item->detailProduk->first()->stok > 0;
-            }
+        $kategori = KategoriProduk::select('id_ktg_produk', 'nama_kategori')->get();
 
-            return false;
-        })
-        ->map(function ($item) {
-            if ($item->variant->isNotEmpty()) {
-                $variantHarga = $item->variant->first()->harga;
-                $item->formatted_harga = 'Rp' . number_format($variantHarga, 0, ',', '.');
-            } elseif ($item->detailProduk->isNotEmpty()) {
-                $item->formatted_harga = 'Rp' . number_format($item->detailProduk->first()->harga, 0, ',', '.');
-            } else {
-                $item->formatted_harga = 'Rp0';
-            }
+        $product_all = ProdukMaster::with(['detailProduk', 'variant'])->get()
+            ->filter(function ($item) {
+                if ($item->variant->isNotEmpty()) {
+                    return $item->variant->contains(fn($v) => $v->stok > 0);
+                }
+                if ($item->detailProduk->isNotEmpty()) {
+                    return $item->detailProduk->first()->stok > 0;
+                }
+                return false;
+            })
+            ->take($limit)
+            ->map(function ($item) {
+                if ($item->variant->isNotEmpty()) {
+                    $item->formatted_harga = 'Rp' . number_format($item->variant->first()->harga, 0, ',', '.');
+                } elseif ($item->detailProduk->isNotEmpty()) {
+                    $item->formatted_harga = 'Rp' . number_format($item->detailProduk->first()->harga, 0, ',', '.');
+                } else {
+                    $item->formatted_harga = 'Rp0';
+                }
+                return $item;
+            });
 
-            return $item;
-        });
+        if ($request->ajax()) {
+            return view('customers.product-category', compact('product_all'))->render();
+        }
+
+        return view('customers.product', [
+            'product_all' => $product_all,
+            'kategori' => $kategori,
+            'limit' => $limit
+        ]);
+    }
+
+    public function sortByCategory($id)
+    {
+        $limit = request()->input('limit', 16);
+
+        $kategori = KategoriProduk::select('id_ktg_produk', 'nama_kategori')->get();
+
+        $product_all = ProdukMaster::with(['detailProduk', 'variant'])
+            ->where('id_ktg_produk', $id)
+            ->get()
+            ->filter(function ($item) {
+                if ($item->variant->isNotEmpty()) {
+                    return $item->variant->contains(fn($v) => $v->stok > 0);
+                }
+                if ($item->detailProduk->isNotEmpty()) {
+                    return $item->detailProduk->first()->stok > 0;
+                }
+                return false;
+            })
+            ->take($limit)
+            ->map(function ($item) {
+                if ($item->variant->isNotEmpty()) {
+                    $item->formatted_harga = 'Rp' . number_format($item->variant->first()->harga, 0, ',', '.');
+                } elseif ($item->detailProduk->isNotEmpty()) {
+                    $item->formatted_harga = 'Rp' . number_format($item->detailProduk->first()->harga, 0, ',', '.');
+                } else {
+                    $item->formatted_harga = 'Rp0';
+                }
+                return $item;
+            });
 
 
-        // dd($product_all);
-        return view('customers.product',
-            [
-                'product_all' => $product_all,
-                'kategori' => $kategori,
-            ]
-        );
+        return view('customers.product', [
+            'product_all' => $product_all,
+            'kategori' => $kategori,
+            'limit' => $limit
+        ]);
     }
 }

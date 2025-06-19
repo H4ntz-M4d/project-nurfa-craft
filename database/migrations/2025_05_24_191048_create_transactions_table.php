@@ -13,6 +13,8 @@ return new class extends Migration
     {
         Schema::create('transactions', function (Blueprint $table) {
             $table->id('id_transaction');
+            $table->string('order_id')->nullable()->unique();
+            $table->string('snap_token')->nullable();
             $table->foreignId('id_user')->constrained('users','id')->onDelete('cascade');
             $table->dateTime('tanggal')->useCurrent();
             $table->decimal('total', 12, 2);
@@ -23,6 +25,7 @@ return new class extends Migration
             $table->string('kota')->nullable();
             $table->string('alamat_pengiriman')->nullable();
             $table->string('telepon')->nullable();
+            $table->string('slug')->nullable()->unique();
 
             $table->timestamps();
         });

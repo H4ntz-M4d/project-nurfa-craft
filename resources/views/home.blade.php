@@ -8,8 +8,7 @@
                         style="background-image: url({{ asset('assets/media/misc/layout/auth-bg-1.png') }});">
                         <div class="container h-full">
                             <div class="flex-col-l-m h-full p-t-100 p-b-30">
-                                <div class="layer-slick1 animated visible-false" data-appear="fadeInDown"
-                                    data-delay="0">
+                                <div class="layer-slick1 animated visible-false" data-appear="fadeInDown" data-delay="0">
                                     <span class="ltext-202 cl2 respon2">
                                         Hi Customers
                                     </span>
@@ -22,8 +21,7 @@
                                     </h2>
                                 </div>
 
-                                <div class="layer-slick1 animated visible-false" data-appear="zoomIn"
-                                    data-delay="1600">
+                                <div class="layer-slick1 animated visible-false" data-appear="zoomIn" data-delay="1600">
                                     <a href="product.html"
                                         class="flex-c-m stext-101 cl0 size-101 bg1 bor1 hov-btn1 p-lr-15 trans-04">
                                         Shop Now
@@ -87,83 +85,31 @@
         <!-- Banner -->
         <div class="sec-banner bg0">
             <div class="flex-w flex-c-m">
-                <div class="size-202 m-lr-auto respon4">
-                    <!-- Block1 -->
-                    <div class="block1 wrap-pic-w">
-                        <img src="{{ asset('customers-asset/images/banner-04.jpg') }}" alt="IMG-BANNER">
 
-                        <a href="/product"
-                            class="block1-txt ab-t-l s-full flex-col-l-sb p-lr-38 p-tb-34 trans-03 respon3">
-                            <div class="block1-txt-child1 flex-col-l">
-                                <span class="block1-name ltext-102 trans-04 p-b-8">
-                                    Women
-                                </span>
-
-                                <span class="block1-info stext-102 trans-04">
-                                    Spring 2018
-                                </span>
-                            </div>
-
-                            <div class="block1-txt-child2 p-b-4 trans-05">
-                                <div class="block1-link stext-101 cl0 trans-09">
-                                    Shop Now
+                @foreach ($kategori as $ktg)
+                    <div class="size-202 m-lr-auto respon4">
+                        <!-- Block1 -->
+                        <div class="block1 wrap-pic-w">
+                            <img height="350px" src="{{ asset('storage/' . $ktg->gambar) }}" alt="{{ $ktg->nama_kategori }}">
+                            <a href="{{ route('product.sort-by-category', ['id' => $ktg->id_ktg_produk]) }}"
+                                class="block1-txt ab-t-l s-full flex-col-l-sb p-lr-38 p-tb-34 trans-03 respon3">
+                                <div class="block1-txt-child1 flex-col-l">
+                                    <span class="block1-name ltext-102 trans-04 p-b-8">
+                                        {{ $ktg->nama_kategori }}
+                                    </span>
                                 </div>
-                            </div>
-                        </a>
-                    </div>
-                </div>
 
-                <div class="size-202 m-lr-auto respon4">
-                    <!-- Block1 -->
-                    <div class="block1 wrap-pic-w">
-                        <img src="{{ asset('customers-asset/images/banner-05.jpg') }}" alt="IMG-BANNER">
-
-                        <a href="/product"
-                            class="block1-txt ab-t-l s-full flex-col-l-sb p-lr-38 p-tb-34 trans-03 respon3">
-                            <div class="block1-txt-child1 flex-col-l">
-                                <span class="block1-name ltext-102 trans-04 p-b-8">
-                                    Men
-                                </span>
-
-                                <span class="block1-info stext-102 trans-04">
-                                    Spring 2018
-                                </span>
-                            </div>
-
-                            <div class="block1-txt-child2 p-b-4 trans-05">
-                                <div class="block1-link stext-101 cl0 trans-09">
-                                    Shop Now
+                                <div class="block1-txt-child2 p-b-4 trans-05">
+                                    <div class="block1-link stext-101 cl0 trans-09">
+                                        Shop Now
+                                    </div>
                                 </div>
-                            </div>
-                        </a>
+                            </a>
+                        </div>
                     </div>
-                </div>
+                @endforeach
 
-                <div class="size-202 m-lr-auto respon4">
-                    <!-- Block1 -->
-                    <div class="block1 wrap-pic-w">
-                        <img src="{{ asset('customers-asset/images/banner-06.jpg') }}" alt="IMG-BANNER">
 
-                        <a href="/product"
-                            class="block1-txt ab-t-l s-full flex-col-l-sb p-lr-38 p-tb-34 trans-03 respon3">
-                            <div class="block1-txt-child1 flex-col-l">
-                                <span class="block1-name ltext-102 trans-04 p-b-8">
-                                    Bags
-                                </span>
-
-                                <span class="block1-info stext-102 trans-04">
-                                    New Trend
-                                </span>
-                            </div>
-
-                            <div class="block1-txt-child2 p-b-4 trans-05">
-                                <div class="block1-link stext-101 cl0 trans-09">
-                                    Shop Now
-                                </div>
-                            </div>
-                        </a>
-                    </div>
-                </div>
             </div>
         </div>
 
@@ -1290,52 +1236,53 @@
                 </div>
 
                 <div class="row">
-                    @foreach ($blog as $blogs )
+                    @foreach ($blog as $blogs)
                         <div class="col-sm-6 col-md-4 p-b-40">
-                        <div class="blog-item">
-                            <div class="hov-img0">
-                                <a href="blog-detail/{{ $blogs->id_blog }}">
-                                    <img src="{{ asset('storage/'. $blogs->gambar) }}" alt="IMG-BLOG">
-                                </a>
-                            </div>
-
-                            <div class="p-t-15">
-                                <div class="stext-107 flex-w p-b-14">
-                                    <span class="m-r-3">
-                                        <span class="cl4">
-                                            By
-                                        </span>
-
-                                        <span class="cl5">
-                                            Admin
-                                        </span>
-                                    </span>
-
-                                    <span>
-                                        <span class="cl4">
-                                            on
-                                        </span>
-
-                                        <span class="cl5">
-                                            {{ \Carbon\Carbon::parse($blogs->created_at)->format('M d Y') }}
-                                        </span>
-                                    </span>
+                            <div class="blog-item">
+                                <div class="hov-img0">
+                                    <a href="blog-detail/{{ $blogs->id_blog }}">
+                                        <img height="300px" src="{{ asset('storage/' . $blogs->gambar) }}"
+                                            alt="IMG-BLOG">
+                                    </a>
                                 </div>
 
-                                <h4 class="p-b-12">
-                                    <a href="blog-detail/{{ $blogs->id_blog }}" class="mtext-101 cl2 hov-cl1 trans-04">
-                                        {!! $blogs->judul !!}
-                                    </a>
-                                </h4>
+                                <div class="p-t-15">
+                                    <div class="stext-107 flex-w p-b-14">
+                                        <span class="m-r-3">
+                                            <span class="cl4">
+                                                By
+                                            </span>
 
-                                <p class="stext-108 cl6">
-                                    {!! Str::words(strip_tags($blogs->deskripsi), 20, '...') !!}
-                                </p>
+                                            <span class="cl5">
+                                                Nancy Ward
+                                            </span>
+                                        </span>
+
+                                        <span>
+                                            <span class="cl4">
+                                                on
+                                            </span>
+
+                                            <span class="cl5">
+                                                {{ \Carbon\Carbon::parse($blogs->created_at)->format('M d Y') }}
+                                            </span>
+                                        </span>
+                                    </div>
+
+                                    <h4 class="p-b-12">
+                                        <a href="blog-detail/{{ $blogs->id_blog }}"
+                                            class="mtext-101 cl2 hov-cl1 trans-04">
+                                            {!! $blogs->judul !!}
+                                        </a>
+                                    </h4>
+
+                                    <p class="stext-108 cl6">
+                                        {!! Str::words(strip_tags($blogs->deskripsi), 30, '...') !!}
+                                    </p>
+                                </div>
                             </div>
                         </div>
-                    </div>    
                     @endforeach
-                    
                 </div>
             </div>
         </section>

@@ -8,7 +8,7 @@ var KTCheckoutProcess = (function () {
                 return;
             }
 
-            const submitBtn = document.querySelector("button[type='submit']");
+            const submitBtn = document.querySelector("button[type='button']");
 
             submitBtn.addEventListener("click", function (e) {
                 e.preventDefault();
@@ -17,11 +17,11 @@ var KTCheckoutProcess = (function () {
                 const provinsi = form.querySelector("[name='provinsi']").value.trim();
                 const kota = form.querySelector("[name='kota']").value.trim();
                 const alamat = form.querySelector("[name='alamat_pengiriman']").value.trim();
-                                
+
                 // Hapus format ribuan dari total dan subtotal
                 const totalInput = form.querySelector("input[name='total']");
                 const subtotalInput = form.querySelector("input[name='subtotal']");
-                
+
                 if (totalInput) {
                     totalInput.value = totalInput.value.replace(/\./g, "").replace(/[^\d]/g, "");
                 }
@@ -47,7 +47,7 @@ var KTCheckoutProcess = (function () {
                 }
 
                 if (errors.length > 0) {
-                        swal("Oops!", "Validasi gagal", "error");
+                    swal("Oops!", "Validasi gagal", "error");
                     return;
                 }
 
@@ -64,26 +64,107 @@ var KTCheckoutProcess = (function () {
                         "Accept": "application/json",
                     },
                 })
-                .then((res) => res.json())
-                .then((data) => {
-                    submitBtn.removeAttribute("data-kt-indicator");
-                    submitBtn.disabled = false;
+                    .then((res) => res.json())
+                    .then((data) => {
+                        submitBtn.removeAttribute("data-kt-indicator");
+                        submitBtn.disabled = false;
 
-                    if (data.success) {
-                        swal("Ok","Checkout produk", "success");
-                    } else {
-                        swal("Oops!","Checkout gagal", "error");
-                    }
-                })
-                .catch((err) => {
-                    console.error(err);
-                    swal("Gagal memproses transaksi. Silakan coba lagi", err, "error");
-                });
+                        if (data.success && data.snap_token) {
+                            // Simpan token dan slug ke sessionStorage
+                            sessionStorage.setItem("snap_token", data.snap_token);
+                            sessionStorage.setItem("slug", data.slug);
+
+                            window.snap.embed(data.snap_token, {
+                                embedId: 'snap-container',
+                                onSuccess: function (result) {
+                                    sessionStorage.clear(); // Hapus setelah berhasil
+                                    fetch('/delete-keranjang', {
+                                            method: 'DELETE',
+                                            headers: {
+                                                'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]').content,
+                                                'Accept': 'application/json'
+                                            },
+                                        })
+                                        .then(response => response.json())
+                                        .then(data => {
+                                            if (data.success) {
+                                                console.log("Keranjang dihapus:", data);
+                                                window.location.href = "/shopping/" + data.slug;
+                                            } else {
+                                                swal("Gagal menghapus keranjang", data.message || "Terjadi kesalahan", "error");
+                                            }
+                                        })
+                                        .catch(error => {
+                                            console.error("Gagal hapus keranjang:", error);
+                                        });
+                                },
+                                onPending: function (result) {
+                                    swal("Menunggu Pembayaran", "Transaksi belum selesai.", "info");
+                                },
+                                onError: function (result) {
+                                    swal("Gagal", "Terjadi kesalahan pembayaran.", "error");
+                                },
+                                onClose: function () {
+                                    swal("Dibatalkan", "Kamu menutup pembayaran.", "warning");
+                                }
+                            });
+                        } else {
+                            swal("Oops!", data.message || "Checkout gagal", "error");
+                        }
+                    })
+                    .catch((err) => {
+                        console.error(err);
+                        swal("Gagal memproses transaksi. Silakan coba lagi", err, "error");
+                    });
             });
         }
     };
 })();
 
+// Deteksi refresh dan tampilkan kembali snap jika token tersedia
 document.addEventListener("DOMContentLoaded", function () {
-    KTCheckoutProcess.init();
+    const existingSnapToken = sessionStorage.getItem("snap_token");
+    const slug = sessionStorage.getItem("slug");
+
+    if (existingSnapToken && slug) {
+        // Snap token tersedia, tampilkan embed Snap
+        window.snap.embed(existingSnapToken, {
+            embedId: 'snap-container',
+            onSuccess: function (result) {
+                sessionStorage.clear(); // Bersihkan setelah sukses
+                fetch('/delete-keranjang', {
+                        method: 'DELETE',
+                        headers: {
+                            'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]').content,
+                            'Accept': 'application/json'
+                        },
+                    })
+                    .then(response => response.json())
+                    .then(data => {
+                        if (data.success) {
+                            console.log("Keranjang dihapus:", data);
+                            window.location.href = "/shopping/" + data.slug;
+                        } else {
+                            swal("Gagal menghapus keranjang", data.message || "Terjadi kesalahan", "error");
+                        }
+                    })
+                    .catch(error => {
+                        console.error("Gagal hapus keranjang:", error);
+                    });
+
+            },
+            onPending: function (result) {
+                swal("Menunggu Pembayaran", "Transaksi belum selesai.", "info");
+            },
+            onError: function (result) {
+                swal("Gagal", "Terjadi kesalahan pembayaran.", "error");
+            },
+            onClose: function () {
+                swal("Dibatalkan", "Kamu menutup pembayaran.", "warning");
+            }
+        });
+    } else {
+        // Jalankan proses normal
+        KTCheckoutProcess.init();
+    }
 });

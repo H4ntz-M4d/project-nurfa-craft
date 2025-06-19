@@ -11,6 +11,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 
+
 class TransaksiController extends Controller
 {
     public function storeTransaction(Request $request)
@@ -28,9 +29,14 @@ class TransaksiController extends Controller
         try {
             $userId = Auth::id();
 
+        do {
+                $orderId = 'INV-' . now()->format('Ymd') . '-' . str_pad(rand(1, 99999), 5, '0', STR_PAD_LEFT);
+            } while (Transactions::where('order_id', $orderId)->exists());
+
             // Buat transaksi utama
             $transaksi = Transactions::create([
                 'id_user' => $userId,
+                'order_id' => $orderId,
                 'tanggal' => now(),
                 'total' => $request->total,
                 'provinsi' => $request->provinsi,
@@ -39,6 +45,8 @@ class TransaksiController extends Controller
                 'telepon' => $request->telepon,
                 'status' => 'unpaid'
             ]);
+
+
 
             // Ambil keranjang user
             $keranjangs = Keranjang::with(['keranjang_variant.produk_variant_value.variantAttribute', 'keranjang_variant.produk_variant_value.variantValues'])
@@ -100,13 +108,43 @@ class TransaksiController extends Controller
                 }
             }
 
-            // Bersihkan keranjang user
-            Keranjang::where('id_user', $userId)->delete();
 
             DB::commit();
+
+            // Set your Merchant Server Key
+            \Midtrans\Config::$serverKey = config('midtrans.server_key');
+            // Set to Development/Sandbox Environment (default). Set to true for Production Environment (accept real transaction).
+            \Midtrans\Config::$isProduction = false;
+            // Set sanitization on (default)
+            \Midtrans\Config::$isSanitized = true;
+            // Set 3DS transaction for credit card to true
+            \Midtrans\Config::$is3ds = true;
+
+            $params = [
+                'transaction_details' => [
+                    'order_id' => $orderId,
+                    'gross_amount' => $transaksi->total,
+                ],
+                'customer_details' => [
+                    'first_name' => Auth::user()->name,
+                    'email' => Auth::user()->email,
+                    'phone' => $request->telepon,
+                ]
+            ];
+            // Create Snap transaction
+            $snapToken = \Midtrans\Snap::getSnapToken($params);
+
+            $transaksi->snap_token = $snapToken;
+            $transaksi->save();
+
+            $slug = $transaksi->slug;
+
+
             return response()->json([
                 'success' => true,
-                'message' => 'Transaksi berhasil disimpan'
+                'message' => 'Transaksi berhasil disimpan',
+                'snap_token' => $snapToken,
+                'slug' => $slug,
             ], 201);
         } catch (\Throwable $e) {
             DB::rollBack();
@@ -116,5 +154,22 @@ class TransaksiController extends Controller
                 'error' => $e->getMessage()
             ], 500);
         }
+    }
+
+    public function deleteKeranjang()
+    {
+        $userId = Auth::id();
+        Keranjang::where('id_user', $userId)->delete();
+
+        $slug = Transactions::where('id_user', $userId)
+            ->where('status', 'unpaid')
+            ->latest()
+            ->value('slug');
+
+        return response()->json([
+            'success' => true,
+            'message' => 'Keranjang berhasil dihapus',
+            'slug' => $slug
+        ]);
     }
 }

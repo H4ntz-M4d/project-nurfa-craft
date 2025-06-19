@@ -18,7 +18,7 @@
                                     <a href="/home">Home</a>
                                 </li>
 
-                                <li class="{{ Route::is('product-shop') ? 'active-menu' : '' }}">
+                                <li class="{{ Route::is('product.index') ? 'active-menu' : '' }}">
                                     <a href="/product">Shop</a>
                                 </li>
 
@@ -42,8 +42,8 @@
                                     <a href="/home">Home</a>
                                 </li>
 
-                                <li class="{{ Route::is('product-shop') ? 'active-menu' : '' }}">
-                                    <a href="{{ route('product-shop') }}" class="modal-login">Shop</a>
+                                <li class="{{ Route::is('product.index') ? 'active-menu' : '' }}">
+                                    <a href="{{ route('product.index') }}" class="modal-login">Shop</a>
                                 </li>
 
                                 <li class="{{ Route::is('shoping') ? 'active-menu' : '' }}" {{-- class="label1" data-label1="hot" --}}>
@@ -75,11 +75,30 @@
                             </div>
                         </div>
 
-                        <div class="flex-c-m h-full p-lr-19">
-                            <div class="icon-header-item cl2 hov-cl1 trans-04 p-lr-11 js-show-sidebar">
-                                <i class="zmdi zmdi-menu"></i>
+                        @if (Auth::check())
+                            {{-- <div class="flex-c-m h-full p-lr-19">
+                                <div class="icon-header-item cl2 hov-cl1 trans-04 p-lr-11 js-show-sidebar">
+                                    <i class="zmdi zmdi-menu"></i>
+                                </div>
+                            </div> --}}
+                            <div class="mx-2">
+                                <form method="POST" action="{{ route('logout') }}"
+                                    class="btn btn-active-light-success">
+                                    @csrf
+                                    <a :href="route('logout')"
+                                        onclick="event.preventDefault(); this.closest('form').submit();" class="icon-header-item cl2 hov-cl1 trans-04 p-lr-11">
+                                        <i class="zmdi zmdi-sign-in"></i>
+                                    </a>
+                                </form>
                             </div>
-                        </div>
+                        @else
+                            <div class="mx-2">
+                                <a href="{{ route('login') }}" class="btn btn-active-light-success">Login</a>
+                            </div>
+                            <div class="mx-2">
+                                <a href="{{ route('register') }}" class="btn btn-active-light-success">Sign Up</a>
+                            </div>
+                        @endif
                     </div>
                 </nav>
             </div>
@@ -127,7 +146,7 @@
                         <a href="/home">Home</a>
                     </li>
 
-                    <li class="{{ Route::is('product-shop') ? 'active-menu' : '' }}">
+                    <li class="{{ Route::is('product.index') ? 'active-menu' : '' }}">
                         <a href="/product">Shop</a>
                     </li>
 
@@ -151,8 +170,8 @@
                         <a href="/home">Home</a>
                     </li>
 
-                    <li class="{{ Route::is('product-shop') ? 'active-menu' : '' }}">
-                        <a href="{{ route('product-shop') }}" class="modal-login">Shop</a>
+                    <li class="{{ Route::is('product.index') ? 'active-menu' : '' }}">
+                        <a href="{{ route('product.index') }}" class="modal-login">Shop</a>
                     </li>
 
                     <li class="{{ Route::is('shoping') ? 'active-menu' : '' }}" {{-- class="label1" data-label1="hot" --}}>

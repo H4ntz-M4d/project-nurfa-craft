@@ -44,14 +44,20 @@ class HomeController extends Controller
         $blog = DB::table('blog')
             ->select("id_blog", "judul", "deskripsi", "gambar", "created_at")
             ->orderBy("created_at", "desc")
+            ->take(3) 
             ->get();
+
+        $kategori = DB::table('kategori_produk')
+            ->select('id_ktg_produk', 'nama_kategori', 'gambar')
+            ->take(3)
+            ->get();    
 
         return view('home', [
             'product_best' => $product_best,
             'banner' => $banner,
-            'blog' => $blog
+            'blog' => $blog,
+            'kategori' => $kategori
         ]);
     }
 
-    
 }
