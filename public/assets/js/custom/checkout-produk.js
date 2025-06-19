@@ -55,6 +55,8 @@ var KTCheckoutProcess = (function () {
                 submitBtn.setAttribute("data-kt-indicator", "on");
                 submitBtn.disabled = true;
 
+                const formPay = document.getElementById("form-payment");
+
                 const formData = new FormData(form);
                 fetch(form.getAttribute("action"), {
                     method: "POST",
@@ -73,6 +75,8 @@ var KTCheckoutProcess = (function () {
                             // Simpan token dan slug ke sessionStorage
                             sessionStorage.setItem("snap_token", data.snap_token);
                             sessionStorage.setItem("slug", data.slug);
+
+                            formPay.classList.add("d-none");
 
                             window.snap.embed(data.snap_token, {
                                 embedId: 'snap-container',
@@ -125,9 +129,11 @@ var KTCheckoutProcess = (function () {
 document.addEventListener("DOMContentLoaded", function () {
     const existingSnapToken = sessionStorage.getItem("snap_token");
     const slug = sessionStorage.getItem("slug");
+    const formPay = document.getElementById("form-payment");
 
     if (existingSnapToken && slug) {
         // Snap token tersedia, tampilkan embed Snap
+        formPay.classList.add("d-none");
         window.snap.embed(existingSnapToken, {
             embedId: 'snap-container',
             onSuccess: function (result) {
