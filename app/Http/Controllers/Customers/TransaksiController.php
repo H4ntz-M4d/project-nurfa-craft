@@ -7,6 +7,7 @@ use App\Models\Keranjang;
 use App\Models\TransactionDetails;
 use App\Models\TransactionDetailVariants;
 use App\Models\Transactions;
+use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
@@ -108,7 +109,6 @@ class TransaksiController extends Controller
                 }
             }
 
-
             DB::commit();
 
             // Set your Merchant Server Key
@@ -156,20 +156,88 @@ class TransaksiController extends Controller
         }
     }
 
-    public function deleteKeranjang()
+    public function updateStatus($slug)
     {
-        $userId = Auth::id();
-        Keranjang::where('id_user', $userId)->delete();
+        $transaksi = Transactions::where('slug', $slug)
+            ->select('id_transaction','slug', 'status')
+            ->firstOrFail();
 
-        $slug = Transactions::where('id_user', $userId)
-            ->where('status', 'unpaid')
-            ->latest()
-            ->value('slug');
+        try {
+            $transaksi->update(['status' => 'paid']);
+
+            return response()->json([
+                'success' => true,
+                'message' => 'Status transaksi diubah ke Paid',
+                'slug' => $slug
+            ]);
+        } catch (\Throwable $th) {
+            return response()->json([
+                'success' => false,
+                'message' => 'Gagal ubah status transaksi ke Paid',
+                'slug' => $slug
+            ]);
+        }
+        
+    }
+
+    public function deleteKeranjang($slug)
+    {
+        $userId = Auth::user();
+        Keranjang::where('id_user', $userId->id)->delete();
+
+        $transaksi = Transactions::where('slug', $slug)
+            ->select('order_id')
+            ->firstOrFail();
 
         return response()->json([
             'success' => true,
             'message' => 'Keranjang berhasil dihapus',
-            'slug' => $slug
+            'slug' => $userId->slug,
+            'invoice' => $transaksi->order_id,
         ]);
+    }
+
+    public function historyOrders($slug)
+    {
+        $user = User::with('customers:id_user,nama')
+            ->select('id','email','slug')
+            ->where('slug', $slug)
+            ->firstOrFail();
+
+        $transaksi = Transactions::with('details.produk','details.variants')
+            ->where('status', 'paid')
+            ->where('id_user', $user->id)
+            ->get()
+            ->sortByDesc('updated_at');
+
+        return view('customers.history-order',
+        [
+            'user' => $user,
+            'transaksi' => $transaksi,
+        ]);
+    }
+
+    public function invoiceUser($slug, $invoice)
+    {
+        $user = User::with('customers:id_user,nama')
+            ->select('id','email','slug')
+            ->where('slug', $slug)
+            ->firstOrFail();
+
+        $transaksi = Transactions::with('details.produk','details.variants')
+            ->where('id_user', $user->id)
+            ->where('order_id', $invoice)
+            ->firstOrFail();
+
+        if ($transaksi->status === 'paid' && $user->id === Auth::user()->id) {
+            return view('customers.invoice-order',
+            [
+                'user' => $user,
+                'transaksi' => $transaksi,
+            ]);
+        } else {
+            return view('error.error-404');
+        }
+        
     }
 }

@@ -1,4 +1,6 @@
 <x-admin.layout>
+	<x-slot:title>{{ $title }}</x-slot:title>
+	<x-slot:sub_title>{{ $sub_title }}</x-slot:sub_title>
     <!--begin::Content-->
     <div id="kt_app_content" class="app-content flex-column-fluid">
         <!--begin::Content container-->

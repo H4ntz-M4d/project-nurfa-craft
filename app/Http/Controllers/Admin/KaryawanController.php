@@ -15,7 +15,10 @@ class KaryawanController extends Controller
 {
     public function index()
     {
-        return view('admin.users-management.karyawans.karyawan');
+        return view('admin.users-management.karyawans.karyawan',[
+            'title' => 'Pegawai',
+            'sub_title' => 'Manajemen Users - Pegawai'
+        ]);
     }
 
     public function data(Request $request)
@@ -117,14 +120,20 @@ class KaryawanController extends Controller
     {
         $vk = Karyawan::with('users:id,email')->select('id_user','nama','no_telp','alamat','tempat_lahir','tgl_lahir','slug')
             ->where('slug',$id)->first();
-        return view('admin.users-management.karyawans.details-karyawan', compact('vk'));
+
+        $title = 'Pegawai';
+        $sub_title = 'Manajemen Users - Pegawai';
+        return view('admin.users-management.karyawans.details-karyawan', compact('vk','title','sub_title'));
     }
 
     public function edit($id)
     {
         $vk = Karyawan::with('users:id,email')->select('id_user','nama','no_telp','alamat','tempat_lahir','tgl_lahir','slug')
             ->where('slug',$id)->first();
-        return view('admin.users-management.karyawans.edit-karyawan', compact('vk'));
+
+        $title = 'Pegawai';
+        $sub_title = 'Manajemen Users - Pegawai';
+        return view('admin.users-management.karyawans.edit-karyawan', compact('vk','title','sub_title'));
     }
 
     public function update(Request $request, $slug)

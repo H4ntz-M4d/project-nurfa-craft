@@ -11,7 +11,10 @@ class CustomersController extends Controller
 {
     public function index()
     {
-        return view('admin.users-management.customers.customers');
+        return view('admin.users-management.customers.customers',[
+            'title' => 'Customers',
+            'sub_title' => 'Manajemen Users - Customers'
+        ]);
     }
 
     public function data(Request $request)

@@ -12,7 +12,10 @@ class StokRecordController extends Controller
 {
     public function index()
     {
-        return view('admin.laporan.stok');
+        return view('admin.laporan.stok',[
+            'title' => 'Laporan Stok',
+            'sub_title' => 'Laporan - Laporan Stok',
+        ]);
     }
 
     public function data(Request $request)
@@ -47,20 +50,6 @@ class StokRecordController extends Controller
                 });
 
             return DataTables::collection($data)
-                ->addColumn('checkbox', function($row){
-                    return '<input type="checkbox" data-slug="'.$row->slug.'" class="form-check-input" value="'.$row->id_stok_record.'">';
-                })
-                ->addColumn('action', function($row){
-                    return '
-                    <button href="#" class="btn btn-sm btn-light btn-flex btn-center btn-active-light-primary" data-kt-menu-trigger="click" data-kt-menu-placement="bottom-end">Actions
-                    <i class="ki-duotone ki-down fs-5 ms-1"></i></button>
-                    <div class="menu menu-sub menu-sub-dropdown menu-column menu-rounded menu-gray-600 menu-state-bg-light-primary fw-semibold fs-7 w-125px py-4" data-kt-menu="true">
-                        <div class="menu-item px-3">
-                            <a href="#" class="menu-link px-3" data-slug="'.$row->slug.'" data-kt-category-table-filter="delete_row">Delete</a>
-                        </div>
-                    </div>';
-                })
-                ->rawColumns(['checkbox', 'action'])
                 ->make(true);
 
         }

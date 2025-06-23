@@ -37,6 +37,10 @@
                                 <li class="{{ Route::is('contact') ? 'active-menu' : '' }}">
                                     <a href="/contact">Contact</a>
                                 </li>
+
+                                <li class="{{ Route::is('history.orders') ? 'active-menu' : '' }}">
+                                    <a href="/history-order/{{ Auth::user()->slug }}">Histori Belanja</a>
+                                </li>
                             @else
                                 <li class="{{ Route::is('home') ? 'active-menu' : '' }}">
                                     <a href="/home">Home</a>
@@ -86,7 +90,8 @@
                                     class="btn btn-active-light-success">
                                     @csrf
                                     <a :href="route('logout')"
-                                        onclick="event.preventDefault(); this.closest('form').submit();" class="icon-header-item cl2 hov-cl1 trans-04 p-lr-11">
+                                        onclick="event.preventDefault(); this.closest('form').submit();"
+                                        class="icon-header-item cl2 hov-cl1 trans-04 p-lr-11">
                                         <i class="zmdi zmdi-sign-in"></i>
                                     </a>
                                 </form>
@@ -164,6 +169,9 @@
 
                     <li class="{{ Route::is('contact') ? 'active-menu' : '' }}">
                         <a href="/contact">Contact</a>
+                    </li>
+                    <li class="{{ Route::is('history.orders') ? 'active-menu' : '' }}">
+                        <a href="/history-order/{{ Auth::user()->slug }}">Histori Belanja</a>
                     </li>
                 @else
                     <li class="{{ Route::is('home') ? 'active-menu' : '' }}">

@@ -16,7 +16,10 @@ class StokController extends Controller
 {
     public function index()
     {
-        return view('admin.catalog.stok-view.list-stok-produk');
+        return view('admin.catalog.stok-view.list-stok-produk',[
+            'title' => 'Kelola Stok',
+            'sub_title' => 'Catalog - Kelola Stok',
+        ]);
     }
 
     public function data(Request $request)
@@ -26,7 +29,7 @@ class StokController extends Controller
             $produkNonVariant = ProdukMaster::with('kategori_produk')
                 ->where('use_variant', 'no')
                 ->with(['detailProduk' => function($q) {
-                    $q->select('id_master_produk', 'sku', 'harga', 'stok');
+                    $q->select('id_detail_produk','id_master_produk', 'sku', 'harga', 'stok');
                 }])
                 ->get()
                 ->map(function ($item) {
@@ -158,9 +161,6 @@ class StokController extends Controller
                                 
                                 Add Stock
                             </a>
-                        </div>
-                        <div class="menu-item px-3">
-                            <a href="#" class="menu-link px-3" data-slug="'.$row->slug.'" data-kt-produk-table-filter="delete_row">Delete</a>
                         </div>
                     </div>';
                 })

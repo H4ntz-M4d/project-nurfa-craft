@@ -26,7 +26,10 @@ class ProdukController extends Controller
      */
     public function index()
     {
-        return view("admin.catalog.produk-view.produk" );
+        return view("admin.catalog.produk-view.produk",[
+            'title' => 'List Produk',
+            'sub_title' => 'Catalog - List Produk'
+        ]);
     }
 
     public function data(Request $request){
@@ -118,10 +121,14 @@ class ProdukController extends Controller
 
     public function create()
     {
-        $kategori = KategoriProduk::select('id_ktg_produk', 'nama_kategori')->get()->all();
+        $kategori = KategoriProduk::select('id_ktg_produk', 'nama_kategori')->where('status','published')->get()->all();
         $variant = VariantAttribute::select('id_variant_attributes', 'nama_variant')->get()->all();
         // dd($kategori);
-        return view('admin.catalog.produk-view.create',['kategori'=> $kategori, 'variant' => $variant]);
+        return view('admin.catalog.produk-view.create',[
+            'kategori'=> $kategori, 'variant' => $variant,
+            'title' => 'Tambah Produk',
+            'sub_title' => 'Catalog - Tambah Produk',
+        ]);
     }
 
     public function store(Request $request)
@@ -318,6 +325,8 @@ class ProdukController extends Controller
                 'combinations' => $combinations,
                 'rowspanData' => $rowspanData,
                 'printFlags' => $printFlags, // dikirim awalnya kosong, akan dipakai di blade
+                'title' => 'Kelola Variant Produk',
+                'sub_title' => 'Catalog - Kelola Variant Produk'
             ]);
         } else {
             return view('admin.catalog.produk-view.edit-variant', [
@@ -327,6 +336,8 @@ class ProdukController extends Controller
                 'combinations' => $combinations,
                 'rowspanData' => $rowspanData,
                 'printFlags' => $printFlags, // dikirim awalnya kosong, akan dipakai di blade
+                'title' => 'Kelola Variant Produk',
+                'sub_title' => 'Catalog - Kelola Variant Produk'
             ]);
         }
         
@@ -435,7 +446,7 @@ class ProdukController extends Controller
         // dd($produk);
         $gambar = asset('storage/' . $produk->gambar);
 
-        $kategori = KategoriProduk::select('id_ktg_produk', 'nama_kategori')->get();
+        $kategori = KategoriProduk::select('id_ktg_produk', 'nama_kategori')->where('status','published')->get();
         $attributes = VariantAttribute::with('values')->get();
 
         $groupedVariants = $produk->variant
@@ -453,6 +464,8 @@ class ProdukController extends Controller
             'attributes' => $attributes,
             'gambar'=> $gambar,
             'groupedVariants' => $groupedVariants,
+            'title' => 'Edit Produk',
+            'sub_title' => 'Catalog - Edit Produk',
         ]);
     }
 
@@ -467,7 +480,6 @@ class ProdukController extends Controller
             'nama_produk' => 'required|string|max:255',
             'deskripsi' => 'required|string',
             'harga' => 'nullable|numeric',
-            'stok' => 'nullable|integer|min:0',
             'sku' => [
                 'nullable',
                 'string',

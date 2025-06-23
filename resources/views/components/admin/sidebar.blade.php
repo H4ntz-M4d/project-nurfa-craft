@@ -160,7 +160,7 @@
                 </div>
                 <!--end:Menu item-->
                 <!--begin:Menu item-->
-                <div data-kt-menu-trigger="click" class="menu-item menu-accordion {{ Route::is('laporan.*') ? 'here show' : '' }}">
+                <div data-kt-menu-trigger="click" class="menu-item menu-accordion {{ Route::is('stocks-record.*', 'view-product.*', 'transaksi.*') ? 'here show' : '' }}">
                     <!--begin:Menu link-->
                     <span class="menu-link">
                         <span class="menu-icon">
@@ -172,21 +172,21 @@
                     <!--begin:Menu sub-->
                     <div class="menu-sub menu-sub-accordion">
                         <!--begin:Menu item-->
-                        <div data-kt-menu-trigger="click" class="menu-item menu-accordion">
+                        <div data-kt-menu-trigger="click" class="menu-item menu-accordion {{ Route::is('view-product.*') ? 'here show' : '' }}">
                             <!--begin:Menu link-->
-                            <span class="menu-link">
+                            <a href="/list-view-product" class="menu-link {{ Route::is('view-product.*') ? 'active' : '' }}">
                                 <span class="menu-bullet">
                                     <span class="bullet bullet-dot"></span>
                                 </span>
                                 <span class="menu-title">Produk dilihat</span>
-                            </span>
+                            </a>
                             <!--end:Menu link-->
                         </div>
                         <!--end:Menu item-->
                         <!--begin:Menu item-->
-                        <div data-kt-menu-trigger="click" class="menu-item menu-accordion">
+                        <div data-kt-menu-trigger="click" class="menu-item menu-accordion {{ Route::is('stocks-record.*') ? 'here show' : '' }}">
                             <!--begin:Menu link-->
-                            <a class="menu-link {{ Route::is('laporan.*') ? 'active' : '' }}" href="/list-stocks-record">
+                            <a class="menu-link {{ Route::is('stocks-record.*') ? 'active' : '' }}" href="/list-stocks-record">
                                 <span class="menu-bullet">
                                     <span class="bullet bullet-dot"></span>
                                 </span>
@@ -196,14 +196,14 @@
                         </div>
                         <!--end:Menu item-->
                         <!--begin:Menu item-->
-                        <div data-kt-menu-trigger="click" class="menu-item menu-accordion">
+                        <div data-kt-menu-trigger="click" class="menu-item menu-accordion {{ Route::is('transaksi.*') ? 'here show' : '' }}">
                             <!--begin:Menu link-->
-                            <span class="menu-link">
+                            <a href="/list-transactions-record" class="menu-link {{ Route::is('transaksi.*') ? 'active' : '' }}">
                                 <span class="menu-bullet">
                                     <span class="bullet bullet-dot"></span>
                                 </span>
                                 <span class="menu-title">Transaksi</span>
-                            </span>
+                            </a>
                             <!--end:Menu link-->
                         </div>
                         <!--end:Menu item-->

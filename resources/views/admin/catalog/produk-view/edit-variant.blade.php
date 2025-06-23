@@ -1,4 +1,6 @@
 <x-admin.layout>
+	<x-slot:title>{{ $title }}</x-slot:title>
+	<x-slot:sub_title>{{ $sub_title }}</x-slot:sub_title>
     <div id="kt_app_content" class="app-content flex-column-fluid">
         <!--begin::Content container-->
         <div id="kt_app_content_container" class="app-container container-xxl">
@@ -81,10 +83,10 @@
                                             @endforeach
 
                                             <td>
-                                                <input type="number" name="harga[{{ $comboIndex }}]" class="form-control w-100px w-md-100" 
+                                                <input type="number" onwheel="this.blur()" name="harga[{{ $comboIndex }}]" class="form-control w-100px w-md-100" 
                                                 min="0" onkeydown="return isNumberKey(event)" placeholder="Rp" value="{{ $hargaValue }}" />
 
-                                                <input type="number" name="stok[{{ $comboIndex }}]" class="form-control w-100px w-md-100" 
+                                                <input type="number" onwheel="this.blur()" name="stok[{{ $comboIndex }}]" class="form-control w-100px w-md-100" 
                                                 min="0" onkeydown="return isNumberKey(event)" placeholder="Rp" value="{{ $stokValue }}" hidden />
                                             </td>
                                             <td><input type="text" name="sku[{{ $comboIndex }}]" class="form-control w-100px w-md-100" value="{{ $skuValue }}" placeholder="Kode Variasi" /></td>
@@ -133,4 +135,4 @@
         </script>
         
     @endpush
-</x-layout>
+</x-admin.layout>

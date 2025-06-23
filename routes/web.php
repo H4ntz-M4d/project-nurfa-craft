@@ -1,4 +1,7 @@
-<?php
+<?php 
+use App\Http\Controllers\Admin\InvoiceOrderController;
+use App\Http\Controllers\Admin\ProdukDiLihatController;
+?><?php
 
 use App\Http\Controllers\Admin\CustomersController;
 use App\Http\Controllers\Admin\Dashboard;
@@ -23,11 +26,21 @@ use App\Http\Controllers\Customers\TransaksiController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Middleware\RoleUsers;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\Admin\TransaksiRecordController;
 
 Route::get('/dashboard', [Dashboard::class, 'index'])
 ->middleware(['auth', 'verified', RoleUsers::class.':admin,customers'])->name('dashboard');
 
 Route::middleware(['auth', 'verified', RoleUsers::class.':admin'])->group(function () {
+
+    // begin widget card dashboard
+    Route::get('/chart/daily-sales', [Dashboard::class, 'getDailySales']);
+    Route::get('/dashboard/daily-income', [Dashboard::class, 'getDailyIncome']);
+    Route::get('/chart/month-sales', [Dashboard::class, 'getMonthSales']);
+    Route::get('/dashboard/order-total', [Dashboard::class, 'getMonthOrderTotal']);
+    Route::get('/dashboard/total-customers', [Dashboard::class, 'getTotalCustomers']);
+    Route::get('/dashboard/produk-stat', [Dashboard::class, 'getProdukStat']);
+
 
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
@@ -101,8 +114,17 @@ Route::middleware(['auth', 'verified', RoleUsers::class.':admin'])->group(functi
     Route::delete('/stocks-delete-selected', [StokController::class, 'destroySelected'])->name('stocks.destroySelected');
 
     // laporan stok
-    Route::get('/list-stocks-record', [StokRecordController::class, 'index'])->name('laporan.stocks.index');
-    Route::get('/stocks-data', [StokRecordController::class, 'data'])->name('stocks.data');
+    Route::get('/list-stocks-record', [StokRecordController::class, 'index'])->name('stocks-record.index');
+    Route::get('/stocks-data', [StokRecordController::class, 'data'])->name('stocks-record.data');
+    
+    // begin view-product
+    Route::get('/list-view-product', [ProdukDiLihatController::class, 'index'])->name('view-product.index');
+    Route::get('/view-product-data', [ProdukDiLihatController::class, 'data'])->name('view-product.data');
+
+    // begin Transactions record
+    Route::get('/list-transactions-record', [TransaksiRecordController::class, 'index'])->name('transaksi.index');
+    Route::get('/transactions-data', [TransaksiRecordController::class, 'data'])->name('transaksi.data');
+    Route::get('/invoice-users/{slug}/{order_id}', [InvoiceOrderController::class, 'invoiceOrderCustomers'])->name('transaksi.invoice');
 
 
     // begin route home banner
@@ -156,11 +178,17 @@ Route::middleware(['auth', 'verified', RoleUsers::class.':customers,admin'])->gr
 
     // begin transaksi
     Route::post('/checkout', [TransaksiController::class, 'storeTransaction'])->name('checkout');
-    Route::delete('/delete-keranjang', [TransaksiController::class, 'deleteKeranjang'])->name('checkout.delete-keranjang');
+    Route::put('/update-transaksi/{slug}', [TransaksiController::class, 'updateStatus'])->name('update-transaksi');
+    Route::delete('/delete-keranjang/{slug}', [TransaksiController::class, 'deleteKeranjang'])->name('checkout.delete-keranjang');
+    
+    // begin history order
+    Route::get('/history-order/{slug}', [TransaksiController::class, 'historyOrders'])->name('history.orders');
+    Route::get('/invoice-order/{slug}/{invoice}', [TransaksiController::class, 'invoiceUser'])->name('invoice');
 
+    // begin blog
     Route::get('/blog-detail/{slug}', [BlogController::class, 'detail'])->name('blog.detail');
     Route::post('/blog/store-comment', [BlogController::class, 'storeComment'])->name('blog.store-comment');
-   
+
     Route::get('/get-provinsi', [KeranjangController::class, 'getProvinsi']);
     Route::get('/get-kabupaten/{id}', [KeranjangController::class, 'getKabupaten']);
 

@@ -1,4 +1,6 @@
 <x-admin.layout>
+	<x-slot:title>{{ $title }}</x-slot:title>
+	<x-slot:sub_title>{{ $sub_title }}</x-slot:sub_title>
     <div class="d-flex flex-column flex-column-fluid">
         <!--begin::Content-->
         <div id="kt_app_content" class="app-content flex-column-fluid">
@@ -346,7 +348,7 @@
                                                 <label class="required form-label">Base Price</label>
                                                 <!--end::Label-->
                                                 <!--begin::Input-->
-                                                <input type="number" name="harga" class="form-control mb-2" min="0" onkeydown="return isNumberKey(event)" placeholder="Harga Produk" value="" />
+                                                <input type="number" onwheel="this.blur()" name="harga" class="form-control mb-2" min="0" onkeydown="return isNumberKey(event)" placeholder="Harga Produk" value="" />
                                                 <!--end::Input-->
                                                 <!--begin::Description-->
                                                 <div class="text-muted fs-7">Set the product price.</div>
@@ -484,7 +486,7 @@
                                                 <!--end::Label-->
                                                 <!--begin::Input-->
                                                 <div class="d-flex gap-3">
-                                                    <input type="number" name="stok" min="0" onkeydown="return isNumberKey(event)" class="form-control mb-2" placeholder="On shelf" />
+                                                    <input type="number" onwheel="this.blur()" name="stok" min="0" onkeydown="return isNumberKey(event)" class="form-control mb-2" placeholder="On shelf" />
                                                 </div>
                                                 <!--end::Input-->
                                                 <!--begin::Description-->
@@ -577,4 +579,4 @@
             }
         </script>
     @endpush
-</x-layout>
+</x-admin.layout>

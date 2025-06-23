@@ -12,7 +12,10 @@ class HomeBannerController extends Controller
 {
     public function index()
     {
-        return view('admin.utilities.home-banner.list-home-banner');
+        return view('admin.utilities.home-banner.list-home-banner',[
+            'title' => 'Home Banner',
+            'sub_title' => 'Utilities - Home Banner',
+        ]);
     }
 
     public function data(Request $request)

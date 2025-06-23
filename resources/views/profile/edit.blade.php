@@ -195,4 +195,4 @@
         <!--end::Content container-->
     </div>
     <!--end::Content-->
-</x-layout>
+</x-admin.layout>

@@ -14,7 +14,10 @@ class PostinganBlogController extends Controller
 {
     public function index()
     {
-        return view('admin.utilities.blog-post.blog-list');
+        return view('admin.utilities.blog-post.blog-list',[
+            'title' => 'Postingan Blog',
+            'sub_title' => 'Utilities - Postingan Blog',
+        ]);
     }
 
     public function data(Request $request)
@@ -78,13 +81,19 @@ class PostinganBlogController extends Controller
 
     public function create()
     {
-        return view('admin.utilities.blog-post.blog-create');
+        return view('admin.utilities.blog-post.blog-create',[
+            'title' => 'Create Postingan Blog',
+            'sub_title' => 'Utilities - Create Postingan Blog',
+        ]);
     }
 
     public function edit($slug)
     {
         $blog = DB::table('blog')->where('id_blog', $slug)->firstOrFail();
-        return view('admin.utilities.blog-post.blog-edit', compact('blog'));
+        return view('admin.utilities.blog-post.blog-edit', [
+            'title' => 'Edit Postingan Blog',
+            'sub_title' => 'Utilities - Edit Postingan Blog',
+        ]);
     }
 
     public function store(Request $request)

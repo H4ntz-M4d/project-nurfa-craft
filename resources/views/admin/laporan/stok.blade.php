@@ -1,4 +1,6 @@
 <x-admin.layout>
+	<x-slot:title>{{ $title }}</x-slot:title>
+	<x-slot:sub_title>{{ $sub_title }}</x-slot:sub_title>
     <div id="kt_app_content" class="app-content flex-column-fluid">
         <!--begin::Content container-->
         <div id="kt_app_content_container" class="app-container container-xxl">
@@ -16,20 +18,52 @@
                             <input type="text" data-kt-stocks-table-filter="search" class="form-control form-control-solid w-250px ps-13" placeholder="Search Kategori" />
                         </div>
                         <!--end::Search-->
+                        <!--begin::Export buttons-->
+                        <div id="kt_stocks_report_views_export" class="d-none"></div>
+                        <!--end::Export buttons-->
                     </div>
                     <!--begin::Card title-->
                     <!--begin::Card toolbar-->
                     <div class="card-toolbar">
-                        <!--begin::Toolbar-->
-                        <div class="d-flex justify-content-end" data-kt-stocks-table-toolbar="base"></div>
-                        <!--end::Toolbar-->
-                        <!--begin::Group actions-->
-                        <div class="d-flex justify-content-end align-items-center d-none" data-kt-stocks-table-toolbar="selected">
-                            <div class="fw-bold me-5">
-                            <span class="me-2" data-kt-stocks-table-select="selected_count"></span>Selected</div>
-                            <button type="button" class="btn btn-danger" data-kt-stocks-table-select="delete_selected">Delete Selected</button>
+
+                        <!--begin::Export dropdown-->
+                        <button type="button" class="btn btn-light-primary" data-kt-menu-trigger="click"
+                            data-kt-menu-placement="bottom-end">
+                            <i class="ki-duotone ki-exit-up fs-2">
+                                <span class="path1"></span>
+                                <span class="path2"></span>
+                            </i>Export Report</button>
+                        <!--begin::Menu-->
+                        <div id="kt_stocks_report_views_export_menu"
+                            class="menu menu-sub menu-sub-dropdown menu-column menu-rounded menu-gray-600 menu-state-bg-light-primary fw-semibold fs-7 w-200px py-4"
+                            data-kt-menu="true">
+                            <!--begin::Menu item-->
+                            <div class="menu-item px-3">
+                                <a href="#" class="menu-link px-3" data-kt-stocks-export="copy">Copy to
+                                    clipboard</a>
+                            </div>
+                            <!--end::Menu item-->
+                            <!--begin::Menu item-->
+                            <div class="menu-item px-3">
+                                <a href="#" class="menu-link px-3" data-kt-stocks-export="excel">Export as
+                                    Excel</a>
+                            </div>
+                            <!--end::Menu item-->
+                            <!--begin::Menu item-->
+                            <div class="menu-item px-3">
+                                <a href="#" class="menu-link px-3" data-kt-stocks-export="csv">Export as
+                                    CSV</a>
+                            </div>
+                            <!--end::Menu item-->
+                            <!--begin::Menu item-->
+                            <div class="menu-item px-3">
+                                <a href="#" class="menu-link px-3" data-kt-stocks-export="pdf">Export as
+                                    PDF</a>
+                            </div>
+                            <!--end::Menu item-->
                         </div>
-                        <!--end::Group actions-->
+                        <!--end::Menu-->
+                        <!--end::Export dropdown-->
                     </div>
                     <!--end::Card toolbar-->
                 </div>
@@ -40,20 +74,12 @@
                         <table id="kt_stok_table" class="table align-middle table-row-dashed fs-6 gy-5">
                             <thead>
                                 <tr class="text-start text-gray-500 fw-bold fs-7 text-uppercase gs-0">
-                                    <th class="w-10px pe-2">
-                                        <div class="form-check form-check-sm form-check-custom form-check-solid me-3">
-                                            <input class="form-check-input" type="checkbox" data-kt-check="true"
-                                                data-kt-check-target="#kt_stok_table .form-check-input"
-                                                value="1" />
-                                        </div>
-                                    </th>
                                     <th>User</th>
                                     <th>Produk</th>
                                     <th>Stok Awal</th>
                                     <th>Stok Masuk</th>
                                     <th>Stok Akhir</th>
                                     <th>Tanggal Masuk</th>
-                                    <th>Aksi</th>
                                 </tr>
                             </thead>
                             <tbody class="fw-semibold text-gray-600"></tbody>
@@ -71,4 +97,4 @@
     @push('scripts')
         <script src="{{ asset('assets/js/custom/apps/ecommerce/reports/stocks.js') }}"></script>
     @endpush
-</x-layout>
+</x-admin.layout>

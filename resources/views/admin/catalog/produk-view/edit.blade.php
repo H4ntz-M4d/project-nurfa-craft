@@ -1,4 +1,6 @@
 <x-admin.layout>
+	<x-slot:title>{{ $title }}</x-slot:title>
+	<x-slot:sub_title>{{ $sub_title }}</x-slot:sub_title>
     <div class="d-flex flex-column flex-column-fluid">
         <!--begin::Content-->
         <div id="kt_app_content" class="app-content flex-column-fluid">
@@ -423,7 +425,7 @@
                                                 <label class="required form-label">Base Price</label>
                                                 <!--end::Label-->
                                                 <!--begin::Input-->
-                                                <input type="number" name="harga" min="0" onkeydown="return isNumberKey(event)" class="form-control mb-2" placeholder="Harga Produk" value="{{ $produk->detailProduk->first()->harga ?? "" }}" />
+                                                <input type="number" onwheel="this.blur()" name="harga" min="0" onkeydown="return isNumberKey(event)" class="form-control mb-2" placeholder="Harga Produk" value="{{ $produk->detailProduk->first()->harga ?? "" }}" />
                                                 <!--end::Input-->
                                                 <!--begin::Description-->
                                                 <div class="text-muted fs-7">Set the product price.</div>
@@ -554,21 +556,6 @@
                                                 <!--end::Description-->
                                             </div>
                                             <!--end::Input group-->
-                                            <!--begin::Input group-->
-                                            <div class="mb-10 fv-row">
-                                                <!--begin::Label-->
-                                                <label class="required form-label">Quantity</label>
-                                                <!--end::Label-->
-                                                <!--begin::Input-->
-                                                <div class="d-flex gap-3">
-                                                    <input type="number" name="stok" min="0" onkeydown="return isNumberKey(event)" class="form-control mb-2" placeholder="On shelf" value="{{ $produk->detailProduk->first()->stok ?? "" }}" />
-                                                </div>
-                                                <!--end::Input-->
-                                                <!--begin::Description-->
-                                                <div class="text-muted fs-7">Enter the product quantity.</div>
-                                                <!--end::Description-->
-                                            </div>
-                                            <!--end::Input group-->
                                         </div>
                                         <!--end::Card header-->
                                     </div>
@@ -654,4 +641,4 @@
             }
         </script>
     @endpush
-</x-layout>
+</x-admin.layout>

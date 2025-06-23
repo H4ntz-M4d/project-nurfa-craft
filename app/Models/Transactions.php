@@ -13,7 +13,7 @@ class Transactions extends Model
     protected $fillable = [
         'id_user', 'tanggal', 'total', 'status',
         'provinsi', 'kota', 'alamat_pengiriman', 'telepon',
-        'order_id', 'snap_token'
+        'order_id', 'snap_token', 'slug'
     ];
 
     public function user()

@@ -1,4 +1,6 @@
 <x-admin.layout>
+	<x-slot:title>{{ $title }}</x-slot:title>
+	<x-slot:sub_title>{{ $sub_title }}</x-slot:sub_title>
     <div id="kt_app_content" class="app-content flex-column-fluid">
         <!--begin::Content container-->
         <div id="kt_app_content_container" class="app-container container-xxl">
@@ -66,7 +68,7 @@
         <div class="modal-dialog modal-dialog-centered modal-lg">
             <div class="modal-content">
                 <form id="kt_modal_add_stocks_form" method="POST" action="{{ route('stocks.store') }}" 
-                    data-kt-redirect="{{ route('produk.index') }}">
+                    data-kt-redirect="{{ route('stocks.index') }}">
                     
                     @csrf
 
@@ -189,4 +191,4 @@
 
         </script>
     @endpush
-</x-layout>
+</x-admin.layout>

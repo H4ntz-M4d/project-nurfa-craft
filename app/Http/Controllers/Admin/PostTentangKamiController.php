@@ -13,7 +13,10 @@ class PostTentangKamiController extends Controller
 {
     public function index()
     {
-        return view('admin.utilities.about.about');
+        return view('admin.utilities.about.about',[
+            'title' => 'List Tentang Kami',
+            'sub_title' => 'Utilities - List Tentang Kami',
+        ]);
     }
 
     public function data (Request $request)
@@ -68,13 +71,19 @@ class PostTentangKamiController extends Controller
 
     public function create()
     {
-        return view('admin.utilities.about.about-create');
+        return view('admin.utilities.about.about-create',[
+            'title' => 'Create Tentang Kami',
+            'sub_title' => 'Utilities - Create Tentaang Kami',
+        ]);
     }
 
     public function edit($slug)
     {
         $about = DB::table('about')->where('id_about', $slug)->firstOrFail();
-        return view('admin.utilities.about.about-edit', compact('about'));
+        return view('admin.utilities.about.about-edit',[
+            'title' => 'Edit Tentang Kami',
+            'sub_title' => 'Utilities - Edit Tentang Kami',
+        ]);
     }
 
     public function store(Request $request)

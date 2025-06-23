@@ -82,8 +82,8 @@ var KTCheckoutProcess = (function () {
                                 embedId: 'snap-container',
                                 onSuccess: function (result) {
                                     sessionStorage.clear(); // Hapus setelah berhasil
-                                    fetch('/delete-keranjang', {
-                                            method: 'DELETE',
+                                    fetch('/update-transaksi/' + data.slug, {
+                                            method: 'PUT',
                                             headers: {
                                                 'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]').content,
                                                 'Accept': 'application/json'
@@ -92,14 +92,31 @@ var KTCheckoutProcess = (function () {
                                         .then(response => response.json())
                                         .then(data => {
                                             if (data.success) {
-                                                console.log("Keranjang dihapus:", data);
-                                                window.location.href = "/shopping/" + data.slug;
+                                                fetch('/delete-keranjang/' + data.slug, {
+                                                        method: 'DELETE',
+                                                        headers: {
+                                                            'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]').content,
+                                                            'Accept': 'application/json'
+                                                        },
+                                                    })
+                                                    .then(response => response.json())
+                                                    .then(data => {
+                                                        if (data.success) {
+                                                            console.log("Keranjang dihapus:", data);
+                                                            window.location.href='/invoice-order/' + data.slug + '/' + data.invoice;
+                                                        } else {
+                                                            swal("Gagal menghapus keranjang", data.message || "Terjadi kesalahan", "error");
+                                                        }
+                                                    })
+                                                    .catch(error => {
+                                                        console.error("Gagal hapus keranjang:", error);
+                                                    });
                                             } else {
-                                                swal("Gagal menghapus keranjang", data.message || "Terjadi kesalahan", "error");
+                                                swal("Error", data.message || "Terjadi kesalahan", "error");
                                             }
                                         })
                                         .catch(error => {
-                                            console.error("Gagal hapus keranjang:", error);
+                                            console.error("Error:", error);
                                         });
                                 },
                                 onPending: function (result) {
@@ -138,7 +155,7 @@ document.addEventListener("DOMContentLoaded", function () {
             embedId: 'snap-container',
             onSuccess: function (result) {
                 sessionStorage.clear(); // Bersihkan setelah sukses
-                fetch('/delete-keranjang', {
+                fetch('/delete-keranjang' + slug, {
                         method: 'DELETE',
                         headers: {
                             'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]').content,
@@ -149,7 +166,7 @@ document.addEventListener("DOMContentLoaded", function () {
                     .then(data => {
                         if (data.success) {
                             console.log("Keranjang dihapus:", data);
-                            window.location.href = "/shopping/" + data.slug;
+                            window.location.href='/invoice-order/' + data.slug + '/' + data.invoice;
                         } else {
                             swal("Gagal menghapus keranjang", data.message || "Terjadi kesalahan", "error");
                         }

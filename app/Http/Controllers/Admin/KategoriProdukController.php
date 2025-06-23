@@ -12,7 +12,10 @@ class KategoriProdukController extends Controller
 {
     public function index()
     {
-        return view('admin.catalog.kategori-view.kategori');
+        return view('admin.catalog.kategori-view.kategori',[
+            'title' => 'Kategori',
+            'sub_title' => 'Catalog - Kategori'
+        ]);
     }
 
     public function data(Request $request)
@@ -57,7 +60,10 @@ class KategoriProdukController extends Controller
 
     public function create()
     {
-        return view('admin.catalog.kategori-view.create');
+        return view('admin.catalog.kategori-view.create',[
+            'title' => 'Tambah Kategori',
+            'sub_title' => 'Catalog - Tambah Kategori'
+        ]);
     }
 
     public function store(Request $request)
@@ -97,7 +103,10 @@ class KategoriProdukController extends Controller
         $kategori = KategoriProduk::where('slug', $slug)->firstOrFail();
         $gambar = asset('storage/' . $kategori->gambar);
 
-        return view('admin.catalog.kategori-view.edit', compact('kategori','gambar'));
+        $title = 'Edit Kategori';
+        $sub_title = 'Catalog - Edit Kategori';
+
+        return view('admin.catalog.kategori-view.edit', compact('kategori','gambar','title','sub_title'));
     }
 
     public function update(Request $request, $slug)

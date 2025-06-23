@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" style="background-color: #f6f8fb;">
 
 <head>
     <title>Home 02</title>
@@ -43,6 +43,9 @@
     <!--===============================================================================================-->
     <link rel="stylesheet" type="text/css" href="{{ asset('customers-asset/css/util.css') }} ">
     <link rel="stylesheet" type="text/css" href="{{ asset('customers-asset/css/main.css') }} ">
+    <link rel="stylesheet" type="text/css" href="{{ asset('customers-asset/css/chatbot.css') }} ">
+
+    @stack('css')
     <!--===============================================================================================-->
 </head>
 
@@ -144,6 +147,39 @@
 
     {{ $slot }}
 
+    <div class="chatbot-container">
+        <!-- Chat bubble toggle button -->
+        <button id="chatbot-toggle" class="chatbot-toggle">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path>
+            </svg>
+        </button>
+
+        <!-- Chatbox container -->
+        <div id="chatbot-box" class="chatbot-box hidden">
+            <div class="chatbot-header">
+                <h3>AI Assistant</h3>
+                <button id="chatbot-close" class="chatbot-close">&times;</button>
+            </div>
+            <div id="chatbot-messages" class="chatbot-messages">
+                <!-- Messages will appear here -->
+                <div class="chatbot-message chatbot-welcome">
+                    Hello! How can I help you today?
+                </div>
+            </div>
+            <div class="chatbot-input">
+                <div class="chatbot-input">
+                    <textarea id="chatbot-user-input" placeholder="Type your message..." rows="1" autocomplete="off"></textarea>
+                    <button id="chatbot-send">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <line x1="22" y1="2" x2="11" y2="13"></line>
+                            <polygon points="22 2 15 22 11 13 2 9 22 2"></polygon>
+                        </svg>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
 
     <!-- Footer -->
     <x-customers.footer></x-customers.footer>
@@ -159,6 +195,7 @@
 
 
     <!--===============================================================================================-->
+    <script src="{{ asset('customers-asset/js/chatbot.js') }}"></script>
     <script src="{{ asset('customers-asset/vendor/jquery/jquery-3.2.1.min.js') }}"></script>
     <!--===============================================================================================-->
     <script src="{{ asset('customers-asset/vendor/animsition/js/animsition.min.js') }}"></script>

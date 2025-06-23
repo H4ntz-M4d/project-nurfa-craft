@@ -12,7 +12,10 @@ class VariantProduk extends Controller
 {
     public function index()
     {
-        return view('admin.utilities.variant-list');
+        return view('admin.utilities.variant-list',[
+            'title' => 'Variant Produk',
+            'sub_title' => 'Utilities - Variant Produk',
+        ]);
     }
 
     public function data(Request $request)

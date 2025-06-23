@@ -56,6 +56,11 @@ class ProdukMaster extends Model
         return $this->hasMany(StokRecord::class, 'id_master_produk', 'id_master_produk');
     }
 
+    public function viewProduct()
+    {
+        return $this->hasMany(ViewProduct::class, 'id_master_produk', 'id_master_produk');
+    }
+
     protected static function boot()
     {
         parent::boot();

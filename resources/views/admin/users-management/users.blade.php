@@ -1,4 +1,6 @@
 <x-admin.layout>
+	<x-slot:title>{{ $title }}</x-slot:title>
+	<x-slot:sub_title>{{ $sub_title }}</x-slot:sub_title>
     <div id="kt_app_content" class="app-content flex-column-fluid">
         <!--begin::Content container-->
         <div id="kt_app_content_container" class="app-container container-xxl">
@@ -75,4 +77,4 @@
         <script src="{{ asset('assets/js/custom/apps/ecommerce/customers/listing/listing-users.js') }}"></script>
     @endpush
     
-</x-layout>
+</x-admin.layout>

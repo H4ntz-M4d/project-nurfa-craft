@@ -31,6 +31,10 @@ class User extends Authenticatable
     {
         return $this->hasOne(Karyawan::class, 'id_user', 'id');
     }
+    public function customers()
+    {
+        return $this->hasOne(Customers::class, 'id_user', 'id');
+    }
 
     protected static function boot()
     {
