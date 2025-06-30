@@ -14,9 +14,16 @@ var KTModalHomeBannerAdd = (function () {
                 fields: {
                     gambar: {
                         validators: {
-                            notEmpty: {
-                                message: "Nama lengkap wajib diisi",
-                            },
+                            callback: {
+                                message: "Gambar wajib diunggah",
+                                callback: function(input) {
+                                    const isEdit = !!r.querySelector('[name="id"]').value;
+                                    const fileSelected = input.value !== "";
+
+                                    // Jika sedang create (id kosong), maka gambar harus dipilih
+                                    return isEdit || fileSelected;
+                                }
+                            }
                         },
                     },
                     judul: {
@@ -35,14 +42,6 @@ var KTModalHomeBannerAdd = (function () {
                     },
                     
                 },
-                plugins: {
-                    trigger: new FormValidation.plugins.Trigger(),
-                    bootstrap: new FormValidation.plugins.Bootstrap5({
-                        rowSelector: ".fv-row",
-                        eleInvalidClass: "",
-                        eleValidClass: "",
-                    }),
-                },
             }));
             t.addEventListener("click", function (e) {
                 e.preventDefault();
@@ -54,17 +53,30 @@ var KTModalHomeBannerAdd = (function () {
                             t.disabled = true;
             
                             let formData = new FormData(r);
-            
-                            fetch(r.action, {
-                                method: "POST",
+
+                            let isUpdate = !!r.querySelector('[name="id"]').value;
+                            let url = isUpdate
+                                ? `/home-banner/${r.querySelector('[name="id"]').value}`  // contoh: /home-banner/5
+                                : r.action;
+
+                            let method = isUpdate ? "POST" : "POST";
+                            if (isUpdate) formData.append('_method', 'PUT'); // Laravel butuh ini
+
+                            fetch(url, {
+                                method: method,
                                 body: formData,
                                 headers: {
-                                    "X-CSRF-TOKEN": document.querySelector('meta[name="csrf-token"]').content
+                                    "X-CSRF-TOKEN": document.querySelector('meta[name="csrf-token"]').content,
+                                    Accept: "application/json",
                                 }
                             
                             })
-                            .then(response => {
-                                console.log("Response status:", response.status);
+                            .then(async response => {
+                                if (!response.ok) {
+                                    const errorData = await response.json();
+                                    throw { status: response.status, errors: errorData.errors };
+                                }
+
                                 return response.json();
                             })
                             .then(data => {
@@ -92,17 +104,28 @@ var KTModalHomeBannerAdd = (function () {
                                     });
                                 }
                             })
-                            .catch(error => {
-                                console.log(error);
+                            .catch(async error => {
                                 t.removeAttribute("data-kt-indicator");
                                 t.disabled = false;
-                                Swal.fire({
-                                    text: "Terjadi kesalahan! Periksa kembali inputan Anda.",
-                                    icon: "error",
-                                    buttonsStyling: false,
-                                    confirmButtonText: "OK",
-                                    customClass: { confirmButton: "btn btn-primary" }
-                                });
+
+                                if (error.status === 422) {
+                                    let errorMessages = Object.values(error.errors).flat().join('<br>');
+                                    Swal.fire({
+                                        html: errorMessages,
+                                        icon: "error",
+                                        buttonsStyling: false,
+                                        confirmButtonText: "OK",
+                                        customClass: { confirmButton: "btn btn-primary" }
+                                    });
+                                } else {
+                                    Swal.fire({
+                                        text: "Terjadi kesalahan! Periksa kembali inputan Anda.",
+                                        icon: "error",
+                                        buttonsStyling: false,
+                                        confirmButtonText: "OK",
+                                        customClass: { confirmButton: "btn btn-primary" }
+                                    });
+                                }
                             });
                         } else {
                             Swal.fire({
@@ -131,6 +154,9 @@ var KTModalHomeBannerAdd = (function () {
                         },
                     }).then(function (t) {
                         t.value ? (r.reset(), i.hide()) : null;
+                        r.reset();
+                        r.querySelector('[name="id"]').value = '';
+                        r.querySelector('.image-input-wrapper').style.backgroundImage = "url('/assets/media/misc/no-image.png')";
                     });
             });
             o.addEventListener("click", function (t) {
@@ -147,9 +173,31 @@ var KTModalHomeBannerAdd = (function () {
                             cancelButton: "btn btn-active-light",
                         },
                     }).then(function (t) {
+                        r.reset();
+                        r.querySelector('[name="id"]').value = '';
+                        r.querySelector('.image-input-wrapper').style.backgroundImage = "url('/assets/media/misc/no-image.png')";
+
                         t.value ? (r.reset(), i.hide()) : null;
                     });
             });
+
+            $('#kt_home_banner_table').on('draw.dt', function () {
+                document.querySelectorAll('.edit-banner-btn').forEach(button => {
+                    button.addEventListener('click', function () {
+                        i.show();
+
+                        r.querySelector('[name="id"]').value = this.dataset.id;
+                        r.querySelector('[name="judul"]').value = this.dataset.judul;
+                        r.querySelector('[name="label"]').value = this.dataset.label;
+
+                        let wrapper = r.querySelector('.image-input-wrapper');
+                        if (this.dataset.gambar) {
+                            wrapper.style.backgroundImage = `url('${this.dataset.gambar}')`;
+                        }
+                    });
+                });
+            });
+
         },
     };
 })();

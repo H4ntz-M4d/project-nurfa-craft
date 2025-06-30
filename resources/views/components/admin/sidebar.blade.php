@@ -42,42 +42,13 @@
                         <!--begin:Menu item-->
                         <div data-kt-menu-trigger="click" class="menu-item menu-accordion {{ Route::is('karyawan.*') ? 'here show' : '' }}">
                             <!--begin:Menu link-->
-                            <span class="menu-link">
+                            <a class="menu-link {{ Route::is(['karyawan.list','karyawan.view']) ? 'active' : '' }}" href="/list-karyawan">
                                 <span class="menu-bullet">
                                     <span class="bullet bullet-dot"></span>
                                 </span>
                                 <span class="menu-title">Pegawai</span>
-                                <span class="menu-arrow"></span>
-                            </span>
+                            </a>
                             <!--end:Menu link-->
-                            <!--begin:Menu sub-->
-                            <div class="menu-sub menu-sub-accordion">
-                                <!--begin:Menu item-->
-                                <div class="menu-item">
-                                    <!--begin:Menu link-->
-                                    <a class="menu-link {{ Route::is(['karyawan.list','karyawan.view']) ? 'active' : '' }}" href="/list-karyawan">
-                                        <span class="menu-bullet">
-                                            <span class="bullet bullet-dot"></span>
-                                        </span>
-                                        <span class="menu-title">List Pegawai</span>
-                                    </a>
-                                    <!--end:Menu link-->
-                                </div>
-                                <!--end:Menu item-->
-                                <!--begin:Menu item-->
-                                <div class="menu-item">
-                                    <!--begin:Menu link-->
-                                    <a class="menu-link {{ Route::is('karyawan.gaji') ? 'active' : '' }}" href="/list-gaji">
-                                        <span class="menu-bullet">
-                                            <span class="bullet bullet-dot"></span>
-                                        </span>
-                                        <span class="menu-title">List Gaji Pegawai</span>
-                                    </a>
-                                    <!--end:Menu link-->
-                                </div>
-                                <!--end:Menu item-->
-                            </div>
-                            <!--end:Menu sub-->
                         </div>
                         <!--end:Menu item-->
                         <!--begin:Menu item-->

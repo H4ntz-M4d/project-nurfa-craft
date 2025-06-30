@@ -156,7 +156,7 @@
         </button>
 
         <!-- Chatbox container -->
-        <div id="chatbot-box" class="chatbot-box hidden">
+        <div id="chatbot-box" class="chatbot-box">
             <div class="chatbot-header">
                 <h3>AI Assistant</h3>
                 <button id="chatbot-close" class="chatbot-close">&times;</button>

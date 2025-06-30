@@ -45,7 +45,7 @@ class KaryawanController extends Controller
                         <!--end::Menu item-->
                         <!--begin::Menu item-->
                         <div class="menu-item px-3">
-                            <a href="#" class="menu-link px-3" data-id="'.$row->slug.'" data-kt-customer-table-filter="delete_row">Delete</a>
+                            <a href="#" class="menu-link px-3" data-slug="'.$row->slug.'" data-kt-karyawan-table-filter="delete_row">Delete</a>
                         </div>
                         <!--end::Menu item-->
                     </div>
@@ -174,7 +174,7 @@ class KaryawanController extends Controller
             return response()->json(['success' => false, 'message' => 'ID tidak valid'], 400);
         }
 
-        Karyawan::whereIn('id_karyawan', $ids)->delete();
+        Karyawan::whereIn('slug', $ids)->delete();
 
         return response()->json(['success' => true, 'message' => 'Data karyawan berhasil dihapus']);
     }

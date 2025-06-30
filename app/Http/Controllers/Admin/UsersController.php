@@ -20,14 +20,14 @@ class UsersController extends Controller
     public function data(Request $request)
     {
         if ($request->ajax()) {
-            $data = User::select('id','username','email','created_at');
+            $data = User::select('id','username','email','created_at','slug');
             return DataTables::of($data)
                 ->addColumn('checkbox', function($row){
                     return '<input type="checkbox" class="form-check-input" value="'.$row->id.'">';
                 })
                 ->addColumn('action', function($row){
                     return '
-                    <a href="#" class="btn btn-sm btn-danger btn-flex btn-center btn-active-light-primary" data-id="'.$row->id.'" data-kt-customer-table-filter="delete_row">
+                    <a href="#" class="btn btn-sm btn-danger btn-flex btn-center btn-active-light-primary" data-slug="'.$row->slug.'" data-kt-users-table-filter="delete_row">
                         <i class="ki-solid ki-eraser fs-5 ms-1"></i>
                         Delete
                     </a>
@@ -40,7 +40,7 @@ class UsersController extends Controller
 
     public function destroy($id)
     {
-        $user = User::findOrFail($id);
+        $user = User::where('slug', $id)->firstOrFail();
         $user->delete();
     
         return response()->json(['success' => true, 'message' => 'user berhasil dihapus']);
@@ -54,7 +54,7 @@ class UsersController extends Controller
             return response()->json(['success' => false, 'message' => 'ID tidak valid'], 400);
         }
 
-        User::whereIn('id', $ids)->delete();
+        User::whereIn('slug', $ids)->delete();
 
         return response()->json(['success' => true, 'message' => 'Data karyawan berhasil dihapus']);
     }

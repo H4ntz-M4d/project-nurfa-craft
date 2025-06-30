@@ -22,10 +22,6 @@
                                     <a href="/product">Shop</a>
                                 </li>
 
-                                <li class="{{ Route::is('shoping') ? 'active-menu' : '' }}" {{-- class="label1" data-label1="hot" --}}>
-                                    <a href="/shopping/{{ Auth::user()->slug }}">Features</a>
-                                </li>
-
                                 <li class="{{ Route::is('blog') ? 'active-menu' : '' }}">
                                     <a href="/blog">Blog</a>
                                 </li>
@@ -50,10 +46,6 @@
                                     <a href="{{ route('product.index') }}" class="modal-login">Shop</a>
                                 </li>
 
-                                <li class="{{ Route::is('shoping') ? 'active-menu' : '' }}" {{-- class="label1" data-label1="hot" --}}>
-                                    <a href="{{ route('login') }}" class="modal-login">Features</a>
-                                </li>
-
                                 <li class="{{ Route::is('blog') ? 'active-menu' : '' }}">
                                     <a href="/blog">Blog</a>
                                 </li>
@@ -72,19 +64,20 @@
                     <!-- Icon header -->
                     <div class="wrap-icon-header flex-w flex-r-m h-full">
 
-                        <div class="flex-c-m h-full p-l-18 p-r-25 bor5">
-                            <div class="icon-header-item cl2 hov-cl1 trans-04 p-lr-11 {{-- icon-header-noti --}} js-show-cart"
-                                {{-- data-notify="2" --}}>
-                                <i class="zmdi zmdi-shopping-cart"></i>
-                            </div>
-                        </div>
-
                         @if (Auth::check())
                             {{-- <div class="flex-c-m h-full p-lr-19">
                                 <div class="icon-header-item cl2 hov-cl1 trans-04 p-lr-11 js-show-sidebar">
                                     <i class="zmdi zmdi-menu"></i>
                                 </div>
                             </div> --}}
+                            <div class="flex-c-m h-full p-l-18 p-r-25 bor5">
+                                <a href="/shopping/{{ Auth::user()->slug }}" class="icon-header-item cl2 hov-cl1 trans-04 p-lr-11 {{-- icon-header-noti --}} 
+                                    {{ Route::is('shoping') ? 'active-menu' : '' }} "
+                                    {{-- data-notify="2" --}}>
+                                    <i class="zmdi zmdi-shopping-cart"></i>
+                                </a>
+                            </div>
+
                             <div class="mx-2">
                                 <form method="POST" action="{{ route('logout') }}"
                                     class="btn btn-active-light-success">
@@ -97,6 +90,13 @@
                                 </form>
                             </div>
                         @else
+                            <div class="flex-c-m h-full p-l-18 p-r-25 bor5">
+                                <a href="{{ route('login') }}" class="icon-header-item cl2 hov-cl1 trans-04 p-lr-11 {{-- icon-header-noti --}} 
+                                    {{ Route::is('shoping') ? 'active-menu' : '' }} "
+                                    {{-- data-notify="2" --}}>
+                                    <i class="zmdi zmdi-shopping-cart"></i>
+                                </a>
+                            </div>
                             <div class="mx-2">
                                 <a href="{{ route('login') }}" class="btn btn-active-light-success">Login</a>
                             </div>

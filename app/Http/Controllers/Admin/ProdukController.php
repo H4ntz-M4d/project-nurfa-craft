@@ -166,11 +166,28 @@ class ProdukController extends Controller
                 $attributeValues = [];
 
                 foreach ($attributes as $attribute) {
+                    // Cek jika atribut tidak ada atau kosong, lewati
+                    if (empty($attribute['product_option'])) {
+                        continue;
+                    }
+
                     $attributeId = $attribute['product_option'];
-                    $attributeModel = VariantAttribute::findOrFail($attributeId);
+                    $attributeModel = VariantAttribute::find($attributeId);
+
+                    // Lewati jika attribute tidak ditemukan di database
+                    if (!$attributeModel) {
+                        continue;
+                    }
 
                     $values = [];
+
+                    // Cek value dalam inner repeater
                     foreach ($attribute['kt_docs_repeater_nested_inner'] as $val) {
+                        // Lewati jika nilai kosong
+                        if (empty($val['nilai_variant'])) {
+                            continue;
+                        }
+
                         $variantValue = VariantValues::firstOrCreate([
                             'id_variant_attributes' => $attributeModel->id_variant_attributes,
                             'value' => $val['nilai_variant'],
@@ -183,7 +200,10 @@ class ProdukController extends Controller
                         ];
                     }
 
-                    $attributeValues[] = $values;
+                    // Simpan hanya jika ada value valid
+                    if (count($values) > 0) {
+                        $attributeValues[] = $values;
+                    }
                 }
 
                 // Fungsi bantu untuk kombinasi semua varian
@@ -530,11 +550,28 @@ class ProdukController extends Controller
                 $attributeValues = [];
 
                 foreach ($attributes as $attribute) {
+                    // Cek jika atribut tidak ada atau kosong, lewati
+                    if (empty($attribute['product_option'])) {
+                        continue;
+                    }
+
                     $attributeId = $attribute['product_option'];
-                    $attributeModel = VariantAttribute::findOrFail($attributeId);
+                    $attributeModel = VariantAttribute::find($attributeId);
+
+                    // Lewati jika attribute tidak ditemukan di database
+                    if (!$attributeModel) {
+                        continue;
+                    }
 
                     $values = [];
+
+                    // Cek value dalam inner repeater
                     foreach ($attribute['kt_docs_repeater_nested_inner'] as $val) {
+                        // Lewati jika nilai kosong
+                        if (empty($val['nilai_variant'])) {
+                            continue;
+                        }
+
                         $variantValue = VariantValues::firstOrCreate([
                             'id_variant_attributes' => $attributeModel->id_variant_attributes,
                             'value' => $val['nilai_variant'],
@@ -543,11 +580,14 @@ class ProdukController extends Controller
                         $values[] = [
                             'attribute_id' => $attributeModel->id_variant_attributes,
                             'value_id' => $variantValue->id_variant_value,
-                            'value_text' => $variantValue->value,
+                            'value_text' => $variantValue->value
                         ];
                     }
 
-                    $attributeValues[] = $values;
+                    // Simpan hanya jika ada value valid
+                    if (count($values) > 0) {
+                        $attributeValues[] = $values;
+                    }
                 }
 
                 // Fungsi bantu kombinasi

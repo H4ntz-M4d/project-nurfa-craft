@@ -22,7 +22,7 @@ var KTBlogPostList = (function () {
                 }).then(function (result) {
                     if (result.value) {
                         $.ajax({
-                            url: `/blog-post/${row.dataset.slug}`, // Pastikan `data-slug` ada di <tr>
+                            url: `/about/${row.dataset.slug}`, // Pastikan `data-slug` ada di <tr>
                             type: 'DELETE',
                             data: {
                                 _token: $('meta[name="csrf-token"]').attr('content')
@@ -86,7 +86,7 @@ var KTBlogPostList = (function () {
             }).then(function (result) {
                 if (result.value) {
                     $.ajax({
-                        url: '/blog-post-delete-selected',
+                        url: '/about-delete-selected',
                         type: 'DELETE',
                         data: {
                             _token: $('meta[name="csrf-token"]').attr('content'),

@@ -7,6 +7,7 @@
             <!--begin::Post card-->
             <form id="kt_ecommerce_blog_post_form" data-kt-redirect="{{ route('blog-post.index') }}" enctype="multipart/form-data"
             data-store-blog-url="{{ route('blog-post.edit', $blog->id_blog) }}">
+            <input type="hidden" name="id_blog" value="{{ $blog->id_blog }}">
                 <div class="card mb-8">
                     <!--begin::Body-->
                     <div class="card-body p-lg-10 pb-lg-0">

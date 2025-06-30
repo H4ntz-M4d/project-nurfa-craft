@@ -1,5 +1,6 @@
 "use strict";
 var KTAppAddBlogPost = (function () {
+    let quillJudul, quillDeskripsi;
     const e = () => {
             $("#kt_ecommerce_blog_post_conditions").repeater({
                 initEmpty: !1,
@@ -59,6 +60,8 @@ var KTAppAddBlogPost = (function () {
                     // Mengambil data judul dari atribut data
                     if (e === "#kt_ecommerce_blog_judul") {
                         const judulContent = t.getAttribute("data-content");
+                        quillJudul = editor;
+
                         if (judulContent) {
                             editor.root.innerHTML = judulContent;
                         }
@@ -67,6 +70,8 @@ var KTAppAddBlogPost = (function () {
                     // Mengambil data deskripsi dari atribut data
                     if (e === "#kt_ecommerce_blog_post_description") {
                         const descContent = t.getAttribute("data-content");
+                        quillDeskripsi = editor;
+
                         if (descContent) {
                             editor.root.innerHTML = descContent;
                         }
@@ -90,11 +95,37 @@ var KTAppAddBlogPost = (function () {
                         );
                     (e = FormValidation.formValidation(t, {
                         fields: {
-                            tag: {
+                            judul: {
                                 validators: {
-                                    notEmpty: {
-                                        message: "Judul is required",
-                                    },
+                                    callback: {
+                                        message: "Judul tidak boleh kosong",
+                                        callback: function () {
+                                            return quillJudul && quillJudul.getText().trim().length > 0;
+                                        }
+                                    }
+                                }
+                            },
+                            deskripsi: {
+                                validators: {
+                                    callback: {
+                                        message: "Deskripsi tidak boleh kosong",
+                                        callback: function () {
+                                            return quillDeskripsi && quillDeskripsi.getText().trim().length > 0;
+                                        }
+                                    }
+                                }
+                            },
+                            gambar: {
+                                validators: {
+                                    callback: {
+                                        message: "Gambar wajib diunggah",
+                                        callback: function (e) {
+                                            const isEdit = !!t.querySelector('[name="id_blog"]').value;
+                                            const fileSelected = e.value !== "";
+
+                                            return isEdit || fileSelected;
+                                        }
+                                    }
                                 },
                             },
                         },
@@ -136,67 +167,76 @@ var KTAppAddBlogPost = (function () {
                                                     },
                                                 }
                                             )
-                                                .then((response) => {
-                                                    console.log(
-                                                        "Response status:",
-                                                        response.status
-                                                    );
-                                                    return response.json();
-                                                })
-                                                .then((data) => {
-                                                    o.removeAttribute(
-                                                        "data-kt-indicator"
-                                                    );
-                                                    o.disabled = false;
+                                            .then(async response => {
+                                                if (!response.ok) {
+                                                    const errorData = await response.json();
+                                                    throw { status: response.status, errors: errorData.errors };
+                                                }
 
-                                                    if (data.success) {
-                                                        Swal.fire({
-                                                            text: "Data berhasil disimpan!",
-                                                            icon: "success",
-                                                            buttonsStyling: false,
-                                                            confirmButtonText:
-                                                                "OK",
-                                                            customClass: {
-                                                                confirmButton:
-                                                                    "btn btn-primary",
-                                                            },
-                                                        }).then(function () {
-                                                            window.location =
-                                                                t.getAttribute(
-                                                                    "data-kt-redirect"
-                                                                );
-                                                        });
-                                                    } else {
-                                                        Swal.fire({
-                                                            text: "Terjadi kesalahan saat menyimpan data!",
-                                                            icon: "error",
-                                                            buttonsStyling: false,
-                                                            confirmButtonText:
-                                                                "Coba lagi",
-                                                            customClass: {
-                                                                confirmButton:
-                                                                    "btn btn-primary",
-                                                            },
-                                                        });
-                                                    }
-                                                })
-                                                .catch((error) => {
-                                                    console.log(error);
-                                                    o.removeAttribute(
-                                                        "data-kt-indicator"
-                                                    );
-                                                    o.disabled = false;
+                                                return response.json();
+                                            })
+                                            .then((data) => {
+                                                o.removeAttribute(
+                                                    "data-kt-indicator"
+                                                );
+                                                o.disabled = false;
+
+                                                if (data.success) {
                                                     Swal.fire({
-                                                        text: "Terjadi kesalahan! Periksa kembali inputan Anda.",
+                                                        text: "Data berhasil disimpan!",
+                                                        icon: "success",
+                                                        buttonsStyling: false,
+                                                        confirmButtonText:
+                                                            "OK",
+                                                        customClass: {
+                                                            confirmButton:
+                                                                "btn btn-primary",
+                                                        },
+                                                    }).then(function () {
+                                                        window.location =
+                                                            t.getAttribute(
+                                                                "data-kt-redirect"
+                                                            );
+                                                    });
+                                                } else {
+                                                    Swal.fire({
+                                                        text: "Terjadi kesalahan saat menyimpan data!",
                                                         icon: "error",
                                                         buttonsStyling: false,
-                                                        confirmButtonText: "OK",
+                                                        confirmButtonText:
+                                                            "Coba lagi",
                                                         customClass: {
                                                             confirmButton:
                                                                 "btn btn-primary",
                                                         },
                                                     });
-                                                });
+                                                }
+                                            })
+                                            .catch((error) => {
+                                                console.log(error);
+                                                o.removeAttribute(
+                                                    "data-kt-indicator"
+                                                );
+                                                o.disabled = false;
+                                                if (error.status === 422) {
+                                                    let errorMessages = Object.values(error.errors).flat().join('<br>');
+                                                    Swal.fire({
+                                                        html: errorMessages,
+                                                        icon: "error",
+                                                        buttonsStyling: false,
+                                                        confirmButtonText: "OK",
+                                                        customClass: { confirmButton: "btn btn-primary" }
+                                                    });
+                                                } else {
+                                                    Swal.fire({
+                                                        text: "Terjadi kesalahan! Periksa kembali inputan Anda.",
+                                                        icon: "error",
+                                                        buttonsStyling: false,
+                                                        confirmButtonText: "OK",
+                                                        customClass: { confirmButton: "btn btn-primary" }
+                                                    });
+                                                }
+                                            });
                                         } else {
                                             Swal.fire({
                                                 text: "Ada kesalahan pada input, silakan periksa kembali!",

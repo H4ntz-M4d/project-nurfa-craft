@@ -30,12 +30,39 @@ document.addEventListener('DOMContentLoaded', function() {
     
     // Toggle chatbox
     toggleBtn.addEventListener('click', function() {
-        chatBox.classList.toggle('hidden');
+        if (chatBox.classList.contains('visible')) {
+            // Animasi keluar
+            chatBox.style.opacity = '0';
+            chatBox.style.transform = 'translateY(20px)';
+            
+            setTimeout(() => {
+                chatBox.classList.remove('visible');
+            }, 300);
+        } else {
+            // Tampilkan elemen terlebih dahulu
+            chatBox.classList.add('visible');
+            
+            // Trigger reflow untuk memastikan animasi berjalan
+            void chatBox.offsetWidth;
+            
+            // Mulai animasi masuk
+            chatBox.style.opacity = '1';
+            chatBox.style.transform = 'translateY(0)';
+            
+            // Fokus ke input
+            setTimeout(() => userInput.focus(), 300);
+        }
     });
     
-    // Close chatbox
+    // Close chatbox dengan animasi
     closeBtn.addEventListener('click', function() {
-        chatBox.classList.add('hidden');
+        // Animasi keluar
+        chatBox.style.opacity = '0';
+        chatBox.style.transform = 'translateY(20px)';
+        
+        setTimeout(() => {
+            chatBox.classList.remove('visible');
+        }, 300);
     });
     
     // Send message on button click
@@ -55,23 +82,36 @@ document.addEventListener('DOMContentLoaded', function() {
     function sendMessage() {
         const message = userInput.value.trim();
         if (message === '') return;
-        
-        // Add user message to chat
+
         addMessage(message, 'user');
         userInput.value = '';
         userInput.style.height = 'auto';
         userInput.focus();
-        
-        // Show typing indicator
+
         showTypingIndicator();
-        
-        // Simulate AI response (replace with actual API call)
-        setTimeout(() => {
+
+        // Kirim ke backend Laravel
+        fetch("/ask-ai", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+                "X-CSRF-TOKEN": document.querySelector('meta[name="csrf-token"]').content,
+                "Accept": "application/json"
+            },
+            body: JSON.stringify({ content: message })
+        })
+        .then(res => res.json())
+        .then(data => {
             removeTypingIndicator();
-            const aiResponse = generateAIResponse(message);
-            addMessage(aiResponse, 'ai');
-        }, 1000);
+            addMessage(data.reply, "ai");
+        })
+        .catch(error => {
+            removeTypingIndicator();
+            addMessage("Terjadi kesalahan dalam menghubungi AI.", "ai");
+            console.error("AI error:", error);
+        });
     }
+
     
     function addMessage(text, sender) {
         const messageElement = document.createElement('div');
@@ -109,25 +149,16 @@ document.addEventListener('DOMContentLoaded', function() {
         messagesContainer.scrollTop = messagesContainer.scrollHeight;
     }
     
-    // Simple response generation (replace with actual API call)
-    function generateAIResponse(userMessage) {
-        const responses = [
-            "I understand you're asking about: " + userMessage + ". Can you provide more details?",
-            "That's an interesting question! Here's what I know about this topic...",
-            "I can help with that. Let me look up some information for you.",
-            "Thanks for your message! I'm still learning, but I'll do my best to assist you.",
-            "I've noted your question about " + userMessage + ". Is there anything specific you'd like to know?"
-        ];
-        
-        return responses[Math.floor(Math.random() * responses.length)];
-    }
-    
     // Optional: Auto-open after 10 seconds if not interacted with
     setTimeout(() => {
-        if (!chatBox.classList.contains('hidden')) return;
+        if (chatBox.classList.contains('visible')) return;
         const hasInteracted = localStorage.getItem('chatbotInteracted');
         if (!hasInteracted) {
-            chatBox.classList.remove('hidden');
+            chatBox.classList.add('visible');
+            // Trigger animasi
+            void chatBox.offsetWidth;
+            chatBox.style.opacity = '1';
+            chatBox.style.transform = 'translateY(0)';
             localStorage.setItem('chatbotInteracted', 'true');
         }
     }, 10000);

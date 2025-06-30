@@ -80,17 +80,20 @@
 
     <div class="modal fade" id="kt_modal_add_banner_home" tabindex="-1" aria-hidden="false">
         <!--begin::Modal dialog-->
-        <div class="modal-dialog modal-dialog-centered mw-900px">
+        <div class="modal-dialog modal-dialog-centered mw-950px">
             <!--begin::Modal content-->
             <div class="modal-content">
                 <!--begin::Form-->
                 <form class="form" method="POST" action="{{ route('home-banner.store') }}"
                     id="kt_modal_add_banner_home_form" data-kt-redirect="{{ route('home-banner.index') }}">
                     @csrf
+
+                    <input type="hidden" name="id" id="banner_id">
+
                     <!--begin::Modal header-->
                     <div class="modal-header" id="kt_modal_add_banner_home_header">
                         <!--begin::Modal title-->
-                        <h2 class="fw-bold">Add a Customer</h2>
+                        <h2 class="fw-bold">Tambah Banner</h2>
                         <!--end::Modal title-->
                         <!--begin::Close-->
                         <div id="kt_modal_add_banner_home_close" class="btn btn-icon btn-sm btn-active-icon-primary">
@@ -117,7 +120,7 @@
                                 <!--begin::Input-->
                                 <div class="d-flex justify-content-center image-input image-input-empty image-input-outline image-input-placeholder" data-kt-image-input="true">
                                     <!--begin::Preview existing avatar-->
-                                    <div class="image-input-wrapper w-750px h-300px" style="background-image: url('assets/media/misc/no-image.png')"></div>
+                                    <div class="image-input-wrapper w-750px h-350px bgi-position-center" style="background-image: url('assets/media/misc/no-image.png')"></div>
                                     <!--end::Preview existing avatar-->
                                     <!--begin::Label-->
                                     <label class="btn btn-icon btn-circle btn-active-color-primary w-25px h-25px bg-body shadow" data-kt-image-input-action="change" data-bs-toggle="tooltip" title="Change avatar">
@@ -157,7 +160,7 @@
                                 <label class="required fs-6 fw-semibold mb-2">Judul</label>
                                 <!--end::Label-->
                                 <!--begin::Input-->
-                                <input type="text" class="form-control form-control-solid" placeholder="Nama Lengkap"
+                                <input type="text" class="form-control form-control-solid" id="banner_judul" placeholder="Nama Lengkap"
                                     name="judul" />
                                 <!--end::Input-->
                             </div>
@@ -168,7 +171,7 @@
                                 <label class="required fs-6 fw-semibold mb-2">Label</label>
                                 <!--end::Label-->
                                 <!--begin::Input-->
-                                <input type="text" class="form-control form-control-solid" placeholder="Nama Lengkap"
+                                <input type="text" class="form-control form-control-solid" id="banner_label" placeholder="Nama Lengkap"
                                     name="label" />
                                 <!--end::Input-->
                             </div>

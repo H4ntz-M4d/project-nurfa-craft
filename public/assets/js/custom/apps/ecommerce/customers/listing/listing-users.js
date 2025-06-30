@@ -3,18 +3,14 @@
 var KTUsersList = (function () {
     var t, e;
 
-    const handleRowDelete = () => {
-        e.querySelectorAll(
-            '[data-kt-customer-table-filter="delete_row"]'
-        ).forEach((btn) => {
-            btn.addEventListener("click", function (event) {
-                event.preventDefault();
-                const row = event.target.closest("tr");
-                const nama = row.querySelectorAll("td")[2].innerText; // kolom ke-2 (nama)
-                const id = btn.getAttribute("data-id");
-
+    const handleDeleteButtons = () => {
+        e.querySelectorAll('[data-kt-users-table-filter="delete_row"]').forEach((el) => {
+            el.addEventListener("click", function (ev) {
+                ev.preventDefault();
+                const row = el.closest("tr"),
+                    nama = row.querySelectorAll("td")[2].innerText;
                 Swal.fire({
-                    text: `Are you sure you want to delete ${nama}?`,
+                    text: `Yakin ingin menghapus "${nama}"?`,
                     icon: "warning",
                     showCancelButton: true,
                     buttonsStyling: false,
@@ -25,58 +21,34 @@ var KTUsersList = (function () {
                         cancelButton: "btn fw-bold btn-active-light-primary",
                     },
                 }).then(function (result) {
-                    if (result.isConfirmed) {
-                        fetch(`/users/${id}`, {
-                            method: "DELETE",
-                            headers: {
-                                "X-CSRF-TOKEN": document
-                                    .querySelector('meta[name="csrf-token"]')
-                                    .getAttribute("content"),
-                                Accept: "application/json",
+                    if (result.value) {
+                        $.ajax({
+                            url: `/users/${row.dataset.slug}`, // Pastikan `data-slug` ada di <tr>
+                            type: 'DELETE',
+                            data: {
+                                _token: $('meta[name="csrf-token"]').attr('content')
                             },
-                        })
-                            .then((res) => res.json())
-                            .then((data) => {
-                                if (data.success) {
+                            success: function (res) {
+                                if (res.success) {
                                     Swal.fire({
-                                        text: `${nama} berhasil dihapus!`,
+                                        text: res.message,
                                         icon: "success",
                                         buttonsStyling: false,
-                                        confirmButtonText: "Ok",
-                                        customClass: {
-                                            confirmButton:
-                                                "btn fw-bold btn-primary",
-                                        },
+                                        confirmButtonText: "Ok, got it!",
+                                        customClass: { confirmButton: "btn fw-bold btn-primary" },
                                     }).then(() => {
                                         t.row($(row)).remove().draw();
                                     });
-                                } else {
-                                    throw new Error(
-                                        data.message || "Gagal menghapus"
-                                    );
                                 }
-                            })
-                            .catch(() => {
-                                Swal.fire({
-                                    text: `Gagal menghapus ${nama}.`,
-                                    icon: "error",
-                                    buttonsStyling: false,
-                                    confirmButtonText: "Ok",
-                                    customClass: {
-                                        confirmButton:
-                                            "btn fw-bold btn-primary",
-                                    },
-                                });
-                            });
+                            }
+                        });                        
                     } else if (result.dismiss === "cancel") {
                         Swal.fire({
-                            text: `${nama} was not deleted.`,
+                            text: `"${nama}" was not deleted.`,
                             icon: "error",
                             buttonsStyling: false,
                             confirmButtonText: "Ok, got it!",
-                            customClass: {
-                                confirmButton: "btn fw-bold btn-primary",
-                            },
+                            customClass: { confirmButton: "btn fw-bold btn-primary" },
                         });
                     }
                 });
@@ -84,96 +56,71 @@ var KTUsersList = (function () {
         });
     };
 
-    const handleBulkDelete = () => {
-        const checkboxes = e.querySelectorAll(
-                '[type="checkbox"]:not([data-kt-check])'
-            ),
-            deleteBtn = document.querySelector(
-                '[data-kt-customer-table-select="delete_selected"]'
-            );
+    const handleGroupActions = () => {
+        const checkboxes = e.querySelectorAll('[type="checkbox"]');
+        const deleteSelectedBtn = document.querySelector('[data-kt-users-table-select="delete_selected"]');
 
         checkboxes.forEach((checkbox) => {
-            checkbox.addEventListener("click", () => {
-                setTimeout(updateToolbar, 50);
+            checkbox.addEventListener("click", function () {
+                setTimeout(() => updateToolbar(), 50);
             });
         });
 
-        deleteBtn.addEventListener("click", () => {
-            let selectedIds = [];
-            checkboxes.forEach((checkbox) => {
-                if (checkbox.checked) {
-                    selectedIds.push(checkbox.value);
-                }
+        deleteSelectedBtn.addEventListener("click", function () {
+            let selectedSlugsArray = [];
+            e.querySelectorAll('tbody [type="checkbox"]:checked').forEach((checkbox) => {
+                const row = checkbox.closest("tr");
+                const slug = row.getAttribute("data-slug");
+                if (slug) selectedSlugsArray.push(slug);
             });
-
-            if (selectedIds.length === 0) return;
-
             Swal.fire({
-                text: "Yakin ingin menghapus data yang dipilih?",
+                text: "Yakin ingin menghapus pilihan users?",
                 icon: "warning",
                 showCancelButton: true,
                 buttonsStyling: false,
-                confirmButtonText: "Ya, hapus!",
-                cancelButtonText: "Batal",
+                confirmButtonText: "Yes, delete!",
+                cancelButtonText: "No, cancel",
                 customClass: {
                     confirmButton: "btn fw-bold btn-danger",
                     cancelButton: "btn fw-bold btn-active-light-primary",
                 },
             }).then(function (result) {
                 if (result.value) {
-                    fetch("/users/delete-selected", {
-                        method: "POST",
-                        headers: {
-                            "X-CSRF-TOKEN": document
-                                .querySelector('meta[name="csrf-token"]')
-                                .getAttribute("content"),
-                            "Content-Type": "application/json",
-                            Accept: "application/json",
+                    $.ajax({
+                        url: '/users-delete-selected',
+                        type: 'DELETE',
+                        data: {
+                            _token: $('meta[name="csrf-token"]').attr('content'),
+                            ids: selectedSlugsArray
                         },
-                        body: JSON.stringify({ ids: selectedIds }),
-                    })
-                        .then((res) => res.json())
-                        .then((data) => {
-                            if (data.success) {
+                        success: function (res) {
+                            if (res.success) {
                                 Swal.fire({
-                                    text: "Data berhasil dihapus!",
+                                    text: "Kamu berhasil menghapus pilihan userss!",
                                     icon: "success",
                                     buttonsStyling: false,
-                                    confirmButtonText: "Ok",
-                                    customClass: {
-                                        confirmButton:
-                                            "btn fw-bold btn-primary",
-                                    },
-                                }).then(() => {
-                                    selectedIds.forEach((id) => {
-                                        const row = e
-                                            .querySelector(
-                                                `input[value="${id}"]`
-                                            )
-                                            .closest("tr");
-                                        t.row($(row)).remove().draw();
+                                    confirmButtonText: "Ok, got it!",
+                                    customClass: { confirmButton: "btn fw-bold btn-primary" },
+                                }).then(function () {
+                                    checkboxes.forEach((checkbox) => {
+                                        if (checkbox.checked) {
+                                            t.row($(checkbox.closest("tbody tr"))).remove().draw();
+                                        }
                                     });
-
-                                    e.querySelector(
-                                        "[data-kt-check]"
-                                    ).checked = false;
-                                    updateToolbar();
+                                    e.querySelector('[type="checkbox"]').checked = false;
                                 });
-                            } else {
-                                throw new Error(data.message);
                             }
-                        })
-                        .catch(() => {
-                            Swal.fire({
-                                text: "Terjadi kesalahan saat menghapus data.",
-                                icon: "error",
-                                buttonsStyling: false,
-                                confirmButtonText: "Ok",
-                                customClass: {
-                                    confirmButton: "btn fw-bold btn-primary",
-                                },
-                            });
-                        });
+                        }
+                    });
+                    
+                } else if (result.dismiss === "cancel") {
+                    Swal.fire({
+                        text: "Selected Produk were not deleted.",
+                        icon: "error",
+                        buttonsStyling: false,
+                        confirmButtonText: "Ok, got it!",
+                        customClass: { confirmButton: "btn fw-bold btn-primary" },
+                    });
                 }
             });
         });
@@ -181,13 +128,13 @@ var KTUsersList = (function () {
 
     const updateToolbar = () => {
         const baseToolbar = document.querySelector(
-                '[data-kt-customer-table-toolbar="base"]'
+                '[data-kt-users-table-toolbar="base"]'
             ),
             selectedToolbar = document.querySelector(
-                '[data-kt-customer-table-toolbar="selected"]'
+                '[data-kt-users-table-toolbar="selected"]'
             ),
             selectedCount = document.querySelector(
-                '[data-kt-customer-table-select="selected_count"]'
+                '[data-kt-users-table-select="selected_count"]'
             ),
             checkboxes = e.querySelectorAll(
                 'tbody [type="checkbox"]:not([data-kt-check])'
@@ -239,15 +186,17 @@ var KTUsersList = (function () {
                         return moment(data).format('DD-MM-YYYY:mm:ss');
                     }},
                     { data: "action", orderable: false, searchable: false },
-                ],
+                ],createdRow: function (row, data, dataIndex) {
+                    $(row).attr('data-slug', data.slug); // penting agar row.dataset.slug bisa dipakai
+                },
                 order: [],
                 columnDefs: [
                     { orderable: false, targets: 0 },
                     { orderable: false, targets: 5 },
                 ],
                 drawCallback: function () {
-                    handleBulkDelete();
-                    handleRowDelete();
+                    handleDeleteButtons();
+                    handleGroupActions();
                     updateToolbar();
                     KTMenu.createInstances(); // dropdown dari template
                 },
@@ -255,7 +204,7 @@ var KTUsersList = (function () {
 
             // Search input
             document
-                .querySelector('[data-kt-customer-table-filter="search"]')
+                .querySelector('[data-kt-users-table-filter="search"]')
                 .addEventListener("keyup", function (event) {
                     t.search(event.target.value).draw();
                 });

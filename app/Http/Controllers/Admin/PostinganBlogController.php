@@ -93,6 +93,7 @@ class PostinganBlogController extends Controller
         return view('admin.utilities.blog-post.blog-edit', [
             'title' => 'Edit Postingan Blog',
             'sub_title' => 'Utilities - Edit Postingan Blog',
+            'blog' => $blog
         ]);
     }
 
@@ -102,7 +103,11 @@ class PostinganBlogController extends Controller
             'judul' => 'required|string|max:255',
             'deskripsi' => 'required|string',
             'tag' => 'nullable|string|max:100',
-            'gambar' => 'nullable|image|max:5120', // 5MB max
+            'gambar' => 'nullable|image|max:5048', // 5MB max
+        ],[
+            'gambar.image' => 'File yang diunggah harus berupa gambar.',
+            'gambar.mimes' => 'Gambar harus bertipe jpeg, png, atau jpg.',
+            'gambar.max' => 'Ukuran gambar tidak boleh lebih dari 5MB.',
         ]);
 
         if ($request->hasFile('gambar')) {
@@ -123,17 +128,21 @@ class PostinganBlogController extends Controller
 
         return response()->json([
             'success' => true,
-            'message' => 'Blog Post berhasil disimpan',
+            'message' => 'Post Tentang Kami berhasil disimpan',
         ]);
     }
 
     public function update(Request $request, $slug)
     {
-        $request->validate(rules: [
-            'gambar' => 'nullable|image|mimes:jpeg,png,jpg',
+        $request->validate([
             'judul' => 'required|string|max:255',
             'deskripsi' => 'required|string',
-            'tag' => 'nullable|string',
+            'tag' => 'nullable|string|max:100',
+            'gambar' => 'nullable|image|max:5048', // 5MB max
+        ],[
+            'gambar.image' => 'File yang diunggah harus berupa gambar.',
+            'gambar.mimes' => 'Gambar harus bertipe jpeg, png, atau jpg.',
+            'gambar.max' => 'Ukuran gambar tidak boleh lebih dari 5MB.',
         ]);
 
         $blog = DB::table('blog')->where('id_blog', $slug)->firstOrFail();
@@ -160,7 +169,7 @@ class PostinganBlogController extends Controller
 
         return response()->json([
             'success' => true,
-            'message' => 'Kategori berhasil diperbarui.',
+            'message' => 'Post Tentang Kami berhasil diperbarui.',
         ]);
     }
 

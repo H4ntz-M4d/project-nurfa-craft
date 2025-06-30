@@ -9,7 +9,7 @@ var KTProdukList = (function () {
                 const row = el.closest("tr"),
                     nama = row.querySelectorAll("td")[2].innerText;
                 Swal.fire({
-                    text: `Are you sure you want to delete "${nama}"?`,
+                    text: `Yakin ingin menghapus "${nama}"?`,
                     icon: "warning",
                     showCancelButton: true,
                     buttonsStyling: false,
@@ -73,7 +73,7 @@ var KTProdukList = (function () {
                 if (slug) selectedSlugsArray.push(slug);
             });
             Swal.fire({
-                text: "Are you sure you want to delete selected Produk?",
+                text: "Yakin ingin menghapus pilihan Produk?",
                 icon: "warning",
                 showCancelButton: true,
                 buttonsStyling: false,
@@ -95,7 +95,7 @@ var KTProdukList = (function () {
                         success: function (res) {
                             if (res.success) {
                                 Swal.fire({
-                                    text: "You have deleted all selected Produk!",
+                                    text: "Kamu berhasil menghapus pilihan Produk!",
                                     icon: "success",
                                     buttonsStyling: false,
                                     confirmButtonText: "Ok, got it!",

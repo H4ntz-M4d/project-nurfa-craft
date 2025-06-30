@@ -27,9 +27,11 @@ use App\Http\Controllers\ProfileController;
 use App\Http\Middleware\RoleUsers;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Admin\TransaksiRecordController;
+use App\Http\Controllers\Customers\ChatbotController;
+use Illuminate\Foundation\Http\Middleware\VerifyCsrfToken;
 
 Route::get('/dashboard', [Dashboard::class, 'index'])
-->middleware(['auth', 'verified', RoleUsers::class.':admin,customers'])->name('dashboard');
+->middleware(['auth', 'verified', RoleUsers::class.':admin'])->name('dashboard');
 
 Route::middleware(['auth', 'verified', RoleUsers::class.':admin'])->group(function () {
 
@@ -50,7 +52,7 @@ Route::middleware(['auth', 'verified', RoleUsers::class.':admin'])->group(functi
     Route::get('/users', [UsersController::class, 'index'])->name('users.index');
     Route::get('/users-data', [UsersController::class, 'data'])->name('user.data'); // json data user
     Route::delete('/users/{id}', [UsersController::class, 'destroy'])->name('users.destroy');
-    Route::post('/users/delete-selected', [UsersController::class, 'destroySelected'])->name('users.destroySelected');
+    Route::delete('/users-delete-selected', [UsersController::class, 'destroySelected'])->name('users.destroySelected');
     // end Route user
 
     // Begin Route Karyawan
@@ -64,17 +66,17 @@ Route::middleware(['auth', 'verified', RoleUsers::class.':admin'])->group(functi
     Route::post('/update-karyawan/{slug}', [KaryawanController::class, 'update'])->name('karyawan.update');
 
     Route::delete('/karyawan/{id}', [KaryawanController::class, 'destroy'])->name('karyawan.destroy');
-    Route::post('/karyawan/delete-selected', [KaryawanController::class, 'destroySelected'])->name('karyawan.destroySelected');
+    Route::delete('/karyawan-delete-selected', [KaryawanController::class, 'destroySelected'])->name('karyawan.destroySelected');
     // End Route Karyawan
-
-    Route::get('/list-gaji', [KaryawanController::class, 'gaji'])->name('karyawan.gaji');
 
     // begin route customers
     Route::get('/list-customers', [CustomersController::class, 'index'])->name('customers.index');
     Route::get('/customers-data', [CustomersController::class, 'data'])->name('customers.data'); // json data karyawan
+    Route::get('/orders-view/{slug}', [CustomersController::class, 'dataOrders'])->name('customers-orders.data'); // json data karyawan
+    Route::get('/customers-view/{slug}', [CustomersController::class, 'view'])->name('customers.view'); // json data karyawan
     Route::post('/customers/store', [CustomersController::class, 'store'])->name('customers.store');
     Route::delete('/customers/{id}', [CustomersController::class, 'destroy'])->name('customers.destroy');
-    Route::post('/customers/delete-selected', [CustomersController::class, 'destroySelected'])->name('customers.destroySelected');
+    Route::delete('/customers-delete-selected', [CustomersController::class, 'destroySelected'])->name('customers.destroySelected');
     // end route customers
 
     // begin route kategori
@@ -131,6 +133,7 @@ Route::middleware(['auth', 'verified', RoleUsers::class.':admin'])->group(functi
     Route::get('/home-banner', [HomeBannerController::class, 'index'])->name('home-banner.index');
     Route::get('/home-banner-data', [HomeBannerController::class, 'data'])->name('home-banner.data'); // json data home banner
     Route::post('/home-banner/store', [HomeBannerController::class, 'store'])->name('home-banner.store');
+    Route::put('/home-banner/{id}', [HomeBannerController::class, 'update'])->name('home-banner.update');
     Route::delete('/home-banner/{slug}', [HomeBannerController::class, 'destroy'])->name('home-banner.destroy');
     Route::delete('/home-banner-delete-selected', [HomeBannerController::class, 'destroySelected'])->name('home-banner.destroySelected');
 
@@ -163,7 +166,7 @@ Route::middleware(['auth', 'verified', RoleUsers::class.':admin'])->group(functi
 
 });
 
-Route::middleware(['auth', 'verified', RoleUsers::class.':customers,admin'])->group(function () {
+Route::middleware(['auth', 'verified', RoleUsers::class.':customers'])->group(function () {
 
     
     Route::get('/produk-shop-detail/{slug?}', [ProdukDetailController::class, 'index'])->name('produk-shop.detail');
@@ -199,13 +202,15 @@ Route::get('/home', [HomeController::class, 'index'])->name('home');
 
 //product detail
 Route::get('/product', [ProdukCustomerController::class, 'index'])->name('product.index');
-Route::get('/product/kategori/{id}', [ProdukCustomerController::class, 'sortByCategory'])->name('product.sort-by-category');
 
+Route::get('/product/kategori/{id}', [ProdukCustomerController::class, 'sortByCategory'])->name('product.sort-by-category');
 
 Route::get('/blog', [BlogController::class, 'index'])->name('blog');
 
 Route::get('/about', [AboutController::class, 'index'])->name('about');
 
 Route::get('/contact', [ContactController::class, 'index'])->name('contact');
+
+Route::post('/ask-ai', [ChatbotController::class, 'askAI'])->name('chatbot')->withoutMiddleware(VerifyCsrfToken::class);
 
 require __DIR__.'/auth.php';

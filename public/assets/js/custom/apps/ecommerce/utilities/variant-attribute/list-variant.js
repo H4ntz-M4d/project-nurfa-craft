@@ -9,7 +9,7 @@ var KTVariantList = (function () {
                 const row = el.closest("tr"),
                     nama = row.querySelectorAll("td")[1].innerText;
                 Swal.fire({
-                    text: `Are you sure you want to delete "${nama}"?`,
+                    text: `Yakin ingin menghapus variant "${nama}"?`,
                     icon: "warning",
                     showCancelButton: true,
                     buttonsStyling: false,
@@ -73,7 +73,7 @@ var KTVariantList = (function () {
                 if (slug) selectedSlugsArray.push(slug);
             });
             Swal.fire({
-                text: "Are you sure you want to delete selected categories?",
+                text: "Yakin ingin menghapus pilihan variant?",
                 icon: "warning",
                 showCancelButton: true,
                 buttonsStyling: false,
@@ -95,7 +95,7 @@ var KTVariantList = (function () {
                         success: function (res) {
                             if (res.success) {
                                 Swal.fire({
-                                    text: "You have deleted all selected categories!",
+                                    text: "Kamu telah berhasil menhapus pilihan variant!",
                                     icon: "success",
                                     buttonsStyling: false,
                                     confirmButtonText: "Ok, got it!",

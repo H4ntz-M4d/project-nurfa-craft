@@ -291,6 +291,20 @@ var KTAppEcommerceSaveProduct = (function () {
                         );
                     (e = FormValidation.formValidation(t, {
                         fields: {
+                            gambar: {
+                                validators: {
+                                    callback: {
+                                        message: "Gambar wajib diunggah",
+                                        callback: function(input) {
+                                            const isEdit = !!r.querySelector('[name="id"]').value;
+                                            const fileSelected = input.value !== "";
+
+                                            // Jika sedang create (id kosong), maka gambar harus dipilih
+                                            return isEdit || fileSelected;
+                                        }
+                                    }
+                                },
+                            },
                             nama_produk: { // Tambahkan validasi untuk field baru
                                 validators: {
                                     notEmpty: {

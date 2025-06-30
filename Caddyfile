@@ -1,4 +1,4 @@
-nurfa-craft.store, www.nurfa-craft.store {
+nurfacraft.store, www.nurfacraft.store {
     reverse_proxy nurfa-app:8000
 
     header {

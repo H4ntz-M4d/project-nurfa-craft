@@ -58,7 +58,7 @@ class PostTentangKamiController extends Controller
                         <!--end::Menu item-->
                         <!--begin::Menu item-->
                         <div class="menu-item px-3">
-                            <a href="#" class="menu-link px-3" data-slug="'.$row->id_about.'" data-kt-category-table-filter="delete_row">Delete</a>
+                            <a href="#" class="menu-link px-3" data-slug="'.$row->id_about.'" data-kt-about-table-filter="delete_row">Delete</a>
                         </div>
                         <!--end::Menu item-->
                     </div>
@@ -83,6 +83,7 @@ class PostTentangKamiController extends Controller
         return view('admin.utilities.about.about-edit',[
             'title' => 'Edit Tentang Kami',
             'sub_title' => 'Utilities - Edit Tentang Kami',
+            'about' => $about
         ]);
     }
 
@@ -91,7 +92,11 @@ class PostTentangKamiController extends Controller
         $request->validate([
             'judul' => 'required|string|max:255',
             'deskripsi' => 'required|string',
-            'gambar' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+            'gambar' => 'nullable|image|mimes:jpeg,png,jpg|max:2048',
+        ],[
+            'gambar.image' => 'File yang diunggah harus berupa gambar.',
+            'gambar.mimes' => 'Gambar harus bertipe jpeg, png, atau jpg.',
+            'gambar.max' => 'Ukuran gambar tidak boleh lebih dari 5MB.',
         ]);
 
         $data = [
@@ -145,11 +150,13 @@ class PostTentangKamiController extends Controller
 
     public function destroy($slug)
     {
-        $about = DB::table('about')->where('id_about', $slug)->delete();
+        $about = DB::table('about')->where('id_about', $slug)->firstOrFail();
 
         if (!$about) {
             abort(404, 'Blog Post tidak ditemukan');
         }
+        Storage::disk('public')->delete($about->gambar);
+        DB::table('about')->where('id_about', $slug)->delete();
     
         return response()->json(['success' => true, 'message' => 'Karyawan berhasil dihapus']);
     }
@@ -161,8 +168,16 @@ class PostTentangKamiController extends Controller
             return response()->json(['success' => false, 'message' => 'ID tidak valid'], 400);
         }
 
+        $about = DB::table('about')->whereIn('id_about', $ids)->get();
+
+        foreach ($about as $item) {
+            if ($item->gambar) {
+                Storage::disk('public')->delete($item->gambar);
+            }
+        }
+
         DB::table('about')->whereIn('id_about', $ids)->delete();
 
-        return response()->json(['success' => true, 'message' => 'Data Kategori berhasil dihapus']);
+        return response()->json(['success' => true, 'message' => 'Data about berhasil dihapus']);
     }
 }

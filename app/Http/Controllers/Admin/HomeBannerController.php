@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\HomeBanner;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Storage;
 use Yajra\DataTables\Facades\DataTables;
 
 class HomeBannerController extends Controller
@@ -44,12 +45,17 @@ class HomeBannerController extends Controller
                     <div class="menu menu-sub menu-sub-dropdown menu-column menu-rounded menu-gray-600 menu-state-bg-light-primary fw-semibold fs-7 w-125px py-4" data-kt-menu="true">
                         <!--begin::Menu item-->
                         <div class="menu-item px-3">
-                            <a href="/kategori-edit/'.$row->id_banner.'" class="menu-link px-3">View</a>
+                            <a href="#" data-bs-toggle="modal" data-bs-target="#kt_modal_add_banner_home"
+                            data-id="'.$row->id_banner.'"
+                            data-judul="'.$row->judul.'"
+                            data-label="'.$row->label.'"
+                            data-gambar="'.asset('storage/' . $row->gambar).'"
+                            class="menu-link px-3 edit-banner-btn">View</a>
                         </div>
                         <!--end::Menu item-->
                         <!--begin::Menu item-->
                         <div class="menu-item px-3">
-                            <a href="#" class="menu-link px-3" data-slug="'.$row->id_banner.'" data-kt-category-table-filter="delete_row">Delete</a>
+                            <a href="#" class="menu-link px-3" data-slug="'.$row->id_banner.'" data-kt-banner-table-filter="delete_row">Delete</a>
                         </div>
                         <!--end::Menu item-->
                     </div>
@@ -64,7 +70,11 @@ class HomeBannerController extends Controller
         $request->validate([
             'judul' => 'required',
             'label' => 'nullable',
-            'gambar' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
+            'gambar' => 'nullable|image|mimes:jpeg,png,jpg|max:5120',
+        ], [
+            'gambar.image' => 'File yang diunggah harus berupa gambar.',
+            'gambar.mimes' => 'Gambar harus bertipe jpeg, png, atau jpg.',
+            'gambar.max' => 'Ukuran gambar tidak boleh lebih dari 5MB.',
         ]);
 
         if ($request->hasFile('gambar')) {
@@ -81,14 +91,42 @@ class HomeBannerController extends Controller
 
         return response()->json([
             'success' => true,
-            'message' => 'Kategori berhasil disimpan',
+            'message' => 'Banner berhasil disimpan',
         ]);
     }
+
+    public function update(Request $request, $id)
+    {
+        $banner = HomeBanner::findOrFail($id);
+
+        $request->validate([
+            'judul' => 'required',
+            'label' => 'nullable',
+            'gambar' => 'nullable|image|mimes:jpeg,png,jpg|max:5120',
+        ]);
+
+        if ($request->hasFile('gambar')) {
+            Storage::disk('public')->delete($banner->gambar);
+            $banner->gambar = $request->file('gambar')->store('banner', 'public');
+        }
+
+        $banner->update([
+            'judul' => $request->judul,
+            'label' => $request->label,
+        ]);
+
+        return response()->json([
+            'success' => true,
+            'message' => 'Banner berhasil diperbarui',
+        ]);
+    }
+
 
     public function destroy($id_banner)
     {
         $kategori = DB::table('home_banner')->where('id_banner', $id_banner)->firstOrFail();
-        $kategori->delete();
+        Storage::disk('public')->delete($kategori->gambar);
+        DB::table('home_banner')->where('id_banner', $id_banner)->delete();
     
         return response()->json(['success' => true, 'message' => 'Karyawan berhasil dihapus']);
     }
@@ -96,12 +134,20 @@ class HomeBannerController extends Controller
     public function destroySelected(Request $request)
     {
         $ids = $request->ids;
+
         if (!$ids || !is_array($ids)) {
             return response()->json(['success' => false, 'message' => 'ID tidak valid'], 400);
         }
 
-        DB::table('home_banner')->whereIn('id_banner', $ids)->delete();
+        $banners = HomeBanner::whereIn('id_banner', $ids)->get();
 
-        return response()->json(['success' => true, 'message' => 'Data Kategori berhasil dihapus']);
+        foreach ($banners as $banner) {
+            if ($banner->gambar) {
+                Storage::disk('public')->delete($banner->gambar);
+            }
+            $banner->delete();
+        }
+
+        return response()->json(['success' => true, 'message' => 'Data banner berhasil dihapus']);
     }
 }
