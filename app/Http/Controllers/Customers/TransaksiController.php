@@ -11,7 +11,8 @@ use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
-
+use Illuminate\Support\Facades\Http;
+use Illuminate\Support\Facades\Log;
 
 class TransaksiController extends Controller
 {
@@ -30,7 +31,7 @@ class TransaksiController extends Controller
         try {
             $userId = Auth::id();
 
-        do {
+            do {
                 $orderId = 'INV-' . now()->format('Ymd') . '-' . str_pad(rand(1, 99999), 5, '0', STR_PAD_LEFT);
             } while (Transactions::where('order_id', $orderId)->exists());
 
@@ -156,14 +157,40 @@ class TransaksiController extends Controller
         }
     }
 
+    private function sendWhatsApp($phone, $message)
+    {
+        $response = Http::withHeaders([
+            'Authorization' => env('FONNTE_API_KEY'),
+        ])->asForm()->post('https://api.fonnte.com/send', [
+            'target' => $phone,
+            'message' => $message,
+            'device' => env('FONNTE_DEVICE_ID'),
+        ]);
+
+
+        if ($response->failed()) {
+            Log::error('Gagal kirim WA ke ' . $phone . '. Respon: ' . $response->body());
+        }
+
+        return $response;
+    }
+
     public function updateStatus($slug)
     {
         $transaksi = Transactions::where('slug', $slug)
-            ->select('id_transaction','slug', 'status')
+            ->select('id_transaction', 'slug', 'status', 'telepon')
             ->firstOrFail();
 
         try {
             $transaksi->update(['status' => 'paid']);
+
+            // Kirim Token via WhatsApp
+            $formattedPhone = preg_replace('/^0/', '62', $transaksi->telepon);
+            $message = "📩 Pembayaran Diterima!\n"
+                . "Halo pelanggan,\n"
+                . "Status transaksi Anda dengan kode #{$transaksi->slug} telah berubah menjadi *PAID*.\n"
+                . "Terima kasih.";
+            $this->sendWhatsApp($formattedPhone, $message);
 
             return response()->json([
                 'success' => true,
@@ -177,7 +204,6 @@ class TransaksiController extends Controller
                 'slug' => $slug
             ]);
         }
-        
     }
 
     public function deleteKeranjang($slug)
@@ -200,44 +226,47 @@ class TransaksiController extends Controller
     public function historyOrders($slug)
     {
         $user = User::with('customers:id_user,nama')
-            ->select('id','email','slug')
+            ->select('id', 'email', 'slug')
             ->where('slug', $slug)
             ->firstOrFail();
 
-        $transaksi = Transactions::with('details.produk','details.variants')
+        $transaksi = Transactions::with('details.produk', 'details.variants')
             ->where('status', 'paid')
             ->where('id_user', $user->id)
             ->get()
             ->sortByDesc('updated_at');
 
-        return view('customers.history-order',
-        [
-            'user' => $user,
-            'transaksi' => $transaksi,
-        ]);
+        return view(
+            'customers.history-order',
+            [
+                'user' => $user,
+                'transaksi' => $transaksi,
+            ]
+        );
     }
 
     public function invoiceUser($slug, $invoice)
     {
         $user = User::with('customers:id_user,nama')
-            ->select('id','email','slug')
+            ->select('id', 'email', 'slug')
             ->where('slug', $slug)
             ->firstOrFail();
 
-        $transaksi = Transactions::with('details.produk','details.variants')
+        $transaksi = Transactions::with('details.produk', 'details.variants')
             ->where('id_user', $user->id)
             ->where('order_id', $invoice)
             ->firstOrFail();
 
         if ($transaksi->status === 'paid' && $user->id === Auth::user()->id) {
-            return view('customers.invoice-order',
-            [
-                'user' => $user,
-                'transaksi' => $transaksi,
-            ]);
+            return view(
+                'customers.invoice-order',
+                [
+                    'user' => $user,
+                    'transaksi' => $transaksi,
+                ]
+            );
         } else {
             return view('error.error-404');
         }
-        
     }
 }
