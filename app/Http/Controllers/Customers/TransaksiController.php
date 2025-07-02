@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Customers;
 
 use App\Http\Controllers\Controller;
 use App\Models\Keranjang;
+use App\Models\Pesanan;
 use App\Models\TransactionDetails;
 use App\Models\TransactionDetailVariants;
 use App\Models\Transactions;
@@ -183,6 +184,14 @@ class TransaksiController extends Controller
 
         try {
             $transaksi->update(['status' => 'paid']);
+
+            Pesanan::createOrFirst([
+                'id_transaction' => $transaksi->id_transaction,
+                'status' => 'proses',
+                'jasa_pengiriman' => null,
+                'harga_pengiriman' => null,
+                'keterangan' => null,
+            ]);
 
             // Kirim Token via WhatsApp
             $formattedPhone = preg_replace('/^0/', '62', $transaksi->telepon);

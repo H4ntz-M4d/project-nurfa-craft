@@ -31,11 +31,6 @@
                                 <span class="path2"></span>
                             </i>Export</button>
                             <!--end::Export-->
-                            <!--begin::Add customer-->
-                            {{-- <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#kt_modal_add_customer">
-                                <i class="ki-solid ki-abstract-10 fs-5"></i>
-                                Add karyawan
-                            </button> --}}
                             <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#kt_modal_tambah_karyawan">
                                 <i class="ki-solid ki-abstract-10 fs-5"></i>
                                 Add karyawan
@@ -88,7 +83,7 @@
 
             <!--end::Modals-->
 
-            <div class="modal fade" id="kt_modal_tambah_karyawan" tabindex="-1" aria-hidden="true">
+            <div class="modal fade" id="kt_modal_tambah_karyawan" data-bs-focus="false" tabindex="-1">
                 <!--begin::Modal dialog-->
                 <div class="modal-dialog modal-xl p-1">
                     <!--begin::Modal content-->
@@ -411,7 +406,8 @@
         {{-- ecommerce !!! --}}
         <script src="{{ asset('assets/js/custom/apps/ecommerce/customers/listing/listing-karyawan.js') }}"></script>
         <script src="{{ asset('assets/js/custom/apps/ecommerce/customers/listing/add-karyawan.js') }}"></script>
-		<script src="{{ asset('assets/js/custom/utilities/modals/top-up-wallet.js') }}"></script>
-        
+        <script>
+            $("#kt_datepicker_1").flatpickr();
+        </script>
     @endpush
 </x-admin.layout>

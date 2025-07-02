@@ -206,30 +206,12 @@ class ProdukController extends Controller
                     }
                 }
 
-                // Fungsi bantu untuk kombinasi semua varian
-                function generateCombinations($arrays, $i = 0)
-                {
-                    if (!isset($arrays[$i])) return [[]];
-
-                    $tmp = generateCombinations($arrays, $i + 1);
-                    $result = [];
-
-                    foreach ($arrays[$i] as $value) {
-                        foreach ($tmp as $t) {
-                            $result[] = array_merge([$value], $t);
-                        }
-                    }
-
-                    return $result;
-                }
 
                 // Buat kombinasi
                 $combinations = generateCombinations($attributeValues);
 
                 foreach ($combinations as $combo) {
-                    // Buat slug kombinasi
-                    $variantSlugParts = array_map(fn($c) => $c['value_text'], $combo);
-
+                    
                     // Buat entri produk_variant
                     $variant = ProdukVariant::create([
                         'id_master_produk' => $produk->id_master_produk,
@@ -274,15 +256,38 @@ class ProdukController extends Controller
             ], 500);
         }
     }
+    
+    // Fungsi bantu untuk kombinasi semua varian
+    public function generateCombinations($arrays, $i = 0)
+    {
+        if (!isset($arrays[$i])) return [[]];
+
+        $tmp = generateCombinations($arrays, $i + 1);
+        $result = [];
+
+        foreach ($arrays[$i] as $value) {
+            foreach ($tmp as $t) {
+                $result[] = array_merge([$value], $t);
+            }
+        }
+
+        return $result;
+    }
 
 
     public function kelolaVariant(string $slug)
     {
+        
         $produk = ProdukMaster::where('slug', $slug)
             ->with([
                 'kategori_produk',
                 'variant'])
             ->firstOrFail();
+
+        if ($produk->use_variant === 'yes' && $produk->variant->isEmpty()) {
+            return redirect()->route('produk.index')->with('variant_error', 'Anda menggunakan varian, tapi tidak ada data varian yang disimpan. Silakan isi data varian terlebih dahulu.');
+        }
+
 
         $produkVariantValues = ProdukVariantValues::whereHas('produkVariant', function($q) use ($produk) {
             $q->where('id_master_produk', $produk->id_master_produk);
@@ -413,6 +418,7 @@ class ProdukController extends Controller
                         'harga' => $harga[$index],
                         'stok' => $stok[$index],
                         'sku' => $sku[$index],
+                        'status' => 'publish',
                     ]);
                 } else {
                     // INSERT baru
@@ -421,6 +427,7 @@ class ProdukController extends Controller
                         'harga' => $harga[$index],
                         'stok' => $stok[$index],
                         'sku' => $sku[$index],
+                        'status' => 'publish',
                     ]);
 
                     // Simpan nilai variant
@@ -629,14 +636,7 @@ class ProdukController extends Controller
                         $variantModel = $existingCombinations[$comboKey];
                         unset($existingCombinations[$comboKey]);
                     } else {
-                        // Kombinasi baru
-                        $variantModel = ProdukVariant::create([
-                            'id_master_produk' => $produk->id_master_produk,
-                            'sku' => null,
-                            'harga' => null,
-                            'stok' => null,
-                            'status' => 'unpublish',
-                        ]);
+                        continue; // Lewati jika tidak ada
                     }
 
                     // Hapus dan insert ulang varian values
@@ -657,7 +657,6 @@ class ProdukController extends Controller
                     $oldVariant->delete();
                 }
             }
-
 
             // Hapus gambar jika ada yang dihapus
             $removedFiles = json_decode($request->removed_files, true) ?? [];

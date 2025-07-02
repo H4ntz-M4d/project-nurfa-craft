@@ -27,7 +27,7 @@
                                 <!--end::Avatar-->
                                 <!--begin::Name-->
                                 <a href="#" class="fs-3 text-gray-800 text-hover-primary fw-bold mb-1">
-                                    {{ $customer->name ?? $customer->users->username}}</a>
+                                    {{ $customer->nama ?? $customer->users->username}}</a>
                                 </a>
                                 <!--end::Name-->
                                 <!--begin::Position-->

@@ -476,5 +476,8 @@
         <script src="{{ asset('assets/js/custom/account/settings/profile-details.js') }}"></script>
         <script src="{{ asset('assets/js/custom/account/settings/deactivate-account.js') }}"></script>
         <script src="{{ asset('assets/js/custom/pages/user-profile/general.js') }}"></script>
+        <script>
+            $("#kt_datepicker_1").flatpickr();
+        </script>
     @endpush
 </x-admin.layout>

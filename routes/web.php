@@ -1,5 +1,7 @@
 <?php 
 use App\Http\Controllers\Admin\InvoiceOrderController;
+use App\Http\Controllers\Admin\PengeluaranController;
+use App\Http\Controllers\Admin\PesananController;
 use App\Http\Controllers\Admin\ProdukDiLihatController;
 ?><?php
 
@@ -29,6 +31,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Admin\TransaksiRecordController;
 use App\Http\Controllers\Customers\ChatbotController;
 use Illuminate\Foundation\Http\Middleware\VerifyCsrfToken;
+use App\Http\Controllers\Admin\ReportOmsetController;
 
 Route::get('/dashboard', [Dashboard::class, 'index'])
 ->middleware(['auth', 'verified', RoleUsers::class.':admin'])->name('dashboard');
@@ -108,6 +111,11 @@ Route::middleware(['auth', 'verified', RoleUsers::class.':admin'])->group(functi
     Route::delete('/produk/{slug}', [ProdukController::class, 'destroy'])->name('produk.destroy');
     Route::delete('/produk-delete-selected', [ProdukController::class, 'destroySelected'])->name('produk.destroySelected');
 
+    // begin route pesanan
+    Route::get('/list-pesanan', [PesananController::class, 'index'])->name('pesanan.index');
+    Route::get('/pesanan-data', [PesananController::class, 'data'])->name('pesanan.data'); // json data pesanan
+    Route::put('/pesanan-updateStatus', [PesananController::class, 'updateStatus'])->name('pesanan.update'); // json data pesanan
+
     // begin route Stocks
     Route::get('/list-stocks-produk', [StokController::class, 'index'])->name('stocks.index');
     Route::get('/stocks-produk-data', [StokController::class, 'data'])->name('stocks.produk.data'); // json data home banner
@@ -127,6 +135,20 @@ Route::middleware(['auth', 'verified', RoleUsers::class.':admin'])->group(functi
     Route::get('/list-transactions-record', [TransaksiRecordController::class, 'index'])->name('transaksi.index');
     Route::get('/transactions-data', [TransaksiRecordController::class, 'data'])->name('transaksi.data');
     Route::get('/invoice-users/{slug}/{order_id}', [InvoiceOrderController::class, 'invoiceOrderCustomers'])->name('transaksi.invoice');
+
+    // begin route pengeluaran
+    Route::get('/list-pengeluaran', [PengeluaranController::class, 'index'])->name('pengeluaran.index');
+    Route::get('/pengeluaran-data', [PengeluaranController::class, 'data'])->name('pengeluaran.data'); // json data pengeluaran
+    Route::post('/pengeluaran-store', [PengeluaranController::class, 'store'])->name('pengeluaran.store');
+    Route::get('/detail-pengeluaran/{slug}', [PengeluaranController::class, 'getDetail'])->name('pengeluaran.detail');
+    Route::put('/pengeluaran-update/{slug}', [PengeluaranController::class, 'update'])->name('pengeluaran.update');
+
+    // begin route report omset tahunan
+    Route::get('/list-report-omset-tahunan', [ReportOmsetController::class, 'index'])->name('report-omzet.index');
+    Route::get('/report-omset-tahunan/data', [ReportOmsetController::class, 'data'])->name('report-omzet.data');
+    Route::get('/cetak-report-omzet/{tahun}', [ReportOmsetController::class, 'cetakReportOmzet'])->name('report-omzet.cetak');
+    Route::get('/grafik-report-omzet/{tahun}', [ReportOmsetController::class, 'grafikTahunan'])->name('report.omzet.grafik');
+    Route::get('/grafik-produk-terlaris/{tahun}', [ReportOmsetController::class, 'grafikProdukTerlaris'])->name('report.produk.grafik');
 
 
     // begin route home banner

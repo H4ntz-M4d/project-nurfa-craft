@@ -1,24 +1,24 @@
 "use strict";
-var KTTransactionsList = (function () {
+var KTReportOmzetList = (function () {
     var t, e;
 
     return {
         init: function () {
-            e = document.querySelector("#kt_transaksi_record_table");
+            e = document.querySelector("#kt_report_omzet_table");
 
             if (!e) return;
 
             t = $(e).DataTable({
                 processing: true,
-                serverSide: true,
-                ajax: "/transactions-data",
+                serverSide: false,
+                ajax: "/report-omset-tahunan/data",
                 columns: [
-                    { data: 'nama_user' },
-                    { data: 'email_user' },
-                    { data: 'order_id', class:'text-center' },
-                    { data: 'tanggal' },
-                    { data: 'total' },
-                    { data: 'action' },
+                    { data: 'tahun', class:'text-center' },
+                    { data: 'pemasukan', class:'text-center' },
+                    { data: 'pengeluaran', class:'text-center' },
+                    { data: 'ongkos_kirim', class:'text-center' },
+                    { data: 'omzet_tahunan', class:'text-center' },
+                    { data: 'action', class:'text-center' },
                 ],createdRow: function (row, data, dataIndex) {
                     $(row).attr('data-slug', data.slug); // penting agar row.dataset.slug bisa dipakai
                 },                
@@ -95,5 +95,5 @@ var KTTransactionsList = (function () {
 })();
 
 KTUtil.onDOMContentLoaded(function () {
-    KTTransactionsList.init();
+    KTReportOmzetList.init();
 });

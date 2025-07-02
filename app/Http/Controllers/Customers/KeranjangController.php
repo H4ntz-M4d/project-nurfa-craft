@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Customers;
 
 use App\Http\Controllers\Controller;
 use App\Models\Keranjang;
+use App\Models\ProdukVariant;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
@@ -129,13 +130,17 @@ class KeranjangController extends Controller
         ])->where('slug', $request->slug)->first();
 
         if (!$cart) {
-            return response()->json(['success' => false]);
+            return response()->json(['success' => false, 'message' => 'Keranjang tidak ditemukan']);
         }
 
-        $cart->jumlah = $request->quantity;
-        $cart->save();
-
         $produk = $cart->produk_master;
+        $prevJumlah = $cart->jumlah;
+        $newJumlah = $request->quantity;
+        $diff = $newJumlah - $prevJumlah;
+
+        if ($diff === 0) {
+            return response()->json(['success' => true, 'message' => 'Jumlah tidak berubah']);
+        }
 
         // Ambil ID variant values dari cart (yang dipilih user)
         $selectedVariantValueIds = $cart->keranjang_variant
@@ -143,10 +148,47 @@ class KeranjangController extends Controller
             ->sort()
             ->values();
 
-        // Default harga dari detail_produk (jika tidak pakai variant)
+        // ===== Update stok sesuai jenis produk =====
+
+        if ($produk->variant->isNotEmpty()) {
+            // Produk dengan varian
+            foreach ($produk->variant as $variant) {
+                $variantValueIds = $variant->variantValues
+                    ->pluck('id_variant_value')
+                    ->sort()
+                    ->values();
+
+                if ($variantValueIds->toJson() === $selectedVariantValueIds->toJson()) {
+                    $produkVariant = ProdukVariant::find($variant->id_var_produk);
+                    if ($produkVariant) {
+                        if ($diff > 0 && $produkVariant->stok < $diff) {
+                            return response()->json(['success' => false, 'message' => 'Stok tidak mencukupi']);
+                        }
+                        $produkVariant->stok -= $diff; // bisa tambah atau kurang
+                        $produkVariant->save();
+                    }
+                    break;
+                }
+            }
+        } else {
+            // Produk tanpa varian
+            $detail = $produk->detailProduk->first();
+            if ($detail) {
+                if ($diff > 0 && $detail->stok < $diff) {
+                    return response()->json(['success' => false, 'message' => 'Stok tidak mencukupi']);
+                }
+                $detail->stok -= $diff;
+                $detail->save();
+            }
+        }
+
+        // Update jumlah di keranjang
+        $cart->jumlah = $newJumlah;
+        $cart->save();
+
+        // Hitung harga per produk
         $harga = $produk->detailProduk->first()->harga ?? 0;
 
-        // Cek apakah produk punya variant
         if ($produk->variant->isNotEmpty()) {
             foreach ($produk->variant as $variant) {
                 $variantValueIds = $variant->variantValues
@@ -168,10 +210,7 @@ class KeranjangController extends Controller
         $userCarts = Keranjang::with([
             'keranjang_variant.produk_variant_value.variantValues',
             'produk_master' => function ($q) {
-                $q->with([
-                    'detailProduk',
-                    'variant.variantValues'
-                ]);
+                $q->with(['detailProduk', 'variant.variantValues']);
             }
         ])->where('id_user', $userId)->get();
 
@@ -179,7 +218,6 @@ class KeranjangController extends Controller
 
         foreach ($userCarts as $item) {
             $itemProduk = $item->produk_master;
-
             $itemSelectedVariantValueIds = $item->keranjang_variant
                 ->pluck('produk_variant_value.id_variant_value')
                 ->sort()
@@ -210,7 +248,6 @@ class KeranjangController extends Controller
             'formatted_subtotal' => number_format($subtotal, 0, ',', '.'),
         ]);
     }
-
 
 
     public function getProvinsi()
@@ -264,19 +301,94 @@ class KeranjangController extends Controller
 
     public function deleteItem($slug)
     {
-        $cart = Keranjang::where('slug', $slug)->firstOrFail();
+        $cart = Keranjang::with([
+            'keranjang_variant.produk_variant_value.variantValues',
+            'produk_master' => function ($q) {
+                $q->with(['detailProduk', 'variant.variantValues']);
+            }
+        ])->where('slug', $slug)->firstOrFail();
+
+        $jumlah = $cart->jumlah;
+        $produk = $cart->produk_master;
+
+        // Ambil ID variant values dari cart (jika ada)
+        $selectedVariantValueIds = $cart->keranjang_variant
+            ->pluck('produk_variant_value.id_variant_value')
+            ->sort()
+            ->values();
+
+        // Cek apakah produk punya varian
+        if ($produk->variant->isNotEmpty() && $selectedVariantValueIds->isNotEmpty()) {
+            foreach ($produk->variant as $variant) {
+                $variantValueIds = $variant->variantValues
+                    ->pluck('id_variant_value')
+                    ->sort()
+                    ->values();
+
+                if ($variantValueIds->toJson() === $selectedVariantValueIds->toJson()) {
+                    $produkVariant = ProdukVariant::find($variant->id_var_produk);
+                    if ($produkVariant) {
+                        $produkVariant->stok += $jumlah;
+                        $produkVariant->save();
+                    }
+                    break;
+                }
+            }
+        } else {
+            // Produk tanpa varian
+            $detail = $produk->detailProduk->first();
+            if ($detail) {
+                $detail->stok += $jumlah;
+                $detail->save();
+            }
+        }
+
+        // Hapus item keranjang dan variannya
+        $cart->keranjang_variant()->delete();
         $cart->delete();
 
-        // Hitung ulang subtotal user
+        // Hitung ulang subtotal
         $userId = auth()->id();
-        $subtotal = Keranjang::where('id_user', $userId)->get()->sum(function ($item) {
-            return $item->produk_master->variant->first()->harga * $item->jumlah;
-        });
+        $subtotal = 0;
+
+        $carts = Keranjang::with([
+            'keranjang_variant.produk_variant_value.variantValues',
+            'produk_master' => function ($q) {
+                $q->with(['detailProduk', 'variant.variantValues']);
+            }
+        ])->where('id_user', $userId)->get();
+
+        foreach ($carts as $item) {
+            $itemProduk = $item->produk_master;
+            $itemSelectedVariantValueIds = $item->keranjang_variant
+                ->pluck('produk_variant_value.id_variant_value')
+                ->sort()
+                ->values();
+
+            $itemHarga = $itemProduk->detailProduk->first()->harga ?? 0;
+
+            if ($itemProduk->variant->isNotEmpty()) {
+                foreach ($itemProduk->variant as $var) {
+                    $varValueIds = $var->variantValues
+                        ->pluck('id_variant_value')
+                        ->sort()
+                        ->values();
+
+                    if ($varValueIds->toJson() === $itemSelectedVariantValueIds->toJson()) {
+                        $itemHarga = $var->harga;
+                        break;
+                    }
+                }
+            }
+
+            $subtotal += $itemHarga * $item->jumlah;
+        }
 
         return response()->json([
             'success' => true,
             'formatted_subtotal' => number_format($subtotal, 0, ',', '.'),
         ]);
     }
+
 
 }

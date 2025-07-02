@@ -169,6 +169,9 @@ class ProdukDetailController extends Controller
                 if ($produkVariant->stok < $jumlah) {
                     return response()->json(['message' => 'Stok produk tidak mencukupi'], 422);
                 }
+
+                $produkVariant->stok -= $jumlah;
+                $produkVariant->save();
                 // Cek apakah keranjang dengan kombinasi variant sama sudah ada
                 $variantProductValueIds = ProdukVariantValues::where('id_var_produk', $variantProduk)
                     ->whereIn('id_variant_value', $variantValueIds)
@@ -228,6 +231,8 @@ class ProdukDetailController extends Controller
             if (!$detail || $detail->stok < $jumlah) {
                 return response()->json(['message' => 'Stok produk tidak mencukupi'], 422);
             }
+            $detail->stok -= $jumlah;
+            $detail->save();
 
             $existing = Keranjang::where([
                 'id_user' => $userId,

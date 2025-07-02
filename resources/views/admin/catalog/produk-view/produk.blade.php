@@ -79,5 +79,19 @@
 
     @push('scripts')
         <script src="{{ asset('assets/js/custom/apps/ecommerce/catalog/products.js') }}"></script>
+        @if (session('variant_error'))
+            <script>
+                Swal.fire({
+                    icon: 'warning',
+                    title: 'Perhatian!',
+                    text: '{{ session('variant_error') }}',
+                    confirmButtonText: 'OK',
+                    customClass: {
+                        confirmButton: 'btn btn-primary'
+                    }
+                });
+            </script>
+        @endif
+
     @endpush
 </x-admin.layout>

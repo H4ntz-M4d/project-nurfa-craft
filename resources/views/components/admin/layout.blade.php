@@ -18,7 +18,7 @@
     <meta property="og:url" content="https://keenthemes.com/keen" />
     <meta property="og:site_name" content="Keen by Keenthemes" />
     <link rel="canonical" href="http://preview.keenthemes.comdashboards/ecommerce.html" />
-    <link rel="shortcut icon" href="{{ asset('assets/media/logos/favicon.ico') }}" />
+    <link rel="shortcut icon" href="{{ asset('assets/media/logos/logo-project.png') }}" />
     <!--begin::Fonts(mandatory for all pages)-->
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Inter:300,400,500,600,700" />
     <!--end::Fonts-->

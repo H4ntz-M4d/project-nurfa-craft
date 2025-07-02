@@ -131,7 +131,8 @@
                 </div>
                 <!--end:Menu item-->
                 <!--begin:Menu item-->
-                <div data-kt-menu-trigger="click" class="menu-item menu-accordion {{ Route::is('stocks-record.*', 'view-product.*', 'transaksi.*') ? 'here show' : '' }}">
+                <div data-kt-menu-trigger="click" class="menu-item menu-accordion 
+                {{ Route::is('stocks-record.*', 'view-product.*', 'transaksi.*', 'pesanan.*','pengeluaran.*','report-omzet.*') ? 'here show' : '' }}">
                     <!--begin:Menu link-->
                     <span class="menu-link">
                         <span class="menu-icon">
@@ -142,6 +143,18 @@
                     <!--end:Menu link-->
                     <!--begin:Menu sub-->
                     <div class="menu-sub menu-sub-accordion">
+                        <!--begin:Menu item-->
+                        <div data-kt-menu-trigger="click" class="menu-item menu-accordion {{ Route::is('pesanan.*') ? 'here show' : '' }}">
+                            <!--begin:Menu link-->
+                            <a href="/list-pesanan" class="menu-link {{ Route::is('pesanan.*') ? 'active' : '' }}">
+                                <span class="menu-bullet">
+                                    <span class="bullet bullet-dot"></span>
+                                </span>
+                                <span class="menu-title">Pesanan Masuk</span>
+                            </a>
+                            <!--end:Menu link-->
+                        </div>
+                        <!--end:Menu item-->
                         <!--begin:Menu item-->
                         <div data-kt-menu-trigger="click" class="menu-item menu-accordion {{ Route::is('view-product.*') ? 'here show' : '' }}">
                             <!--begin:Menu link-->
@@ -179,14 +192,26 @@
                         </div>
                         <!--end:Menu item-->
                         <!--begin:Menu item-->
-                        <div data-kt-menu-trigger="click" class="menu-item menu-accordion">
+                        <div data-kt-menu-trigger="click" class="menu-item menu-accordion {{ Route::is('pengeluaran.*') ? 'here show' : '' }}">
                             <!--begin:Menu link-->
-                            <span class="menu-link">
+                            <a href="/list-pengeluaran" class="menu-link {{ Route::is('pengeluaran.*') ? 'active' : '' }}">
                                 <span class="menu-bullet">
                                     <span class="bullet bullet-dot"></span>
                                 </span>
                                 <span class="menu-title">Pengeluaran</span>
-                            </span>
+                            </a>
+                            <!--end:Menu link-->
+                        </div>
+                        <!--end:Menu item-->
+                        <!--begin:Menu item-->
+                        <div data-kt-menu-trigger="click" class="menu-item menu-accordion {{ Route::is('report-omzet.*') ? 'here show' : '' }}">
+                            <!--begin:Menu link-->
+                            <a href="/list-report-omset-tahunan" class="menu-link {{ Route::is('report-omzet.*') ? 'active' : '' }}">
+                                <span class="menu-bullet">
+                                    <span class="bullet bullet-dot"></span>
+                                </span>
+                                <span class="menu-title">Report Omzet</span>
+                            </a>
                             <!--end:Menu link-->
                         </div>
                         <!--end:Menu item-->
