@@ -13,8 +13,8 @@ class TransaksiRecordController extends Controller
     public function index()
     {
         return view('admin.laporan.transaksi',[
-            'title' => 'Kelola Stok',
-            'sub_title' => 'Catalog - Kelola Stok',
+            'title' => 'Transaksi Record',
+            'sub_title' => 'Laporan - Transaksi Record',
         ]);
     }
     
