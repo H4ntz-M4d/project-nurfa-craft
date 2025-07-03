@@ -2,7 +2,7 @@
     <!--begin::Logo-->
     <div class="app-sidebar-logo d-none d-md-block pt-7 px-8 pt-xl-11 mb-2" id="kt_app_sidebar_logo">
         <!--begin::Logo image-->
-        <a href="index.html">
+        <a href="/dashboard">
             <img alt="Logo" src="{{ asset('assets/media/logos/icon-logo-nurfa.png') }}" class="h-50px theme-light-show" />
             <img alt="Logo" src="{{ asset('assets/media/logos/icon-logo-nurfa-dark.png') }}" class="h-50px theme-dark-show" />
         </a>

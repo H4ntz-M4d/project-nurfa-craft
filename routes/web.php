@@ -45,6 +45,7 @@ Route::middleware(['auth', 'verified', RoleUsers::class.':admin'])->group(functi
     Route::get('/dashboard/order-total', [Dashboard::class, 'getMonthOrderTotal']);
     Route::get('/dashboard/total-customers', [Dashboard::class, 'getTotalCustomers']);
     Route::get('/dashboard/produk-stat', [Dashboard::class, 'getProdukStat']);
+    Route::get('/dashboard/pesanan', [Dashboard::class, 'getPesanan']);
 
 
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');

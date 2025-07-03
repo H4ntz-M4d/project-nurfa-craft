@@ -24,7 +24,7 @@
                     </div>
                     <!--begin::Card title-->
                     <!--begin::Card toolbar-->
-                    <div class="card-toolbar">
+                    <div class="card-toolbar flex-row-fluid justify-content-end gap-5">
                         <!--begin::Toolbar-->
                         <div class="d-flex justify-content-end" data-kt-transactions-table-toolbar="base"></div>
                         <!--end::Toolbar-->
@@ -35,6 +35,10 @@
                             <button type="button" class="btn btn-danger" data-kt-transactions-table-select="delete_selected">Delete Selected</button>
                         </div>
                         <!--end::Group actions-->
+
+                        <!--begin::Daterangepicker-->
+                        <input class="form-control form-control-solid w-100 mw-250px" placeholder="Pick date range" id="kt_ecommerce_report_customer_orders_daterangepicker" />
+                        <!--end::Daterangepicker-->
 
                         <!--begin::Export dropdown-->
                         <button type="button" class="btn btn-light-primary" data-kt-menu-trigger="click"

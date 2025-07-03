@@ -21,18 +21,22 @@ class PengeluaranController extends Controller
     public function data(Request $request)
     {
         if ($request->ajax()) {
-            $data = Pengeluaran::select(
-                    'id_pengeluaran', 'nama_pengeluaran', 'kategori_pengeluaran', 'jumlah_pengeluaran',
-                    'tanggal_pengeluaran', 'keterangan', 'slug', 'id_user'
-                )
-                ->with(['user' => function($query) {
-                    $query->select('id', 'username')->with(['karyawan' => function($query) {
-                        $query->select('id_user', 'nama');
+            $query = Pengeluaran::select('id_pengeluaran', 'nama_pengeluaran', 'kategori_pengeluaran', 'jumlah_pengeluaran',
+                    'tanggal_pengeluaran', 'keterangan', 'slug', 'id_user')
+                ->with(['user' => function($q) {
+                    $q->select('id', 'username')->with(['karyawan' => function($q) {
+                        $q->select('id_user', 'nama');
                     }]);
-                }])
-                ->get()
-                ->map(function ($item) {
+                }]);
 
+            if ($request->start && $request->end) {
+                $start = $request->start . ' 00:00:00';
+                $end = $request->end . ' 23:59:59';
+
+                $query->whereBetween('tanggal_pengeluaran', [$start, $end]);
+            }
+
+            $data = $query->get()->map(function ($item) {
                     $namaUser = $item->user->karyawan->nama ?? $item->user->username;
                     $jumlah = 'Rp' . number_format($item->jumlah_pengeluaran, 0, ',', '.') ?? '0';
                     
@@ -41,7 +45,7 @@ class PengeluaranController extends Controller
                     $item->tanggaldibuat = Carbon::parse($item->tanggal_pengeluaran)->timezone('Asia/Jakarta')->format('d F Y, H:i T');
 
                     return $item;
-                })->sortByDesc('tanggal');
+                })->sortByDesc('tanggal_pengeluaran');
 
             return DataTables::collection($data)
                 ->addColumn('checkbox', function($row){

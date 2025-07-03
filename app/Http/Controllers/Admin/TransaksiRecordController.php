@@ -21,27 +21,24 @@ class TransaksiRecordController extends Controller
     public function data(Request $request)
     {
         if ($request->ajax()) {
-            $data = Transactions::select(
-                    'id_transaction', 'order_id', 'id_user', 'tanggal', 'total',
-                    'status'
-                )
-                ->with(['details', 'user'])
-                ->get()
-                ->map(function ($item) {
+                $query = Transactions::with(['user.customers'])
+                    ->select('id_transaction', 'order_id', 'id_user', 'tanggal', 'total', 'status');
 
-                    $namaUser = $item->user->customers->nama ?? $item->user->username;
-                    $emailUser = $item->user->email;
-                    $order = $item->order_id ?? '-';
+                if ($request->start && $request->end) {
+                    $start = $request->start . ' 00:00:00';
+                    $end = $request->end . ' 23:59:59';
 
-                    $item->nama_user = $namaUser;
-                    $item->email_user = $emailUser;
-                    $item->order_id = $order;
+                    $query->whereBetween('tanggal', [$start, $end]);
+                }
 
+                $data = $query->get()->map(function ($item) {
+                    $item->nama_user = $item->user->customers->nama ?? $item->user->username;
+                    $item->email_user = $item->user->email;
                     $item->tanggal = Carbon::parse($item->tanggal)->timezone('Asia/Jakarta')->format('d F Y, H:i T');
-                    $item->total = 'Rp' . number_format($item->total, 0,',','.');
-
+                    $item->total = 'Rp ' . number_format($item->total, 0, ',', '.');
                     return $item;
-                })->sortByDesc('tanggal');
+                });
+
 
             return DataTables::collection($data)
                 ->addColumn('action', function($row){

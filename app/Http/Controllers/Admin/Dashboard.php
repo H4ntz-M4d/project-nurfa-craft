@@ -3,11 +3,13 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Models\Pesanan;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Carbon;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
+use Yajra\DataTables\Facades\DataTables;
 
 class Dashboard extends Controller
 {
@@ -31,12 +33,12 @@ class Dashboard extends Controller
 
         $todayIncome = DB::table('transactions')
             ->whereDate('created_at', $today)
-            ->where('status', 'unpaid') // hanya paid yang dihitung
+            ->where('status', 'paid') // hanya paid yang dihitung
             ->sum('total');
 
         $yesterdayIncome = DB::table('transactions')
             ->whereDate('created_at', $yesterday)
-            ->where('status', 'unpaid')
+            ->where('status', 'paid')
             ->sum('total');
 
         $percentage = 0;
@@ -187,5 +189,58 @@ class Dashboard extends Controller
             'others' => $otherCount
         ]);
     }
+
+    public function getPesanan(Request $request)
+    {
+        if ($request->ajax()) {
+            $data = Pesanan::select(
+                    'id_pesanan', 'id_transaction', 'status', 'jasa_pengiriman',
+                    'no_resi', 'harga_pengiriman', 'keterangan',
+                    'created_at', 'updated_at', 'slug'
+                )
+                ->with(['transaction.user.customers']) // relasi berantai
+                ->get()
+                ->map(function ($item) {
+                    $user = $item->transaction->user ?? null;
+                    $customer = $user?->customers;
+
+                    return [
+                        'order_id' => $item->transaction->order_id ?? '-',
+                        'tanggal' => Carbon::parse($item->created_at)->timezone('Asia/Jakarta')->format('H:i T'),
+                        'nama_user' => $customer->nama ?? $user->username ?? '-',
+                        'total' => $item->transaction ? number_format($item->transaction->total, 0, ',', '.') : '-',
+                        'status' => ucfirst($item->status),
+                        'slug' => $item->slug,
+                    ];
+                });
+
+            return DataTables::collection($data)
+                ->addColumn('status', function($row){
+                    $badge = '';
+                    if ($row['status'] === 'Selesai') {
+                        $badge = 'success';
+                    } elseif ($row['status'] === 'Dikirim') {
+                        $badge = 'info';
+                    } else {
+                        $badge = 'warning';
+                    }
+                    return '
+                        <span class="badge badge-light-' . $badge . '">
+                            ' . $row['status'] . '
+                        </span>
+                    ';
+                })
+                ->addColumn('action', function($row){
+                    return '
+                        <a href="/list-pesanan" class="btn btn-sm btn-info btn-flex btn-center btn-active-light-primary">
+                            <i class="ki-solid ki-cheque fs-5 ms-1"></i>
+                            Go to Pesanan
+                        </a>';
+                })
+                ->rawColumns(['action','status'])
+                ->make(true);
+        }
+    }
+
 
 }

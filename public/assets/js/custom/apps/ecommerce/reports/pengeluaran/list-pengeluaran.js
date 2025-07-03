@@ -1,6 +1,8 @@
 "use strict";
 var KTPengeluaranList = (function () {
     var t, e;
+    let startDate = null;
+    let endDate = null;
 
     const handleDeleteButtons = () => {
         e.querySelectorAll('[data-kt-pengeluaran-table-filter="delete_row"]').forEach((el) => {
@@ -155,7 +157,16 @@ var KTPengeluaranList = (function () {
             t = $(e).DataTable({
                 processing: true,
                 serverSide: true,
-                ajax: "/pengeluaran-data",
+                ajax: {
+                    url: "/pengeluaran-data",
+                    data: function (d) {
+                        if (startDate && endDate) {
+                            d.start = startDate;
+                            d.end = endDate;
+                        }
+
+                    }
+                },
                 columns: [
                     { data: 'checkbox', orderable: false, searchable: false, class: 'form-check form-check-sm form-check-custom form-check-solid' },
                     { data: 'nama_pengeluaran' },
@@ -223,6 +234,42 @@ var KTPengeluaranList = (function () {
                             });
                         });
             })(),
+
+            (() => {
+                var t0 = moment().startOf("month"),
+                    t1 = moment();
+                const $picker = $("#kt_ecommerce_report_customer_orders_daterangepicker");
+
+                function updateRange(t0, t1) {
+                    $picker.html(t0.format("MMMM D, YYYY") + " - " + t1.format("MMMM D, YYYY"));
+                    startDate = t0.format('YYYY-MM-DD');
+                    endDate = t1.format('YYYY-MM-DD');
+                    t.ajax.reload();
+                }
+
+                $picker.daterangepicker(
+                    {
+                        startDate: t0,
+                        endDate: t1,
+                        ranges: {
+                            Today: [moment(), moment()],
+                            Yesterday: [moment().subtract(1, "days"), moment().subtract(1, "days")],
+                            "Last 7 Days": [moment().subtract(6, "days"), moment()],
+                            "Last 30 Days": [moment().subtract(29, "days"), moment()],
+                            "This Month": [moment().startOf("month"), moment().endOf("month")],
+                            "Last Month": [
+                                moment().subtract(1, "month").startOf("month"),
+                                moment().subtract(1, "month").endOf("month")
+                            ],
+                        }
+                    },
+                    updateRange
+                );
+
+                $picker.on('apply.daterangepicker', function (ev, picker) {
+                    updateRange(picker.startDate, picker.endDate);
+                });
+            })();
 
             t.on("draw", function () {
                 handleDeleteButtons();
