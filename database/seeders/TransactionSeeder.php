@@ -12,6 +12,8 @@ class TransactionSeeder extends Seeder
         DB::table('transactions')->insert([
             [
                 'id_transaction' => 1,
+                'telepon' => '08123456789',
+                'slug' => 'order-00001',
                 'order_id' => 'ORD-00001',
                 'snap_token' => 'token-00001',
                 'id_user' => 2,
@@ -20,10 +22,13 @@ class TransactionSeeder extends Seeder
                 'status' => 'paid',
                 'provinsi' => 'Provinsi-1',
                 'kota' => 'Kota-1',
-                'alamat_pengiriman' => 'Alamat-1'
+                'alamat_pengiriman' => 'Alamat-1',
+                'created_at' => '2025-07-03 20:09:44',
             ],
             [
                 'id_transaction' => 2,
+                'telepon' => '08123456789',
+                'slug' => 'order-00002',
                 'order_id' => 'ORD-00002',
                 'snap_token' => 'token-00002',
                 'id_user' => 3,
@@ -32,10 +37,13 @@ class TransactionSeeder extends Seeder
                 'status' => 'paid',
                 'provinsi' => 'Provinsi-2',
                 'kota' => 'Kota-2',
-                'alamat_pengiriman' => 'Alamat-2'
+                'alamat_pengiriman' => 'Alamat-2',
+                'created_at' => '2025-07-03 20:09:44',
             ],
             [
                 'id_transaction' => 3,
+                'telepon' => '08123456789',
+                'slug' => 'order-00003',
                 'order_id' => 'ORD-00003',
                 'snap_token' => 'token-00003',
                 'id_user' => 4,
@@ -44,10 +52,13 @@ class TransactionSeeder extends Seeder
                 'status' => 'paid',
                 'provinsi' => 'Provinsi-3',
                 'kota' => 'Kota-3',
-                'alamat_pengiriman' => 'Alamat-3'
+                'alamat_pengiriman' => 'Alamat-3',
+                'created_at' => '2025-07-03 20:09:44',
             ],
             [
                 'id_transaction' => 4,
+                'telepon' => '08123456789',
+                'slug' => 'order-00004',
                 'order_id' => 'ORD-00004',
                 'snap_token' => 'token-00004',
                 'id_user' => 5,
@@ -56,10 +67,13 @@ class TransactionSeeder extends Seeder
                 'status' => 'paid',
                 'provinsi' => 'Provinsi-4',
                 'kota' => 'Kota-4',
-                'alamat_pengiriman' => 'Alamat-4'
+                'alamat_pengiriman' => 'Alamat-4',
+                'created_at' => '2025-07-03 20:09:44',
             ],
             [
                 'id_transaction' => 5,
+                'telepon' => '08123456789',
+                'slug' => 'order-00005',
                 'order_id' => 'ORD-00005',
                 'snap_token' => 'token-00005',
                 'id_user' => 6,
@@ -68,10 +82,13 @@ class TransactionSeeder extends Seeder
                 'status' => 'paid',
                 'provinsi' => 'Provinsi-5',
                 'kota' => 'Kota-5',
-                'alamat_pengiriman' => 'Alamat-5'
+                'alamat_pengiriman' => 'Alamat-5',
+                'created_at' => '2025-07-03 20:09:44',
             ],
             [
                 'id_transaction' => 6,
+                'telepon' => '08123456789',
+                'slug' => 'order-00006',
                 'order_id' => 'ORD-00006',
                 'snap_token' => 'token-00006',
                 'id_user' => 7,
@@ -80,10 +97,13 @@ class TransactionSeeder extends Seeder
                 'status' => 'paid',
                 'provinsi' => 'Provinsi-6',
                 'kota' => 'Kota-6',
-                'alamat_pengiriman' => 'Alamat-6'
+                'alamat_pengiriman' => 'Alamat-6',
+                'created_at' => '2025-07-03 20:09:44',
             ],
             [
                 'id_transaction' => 7,
+                'telepon' => '08123456789',
+                'slug' => 'order-00007',
                 'order_id' => 'ORD-00007',
                 'snap_token' => 'token-00007',
                 'id_user' => 8,
@@ -92,10 +112,13 @@ class TransactionSeeder extends Seeder
                 'status' => 'paid',
                 'provinsi' => 'Provinsi-7',
                 'kota' => 'Kota-7',
-                'alamat_pengiriman' => 'Alamat-7'
+                'alamat_pengiriman' => 'Alamat-7',
+                'created_at' => '2025-07-03 20:09:44',
             ],
             [
                 'id_transaction' => 8,
+                'telepon' => '08123456789',
+                'slug' => 'order-00008',
                 'order_id' => 'ORD-00008',
                 'snap_token' => 'token-00008',
                 'id_user' => 9,
@@ -104,10 +127,13 @@ class TransactionSeeder extends Seeder
                 'status' => 'paid',
                 'provinsi' => 'Provinsi-8',
                 'kota' => 'Kota-8',
-                'alamat_pengiriman' => 'Alamat-8'
+                'alamat_pengiriman' => 'Alamat-8',
+                'created_at' => '2025-07-03 20:09:44',
             ],
             [
                 'id_transaction' => 9,
+                'telepon' => '08123456789',
+                'slug' => 'order-00009',
                 'order_id' => 'ORD-00009',
                 'snap_token' => 'token-00009',
                 'id_user' => 10,
@@ -116,10 +142,13 @@ class TransactionSeeder extends Seeder
                 'status' => 'paid',
                 'provinsi' => 'Provinsi-9',
                 'kota' => 'Kota-9',
-                'alamat_pengiriman' => 'Alamat-9'
+                'alamat_pengiriman' => 'Alamat-9',
+                'created_at' => '2025-07-03 20:09:44',
             ],
             [
                 'id_transaction' => 10,
+                'telepon' => '08123456789',
+                'slug' => 'order-00010',
                 'order_id' => 'ORD-00010',
                 'snap_token' => 'token-00010',
                 'id_user' => 11,
@@ -128,10 +157,13 @@ class TransactionSeeder extends Seeder
                 'status' => 'paid',
                 'provinsi' => 'Provinsi-10',
                 'kota' => 'Kota-10',
-                'alamat_pengiriman' => 'Alamat-10'
+                'alamat_pengiriman' => 'Alamat-10',
+                'created_at' => '2025-07-03 20:09:44',
             ],
             [
                 'id_transaction' => 11,
+                'telepon' => '08123456789',
+                'slug' => 'order-00011',
                 'order_id' => 'ORD-00011',
                 'snap_token' => 'token-00011',
                 'id_user' => 12,
@@ -140,10 +172,13 @@ class TransactionSeeder extends Seeder
                 'status' => 'paid',
                 'provinsi' => 'Provinsi-11',
                 'kota' => 'Kota-11',
-                'alamat_pengiriman' => 'Alamat-11'
+                'alamat_pengiriman' => 'Alamat-11',
+                'created_at' => '2025-07-03 20:09:44',
             ],
             [
                 'id_transaction' => 12,
+                'telepon' => '08123456789',
+                'slug' => 'order-00012',
                 'order_id' => 'ORD-00012',
                 'snap_token' => 'token-00012',
                 'id_user' => 13,
@@ -152,10 +187,13 @@ class TransactionSeeder extends Seeder
                 'status' => 'paid',
                 'provinsi' => 'Provinsi-12',
                 'kota' => 'Kota-12',
-                'alamat_pengiriman' => 'Alamat-12'
+                'alamat_pengiriman' => 'Alamat-12',
+                'created_at' => '2025-07-03 20:09:44',
             ],
             [
                 'id_transaction' => 13,
+                'telepon' => '08123456789',
+                'slug' => 'order-00013',
                 'order_id' => 'ORD-00013',
                 'snap_token' => 'token-00013',
                 'id_user' => 14,
@@ -164,10 +202,13 @@ class TransactionSeeder extends Seeder
                 'status' => 'paid',
                 'provinsi' => 'Provinsi-13',
                 'kota' => 'Kota-13',
-                'alamat_pengiriman' => 'Alamat-13'
+                'alamat_pengiriman' => 'Alamat-13',
+                'created_at' => '2025-07-03 20:09:44',
             ],
             [
                 'id_transaction' => 14,
+                'telepon' => '08123456789',
+                'slug' => 'order-00014',
                 'order_id' => 'ORD-00014',
                 'snap_token' => 'token-00014',
                 'id_user' => 15,
@@ -176,10 +217,13 @@ class TransactionSeeder extends Seeder
                 'status' => 'paid',
                 'provinsi' => 'Provinsi-14',
                 'kota' => 'Kota-14',
-                'alamat_pengiriman' => 'Alamat-14'
+                'alamat_pengiriman' => 'Alamat-14',
+                'created_at' => '2025-07-03 20:09:44',
             ],
             [
                 'id_transaction' => 15,
+                'telepon' => '08123456789',
+                'slug' => 'order-00015',
                 'order_id' => 'ORD-00015',
                 'snap_token' => 'token-00015',
                 'id_user' => 16,
@@ -188,10 +232,13 @@ class TransactionSeeder extends Seeder
                 'status' => 'paid',
                 'provinsi' => 'Provinsi-15',
                 'kota' => 'Kota-15',
-                'alamat_pengiriman' => 'Alamat-15'
+                'alamat_pengiriman' => 'Alamat-15',
+                'created_at' => '2025-07-03 20:09:44',
             ],
             [
                 'id_transaction' => 16,
+                'telepon' => '08123456789',
+                'slug' => 'order-00016',
                 'order_id' => 'ORD-00016',
                 'snap_token' => 'token-00016',
                 'id_user' => 17,
@@ -200,10 +247,13 @@ class TransactionSeeder extends Seeder
                 'status' => 'paid',
                 'provinsi' => 'Provinsi-16',
                 'kota' => 'Kota-16',
-                'alamat_pengiriman' => 'Alamat-16'
+                'alamat_pengiriman' => 'Alamat-16',
+                'created_at' => '2025-07-03 20:09:44',
             ],
             [
                 'id_transaction' => 17,
+                'telepon' => '08123456789',
+                'slug' => 'order-00017',
                 'order_id' => 'ORD-00017',
                 'snap_token' => 'token-00017',
                 'id_user' => 18,
@@ -212,10 +262,13 @@ class TransactionSeeder extends Seeder
                 'status' => 'paid',
                 'provinsi' => 'Provinsi-17',
                 'kota' => 'Kota-17',
-                'alamat_pengiriman' => 'Alamat-17'
+                'alamat_pengiriman' => 'Alamat-17',
+                'created_at' => '2025-07-03 20:09:44',
             ],
             [
                 'id_transaction' => 18,
+                'telepon' => '08123456789',
+                'slug' => 'order-00018',
                 'order_id' => 'ORD-00018',
                 'snap_token' => 'token-00018',
                 'id_user' => 19,
@@ -224,10 +277,13 @@ class TransactionSeeder extends Seeder
                 'status' => 'paid',
                 'provinsi' => 'Provinsi-18',
                 'kota' => 'Kota-18',
-                'alamat_pengiriman' => 'Alamat-18'
+                'alamat_pengiriman' => 'Alamat-18',
+                'created_at' => '2025-07-03 20:09:44',
             ],
             [
                 'id_transaction' => 19,
+                'telepon' => '08123456789',
+                'slug' => 'order-00019',
                 'order_id' => 'ORD-00019',
                 'snap_token' => 'token-00019',
                 'id_user' => 20,
@@ -236,10 +292,13 @@ class TransactionSeeder extends Seeder
                 'status' => 'paid',
                 'provinsi' => 'Provinsi-19',
                 'kota' => 'Kota-19',
-                'alamat_pengiriman' => 'Alamat-19'
+                'alamat_pengiriman' => 'Alamat-19',
+                'created_at' => '2025-07-03 20:09:44',
             ],
             [
                 'id_transaction' => 20,
+                'telepon' => '08123456789',
+                'slug' => 'order-00020',
                 'order_id' => 'ORD-00020',
                 'snap_token' => 'token-00020',
                 'id_user' => 21,
@@ -248,10 +307,13 @@ class TransactionSeeder extends Seeder
                 'status' => 'paid',
                 'provinsi' => 'Provinsi-20',
                 'kota' => 'Kota-20',
-                'alamat_pengiriman' => 'Alamat-20'
+                'alamat_pengiriman' => 'Alamat-20',
+                'created_at' => '2025-07-03 20:09:44',
             ],
             [
                 'id_transaction' => 21,
+                'telepon' => '08123456789',
+                'slug' => 'order-00021',
                 'order_id' => 'ORD-00021',
                 'snap_token' => 'token-00021',
                 'id_user' => 22,
@@ -260,10 +322,13 @@ class TransactionSeeder extends Seeder
                 'status' => 'paid',
                 'provinsi' => 'Provinsi-21',
                 'kota' => 'Kota-21',
-                'alamat_pengiriman' => 'Alamat-21'
+                'alamat_pengiriman' => 'Alamat-21',
+                'created_at' => '2025-07-03 20:09:44',
             ],
             [
                 'id_transaction' => 22,
+                'telepon' => '08123456789',
+                'slug' => 'order-00022',
                 'order_id' => 'ORD-00022',
                 'snap_token' => 'token-00022',
                 'id_user' => 23,
@@ -272,10 +337,13 @@ class TransactionSeeder extends Seeder
                 'status' => 'paid',
                 'provinsi' => 'Provinsi-22',
                 'kota' => 'Kota-22',
-                'alamat_pengiriman' => 'Alamat-22'
+                'alamat_pengiriman' => 'Alamat-22',
+                'created_at' => '2025-07-03 20:09:44',
             ],
             [
                 'id_transaction' => 23,
+                'telepon' => '08123456789',
+                'slug' => 'order-00023',
                 'order_id' => 'ORD-00023',
                 'snap_token' => 'token-00023',
                 'id_user' => 24,
@@ -284,10 +352,13 @@ class TransactionSeeder extends Seeder
                 'status' => 'paid',
                 'provinsi' => 'Provinsi-23',
                 'kota' => 'Kota-23',
-                'alamat_pengiriman' => 'Alamat-23'
+                'alamat_pengiriman' => 'Alamat-23',
+                'created_at' => '2025-07-03 20:09:44',
             ],
             [
                 'id_transaction' => 24,
+                'telepon' => '08123456789',
+                'slug' => 'order-00024',
                 'order_id' => 'ORD-00024',
                 'snap_token' => 'token-00024',
                 'id_user' => 25,
@@ -296,10 +367,13 @@ class TransactionSeeder extends Seeder
                 'status' => 'paid',
                 'provinsi' => 'Provinsi-24',
                 'kota' => 'Kota-24',
-                'alamat_pengiriman' => 'Alamat-24'
+                'alamat_pengiriman' => 'Alamat-24',
+                'created_at' => '2025-07-03 20:09:44',
             ],
             [
                 'id_transaction' => 25,
+                'telepon' => '08123456789',
+                'slug' => 'order-00025',
                 'order_id' => 'ORD-00025',
                 'snap_token' => 'token-00025',
                 'id_user' => 26,
@@ -308,10 +382,13 @@ class TransactionSeeder extends Seeder
                 'status' => 'paid',
                 'provinsi' => 'Provinsi-25',
                 'kota' => 'Kota-25',
-                'alamat_pengiriman' => 'Alamat-25'
+                'alamat_pengiriman' => 'Alamat-25',
+                'created_at' => '2025-07-03 20:09:44',
             ],
             [
                 'id_transaction' => 26,
+                'telepon' => '08123456789',
+                'slug' => 'order-00026',
                 'order_id' => 'ORD-00026',
                 'snap_token' => 'token-00026',
                 'id_user' => 27,
@@ -320,10 +397,13 @@ class TransactionSeeder extends Seeder
                 'status' => 'paid',
                 'provinsi' => 'Provinsi-26',
                 'kota' => 'Kota-26',
-                'alamat_pengiriman' => 'Alamat-26'
+                'alamat_pengiriman' => 'Alamat-26',
+                'created_at' => '2025-07-03 20:09:44',
             ],
             [
                 'id_transaction' => 27,
+                'telepon' => '08123456789',
+                'slug' => 'order-00027',
                 'order_id' => 'ORD-00027',
                 'snap_token' => 'token-00027',
                 'id_user' => 28,
@@ -332,10 +412,13 @@ class TransactionSeeder extends Seeder
                 'status' => 'paid',
                 'provinsi' => 'Provinsi-27',
                 'kota' => 'Kota-27',
-                'alamat_pengiriman' => 'Alamat-27'
+                'alamat_pengiriman' => 'Alamat-27',
+                'created_at' => '2025-07-03 20:09:44',
             ],
             [
                 'id_transaction' => 28,
+                'telepon' => '08123456789',
+                'slug' => 'order-00028',
                 'order_id' => 'ORD-00028',
                 'snap_token' => 'token-00028',
                 'id_user' => 29,
@@ -344,10 +427,13 @@ class TransactionSeeder extends Seeder
                 'status' => 'paid',
                 'provinsi' => 'Provinsi-28',
                 'kota' => 'Kota-28',
-                'alamat_pengiriman' => 'Alamat-28'
+                'alamat_pengiriman' => 'Alamat-28',
+                'created_at' => '2025-07-03 20:09:44',
             ],
             [
                 'id_transaction' => 29,
+                'telepon' => '08123456789',
+                'slug' => 'order-00029',
                 'order_id' => 'ORD-00029',
                 'snap_token' => 'token-00029',
                 'id_user' => 30,
@@ -356,10 +442,13 @@ class TransactionSeeder extends Seeder
                 'status' => 'paid',
                 'provinsi' => 'Provinsi-29',
                 'kota' => 'Kota-29',
-                'alamat_pengiriman' => 'Alamat-29'
+                'alamat_pengiriman' => 'Alamat-29',
+                'created_at' => '2025-07-03 20:09:44',
             ],
             [
                 'id_transaction' => 30,
+                'telepon' => '08123456789',
+                'slug' => 'order-00030',
                 'order_id' => 'ORD-00030',
                 'snap_token' => 'token-00030',
                 'id_user' => 31,
@@ -368,10 +457,13 @@ class TransactionSeeder extends Seeder
                 'status' => 'paid',
                 'provinsi' => 'Provinsi-30',
                 'kota' => 'Kota-30',
-                'alamat_pengiriman' => 'Alamat-30'
+                'alamat_pengiriman' => 'Alamat-30',
+                'created_at' => '2025-07-03 20:09:44',
             ],
             [
                 'id_transaction' => 31,
+                'telepon' => '08123456789',
+                'slug' => 'order-00031',
                 'order_id' => 'ORD-00031',
                 'snap_token' => 'token-00031',
                 'id_user' => 32,
@@ -380,10 +472,13 @@ class TransactionSeeder extends Seeder
                 'status' => 'paid',
                 'provinsi' => 'Provinsi-31',
                 'kota' => 'Kota-31',
-                'alamat_pengiriman' => 'Alamat-31'
+                'alamat_pengiriman' => 'Alamat-31',
+                'created_at' => '2025-07-03 20:09:44',
             ],
             [
                 'id_transaction' => 32,
+                'telepon' => '08123456789',
+                'slug' => 'order-00032',
                 'order_id' => 'ORD-00032',
                 'snap_token' => 'token-00032',
                 'id_user' => 33,
@@ -392,10 +487,13 @@ class TransactionSeeder extends Seeder
                 'status' => 'paid',
                 'provinsi' => 'Provinsi-32',
                 'kota' => 'Kota-32',
-                'alamat_pengiriman' => 'Alamat-32'
+                'alamat_pengiriman' => 'Alamat-32',
+                'created_at' => '2025-07-03 20:09:44',
             ],
             [
                 'id_transaction' => 33,
+                'telepon' => '08123456789',
+                'slug' => 'order-00033',
                 'order_id' => 'ORD-00033',
                 'snap_token' => 'token-00033',
                 'id_user' => 34,
@@ -404,10 +502,13 @@ class TransactionSeeder extends Seeder
                 'status' => 'paid',
                 'provinsi' => 'Provinsi-33',
                 'kota' => 'Kota-33',
-                'alamat_pengiriman' => 'Alamat-33'
+                'alamat_pengiriman' => 'Alamat-33',
+                'created_at' => '2025-07-03 20:09:44',
             ],
             [
                 'id_transaction' => 34,
+                'telepon' => '08123456789',
+                'slug' => 'order-00034',
                 'order_id' => 'ORD-00034',
                 'snap_token' => 'token-00034',
                 'id_user' => 35,
@@ -416,10 +517,13 @@ class TransactionSeeder extends Seeder
                 'status' => 'paid',
                 'provinsi' => 'Provinsi-34',
                 'kota' => 'Kota-34',
-                'alamat_pengiriman' => 'Alamat-34'
+                'alamat_pengiriman' => 'Alamat-34',
+                'created_at' => '2025-07-03 20:09:44',
             ],
             [
                 'id_transaction' => 35,
+                'telepon' => '08123456789',
+                'slug' => 'order-00035',
                 'order_id' => 'ORD-00035',
                 'snap_token' => 'token-00035',
                 'id_user' => 36,
@@ -428,10 +532,13 @@ class TransactionSeeder extends Seeder
                 'status' => 'paid',
                 'provinsi' => 'Provinsi-35',
                 'kota' => 'Kota-35',
-                'alamat_pengiriman' => 'Alamat-35'
+                'alamat_pengiriman' => 'Alamat-35',
+                'created_at' => '2025-07-03 20:09:44',
             ],
             [
                 'id_transaction' => 36,
+                'telepon' => '08123456789',
+                'slug' => 'order-00036',
                 'order_id' => 'ORD-00036',
                 'snap_token' => 'token-00036',
                 'id_user' => 37,
@@ -440,10 +547,13 @@ class TransactionSeeder extends Seeder
                 'status' => 'paid',
                 'provinsi' => 'Provinsi-36',
                 'kota' => 'Kota-36',
-                'alamat_pengiriman' => 'Alamat-36'
+                'alamat_pengiriman' => 'Alamat-36',
+                'created_at' => '2025-07-03 20:09:44',
             ],
             [
                 'id_transaction' => 37,
+                'telepon' => '08123456789',
+                'slug' => 'order-00037',
                 'order_id' => 'ORD-00037',
                 'snap_token' => 'token-00037',
                 'id_user' => 38,
@@ -452,10 +562,13 @@ class TransactionSeeder extends Seeder
                 'status' => 'paid',
                 'provinsi' => 'Provinsi-37',
                 'kota' => 'Kota-37',
-                'alamat_pengiriman' => 'Alamat-37'
+                'alamat_pengiriman' => 'Alamat-37',
+                'created_at' => '2025-07-03 20:09:44',
             ],
             [
                 'id_transaction' => 38,
+                'telepon' => '08123456789',
+                'slug' => 'order-00038',
                 'order_id' => 'ORD-00038',
                 'snap_token' => 'token-00038',
                 'id_user' => 39,
@@ -464,10 +577,13 @@ class TransactionSeeder extends Seeder
                 'status' => 'paid',
                 'provinsi' => 'Provinsi-38',
                 'kota' => 'Kota-38',
-                'alamat_pengiriman' => 'Alamat-38'
+                'alamat_pengiriman' => 'Alamat-38',
+                'created_at' => '2025-07-03 20:09:44',
             ],
             [
                 'id_transaction' => 39,
+                'telepon' => '08123456789',
+                'slug' => 'order-00039',
                 'order_id' => 'ORD-00039',
                 'snap_token' => 'token-00039',
                 'id_user' => 40,
@@ -476,10 +592,13 @@ class TransactionSeeder extends Seeder
                 'status' => 'paid',
                 'provinsi' => 'Provinsi-39',
                 'kota' => 'Kota-39',
-                'alamat_pengiriman' => 'Alamat-39'
+                'alamat_pengiriman' => 'Alamat-39',
+                'created_at' => '2025-07-03 20:09:44',
             ],
             [
                 'id_transaction' => 40,
+                'telepon' => '08123456789',
+                'slug' => 'order-00040',
                 'order_id' => 'ORD-00040',
                 'snap_token' => 'token-00040',
                 'id_user' => 41,
@@ -488,10 +607,13 @@ class TransactionSeeder extends Seeder
                 'status' => 'paid',
                 'provinsi' => 'Provinsi-40',
                 'kota' => 'Kota-40',
-                'alamat_pengiriman' => 'Alamat-40'
+                'alamat_pengiriman' => 'Alamat-40',
+                'created_at' => '2025-07-03 20:09:44',
             ],
             [
                 'id_transaction' => 41,
+                'telepon' => '08123456789',
+                'slug' => 'order-00041',
                 'order_id' => 'ORD-00041',
                 'snap_token' => 'token-00041',
                 'id_user' => 42,
@@ -500,10 +622,13 @@ class TransactionSeeder extends Seeder
                 'status' => 'paid',
                 'provinsi' => 'Provinsi-41',
                 'kota' => 'Kota-41',
-                'alamat_pengiriman' => 'Alamat-41'
+                'alamat_pengiriman' => 'Alamat-41',
+                'created_at' => '2025-07-03 20:09:44',
             ],
             [
                 'id_transaction' => 42,
+                'telepon' => '08123456789',
+                'slug' => 'order-00042',
                 'order_id' => 'ORD-00042',
                 'snap_token' => 'token-00042',
                 'id_user' => 43,
@@ -512,10 +637,13 @@ class TransactionSeeder extends Seeder
                 'status' => 'paid',
                 'provinsi' => 'Provinsi-42',
                 'kota' => 'Kota-42',
-                'alamat_pengiriman' => 'Alamat-42'
+                'alamat_pengiriman' => 'Alamat-42',
+                'created_at' => '2025-07-03 20:09:44',
             ],
             [
                 'id_transaction' => 43,
+                'telepon' => '08123456789',
+                'slug' => 'order-00043',
                 'order_id' => 'ORD-00043',
                 'snap_token' => 'token-00043',
                 'id_user' => 44,
@@ -524,10 +652,13 @@ class TransactionSeeder extends Seeder
                 'status' => 'paid',
                 'provinsi' => 'Provinsi-43',
                 'kota' => 'Kota-43',
-                'alamat_pengiriman' => 'Alamat-43'
+                'alamat_pengiriman' => 'Alamat-43',
+                'created_at' => '2025-07-03 20:09:44',
             ],
             [
                 'id_transaction' => 44,
+                'telepon' => '08123456789',
+                'slug' => 'order-00044',
                 'order_id' => 'ORD-00044',
                 'snap_token' => 'token-00044',
                 'id_user' => 45,
@@ -536,10 +667,13 @@ class TransactionSeeder extends Seeder
                 'status' => 'paid',
                 'provinsi' => 'Provinsi-44',
                 'kota' => 'Kota-44',
-                'alamat_pengiriman' => 'Alamat-44'
+                'alamat_pengiriman' => 'Alamat-44',
+                'created_at' => '2025-07-03 20:09:44',
             ],
             [
                 'id_transaction' => 45,
+                'telepon' => '08123456789',
+                'slug' => 'order-00045',
                 'order_id' => 'ORD-00045',
                 'snap_token' => 'token-00045',
                 'id_user' => 46,
@@ -548,10 +682,13 @@ class TransactionSeeder extends Seeder
                 'status' => 'paid',
                 'provinsi' => 'Provinsi-45',
                 'kota' => 'Kota-45',
-                'alamat_pengiriman' => 'Alamat-45'
+                'alamat_pengiriman' => 'Alamat-45',
+                'created_at' => '2025-07-03 20:09:44',
             ],
             [
                 'id_transaction' => 46,
+                'telepon' => '08123456789',
+                'slug' => 'order-00046',
                 'order_id' => 'ORD-00046',
                 'snap_token' => 'token-00046',
                 'id_user' => 47,
@@ -560,10 +697,13 @@ class TransactionSeeder extends Seeder
                 'status' => 'paid',
                 'provinsi' => 'Provinsi-46',
                 'kota' => 'Kota-46',
-                'alamat_pengiriman' => 'Alamat-46'
+                'alamat_pengiriman' => 'Alamat-46',
+                'created_at' => '2025-07-03 20:09:44',
             ],
             [
                 'id_transaction' => 47,
+                'telepon' => '08123456789',
+                'slug' => 'order-00047',
                 'order_id' => 'ORD-00047',
                 'snap_token' => 'token-00047',
                 'id_user' => 48,
@@ -572,10 +712,13 @@ class TransactionSeeder extends Seeder
                 'status' => 'paid',
                 'provinsi' => 'Provinsi-47',
                 'kota' => 'Kota-47',
-                'alamat_pengiriman' => 'Alamat-47'
+                'alamat_pengiriman' => 'Alamat-47',
+                'created_at' => '2025-07-03 20:09:44',
             ],
             [
                 'id_transaction' => 48,
+                'telepon' => '08123456789',
+                'slug' => 'order-00048',
                 'order_id' => 'ORD-00048',
                 'snap_token' => 'token-00048',
                 'id_user' => 49,
@@ -584,10 +727,13 @@ class TransactionSeeder extends Seeder
                 'status' => 'paid',
                 'provinsi' => 'Provinsi-48',
                 'kota' => 'Kota-48',
-                'alamat_pengiriman' => 'Alamat-48'
+                'alamat_pengiriman' => 'Alamat-48',
+                'created_at' => '2025-07-03 20:09:44',
             ],
             [
                 'id_transaction' => 49,
+                'telepon' => '08123456789',
+                'slug' => 'order-00049',
                 'order_id' => 'ORD-00049',
                 'snap_token' => 'token-00049',
                 'id_user' => 50,
@@ -596,10 +742,13 @@ class TransactionSeeder extends Seeder
                 'status' => 'paid',
                 'provinsi' => 'Provinsi-49',
                 'kota' => 'Kota-49',
-                'alamat_pengiriman' => 'Alamat-49'
+                'alamat_pengiriman' => 'Alamat-49',
+                'created_at' => '2025-07-03 20:09:44',
             ],
             [
                 'id_transaction' => 50,
+                'telepon' => '08123456789',
+                'slug' => 'order-00050',
                 'order_id' => 'ORD-00050',
                 'snap_token' => 'token-00050',
                 'id_user' => 1,
@@ -608,10 +757,13 @@ class TransactionSeeder extends Seeder
                 'status' => 'paid',
                 'provinsi' => 'Provinsi-50',
                 'kota' => 'Kota-50',
-                'alamat_pengiriman' => 'Alamat-50'
+                'alamat_pengiriman' => 'Alamat-50',
+                'created_at' => '2025-07-03 20:09:44',
             ],
             [
                 'id_transaction' => 51,
+                'telepon' => '08123456789',
+                'slug' => 'order-00051',
                 'order_id' => 'ORD-00051',
                 'snap_token' => 'token-00051',
                 'id_user' => 2,
@@ -620,10 +772,13 @@ class TransactionSeeder extends Seeder
                 'status' => 'paid',
                 'provinsi' => 'Provinsi-51',
                 'kota' => 'Kota-51',
-                'alamat_pengiriman' => 'Alamat-51'
+                'alamat_pengiriman' => 'Alamat-51',
+                'created_at' => '2025-07-03 20:09:44',
             ],
             [
                 'id_transaction' => 52,
+                'telepon' => '08123456789',
+                'slug' => 'order-00052',
                 'order_id' => 'ORD-00052',
                 'snap_token' => 'token-00052',
                 'id_user' => 3,
@@ -632,10 +787,13 @@ class TransactionSeeder extends Seeder
                 'status' => 'paid',
                 'provinsi' => 'Provinsi-52',
                 'kota' => 'Kota-52',
-                'alamat_pengiriman' => 'Alamat-52'
+                'alamat_pengiriman' => 'Alamat-52',
+                'created_at' => '2025-07-03 20:09:44',
             ],
             [
                 'id_transaction' => 53,
+                'telepon' => '08123456789',
+                'slug' => 'order-00053',
                 'order_id' => 'ORD-00053',
                 'snap_token' => 'token-00053',
                 'id_user' => 4,
@@ -644,10 +802,13 @@ class TransactionSeeder extends Seeder
                 'status' => 'paid',
                 'provinsi' => 'Provinsi-53',
                 'kota' => 'Kota-53',
-                'alamat_pengiriman' => 'Alamat-53'
+                'alamat_pengiriman' => 'Alamat-53',
+                'created_at' => '2025-07-03 20:09:44',
             ],
             [
                 'id_transaction' => 54,
+                'telepon' => '08123456789',
+                'slug' => 'order-00054',
                 'order_id' => 'ORD-00054',
                 'snap_token' => 'token-00054',
                 'id_user' => 5,
@@ -656,10 +817,13 @@ class TransactionSeeder extends Seeder
                 'status' => 'paid',
                 'provinsi' => 'Provinsi-54',
                 'kota' => 'Kota-54',
-                'alamat_pengiriman' => 'Alamat-54'
+                'alamat_pengiriman' => 'Alamat-54',
+                'created_at' => '2025-07-03 20:09:44',
             ],
             [
                 'id_transaction' => 55,
+                'telepon' => '08123456789',
+                'slug' => 'order-00055',
                 'order_id' => 'ORD-00055',
                 'snap_token' => 'token-00055',
                 'id_user' => 6,
@@ -668,10 +832,13 @@ class TransactionSeeder extends Seeder
                 'status' => 'paid',
                 'provinsi' => 'Provinsi-55',
                 'kota' => 'Kota-55',
-                'alamat_pengiriman' => 'Alamat-55'
+                'alamat_pengiriman' => 'Alamat-55',
+                'created_at' => '2025-07-03 20:09:44',
             ],
             [
                 'id_transaction' => 56,
+                'telepon' => '08123456789',
+                'slug' => 'order-00056',
                 'order_id' => 'ORD-00056',
                 'snap_token' => 'token-00056',
                 'id_user' => 7,
@@ -680,10 +847,13 @@ class TransactionSeeder extends Seeder
                 'status' => 'paid',
                 'provinsi' => 'Provinsi-56',
                 'kota' => 'Kota-56',
-                'alamat_pengiriman' => 'Alamat-56'
+                'alamat_pengiriman' => 'Alamat-56',
+                'created_at' => '2025-07-03 20:09:44',
             ],
             [
                 'id_transaction' => 57,
+                'telepon' => '08123456789',
+                'slug' => 'order-00057',
                 'order_id' => 'ORD-00057',
                 'snap_token' => 'token-00057',
                 'id_user' => 8,
@@ -692,10 +862,13 @@ class TransactionSeeder extends Seeder
                 'status' => 'paid',
                 'provinsi' => 'Provinsi-57',
                 'kota' => 'Kota-57',
-                'alamat_pengiriman' => 'Alamat-57'
+                'alamat_pengiriman' => 'Alamat-57',
+                'created_at' => '2025-07-03 20:09:44',
             ],
             [
                 'id_transaction' => 58,
+                'telepon' => '08123456789',
+                'slug' => 'order-00058',
                 'order_id' => 'ORD-00058',
                 'snap_token' => 'token-00058',
                 'id_user' => 9,
@@ -704,10 +877,13 @@ class TransactionSeeder extends Seeder
                 'status' => 'paid',
                 'provinsi' => 'Provinsi-58',
                 'kota' => 'Kota-58',
-                'alamat_pengiriman' => 'Alamat-58'
+                'alamat_pengiriman' => 'Alamat-58',
+                'created_at' => '2025-07-03 20:09:44',
             ],
             [
                 'id_transaction' => 59,
+                'telepon' => '08123456789',
+                'slug' => 'order-00059',
                 'order_id' => 'ORD-00059',
                 'snap_token' => 'token-00059',
                 'id_user' => 10,
@@ -716,10 +892,13 @@ class TransactionSeeder extends Seeder
                 'status' => 'paid',
                 'provinsi' => 'Provinsi-59',
                 'kota' => 'Kota-59',
-                'alamat_pengiriman' => 'Alamat-59'
+                'alamat_pengiriman' => 'Alamat-59',
+                'created_at' => '2025-07-03 20:09:44',
             ],
             [
                 'id_transaction' => 60,
+                'telepon' => '08123456789',
+                'slug' => 'order-00060',
                 'order_id' => 'ORD-00060',
                 'snap_token' => 'token-00060',
                 'id_user' => 11,
@@ -728,10 +907,13 @@ class TransactionSeeder extends Seeder
                 'status' => 'paid',
                 'provinsi' => 'Provinsi-60',
                 'kota' => 'Kota-60',
-                'alamat_pengiriman' => 'Alamat-60'
+                'alamat_pengiriman' => 'Alamat-60',
+                'created_at' => '2025-07-03 20:09:44',
             ],
             [
                 'id_transaction' => 61,
+                'telepon' => '08123456789',
+                'slug' => 'order-00061',
                 'order_id' => 'ORD-00061',
                 'snap_token' => 'token-00061',
                 'id_user' => 12,
@@ -740,10 +922,13 @@ class TransactionSeeder extends Seeder
                 'status' => 'paid',
                 'provinsi' => 'Provinsi-61',
                 'kota' => 'Kota-61',
-                'alamat_pengiriman' => 'Alamat-61'
+                'alamat_pengiriman' => 'Alamat-61',
+                'created_at' => '2025-07-03 20:09:44',
             ],
             [
                 'id_transaction' => 62,
+                'telepon' => '08123456789',
+                'slug' => 'order-00062',
                 'order_id' => 'ORD-00062',
                 'snap_token' => 'token-00062',
                 'id_user' => 13,
@@ -752,10 +937,13 @@ class TransactionSeeder extends Seeder
                 'status' => 'paid',
                 'provinsi' => 'Provinsi-62',
                 'kota' => 'Kota-62',
-                'alamat_pengiriman' => 'Alamat-62'
+                'alamat_pengiriman' => 'Alamat-62',
+                'created_at' => '2025-07-03 20:09:44',
             ],
             [
                 'id_transaction' => 63,
+                'telepon' => '08123456789',
+                'slug' => 'order-00063',
                 'order_id' => 'ORD-00063',
                 'snap_token' => 'token-00063',
                 'id_user' => 14,
@@ -764,10 +952,13 @@ class TransactionSeeder extends Seeder
                 'status' => 'paid',
                 'provinsi' => 'Provinsi-63',
                 'kota' => 'Kota-63',
-                'alamat_pengiriman' => 'Alamat-63'
+                'alamat_pengiriman' => 'Alamat-63',
+                'created_at' => '2025-07-03 20:09:44',
             ],
             [
                 'id_transaction' => 64,
+                'telepon' => '08123456789',
+                'slug' => 'order-00064',
                 'order_id' => 'ORD-00064',
                 'snap_token' => 'token-00064',
                 'id_user' => 15,
@@ -776,10 +967,13 @@ class TransactionSeeder extends Seeder
                 'status' => 'paid',
                 'provinsi' => 'Provinsi-64',
                 'kota' => 'Kota-64',
-                'alamat_pengiriman' => 'Alamat-64'
+                'alamat_pengiriman' => 'Alamat-64',
+                'created_at' => '2025-07-03 20:09:44',
             ],
             [
                 'id_transaction' => 65,
+                'telepon' => '08123456789',
+                'slug' => 'order-00065',
                 'order_id' => 'ORD-00065',
                 'snap_token' => 'token-00065',
                 'id_user' => 16,
@@ -788,10 +982,13 @@ class TransactionSeeder extends Seeder
                 'status' => 'paid',
                 'provinsi' => 'Provinsi-65',
                 'kota' => 'Kota-65',
-                'alamat_pengiriman' => 'Alamat-65'
+                'alamat_pengiriman' => 'Alamat-65',
+                'created_at' => '2025-07-03 20:09:44',
             ],
             [
                 'id_transaction' => 66,
+                'telepon' => '08123456789',
+                'slug' => 'order-00066',
                 'order_id' => 'ORD-00066',
                 'snap_token' => 'token-00066',
                 'id_user' => 17,
@@ -800,10 +997,13 @@ class TransactionSeeder extends Seeder
                 'status' => 'paid',
                 'provinsi' => 'Provinsi-66',
                 'kota' => 'Kota-66',
-                'alamat_pengiriman' => 'Alamat-66'
+                'alamat_pengiriman' => 'Alamat-66',
+                'created_at' => '2025-07-03 20:09:44',
             ],
             [
                 'id_transaction' => 67,
+                'telepon' => '08123456789',
+                'slug' => 'order-00067',
                 'order_id' => 'ORD-00067',
                 'snap_token' => 'token-00067',
                 'id_user' => 18,
@@ -812,10 +1012,13 @@ class TransactionSeeder extends Seeder
                 'status' => 'paid',
                 'provinsi' => 'Provinsi-67',
                 'kota' => 'Kota-67',
-                'alamat_pengiriman' => 'Alamat-67'
+                'alamat_pengiriman' => 'Alamat-67',
+                'created_at' => '2025-07-03 20:09:44',
             ],
             [
                 'id_transaction' => 68,
+                'telepon' => '08123456789',
+                'slug' => 'order-00068',
                 'order_id' => 'ORD-00068',
                 'snap_token' => 'token-00068',
                 'id_user' => 19,
@@ -824,10 +1027,13 @@ class TransactionSeeder extends Seeder
                 'status' => 'paid',
                 'provinsi' => 'Provinsi-68',
                 'kota' => 'Kota-68',
-                'alamat_pengiriman' => 'Alamat-68'
+                'alamat_pengiriman' => 'Alamat-68',
+                'created_at' => '2025-07-03 20:09:44',
             ],
             [
                 'id_transaction' => 69,
+                'telepon' => '08123456789',
+                'slug' => 'order-00069',
                 'order_id' => 'ORD-00069',
                 'snap_token' => 'token-00069',
                 'id_user' => 20,
@@ -836,10 +1042,13 @@ class TransactionSeeder extends Seeder
                 'status' => 'paid',
                 'provinsi' => 'Provinsi-69',
                 'kota' => 'Kota-69',
-                'alamat_pengiriman' => 'Alamat-69'
+                'alamat_pengiriman' => 'Alamat-69',
+                'created_at' => '2025-07-03 20:09:44',
             ],
             [
                 'id_transaction' => 70,
+                'telepon' => '08123456789',
+                'slug' => 'order-00070',
                 'order_id' => 'ORD-00070',
                 'snap_token' => 'token-00070',
                 'id_user' => 21,
@@ -848,10 +1057,13 @@ class TransactionSeeder extends Seeder
                 'status' => 'paid',
                 'provinsi' => 'Provinsi-70',
                 'kota' => 'Kota-70',
-                'alamat_pengiriman' => 'Alamat-70'
+                'alamat_pengiriman' => 'Alamat-70',
+                'created_at' => '2025-07-03 20:09:44',
             ],
             [
                 'id_transaction' => 71,
+                'telepon' => '08123456789',
+                'slug' => 'order-00071',
                 'order_id' => 'ORD-00071',
                 'snap_token' => 'token-00071',
                 'id_user' => 22,
@@ -860,10 +1072,13 @@ class TransactionSeeder extends Seeder
                 'status' => 'paid',
                 'provinsi' => 'Provinsi-71',
                 'kota' => 'Kota-71',
-                'alamat_pengiriman' => 'Alamat-71'
+                'alamat_pengiriman' => 'Alamat-71',
+                'created_at' => '2025-07-03 20:09:44',
             ],
             [
                 'id_transaction' => 72,
+                'telepon' => '08123456789',
+                'slug' => 'order-00072',
                 'order_id' => 'ORD-00072',
                 'snap_token' => 'token-00072',
                 'id_user' => 23,
@@ -872,10 +1087,13 @@ class TransactionSeeder extends Seeder
                 'status' => 'paid',
                 'provinsi' => 'Provinsi-72',
                 'kota' => 'Kota-72',
-                'alamat_pengiriman' => 'Alamat-72'
+                'alamat_pengiriman' => 'Alamat-72',
+                'created_at' => '2025-07-03 20:09:44',
             ],
             [
                 'id_transaction' => 73,
+                'telepon' => '08123456789',
+                'slug' => 'order-00073',
                 'order_id' => 'ORD-00073',
                 'snap_token' => 'token-00073',
                 'id_user' => 24,
@@ -884,10 +1102,13 @@ class TransactionSeeder extends Seeder
                 'status' => 'paid',
                 'provinsi' => 'Provinsi-73',
                 'kota' => 'Kota-73',
-                'alamat_pengiriman' => 'Alamat-73'
+                'alamat_pengiriman' => 'Alamat-73',
+                'created_at' => '2025-07-03 20:09:44',
             ],
             [
                 'id_transaction' => 74,
+                'telepon' => '08123456789',
+                'slug' => 'order-00074',
                 'order_id' => 'ORD-00074',
                 'snap_token' => 'token-00074',
                 'id_user' => 25,
@@ -896,10 +1117,13 @@ class TransactionSeeder extends Seeder
                 'status' => 'paid',
                 'provinsi' => 'Provinsi-74',
                 'kota' => 'Kota-74',
-                'alamat_pengiriman' => 'Alamat-74'
+                'alamat_pengiriman' => 'Alamat-74',
+                'created_at' => '2025-07-03 20:09:44',
             ],
             [
                 'id_transaction' => 75,
+                'telepon' => '08123456789',
+                'slug' => 'order-00075',
                 'order_id' => 'ORD-00075',
                 'snap_token' => 'token-00075',
                 'id_user' => 26,
@@ -908,10 +1132,13 @@ class TransactionSeeder extends Seeder
                 'status' => 'paid',
                 'provinsi' => 'Provinsi-75',
                 'kota' => 'Kota-75',
-                'alamat_pengiriman' => 'Alamat-75'
+                'alamat_pengiriman' => 'Alamat-75',
+                'created_at' => '2025-07-03 20:09:44',
             ],
             [
                 'id_transaction' => 76,
+                'telepon' => '08123456789',
+                'slug' => 'order-00076',
                 'order_id' => 'ORD-00076',
                 'snap_token' => 'token-00076',
                 'id_user' => 27,
@@ -920,10 +1147,13 @@ class TransactionSeeder extends Seeder
                 'status' => 'paid',
                 'provinsi' => 'Provinsi-76',
                 'kota' => 'Kota-76',
-                'alamat_pengiriman' => 'Alamat-76'
+                'alamat_pengiriman' => 'Alamat-76',
+                'created_at' => '2025-07-03 20:09:44',
             ],
             [
                 'id_transaction' => 77,
+                'telepon' => '08123456789',
+                'slug' => 'order-00077',
                 'order_id' => 'ORD-00077',
                 'snap_token' => 'token-00077',
                 'id_user' => 28,
@@ -932,10 +1162,13 @@ class TransactionSeeder extends Seeder
                 'status' => 'paid',
                 'provinsi' => 'Provinsi-77',
                 'kota' => 'Kota-77',
-                'alamat_pengiriman' => 'Alamat-77'
+                'alamat_pengiriman' => 'Alamat-77',
+                'created_at' => '2025-07-03 20:09:44',
             ],
             [
                 'id_transaction' => 78,
+                'telepon' => '08123456789',
+                'slug' => 'order-00078',
                 'order_id' => 'ORD-00078',
                 'snap_token' => 'token-00078',
                 'id_user' => 29,
@@ -944,10 +1177,13 @@ class TransactionSeeder extends Seeder
                 'status' => 'paid',
                 'provinsi' => 'Provinsi-78',
                 'kota' => 'Kota-78',
-                'alamat_pengiriman' => 'Alamat-78'
+                'alamat_pengiriman' => 'Alamat-78',
+                'created_at' => '2025-07-03 20:09:44',
             ],
             [
                 'id_transaction' => 79,
+                'telepon' => '08123456789',
+                'slug' => 'order-00079',
                 'order_id' => 'ORD-00079',
                 'snap_token' => 'token-00079',
                 'id_user' => 30,
@@ -956,10 +1192,13 @@ class TransactionSeeder extends Seeder
                 'status' => 'paid',
                 'provinsi' => 'Provinsi-79',
                 'kota' => 'Kota-79',
-                'alamat_pengiriman' => 'Alamat-79'
+                'alamat_pengiriman' => 'Alamat-79',
+                'created_at' => '2025-07-03 20:09:44',
             ],
             [
                 'id_transaction' => 80,
+                'telepon' => '08123456789',
+                'slug' => 'order-00080',
                 'order_id' => 'ORD-00080',
                 'snap_token' => 'token-00080',
                 'id_user' => 31,
@@ -968,10 +1207,13 @@ class TransactionSeeder extends Seeder
                 'status' => 'paid',
                 'provinsi' => 'Provinsi-80',
                 'kota' => 'Kota-80',
-                'alamat_pengiriman' => 'Alamat-80'
+                'alamat_pengiriman' => 'Alamat-80',
+                'created_at' => '2025-07-03 20:09:44',
             ],
             [
                 'id_transaction' => 81,
+                'telepon' => '08123456789',
+                'slug' => 'order-00081',
                 'order_id' => 'ORD-00081',
                 'snap_token' => 'token-00081',
                 'id_user' => 32,
@@ -980,10 +1222,13 @@ class TransactionSeeder extends Seeder
                 'status' => 'paid',
                 'provinsi' => 'Provinsi-81',
                 'kota' => 'Kota-81',
-                'alamat_pengiriman' => 'Alamat-81'
+                'alamat_pengiriman' => 'Alamat-81',
+                'created_at' => '2025-07-03 20:09:44',
             ],
             [
                 'id_transaction' => 82,
+                'telepon' => '08123456789',
+                'slug' => 'order-00082',
                 'order_id' => 'ORD-00082',
                 'snap_token' => 'token-00082',
                 'id_user' => 33,
@@ -992,10 +1237,13 @@ class TransactionSeeder extends Seeder
                 'status' => 'paid',
                 'provinsi' => 'Provinsi-82',
                 'kota' => 'Kota-82',
-                'alamat_pengiriman' => 'Alamat-82'
+                'alamat_pengiriman' => 'Alamat-82',
+                'created_at' => '2025-07-03 20:09:44',
             ],
             [
                 'id_transaction' => 83,
+                'telepon' => '08123456789',
+                'slug' => 'order-00083',
                 'order_id' => 'ORD-00083',
                 'snap_token' => 'token-00083',
                 'id_user' => 34,
@@ -1004,10 +1252,13 @@ class TransactionSeeder extends Seeder
                 'status' => 'paid',
                 'provinsi' => 'Provinsi-83',
                 'kota' => 'Kota-83',
-                'alamat_pengiriman' => 'Alamat-83'
+                'alamat_pengiriman' => 'Alamat-83',
+                'created_at' => '2025-07-03 20:09:44',
             ],
             [
                 'id_transaction' => 84,
+                'telepon' => '08123456789',
+                'slug' => 'order-00084',
                 'order_id' => 'ORD-00084',
                 'snap_token' => 'token-00084',
                 'id_user' => 35,
@@ -1016,10 +1267,13 @@ class TransactionSeeder extends Seeder
                 'status' => 'paid',
                 'provinsi' => 'Provinsi-84',
                 'kota' => 'Kota-84',
-                'alamat_pengiriman' => 'Alamat-84'
+                'alamat_pengiriman' => 'Alamat-84',
+                'created_at' => '2025-07-03 20:09:44',
             ],
             [
                 'id_transaction' => 85,
+                'telepon' => '08123456789',
+                'slug' => 'order-00085',
                 'order_id' => 'ORD-00085',
                 'snap_token' => 'token-00085',
                 'id_user' => 36,
@@ -1028,10 +1282,13 @@ class TransactionSeeder extends Seeder
                 'status' => 'paid',
                 'provinsi' => 'Provinsi-85',
                 'kota' => 'Kota-85',
-                'alamat_pengiriman' => 'Alamat-85'
+                'alamat_pengiriman' => 'Alamat-85',
+                'created_at' => '2025-07-03 20:09:44',
             ],
             [
                 'id_transaction' => 86,
+                'telepon' => '08123456789',
+                'slug' => 'order-00086',
                 'order_id' => 'ORD-00086',
                 'snap_token' => 'token-00086',
                 'id_user' => 37,
@@ -1040,10 +1297,13 @@ class TransactionSeeder extends Seeder
                 'status' => 'paid',
                 'provinsi' => 'Provinsi-86',
                 'kota' => 'Kota-86',
-                'alamat_pengiriman' => 'Alamat-86'
+                'alamat_pengiriman' => 'Alamat-86',
+                'created_at' => '2025-07-03 20:09:44',
             ],
             [
                 'id_transaction' => 87,
+                'telepon' => '08123456789',
+                'slug' => 'order-00087',
                 'order_id' => 'ORD-00087',
                 'snap_token' => 'token-00087',
                 'id_user' => 38,
@@ -1052,10 +1312,13 @@ class TransactionSeeder extends Seeder
                 'status' => 'paid',
                 'provinsi' => 'Provinsi-87',
                 'kota' => 'Kota-87',
-                'alamat_pengiriman' => 'Alamat-87'
+                'alamat_pengiriman' => 'Alamat-87',
+                'created_at' => '2025-07-03 20:09:44',
             ],
             [
                 'id_transaction' => 88,
+                'telepon' => '08123456789',
+                'slug' => 'order-00088',
                 'order_id' => 'ORD-00088',
                 'snap_token' => 'token-00088',
                 'id_user' => 39,
@@ -1064,10 +1327,13 @@ class TransactionSeeder extends Seeder
                 'status' => 'paid',
                 'provinsi' => 'Provinsi-88',
                 'kota' => 'Kota-88',
-                'alamat_pengiriman' => 'Alamat-88'
+                'alamat_pengiriman' => 'Alamat-88',
+                'created_at' => '2025-07-03 20:09:44',
             ],
             [
                 'id_transaction' => 89,
+                'telepon' => '08123456789',
+                'slug' => 'order-00089',
                 'order_id' => 'ORD-00089',
                 'snap_token' => 'token-00089',
                 'id_user' => 40,
@@ -1076,10 +1342,13 @@ class TransactionSeeder extends Seeder
                 'status' => 'paid',
                 'provinsi' => 'Provinsi-89',
                 'kota' => 'Kota-89',
-                'alamat_pengiriman' => 'Alamat-89'
+                'alamat_pengiriman' => 'Alamat-89',
+                'created_at' => '2025-07-03 20:09:44',
             ],
             [
                 'id_transaction' => 90,
+                'telepon' => '08123456789',
+                'slug' => 'order-00090',
                 'order_id' => 'ORD-00090',
                 'snap_token' => 'token-00090',
                 'id_user' => 41,
@@ -1088,10 +1357,13 @@ class TransactionSeeder extends Seeder
                 'status' => 'paid',
                 'provinsi' => 'Provinsi-90',
                 'kota' => 'Kota-90',
-                'alamat_pengiriman' => 'Alamat-90'
+                'alamat_pengiriman' => 'Alamat-90',
+                'created_at' => '2025-07-03 20:09:44',
             ],
             [
                 'id_transaction' => 91,
+                'telepon' => '08123456789',
+                'slug' => 'order-00091',
                 'order_id' => 'ORD-00091',
                 'snap_token' => 'token-00091',
                 'id_user' => 42,
@@ -1100,10 +1372,13 @@ class TransactionSeeder extends Seeder
                 'status' => 'paid',
                 'provinsi' => 'Provinsi-91',
                 'kota' => 'Kota-91',
-                'alamat_pengiriman' => 'Alamat-91'
+                'alamat_pengiriman' => 'Alamat-91',
+                'created_at' => '2025-07-03 20:09:44',
             ],
             [
                 'id_transaction' => 92,
+                'telepon' => '08123456789',
+                'slug' => 'order-00092',
                 'order_id' => 'ORD-00092',
                 'snap_token' => 'token-00092',
                 'id_user' => 43,
@@ -1112,10 +1387,13 @@ class TransactionSeeder extends Seeder
                 'status' => 'paid',
                 'provinsi' => 'Provinsi-92',
                 'kota' => 'Kota-92',
-                'alamat_pengiriman' => 'Alamat-92'
+                'alamat_pengiriman' => 'Alamat-92',
+                'created_at' => '2025-07-03 20:09:44',
             ],
             [
                 'id_transaction' => 93,
+                'telepon' => '08123456789',
+                'slug' => 'order-00093',
                 'order_id' => 'ORD-00093',
                 'snap_token' => 'token-00093',
                 'id_user' => 44,
@@ -1124,10 +1402,13 @@ class TransactionSeeder extends Seeder
                 'status' => 'paid',
                 'provinsi' => 'Provinsi-93',
                 'kota' => 'Kota-93',
-                'alamat_pengiriman' => 'Alamat-93'
+                'alamat_pengiriman' => 'Alamat-93',
+                'created_at' => '2025-07-03 20:09:44',
             ],
             [
                 'id_transaction' => 94,
+                'telepon' => '08123456789',
+                'slug' => 'order-00094',
                 'order_id' => 'ORD-00094',
                 'snap_token' => 'token-00094',
                 'id_user' => 45,
@@ -1136,10 +1417,13 @@ class TransactionSeeder extends Seeder
                 'status' => 'paid',
                 'provinsi' => 'Provinsi-94',
                 'kota' => 'Kota-94',
-                'alamat_pengiriman' => 'Alamat-94'
+                'alamat_pengiriman' => 'Alamat-94',
+                'created_at' => '2025-07-03 20:09:44',
             ],
             [
                 'id_transaction' => 95,
+                'telepon' => '08123456789',
+                'slug' => 'order-00095',
                 'order_id' => 'ORD-00095',
                 'snap_token' => 'token-00095',
                 'id_user' => 46,
@@ -1148,10 +1432,13 @@ class TransactionSeeder extends Seeder
                 'status' => 'paid',
                 'provinsi' => 'Provinsi-95',
                 'kota' => 'Kota-95',
-                'alamat_pengiriman' => 'Alamat-95'
+                'alamat_pengiriman' => 'Alamat-95',
+                'created_at' => '2025-07-03 20:09:44',
             ],
             [
                 'id_transaction' => 96,
+                'telepon' => '08123456789',
+                'slug' => 'order-00096',
                 'order_id' => 'ORD-00096',
                 'snap_token' => 'token-00096',
                 'id_user' => 47,
@@ -1160,10 +1447,13 @@ class TransactionSeeder extends Seeder
                 'status' => 'paid',
                 'provinsi' => 'Provinsi-96',
                 'kota' => 'Kota-96',
-                'alamat_pengiriman' => 'Alamat-96'
+                'alamat_pengiriman' => 'Alamat-96',
+                'created_at' => '2025-07-03 20:09:44',
             ],
             [
                 'id_transaction' => 97,
+                'telepon' => '08123456789',
+                'slug' => 'order-00097',
                 'order_id' => 'ORD-00097',
                 'snap_token' => 'token-00097',
                 'id_user' => 48,
@@ -1172,10 +1462,13 @@ class TransactionSeeder extends Seeder
                 'status' => 'paid',
                 'provinsi' => 'Provinsi-97',
                 'kota' => 'Kota-97',
-                'alamat_pengiriman' => 'Alamat-97'
+                'alamat_pengiriman' => 'Alamat-97',
+                'created_at' => '2025-07-03 20:09:44',
             ],
             [
                 'id_transaction' => 98,
+                'telepon' => '08123456789',
+                'slug' => 'order-00098',
                 'order_id' => 'ORD-00098',
                 'snap_token' => 'token-00098',
                 'id_user' => 49,
@@ -1184,10 +1477,13 @@ class TransactionSeeder extends Seeder
                 'status' => 'paid',
                 'provinsi' => 'Provinsi-98',
                 'kota' => 'Kota-98',
-                'alamat_pengiriman' => 'Alamat-98'
+                'alamat_pengiriman' => 'Alamat-98',
+                'created_at' => '2025-07-03 20:09:44',
             ],
             [
                 'id_transaction' => 99,
+                'telepon' => '08123456789',
+                'slug' => 'order-00099',
                 'order_id' => 'ORD-00099',
                 'snap_token' => 'token-00099',
                 'id_user' => 50,
@@ -1196,10 +1492,13 @@ class TransactionSeeder extends Seeder
                 'status' => 'paid',
                 'provinsi' => 'Provinsi-99',
                 'kota' => 'Kota-99',
-                'alamat_pengiriman' => 'Alamat-99'
+                'alamat_pengiriman' => 'Alamat-99',
+                'created_at' => '2025-07-03 20:09:44',
             ],
             [
                 'id_transaction' => 100,
+                'telepon' => '08123456789',
+                'slug' => 'order-00100',
                 'order_id' => 'ORD-00100',
                 'snap_token' => 'token-00100',
                 'id_user' => 1,
@@ -1208,10 +1507,13 @@ class TransactionSeeder extends Seeder
                 'status' => 'paid',
                 'provinsi' => 'Provinsi-100',
                 'kota' => 'Kota-100',
-                'alamat_pengiriman' => 'Alamat-100'
+                'alamat_pengiriman' => 'Alamat-100',
+                'created_at' => '2025-07-03 20:09:44',
             ],
             [
                 'id_transaction' => 101,
+                'telepon' => '08123456789',
+                'slug' => 'order-00101',
                 'order_id' => 'ORD-00101',
                 'snap_token' => 'token-00101',
                 'id_user' => 2,
@@ -1220,10 +1522,13 @@ class TransactionSeeder extends Seeder
                 'status' => 'paid',
                 'provinsi' => 'Provinsi-101',
                 'kota' => 'Kota-101',
-                'alamat_pengiriman' => 'Alamat-101'
+                'alamat_pengiriman' => 'Alamat-101',
+                'created_at' => '2025-07-03 20:09:44',
             ],
             [
                 'id_transaction' => 102,
+                'telepon' => '08123456789',
+                'slug' => 'order-00102',
                 'order_id' => 'ORD-00102',
                 'snap_token' => 'token-00102',
                 'id_user' => 3,
@@ -1232,10 +1537,13 @@ class TransactionSeeder extends Seeder
                 'status' => 'paid',
                 'provinsi' => 'Provinsi-102',
                 'kota' => 'Kota-102',
-                'alamat_pengiriman' => 'Alamat-102'
+                'alamat_pengiriman' => 'Alamat-102',
+                'created_at' => '2025-07-03 20:09:44',
             ],
             [
                 'id_transaction' => 103,
+                'telepon' => '08123456789',
+                'slug' => 'order-00103',
                 'order_id' => 'ORD-00103',
                 'snap_token' => 'token-00103',
                 'id_user' => 4,
@@ -1244,7 +1552,8 @@ class TransactionSeeder extends Seeder
                 'status' => 'paid',
                 'provinsi' => 'Provinsi-103',
                 'kota' => 'Kota-103',
-                'alamat_pengiriman' => 'Alamat-103'
+                'alamat_pengiriman' => 'Alamat-103',
+                'created_at' => '2025-01-24 07:43:42'
             ]
         ]);
     }
