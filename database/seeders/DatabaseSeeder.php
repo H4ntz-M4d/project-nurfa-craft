@@ -2,11 +2,19 @@
 
 namespace Database\Seeders;
 
-use App\Models\User;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Str;
+
+use Database\Seeders\UsersSeeder;
+use Database\Seeders\CustomersSeeder;
+use Database\Seeders\ProdukSeeder;
+use Database\Seeders\TransactionSeeder;
+use Database\Seeders\TransactionDetailsSeeder;
+use Database\Seeders\PesananSeeder;
+use Database\Seeders\PengeluaranSeeder;
+use Database\Seeders\KategoriSeeder;
 
 class DatabaseSeeder extends Seeder
 {
@@ -25,6 +33,17 @@ class DatabaseSeeder extends Seeder
             'remember_token' => Str::random(10),
             'created_at' => now(),
             'updated_at' => now(),
+        ]);
+
+        $this->call([
+            UsersSeeder::class,
+            CustomersSeeder::class,
+            KategoriSeeder::class, 
+            ProdukSeeder::class,
+            TransactionSeeder::class,
+            TransactionDetailsSeeder::class,
+            PesananSeeder::class,
+            PengeluaranSeeder::class,
         ]);
     }
 }
