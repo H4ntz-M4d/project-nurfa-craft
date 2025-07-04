@@ -206,7 +206,7 @@
                                 <!--end::Label-->
                                 <!--begin::Col-->
                                 <div class="col-lg-8 fv-row">
-                                    <input type="number" name="no_telp"
+                                    <input type="number" onwheel="this.blur()" name="no_telp"
                                         class="form-control form-control-lg form-control-solid"
                                         placeholder="Phone number" value="{{ $vk->no_telp }}" />
                                 </div>

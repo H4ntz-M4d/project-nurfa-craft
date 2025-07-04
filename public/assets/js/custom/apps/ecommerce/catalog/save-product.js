@@ -98,21 +98,6 @@ var KTAppEcommerceSaveProduct = (function () {
                             },
                         });
                 }),
-                (o = document.querySelector(
-                    "#kt_ecommerce_add_product_discount_slider"
-                )),
-                (a = document.querySelector(
-                    "#kt_ecommerce_add_product_discount_label"
-                )),
-                noUiSlider.create(o, {
-                    start: [10],
-                    connect: !0,
-                    range: { min: 1, max: 100 },
-                }),
-                o.noUiSlider.on("update", function (e, t) {
-                    (a.innerHTML = Math.round(e[t])),
-                        t && (a.innerHTML = Math.round(e[t]));
-                }),
                 e();
                 let myDropzone = new Dropzone("#kt_ecommerce_add_product_media", {
                     url: "/produk/upload-gambar",
@@ -231,34 +216,6 @@ var KTAppEcommerceSaveProduct = (function () {
                             "1" === e.target.value
                                 ? t.classList.remove("d-none")
                                 : t.classList.add("d-none");
-                        });
-                    });
-                })(),
-                (() => {
-                    const e = document.querySelectorAll(
-                        'input[name="discount_option"]'
-                    ),
-                        t = document.getElementById(
-                            "kt_ecommerce_add_product_discount_percentage"
-                        ),
-                        o = document.getElementById(
-                            "kt_ecommerce_add_product_discount_fixed"
-                        );
-                    e.forEach((e) => {
-                        e.addEventListener("change", (e) => {
-                            switch (e.target.value) {
-                                case "2":
-                                    t.classList.remove("d-none"),
-                                        o.classList.add("d-none");
-                                    break;
-                                case "3":
-                                    t.classList.add("d-none"),
-                                        o.classList.remove("d-none");
-                                    break;
-                                default:
-                                    t.classList.add("d-none"),
-                                        o.classList.add("d-none");
-                            }
                         });
                     });
                 })(),

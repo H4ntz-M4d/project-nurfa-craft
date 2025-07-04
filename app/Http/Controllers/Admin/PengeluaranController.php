@@ -148,11 +148,20 @@ class PengeluaranController extends Controller
     {
         $pengeluaran = Pengeluaran::where('slug', $slug)->firstOrFail();
         $pengeluaran->delete();
+    
+        return response()->json(['success' => true, 'message' => 'Produk berhasil dihapus']);
+    }
+    
+    public function destroySelected(Request $request)
+    {
+        $ids = $request->ids;
+        if (!$ids || !is_array($ids)) {
+            return response()->json(['success' => false, 'message' => 'ID tidak valid'], 400);
+        }
 
-        return response()->json([
-            'success' => true,
-            'message' => 'Pengeluaran berhasil dihapus.',
-        ]);
+        Pengeluaran::whereIn('slug', $ids)->delete();
+
+        return response()->json(['success' => true, 'message' => 'Data Produk berhasil dihapus']);
     }
 
 }

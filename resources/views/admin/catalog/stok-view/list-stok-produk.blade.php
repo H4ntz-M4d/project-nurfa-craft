@@ -116,7 +116,7 @@
                                 <label class="required fs-6 fw-semibold mb-2">Stok Masuk</label>
                                 <!--end::Label-->
                                 <!--begin::Input-->
-                                <input type="text" class="form-control form-control-solid" placeholder="Nama Variant"
+                                <input type="number" onwheel="this.blur()" class="form-control form-control-solid" placeholder="Nama Variant"
                                     name="stok_masuk" id="stok_masuk" required />
                                 <!--end::Input-->
                             </div>

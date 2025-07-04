@@ -18,19 +18,54 @@
                             <input type="text" data-kt-karyawan-table-filter="search" class="form-control form-control-solid w-250px ps-13" placeholder="Search Karyawan" />
                         </div>
                         <!--end::Search-->
+                        <!--begin::Export buttons-->
+                        <div id="kt_karyawan_views_export" class="d-none"></div>
+                        <!--end::Export buttons-->
+
                     </div>
                     <!--begin::Card title-->
                     <!--begin::Card toolbar-->
                     <div class="card-toolbar">
                         <!--begin::Toolbar-->
                         <div class="d-flex justify-content-end" data-kt-karyawan-table-toolbar="base">
-                            <!--begin::Export-->
-                            <button type="button" class="btn btn-light-primary me-3" data-bs-toggle="modal" data-bs-target="#kt_customers_export_modal">
+                        <!--begin::Export dropdown-->
+                        <button type="button" class="btn btn-light-primary me-3" data-kt-menu-trigger="click"
+                            data-kt-menu-placement="bottom-end">
                             <i class="ki-duotone ki-exit-up fs-2">
                                 <span class="path1"></span>
                                 <span class="path2"></span>
                             </i>Export</button>
-                            <!--end::Export-->
+                            <!--begin::Menu-->
+                            <div id="kt_karyawan_views_export_menu"
+                                class="menu menu-sub menu-sub-dropdown menu-column menu-rounded menu-gray-600 menu-state-bg-light-primary fw-semibold fs-7 w-200px py-4"
+                                data-kt-menu="true">
+                                <!--begin::Menu item-->
+                                <div class="menu-item px-3">
+                                    <a href="#" class="menu-link px-3" data-kt-karyawan-export="copy">Copy to
+                                        clipboard</a>
+                                </div>
+                                <!--end::Menu item-->
+                                <!--begin::Menu item-->
+                                <div class="menu-item px-3">
+                                    <a href="#" class="menu-link px-3" data-kt-karyawan-export="excel">Export as
+                                        Excel</a>
+                                </div>
+                                <!--end::Menu item-->
+                                <!--begin::Menu item-->
+                                <div class="menu-item px-3">
+                                    <a href="#" class="menu-link px-3" data-kt-karyawan-export="csv">Export as
+                                        CSV</a>
+                                </div>
+                                <!--end::Menu item-->
+                                <!--begin::Menu item-->
+                                <div class="menu-item px-3">
+                                    <a href="#" class="menu-link px-3" data-kt-karyawan-export="pdf">Export as
+                                        PDF</a>
+                                </div>
+                                <!--end::Menu item-->
+                            </div>
+                            <!--end::Menu-->
+                            <!--end::Export dropdown-->
                             <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#kt_modal_tambah_karyawan">
                                 <i class="ki-solid ki-abstract-10 fs-5"></i>
                                 Add karyawan
@@ -211,7 +246,7 @@
                                                 </label>
                                                 <!--end::Label-->
                                                 <!--begin::Input-->
-                                                <input type="text" class="form-control form-control-lg form-control-solid" name="no_telp" placeholder="Masukkan nomor telepon" value="" />
+                                                <input type="number" onwheel="this.blur()" class="form-control form-control-lg form-control-solid" name="no_telp" placeholder="Masukkan nomor telepon" value="" />
                                                 <!--end::Input-->
                                             </div>
                                             <!--end::Input group-->
@@ -408,6 +443,15 @@
         <script src="{{ asset('assets/js/custom/apps/ecommerce/customers/listing/add-karyawan.js') }}"></script>
         <script>
             $("#kt_datepicker_1").flatpickr();
+        </script>
+        <script>
+        function isNumberKey(evt) {
+            const invalidKeys = ["e", "E", "+", "-", ".", ","];
+            if (invalidKeys.includes(evt.key)) {
+                evt.preventDefault();
+                return false;
+            }
+        }
         </script>
     @endpush
 </x-admin.layout>

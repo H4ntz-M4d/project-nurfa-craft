@@ -189,6 +189,56 @@ var KTKaryawanList = (function () {
                 }
             });
 
+            (() => {
+                const e = "Data Karyawan"; // Judul laporan
+                new $.fn.dataTable.Buttons(t, {
+                    buttons: [
+                        {
+                            extend: "copyHtml5",
+                            title: e,
+                            exportOptions: {
+                                columns: [0, 1, 2, 3, 4] // tanpa kolom action
+                            }
+                        },
+                        {
+                            extend: "excelHtml5",
+                            title: e,
+                            exportOptions: {
+                                columns: [0, 1, 2, 3, 4]
+                            }
+                        },
+                        {
+                            extend: "csvHtml5",
+                            title: e,
+                            exportOptions: {
+                                columns: [0, 1, 2, 3, 4]
+                            }
+                        },
+                        {
+                            extend: "pdfHtml5",
+                            title: e,
+                            exportOptions: {
+                                columns: [0, 1, 2, 3, 4]
+                            }
+                        },
+                    ],
+
+                })
+                    .container()
+                    .appendTo($("#kt_karyawan_views_export")),
+                    document
+                        .querySelectorAll(
+                            "#kt_karyawan_views_export_menu [data-kt-karyawan-export]"
+                        )
+                        .forEach((t) => {
+                            t.addEventListener("click", (t) => {
+                                t.preventDefault();
+                                const e = t.target.getAttribute("data-kt-karyawan-export");
+                                document.querySelector(".dt-buttons .buttons-" + e).click();
+                            });
+                        });
+            })(),
+
             // Search input
             document.querySelector('[data-kt-karyawan-table-filter="search"]')
                 .addEventListener("keyup", function (event) {

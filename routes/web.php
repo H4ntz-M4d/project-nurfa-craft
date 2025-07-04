@@ -143,7 +143,10 @@ Route::middleware(['auth', 'verified', RoleUsers::class.':admin'])->group(functi
     Route::post('/pengeluaran-store', [PengeluaranController::class, 'store'])->name('pengeluaran.store');
     Route::get('/detail-pengeluaran/{slug}', [PengeluaranController::class, 'getDetail'])->name('pengeluaran.detail');
     Route::put('/pengeluaran-update/{slug}', [PengeluaranController::class, 'update'])->name('pengeluaran.update');
+    Route::delete('/pengeluaran/{slug}', [PengeluaranController::class, 'destroy'])->name('pengeluaran.delete');
+    Route::delete('/pengeluaran-delete-selected', [PengeluaranController::class, 'destroySelected'])->name('pengeluaran.destroySelected');
 
+    
     // begin route report omset tahunan
     Route::get('/list-report-omset-tahunan', [ReportOmsetController::class, 'index'])->name('report-omzet.index');
     Route::get('/report-omset-tahunan/data', [ReportOmsetController::class, 'data'])->name('report-omzet.data');
@@ -218,10 +221,10 @@ Route::middleware(['auth', 'verified', RoleUsers::class.':customers'])->group(fu
     Route::get('/get-provinsi', [KeranjangController::class, 'getProvinsi']);
     Route::get('/get-kabupaten/{id}', [KeranjangController::class, 'getKabupaten']);
 
+    Route::get('/home', [HomeController::class, 'index'])->name('home');
 });
 
 Route::get('/', [HomeController::class, 'index'])->name('home');
-Route::get('/home', [HomeController::class, 'index'])->name('home');
 
 //product detail
 Route::get('/product', [ProdukCustomerController::class, 'index'])->name('product.index');

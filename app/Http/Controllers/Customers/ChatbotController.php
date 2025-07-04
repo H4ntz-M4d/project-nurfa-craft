@@ -88,7 +88,7 @@ class ChatbotController extends Controller
 
         // Step 1: Ambil produk lengkap dengan detail & varian
         $produkList = ProdukMaster::with([
-            'detailProduk:id_detail_produk,id_master_produk,stok',
+            'detailProduk:id_detail_produk,id_master_produk,stok,harga',
             'variant' => function ($query) {
                 $query->select('id_var_produk', 'id_master_produk', 'stok', 'harga');
             },

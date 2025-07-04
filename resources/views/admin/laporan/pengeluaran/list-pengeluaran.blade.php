@@ -161,7 +161,7 @@
                                         <div class="form-check form-check-custom form-check-solid">
                                             <!--begin::Input-->
                                             <input class="form-check-input me-3" name="kategori_pengeluaran" type="radio"
-                                                value="proses" id="kt_modal_update_role_option_0"/>
+                                                value="Bahan Baku" id="kt_modal_update_role_option_0"/>
                                             <!--end::Input-->
                                             <!--begin::Label-->
                                             <label class="form-check-label" for="kt_modal_update_role_option_0">
@@ -182,7 +182,7 @@
                                         <div class="form-check form-check-custom form-check-solid">
                                             <!--begin::Input-->
                                             <input class="form-check-input me-3" name="kategori_pengeluaran" type="radio"
-                                                value="dikirim" id="kt_modal_update_role_option_1" />
+                                                value="Alat Produksi" id="kt_modal_update_role_option_1" />
                                             <!--end::Input-->
                                             <!--begin::Label-->
                                             <label class="form-check-label" for="kt_modal_update_role_option_1">
@@ -203,7 +203,7 @@
                                         <div class="form-check form-check-custom form-check-solid">
                                             <!--begin::Input-->
                                             <input class="form-check-input me-3" name="kategori_pengeluaran" type="radio"
-                                                value="dikirim" id="kt_modal_update_role_option_2" />
+                                                value="Operasional" id="kt_modal_update_role_option_2" />
                                             <!--end::Input-->
                                             <!--begin::Label-->
                                             <label class="form-check-label" for="kt_modal_update_role_option_2">
@@ -224,7 +224,7 @@
                                         <div class="form-check form-check-custom form-check-solid">
                                             <!--begin::Input-->
                                             <input class="form-check-input me-3" name="kategori_pengeluaran" type="radio"
-                                                value="dikirim" id="kt_modal_update_role_option_3" />
+                                                value="Transportasi" id="kt_modal_update_role_option_3" />
                                             <!--end::Input-->
                                             <!--begin::Label-->
                                             <label class="form-check-label" for="kt_modal_update_role_option_3">
@@ -245,7 +245,7 @@
                                         <div class="form-check form-check-custom form-check-solid">
                                             <!--begin::Input-->
                                             <input class="form-check-input me-3" name="kategori_pengeluaran" type="radio"
-                                                value="selesai" id="kt_modal_update_role_option_4" />
+                                                value="Kemasan & Packing" id="kt_modal_update_role_option_4" />
                                             <!--end::Input-->
                                             <!--begin::Label-->
                                             <label class="form-check-label" for="kt_modal_update_role_option_4">
@@ -301,12 +301,7 @@
                             <!--end::Input group-->
                             <!--begin::Input group-->
                             <div class="fv-row mb-7">
-                                <!--begin::Label-->
-                                <label class="required fs-6 fw-semibold mb-2">Nama User</label>
-                                <!--end::Label-->
                                 <!--begin::Input-->
-                                <input type="text" class="form-control form-control-solid"
-                                    placeholder="Harga Pengiriman" id="id_user" value="{{ Auth::user()->username }}" readonly/>
                                 <input type="hidden" class="form-control form-control-solid"
                                     placeholder="Harga Pengiriman" name="id_user" id="id_user" value="{{ Auth::user()->id }}" readonly/>
                                 <!--end::Input-->

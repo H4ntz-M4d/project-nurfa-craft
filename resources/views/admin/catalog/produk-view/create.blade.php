@@ -64,7 +64,7 @@
                                 </div>
                                 <!--end::Image input-->
                                 <!--begin::Description-->
-                                <div class="text-muted fs-7">Set the product thumbnail image. Only *.png, *.jpg and *.jpeg image files are accepted</div>
+                                <div class="text-muted fs-7">Atur gambar mini produk. Hanya file gambar *.png, *.jpg, dan *.jpeg yang diterima</div>
                                 <!--end::Description-->
                             </div>
                             <!--end::Card body-->
@@ -96,7 +96,7 @@
                                 </select>
                                 <!--end::Select2-->
                                 <!--begin::Description-->
-                                <div class="text-muted fs-7">Set the product status.</div>
+                                <div class="text-muted fs-7">Tambahkan status produk.</div>
                                 <div class="d-none mt-10">
                                     <input class="form-control" id="kt_ecommerce_add_product_status_datepicker" placeholder="Pick date & time" />
                                 </div>
@@ -111,7 +111,7 @@
                             <div class="card-header">
                                 <!--begin::Card title-->
                                 <div class="card-title">
-                                    <h2>Product Details</h2>
+                                    <h2>Produk Detail</h2>
                                 </div>
                                 <!--end::Card title-->
                             </div>
@@ -120,7 +120,7 @@
                             <div class="card-body pt-0">
                                 <!--begin::Input group-->
                                 <!--begin::Label-->
-                                <label class="form-label">Categories</label>
+                                <label class="form-label">Kategori</label>
                                 <!--end::Label-->
                                 <!--begin::Select2-->
                                 <select class="form-select mb-2" name="kategori_id" data-control="select2" data-placeholder="Select an option">
@@ -131,7 +131,7 @@
                                 </select>
                                 <!--end::Select2-->
                                 <!--begin::Description-->
-                                <div class="text-muted fs-7 mb-7">Add product to a category.</div>
+                                <div class="text-muted fs-7 mb-7">Tambahkan produk ke sebuah kategori.</div>
                                 <!--end::Description-->
                                 <!--end::Input group-->
                             </div>
@@ -181,7 +181,7 @@
                                                 <input type="text" name="nama_produk" class="form-control mb-2" placeholder="Nama Produk" value="" />
                                                 <!--end::Input-->
                                                 <!--begin::Description-->
-                                                <div class="text-muted fs-7">A product name is required and recommended to be unique.</div>
+                                                <div class="text-muted fs-7">Nama produk diperlukan dan disarankan untuk unik.</div>
                                                 <!--end::Description-->
                                             </div>
                                             <!--end::Input group-->
@@ -194,7 +194,7 @@
                                                 <div id="kt_ecommerce_add_product_description" name="deskripsi" class="min-h-200px mb-2"></div>
                                                 <!--end::Editor-->
                                                 <!--begin::Description-->
-                                                <div class="text-muted fs-7">Set a description to the product for better visibility.</div>
+                                                <div class="text-muted fs-7">Atur deskripsi pada produk agar visibilitas lebih baik.</div>
                                                 <!--end::Description-->
                                             </div>
                                             <!--end::Input group-->
@@ -227,8 +227,8 @@
                                                         <!--end::Icon-->
                                                         <!--begin::Info-->
                                                         <div class="ms-4">
-                                                            <h3 class="fs-5 fw-bold text-gray-900 mb-1">Drop files here or click to upload.</h3>
-                                                            <span class="fs-7 fw-semibold text-gray-500">Upload up to 10 files</span>
+                                                            <h3 class="fs-5 fw-bold text-gray-900 mb-1">Letakkkan gambar di sini atau klik untuk unggah.</h3>
+                                                            <span class="fs-7 fw-semibold text-gray-500">Dapat unggah hingga 10 gambar</span>
                                                         </div>
                                                         <!--end::Info-->
                                                     </div>
@@ -237,7 +237,7 @@
                                             </div>
                                             <!--end::Input group-->
                                             <!--begin::Description-->
-                                            <div class="text-muted fs-7">Set the product media gallery.</div>
+                                            <div class="text-muted fs-7">Tambahkan media galeri produk.</div>
                                             <!--end::Description-->
                                         </div>
                                         <!--end::Card header-->
@@ -249,7 +249,7 @@
                                         <!--begin::Card header-->
                                         <div class="card-header">
                                             <div class="card-title">
-                                                <h2>Variations</h2>
+                                                <h2>Variasi</h2>
                                             </div>
                                         </div>
                                         <!--end::Card header-->
@@ -336,7 +336,7 @@
                                         <!--begin::Card header-->
                                         <div class="card-header">
                                             <div class="card-title">
-                                                <h2>Pricing</h2>
+                                                <h2>Harga</h2>
                                             </div>
                                         </div>
                                         <!--end::Card header-->
@@ -345,104 +345,13 @@
                                             <!--begin::Input group-->
                                             <div class="mb-10 fv-row">
                                                 <!--begin::Label-->
-                                                <label class="required form-label">Base Price</label>
+                                                <label class="required form-label">Harga Dasar</label>
                                                 <!--end::Label-->
                                                 <!--begin::Input-->
                                                 <input type="number" onwheel="this.blur()" name="harga" class="form-control mb-2" min="0" onkeydown="return isNumberKey(event)" placeholder="Harga Produk" value="" />
                                                 <!--end::Input-->
                                                 <!--begin::Description-->
-                                                <div class="text-muted fs-7">Set the product price.</div>
-                                                <!--end::Description-->
-                                            </div>
-                                            <!--end::Input group-->
-                                            <!--begin::Input group-->
-                                            <div class="fv-row mb-10">
-                                                <!--begin::Label-->
-                                                <label class="fs-6 fw-semibold mb-2">Discount Type 
-                                                <span class="ms-1" data-bs-toggle="tooltip" title="Select a discount type that will be applied to this product">
-                                                    <i class="ki-duotone ki-information-5 text-gray-500 fs-6">
-                                                        <span class="path1"></span>
-                                                        <span class="path2"></span>
-                                                        <span class="path3"></span>
-                                                    </i>
-                                                </span></label>
-                                                <!--End::Label-->
-                                                <!--begin::Row-->
-                                                <div class="row row-cols-1 row-cols-md-3 row-cols-lg-1 row-cols-xl-3 g-9" data-kt-buttons="true" data-kt-buttons-target="[data-kt-button='true']">
-                                                    <!--begin::Col-->
-                                                    <div class="col">
-                                                        <!--begin::Option-->
-                                                        <label class="btn btn-outline btn-outline-dashed btn-active-light-primary active d-flex text-start p-6" data-kt-button="true">
-                                                            <!--begin::Radio-->
-                                                            <span class="form-check form-check-custom form-check-solid form-check-sm align-items-start mt-1">
-                                                                <input class="form-check-input" type="radio" name="discount_option" value="1" checked="checked" />
-                                                            </span>
-                                                            <!--end::Radio-->
-                                                            <!--begin::Info-->
-                                                            <span class="ms-5">
-                                                                <span class="fs-4 fw-bold text-gray-800 d-block">No Discount</span>
-                                                            </span>
-                                                            <!--end::Info-->
-                                                        </label>
-                                                        <!--end::Option-->
-                                                    </div>
-                                                    <!--end::Col-->
-                                                    <!--begin::Col-->
-                                                    <div class="col">
-                                                        <!--begin::Option-->
-                                                        <label class="btn btn-outline btn-outline-dashed btn-active-light-primary d-flex text-start p-6" data-kt-button="true">
-                                                            <!--begin::Radio-->
-                                                            <span class="form-check form-check-custom form-check-solid form-check-sm align-items-start mt-1">
-                                                                <input class="form-check-input" type="radio" name="discount_option" value="2" />
-                                                            </span>
-                                                            <!--end::Radio-->
-                                                            <!--begin::Info-->
-                                                            <span class="ms-5">
-                                                                <span class="fs-4 fw-bold text-gray-800 d-block">Percentage %</span>
-                                                            </span>
-                                                            <!--end::Info-->
-                                                        </label>
-                                                        <!--end::Option-->
-                                                    </div>
-                                                    <!--end::Col-->
-                                                    <!--begin::Col-->
-                                                    <div class="col">
-                                                        <!--begin::Option-->
-                                                        <label class="btn btn-outline btn-outline-dashed btn-active-light-primary d-flex text-start p-6" data-kt-button="true">
-                                                            <!--begin::Radio-->
-                                                            <span class="form-check form-check-custom form-check-solid form-check-sm align-items-start mt-1">
-                                                                <input class="form-check-input" type="radio" name="discount_option" value="3" />
-                                                            </span>
-                                                            <!--end::Radio-->
-                                                            <!--begin::Info-->
-                                                            <span class="ms-5">
-                                                                <span class="fs-4 fw-bold text-gray-800 d-block">Fixed Price</span>
-                                                            </span>
-                                                            <!--end::Info-->
-                                                        </label>
-                                                        <!--end::Option-->
-                                                    </div>
-                                                    <!--end::Col-->
-                                                </div>
-                                                <!--end::Row-->
-                                            </div>
-                                            <!--end::Input group-->
-                                            <!--begin::Input group-->
-                                            <div class="d-none mb-10 fv-row" id="kt_ecommerce_add_product_discount_percentage">
-                                                <!--begin::Label-->
-                                                <label class="form-label">Set Discount Percentage</label>
-                                                <!--end::Label-->
-                                                <!--begin::Slider-->
-                                                <div class="d-flex flex-column text-center mb-5">
-                                                    <div class="d-flex align-items-start justify-content-center mb-7">
-                                                        <span class="fw-bold fs-3x" id="kt_ecommerce_add_product_discount_label">0</span>
-                                                        <span class="fw-bold fs-4 mt-1 ms-2">%</span>
-                                                    </div>
-                                                    <div id="kt_ecommerce_add_product_discount_slider" class="noUi-sm"></div>
-                                                </div>
-                                                <!--end::Slider-->
-                                                <!--begin::Description-->
-                                                <div class="text-muted fs-7">Set a percentage discount to be applied on this product.</div>
+                                                <div class="text-muted fs-7">Tambahkan harga produk.</div>
                                                 <!--end::Description-->
                                             </div>
                                             <!--end::Input group-->
@@ -460,7 +369,7 @@
                                         <!--begin::Card header-->
                                         <div class="card-header">
                                             <div class="card-title">
-                                                <h2>Inventory</h2>
+                                                <h2>Inventaris</h2>
                                             </div>
                                         </div>
                                         <!--end::Card header-->
@@ -475,14 +384,14 @@
                                                 <input type="text" name="sku" class="form-control mb-2" placeholder="SKU Number" />
                                                 <!--end::Input-->
                                                 <!--begin::Description-->
-                                                <div class="text-muted fs-7">Enter the product SKU.</div>
+                                                <div class="text-muted fs-7">Masukkan SKU Produk.</div>
                                                 <!--end::Description-->
                                             </div>
                                             <!--end::Input group-->
                                             <!--begin::Input group-->
                                             <div class="mb-10 fv-row">
                                                 <!--begin::Label-->
-                                                <label class="required form-label">Quantity</label>
+                                                <label class="required form-label">Stok</label>
                                                 <!--end::Label-->
                                                 <!--begin::Input-->
                                                 <div class="d-flex gap-3">
@@ -490,7 +399,7 @@
                                                 </div>
                                                 <!--end::Input-->
                                                 <!--begin::Description-->
-                                                <div class="text-muted fs-7">Enter the product quantity.</div>
+                                                <div class="text-muted fs-7">Masukkan stok produk.</div>
                                                 <!--end::Description-->
                                             </div>
                                             <!--end::Input group-->
@@ -511,13 +420,13 @@
                                             <!--begin::Input group-->
                                             <div class="mb-10">
                                                 <!--begin::Label-->
-                                                <label class="form-label">Meta Tag Description</label>
+                                                <label class="form-label">Meta Tag Deskripsi</label>
                                                 <!--end::Label-->
                                                 <!--begin::Editor-->
                                                 <div id="kt_ecommerce_add_product_meta_description" name="meta_desc" class="min-h-100px mb-2"></div>
                                                 <!--end::Editor-->
                                                 <!--begin::Description-->
-                                                <div class="text-muted fs-7">Set a meta tag description to the product for increased SEO ranking.</div>
+                                                <div class="text-muted fs-7">Tetapkan deskripsi meta tag pada produk untuk meningkatkan peringkat SEO..</div>
                                                 <!--end::Description-->
                                             </div>
                                             <!--end::Input group-->
@@ -530,8 +439,8 @@
                                                 <input id="kt_ecommerce_add_product_meta_keywords" name="meta_keywords" class="form-control mb-2" />
                                                 <!--end::Editor-->
                                                 <!--begin::Description-->
-                                                <div class="text-muted fs-7">Set a list of keywords that the product is related to. Separate the keywords by adding a comma 
-                                                <code>,</code>between each keyword.</div>
+                                                <div class="text-muted fs-7">Atur daftar kata kunci yang terkait dengan produk. Pisahkan kata kunci dengan menambahkan koma
+                                                <code>,</code>diantara kata kunci.</div>
                                                 <!--end::Description-->
                                             </div>
                                             <!--end::Input group-->

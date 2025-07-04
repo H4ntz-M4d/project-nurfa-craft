@@ -208,7 +208,7 @@ class ProdukController extends Controller
 
 
                 // Buat kombinasi
-                $combinations = generateCombinations($attributeValues);
+                $combinations = $this->generateCombinations($attributeValues);
 
                 foreach ($combinations as $combo) {
                     
@@ -258,11 +258,11 @@ class ProdukController extends Controller
     }
     
     // Fungsi bantu untuk kombinasi semua varian
-    public function generateCombinations($arrays, $i = 0)
+    private function generateCombinations($arrays, $i = 0)
     {
         if (!isset($arrays[$i])) return [[]];
 
-        $tmp = generateCombinations($arrays, $i + 1);
+        $tmp = $this->generateCombinations($arrays, $i + 1);
         $result = [];
 
         foreach ($arrays[$i] as $value) {
@@ -273,6 +273,7 @@ class ProdukController extends Controller
 
         return $result;
     }
+
 
 
     public function kelolaVariant(string $slug)
@@ -597,24 +598,13 @@ class ProdukController extends Controller
                     }
                 }
 
-                // Fungsi bantu kombinasi
-                function generateCombinations($arrays, $i = 0)
-                {
-                    if (!isset($arrays[$i])) return [[]];
 
-                    $tmp = generateCombinations($arrays, $i + 1);
-                    $result = [];
-
-                    foreach ($arrays[$i] as $value) {
-                        foreach ($tmp as $t) {
-                            $result[] = array_merge([$value], $t);
-                        }
-                    }
-
-                    return $result;
+                if (empty($attributeValues)) {
+                    throw new \Exception("Anda memilih menggunakan varian, tetapi tidak mengisi kombinasi apa pun.");
                 }
 
-                $newCombinations = generateCombinations($attributeValues);
+
+                $newCombinations = $this->generateCombinations($attributeValues);
 
                 // Ambil semua kombinasi lama (kunci = id_variant_value yang diurut dan digabung koma)
                 $oldVariants = $produk->variant()->with('variantValues')->get();
@@ -627,29 +617,40 @@ class ProdukController extends Controller
                 $processedKeys = [];
 
                 foreach ($newCombinations as $combo) {
+                    // Lewati jika kombinasi tidak lengkap (misalnya hanya 1 atribut padahal seharusnya 2)
+                    if (count($combo) < count($attributeValues)) {
+                        continue;
+                    }
+
                     $valueIds = collect($combo)->pluck('value_id');
                     $comboKey = $valueIds->sort()->implode(',');
                     $processedKeys[] = $comboKey;
 
                     if (isset($existingCombinations[$comboKey])) {
-                        // Kombinasi lama, update jika perlu
+                        // Kombinasi lama
                         $variantModel = $existingCombinations[$comboKey];
                         unset($existingCombinations[$comboKey]);
                     } else {
-                        continue; // Lewati jika tidak ada
-                    }
-
-                    // Hapus dan insert ulang varian values
-                    $variantModel->variantValues()->delete();
-
-                    foreach ($combo as $pair) {
-                        ProdukVariantValues::create([
-                            'id_var_produk' => $variantModel->id_var_produk,
-                            'id_variant_attributes' => $pair['attribute_id'],
-                            'id_variant_value' => $pair['value_id'],
+                        $variantModel = ProdukVariant::create([
+                            'id_master_produk' => $produk->id_master_produk,
                         ]);
                     }
+
+                    // Pastikan kita hanya simpan kombinasi dengan isi
+                    if (!empty($combo)) {
+                        // Hapus dan insert ulang varian values
+                        $variantModel->variantValues()->delete();
+
+                        foreach ($combo as $pair) {
+                            ProdukVariantValues::create([
+                                'id_var_produk' => $variantModel->id_var_produk,
+                                'id_variant_attributes' => $pair['attribute_id'],
+                                'id_variant_value' => $pair['value_id'],
+                            ]);
+                        }
+                    }
                 }
+
 
                 // Hapus kombinasi lama yang tidak terpakai lagi
                 foreach ($existingCombinations as $oldVariant) {
