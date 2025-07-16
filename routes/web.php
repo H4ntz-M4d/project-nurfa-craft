@@ -220,9 +220,9 @@ Route::middleware(['auth', 'verified', RoleUsers::class.':customers'])->group(fu
 
     Route::get('/get-provinsi', [KeranjangController::class, 'getProvinsi']);
     Route::get('/get-kabupaten/{id}', [KeranjangController::class, 'getKabupaten']);
-    Route::get('/home', [HomeController::class, 'index'])->name('home');
-
+    
 });
+Route::get('/home', [HomeController::class, 'index'])->name('home');
 
 Route::get('/', [HomeController::class, 'index'])->name('home');
 
