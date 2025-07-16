@@ -42,7 +42,8 @@
                     <div class="w-lg-500px p-10">
                         <!--begin::Form-->
                         <form class="form w-100" novalidate="novalidate" id="kt_sign_in_form"
-                            data-kt-redirect-url="/dashboard" method="POST" action="{{ route('login') }}">
+                            method="POST" action="{{ route('login') }}">
+                            @csrf
                             <!--begin::Heading-->
                             <div class="text-center mb-11">
                                 <!--begin::Title-->
@@ -138,7 +139,4 @@
         <!--end::Authentication - Sign-in-->
     </div>
 
-    @push('scripts')
-        <script src="{{ asset('assets/plugins/custom/typedjs/typedjs.bundle.js') }}"></script>
-    @endpush
 </x-guest-layout>

@@ -92,7 +92,7 @@ class ReportOmsetController extends Controller
                 })
                 ->sum('harga_pengiriman');
 
-            $omzet = $pemasukan + $ongkir - $pengeluaran;
+            $omzet = $pemasukan - ($ongkir + $pengeluaran);
             $totalOmzetTahunIni += $omzet; // Tambahkan ke total
 
             $data[] = [
@@ -166,7 +166,7 @@ class ReportOmsetController extends Controller
                 })
                 ->sum('harga_pengiriman');
 
-            $omzet = $pemasukan + $ongkir - $pengeluaran;
+            $omzet = $pemasukan - ($ongkir + $pengeluaran);
 
             $pemasukanData[] = $pemasukan;
             $pengeluaranData[] = $pengeluaran;

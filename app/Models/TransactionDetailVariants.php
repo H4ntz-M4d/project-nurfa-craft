@@ -9,21 +9,11 @@ class TransactionDetailVariants extends Model
     protected $table = 'transaction_detail_variants';
     
     protected $fillable = [
-        'id_transaction_detail', 'id_variant_attributes', 'id_variant_value', 'nama_atribut', 'nilai_variant'
+        'id_transaction_detail', 'nama_atribut', 'nilai_variant'
     ];
 
     public function detail()
     {
         return $this->belongsTo(TransactionDetails::class, 'id_transaction_detail');
-    }
-
-    public function attribute()
-    {
-        return $this->belongsTo(VariantAttribute::class, 'id_variant_attributes');
-    }
-
-    public function value()
-    {
-        return $this->belongsTo(VariantValues::class, 'id_variant_value');
     }
 }

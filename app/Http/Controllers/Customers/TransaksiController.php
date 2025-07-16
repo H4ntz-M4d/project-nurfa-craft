@@ -103,8 +103,6 @@ class TransaksiController extends Controller
                     $pivot = $varian->produk_variant_value;
                     TransactionDetailVariants::create([
                         'id_transaction_detail' => $detail->id_transaction_detail,
-                        'id_variant_attributes' => $pivot->id_variant_attributes,
-                        'id_variant_value' => $pivot->id_variant_value,
                         'nama_atribut' => $pivot->variantAttribute->nama_variant,
                         'nilai_variant' => $pivot->variantValues->value
                     ]);

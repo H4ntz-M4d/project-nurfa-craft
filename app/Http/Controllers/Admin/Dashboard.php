@@ -61,7 +61,10 @@ class Dashboard extends Controller
             ->select(DB::raw('DATE(created_at) as date'), DB::raw('COUNT(*) as total'))
             ->groupBy(DB::raw('DATE(created_at)'))
             ->orderBy('date', 'asc')
-            ->get();
+            ->limit(6)
+            ->get()
+            ->sortBy('date') // urutkan lagi naik untuk ditampilkan secara benar
+            ->values();
 
         // Response dalam bentuk: { labels: [...], data: [...] }
         $labels = $data->pluck('date')->toArray();

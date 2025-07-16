@@ -17,6 +17,7 @@ return new class extends Migration
             $table->string('sku')->nullable();
             $table->double('harga')->nullable();
             $table->string('stok')->nullable();
+            $table->string('status')->nullable();
             $table->string('slug')->unique();
             $table->timestamps();
         });
