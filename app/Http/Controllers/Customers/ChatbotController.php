@@ -90,33 +90,50 @@ class ChatbotController extends Controller
             'session_id' => 'nullable|uuid'
         ]);
 
-        // Step 1: Session
+        $input = strtolower($request->input('content'));
+
+        // === Step 1: Cek pertanyaan umum statis terlebih dahulu ===
+        if (Str::contains($input, ['batas kapasitas order', 'kapasitas produksi', 'maksimal order'])) {
+            return response()->json([
+                'reply' => 'Batas kapasitas order per bulan adalah 3000 pcs, karena itu adalah kapasitas produksi kami per bulan. Jika ingin memesan lebih, silakan hubungi admin kami di WhatsApp 6288232000188.',
+                'session_id' => $request->session_id ?? Str::uuid(),
+            ]);
+        }
+
+        if (Str::contains($input, ['minimal order', 'min order'])) {
+            return response()->json([
+                'reply' => 'Minimal order per bulan adalah 100 pcs per model produk. Silakan hubungi admin kami di WhatsApp 6288232000188 untuk info lebih lanjut.',
+                'session_id' => $request->session_id ?? Str::uuid(),
+            ]);
+        }
+
+        // === Step 2: Session Chat ===
         $sessionId = $request->session_id;
         $session = ChatbotSession::firstOrCreate(
             ['session_id' => $sessionId ?? Str::uuid()],
-            [] // created_at will be set
+            []
         );
 
-        // Step 2: Simpan pertanyaan user ke database
+        // === Step 3: Simpan Pertanyaan User ===
         ChatbotHistory::create([
             'chatbot_session_id' => $session->id,
             'role' => 'user',
             'message' => $request->input('content')
         ]);
 
-        // Step 3: Ambil history terakhir (misalnya 10 pesan terakhir)
+        // === Step 4: Ambil 10 History Sebelumnya ===
         $history = ChatbotHistory::where('chatbot_session_id', $session->id)
             ->latest()
             ->take(10)
             ->get()
-            ->reverse() // agar urutan sesuai chat asli
+            ->reverse()
             ->map(fn($msg) => [
                 'role' => $msg->role,
                 'content' => $msg->message
             ])
             ->toArray();
 
-        // Step 4: Tambah context produk (jika tidak terlalu besar)
+        // === Step 5: Context Produk (dibatasi 10 produk) ===
         $produkList = ProdukMaster::with([
             'detailProduk:id_detail_produk,id_master_produk,stok,harga',
             'variant' => fn($q) => $q->select('id_var_produk', 'id_master_produk', 'stok', 'harga'),
@@ -127,52 +144,53 @@ class ChatbotController extends Controller
         ->take(10)
         ->get();
 
-        $produkContext = ""; // bisa juga ditaruh sebagai SYSTEM message
+        $produkContext = "";
         foreach ($produkList as $produk) {
             $produkContext .= "- Produk: {$produk->nama_produk}\n";
             $produkContext .= "  Deskripsi: {$produk->deskripsi}\n";
 
-            if ($produk->use_variant == 'yes') {
+            if ($produk->use_variant === 'yes') {
                 foreach ($produk->variant as $varian) {
                     $values = $varian->variantValues->map(fn($v) =>
                         "{$v->variantAttribute->nama_variant}: {$v->variantValues->value}"
                     )->implode(', ');
-                    $produkContext .= "  Varian: ({$values}) - Stok: {$varian->stok} - Harga: {$varian->harga}\n";
+                    $produkContext .= "  Varian: ({$values}) - Stok: {$varian->stok} - Harga: Rp{$varian->harga}\n";
                 }
             } else {
                 $harga = $produk->detailProduk->first()?->harga ?? 0;
                 $stok = $produk->detailProduk->first()?->stok ?? 0;
                 $produkContext .= "  Harga: Rp{$harga} - Stok: {$stok}\n";
             }
-
             $produkContext .= "\n";
         }
 
-        // Step 5: Tambah pesan system di awal
+        // === Step 6: Tambahkan SYSTEM Message ===
         array_unshift($history, [
             'role' => 'system',
-            'content' => "Kamu adalah asisten toko Nurfa Craft. Jawab berdasarkan data produk berikut:\n\n$produkContext"
+            'content' => "Kamu adalah asisten digital untuk toko Nurfa Craft. Jawab pertanyaan berdasarkan data produk berikut:\n\n$produkContext\n\nJika ada pertanyaan yang tidak bisa dijawab, arahkan user untuk menghubungi admin di WhatsApp: 6288232000188."
         ]);
 
-        // Step 6: Kirim ke LLM
+        // === Step 7: Kirim ke DeepSeek LLM ===
         $res = Http::withToken(config('services.deepseek.key'))
             ->post('https://api.deepseek.com/chat/completions', [
                 'model' => 'deepseek-chat',
                 'messages' => $history,
             ]);
 
-        $reply = $res['choices'][0]['message']['content'] ?? 'Tidak ada jawaban.';
+        $reply = $res['choices'][0]['message']['content'] ?? 'Maaf, saya tidak bisa menjawab pertanyaan itu saat ini.';
 
-        // Step 7: Simpan jawaban AI
+        // === Step 8: Simpan Jawaban AI ===
         ChatbotHistory::create([
             'chatbot_session_id' => $session->id,
             'role' => 'assistant',
             'message' => $reply
         ]);
 
+        // === Step 9: Kirim Balasan ke Frontend ===
         return response()->json([
             'reply' => $reply,
             'session_id' => $session->session_id
         ]);
     }
+
 }

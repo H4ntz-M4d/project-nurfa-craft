@@ -220,4 +220,7 @@
         </div>
         <!--end::Content-->
     </div>
+    @push('scripts')
+        <script src="{{ asset('assets/js/custom/apps/ecommerce/catalog/save-category.js') }}"></script>
+    @endpush
 </x-admin.layout>

@@ -60,7 +60,7 @@
                         </style>
                         <!--begin::Form-->
                         <form class="form w-100" novalidate="novalidate" id="kt_sign_up_form"
-                            data-kt-redirect-url="/dashboard" action="{{ route('register') }}" method="POST">
+                            data-kt-redirect-url="/home" action="{{ route('register') }}" method="POST">
                             <!--begin::Heading-->
                             <div class="text-center mb-11">
                                 <!--begin::Title-->
@@ -173,7 +173,7 @@
                             <!--end::Submit button-->
                             <!--begin::Sign up-->
                             <div class="text-gray-500 text-center fw-semibold fs-6">Already have an Account?
-                                <a href="authentication/layouts/corporate/sign-in.html"
+                                <a href="/login"
                                     class="link-warning fw-semibold">Sign in</a>
                             </div>
                             <!--end::Sign up-->

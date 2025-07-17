@@ -132,7 +132,7 @@
                                 Seller</a>
                         </li>
 
-                        <li class="nav-item p-b-10">
+                        {{-- <li class="nav-item p-b-10">
                             <a class="nav-link" data-toggle="tab" href="#featured" role="tab">Featured</a>
                         </li>
 
@@ -142,7 +142,7 @@
 
                         <li class="nav-item p-b-10">
                             <a class="nav-link" data-toggle="tab" href="#top-rate" role="tab">Top Rate</a>
-                        </li>
+                        </li> --}}
                     </ul>
 
                     <!-- Tab panes -->
@@ -178,7 +178,7 @@
                                                         </span>
                                                     </div>
 
-                                                    <div class="block2-txt-child2 flex-r p-t-3">
+                                                    {{-- <div class="block2-txt-child2 flex-r p-t-3">
                                                         <a href="#"
                                                             class="btn-addwish-b2 dis-block pos-relative js-addwish-b2">
                                                             <img class="icon-heart1 dis-block trans-04"
@@ -188,7 +188,7 @@
                                                                 src="{{ asset('customers-asset/images/icons/icon-heart-02.png') }}"
                                                                 alt="ICON">
                                                         </a>
-                                                    </div>
+                                                    </div> --}}
                                                 </div>
                                             </div>
                                         </div>
@@ -198,7 +198,7 @@
                         </div>
 
                         <!-- - -->
-                        <div class="tab-pane fade" id="featured" role="tabpanel">
+                        {{-- <div class="tab-pane fade" id="featured" role="tabpanel">
                             <!-- Slide2 -->
                             <div class="wrap-slick2">
                                 <div class="slick2">
@@ -1219,7 +1219,7 @@
                                     </div>
                                 </div>
                             </div>
-                        </div>
+                        </div> --}}
                     </div>
                 </div>
             </div>

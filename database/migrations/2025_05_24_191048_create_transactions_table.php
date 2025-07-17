@@ -15,7 +15,8 @@ return new class extends Migration
             $table->id('id_transaction');
             $table->string('order_id')->nullable()->unique();
             $table->string('snap_token')->nullable();
-            $table->foreignId('id_user')->constrained('users','id')->nullOnDelete();
+            $table->foreignId('id_user')->nullable(); 
+            $table->foreign('id_user')->references('id')->on('users')->nullOnDelete(); 
             $table->dateTime('tanggal')->useCurrent();
             $table->decimal('total', 12, 2);
             $table->enum('status',['unpaid','pending','paid'])->default('unpaid');
@@ -32,28 +33,31 @@ return new class extends Migration
 
         Schema::create('transaction_details', function (Blueprint $table) {
             $table->id('id_transaction_detail');
-            $table->foreignId('id_transaction')->constrained('transactions','id_transaction')->nullOnDelete();
-            $table->foreignId('id_master_produk')->constrained('produk_master','id_master_produk')->nullOnDelete();
+
+            $table->foreignId('id_transaction')->nullable();
+            $table->foreign('id_transaction')->references('id_transaction')->on('transactions')->nullOnDelete();
+
+            $table->foreignId('id_master_produk')->nullable();
+            $table->foreign('id_master_produk')->references('id_master_produk')->on('produk_master')->nullOnDelete();
+
             $table->string('nama_produk');
             $table->integer('jumlah');
             $table->decimal('harga', 12, 2);
             $table->timestamps();
         });
 
+
         Schema::create('transaction_detail_variants', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('id_transaction_detail')->constrained('transaction_details','id_transaction_detail')
-                ->nullable()->nullOnDelete();
 
-            $table->foreignId('id_variant_attributes')->constrained('variant_attributes','id_variant_attributes')
-                ->nullable()->nullOnDelete();
+            $table->foreignId('id_transaction_detail')->nullable();
+            $table->foreign('id_transaction_detail')->references('id_transaction_detail')->on('transaction_details')->nullOnDelete();
 
-            $table->foreignId('id_variant_value')->constrained('variant_values','id_variant_value')
-                ->nullable()->nullOnDelete();
             $table->string('nama_atribut');
             $table->string('nilai_variant');
             $table->timestamps();
         });
+
     }
 
     /**

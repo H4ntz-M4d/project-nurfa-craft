@@ -320,7 +320,7 @@
             
             .chatbot-box {
                 width: calc(100vw - 10px);
-                height: 400px;
+                height: 450px;
                 border-radius: 8px;
             }
             
@@ -380,7 +380,7 @@
         /* Very small screens */
         @media (max-width: 320px) {
             .chatbot-box {
-                height: 350px;
+                height: 420px;
             }
             
             .chatbot-toggle {

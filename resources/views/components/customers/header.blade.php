@@ -120,11 +120,6 @@
 
             <!-- Icon header -->
             <div class="wrap-icon-header flex-w flex-r-m h-full m-r-15">
-                <div class="flex-c-m h-full p-r-10">
-                    <div class="icon-header-item cl2 hov-cl1 trans-04 p-lr-11 js-show-modal-search">
-                        <i class="zmdi zmdi-search"></i>
-                    </div>
-                </div>
 
                 <div class="flex-c-m h-full p-lr-10 bor5">
                     @if (Auth::check()) 
@@ -164,10 +159,6 @@
                         <a href="/product">Shop</a>
                     </li>
 
-                    <li class="{{ Route::is('shoping') ? 'active-menu' : '' }}" {{-- class="label1" data-label1="hot" --}}>
-                        <a href="/shopping/{{ Auth::user()->slug }}">Features</a>
-                    </li>
-
                     <li class="{{ Route::is('blog') ? 'active-menu' : '' }}">
                         <a href="/blog">Blog</a>
                     </li>
@@ -182,6 +173,15 @@
                     <li class="{{ Route::is('history.orders') ? 'active-menu' : '' }}">
                         <a href="/history-order/{{ Auth::user()->slug }}">Histori Belanja</a>
                     </li>
+                    
+                    <li class="{{ Route::is('logout') ? 'active-menu' : '' }}">
+                        <form method="POST" action="{{ route('logout') }}" style="margin-left: 21px; margin-top: 7px;">
+                            @csrf
+                            <a :href="route('logout')" onclick="event.preventDefault(); this.closest('form').submit();">
+                                Logout
+                            </a>
+                        </form>
+                    </li>
                 @else
                     <li class="{{ Route::is('home') ? 'active-menu' : '' }}">
                         <a href="/home">Home</a>
@@ -191,20 +191,21 @@
                         <a href="{{ route('product.index') }}" class="modal-login">Shop</a>
                     </li>
 
-                    <li class="{{ Route::is('shoping') ? 'active-menu' : '' }}" {{-- class="label1" data-label1="hot" --}}>
-                        <a href="{{ route('login') }}" class="modal-login">Features</a>
-                    </li>
-
+                    
                     <li class="{{ Route::is('blog') ? 'active-menu' : '' }}">
                         <a href="/blog">Blog</a>
                     </li>
-
+                    
                     <li class="{{ Route::is('about') ? 'active-menu' : '' }}">
                         <a href="/about">About</a>
                     </li>
-
+                    
                     <li class="{{ Route::is('contact') ? 'active-menu' : '' }}">
                         <a href="/contact">Contact</a>
+                    </li>
+
+                    <li class="{{ Route::is('login') ? 'active-menu' : '' }}" {{-- class="label1" data-label1="hot" --}}>
+                        <a href="{{ route('login') }}" class="modal-login">Login</a>
                     </li>
                 @endauth
             </ul>

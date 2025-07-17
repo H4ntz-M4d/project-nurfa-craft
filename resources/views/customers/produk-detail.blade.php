@@ -159,13 +159,13 @@
 							<a class="nav-link active" data-toggle="tab" href="#description" role="tab">Description</a>
 						</li>
 
-						<li class="nav-item p-b-10">
+						{{-- <li class="nav-item p-b-10">
 							<a class="nav-link" data-toggle="tab" href="#information" role="tab">Additional information</a>
 						</li>
 
 						<li class="nav-item p-b-10">
 							<a class="nav-link" data-toggle="tab" href="#reviews" role="tab">Reviews (1)</a>
-						</li>
+						</li> --}}
 					</ul>
 
 					<!-- Tab panes -->
@@ -180,7 +180,7 @@
 						</div>
 
 						<!-- - -->
-						<div class="tab-pane fade" id="information" role="tabpanel">
+						{{-- <div class="tab-pane fade" id="information" role="tabpanel">
 							<div class="row">
 								<div class="col-sm-10 col-md-8 col-lg-6 m-lr-auto">
 									<ul class="p-lr-28 p-lr-15-sm">
@@ -236,10 +236,10 @@
 									</ul>
 								</div>
 							</div>
-						</div>
+						</div> --}}
 
 						<!-- - -->
-						<div class="tab-pane fade" id="reviews" role="tabpanel">
+						{{-- <div class="tab-pane fade" id="reviews" role="tabpanel">
 							<div class="row">
 								<div class="col-sm-10 col-md-8 col-lg-6 m-lr-auto">
 									<div class="p-b-30 m-lr-15-sm">
@@ -319,7 +319,7 @@
 									</div>
 								</div>
 							</div>
-						</div>
+						</div> --}}
 					</div>
 				</div>
 			</div>

@@ -550,7 +550,6 @@ class ProdukController extends Controller
                     [
                         'harga' => $request->harga,
                         'sku' => $request->sku,
-                        'stok' => $request->stok,
                     ]
                 );
             } else {
