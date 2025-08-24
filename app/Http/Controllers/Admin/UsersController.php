@@ -10,7 +10,7 @@ use Yajra\DataTables\Facades\DataTables;
 
 class UsersController extends Controller
 {
-    public function index(UsersDataTable $dataTable) {
+    public function index() {
         return view('admin.users-management.users',[
             'title' => 'All Users',
             'sub_title' => 'Manajemen Users - All Users'

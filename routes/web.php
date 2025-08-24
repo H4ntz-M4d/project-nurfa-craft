@@ -48,9 +48,10 @@ Route::middleware(['auth', 'verified', RoleUsers::class.':admin'])->group(functi
     Route::get('/dashboard/pesanan', [Dashboard::class, 'getPesanan']);
 
 
-    Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
-    Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
-    Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
+    // Route::get('/profile', [ProfileController::class, 'view'])->name('profile.edit');
+    // Route::get('/profile/{slug}', [ProfileController::class, 'edit'])->name('profile.update');
+    // Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
+    // Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 
     // Begin Route user
     Route::get('/users', [UsersController::class, 'index'])->name('users.index');

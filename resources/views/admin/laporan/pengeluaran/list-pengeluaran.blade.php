@@ -16,7 +16,7 @@
                                 <span class="path2"></span>
                             </i>
                             <input type="text" data-kt-pengeluaran-table-filter="search"
-                                class="form-control form-control-solid w-250px ps-13" placeholder="Search Kategori" />
+                                class="form-control form-control-solid w-250px ps-13" placeholder="Search Pengeluaran" />
                         </div>
                         <!--end::Search-->
                         <!--begin::Export buttons-->

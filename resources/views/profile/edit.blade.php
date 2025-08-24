@@ -1,4 +1,6 @@
 <x-admin.layout>
+	<x-slot:title>{{ $title }}</x-slot:title>
+	<x-slot:sub_title>{{ $sub_title }}</x-slot:sub_title>
     <!--begin::Content-->
     <div id="kt_app_content" class="app-content flex-column-fluid">
         <!--begin::Content container-->
@@ -32,7 +34,7 @@
                                 <!--begin::Name-->
                                 <div class="d-flex align-items-center mb-2">
                                     <a href="#"
-                                        class="text-gray-800 text-hover-primary fs-2 fw-bolder me-1">{{ $user->nama }}</a>
+                                        class="text-gray-800 text-hover-primary fs-2 fw-bolder me-1">{{ $user->username ?? '-' }}</a>
                                     <a href="#" class="" data-bs-toggle="tooltip" data-bs-placement="right"
                                         title="Account is verified">
                                         <i class="ki-duotone ki-verify fs-1 text-primary">
@@ -73,16 +75,18 @@
                 <!--begin::Nav-->
                 <ul class="nav flex-wrap border-transparent">
                     <!--begin::Nav item-->
-                    <li class="nav-item my-1">
-                        <a class="btn btn-sm btn-color-gray-600 bg-state-body btn-active-color-gray-800 fw-bolder fw-bold fs-6 fs-lg-base nav-link px-3 px-lg-4 mx-1 active"
-                            href="/karyawan-view/{{ $user->slug }}">Overview</a>
-                    </li>
-                    <!--end::Nav item-->
-                    <!--begin::Nav item-->
-                    <li class="nav-item my-1">
-                        <a class="btn btn-sm btn-color-gray-600 bg-state-body btn-active-color-gray-800 fw-bolder fw-bold fs-6 fs-lg-base nav-link px-3 px-lg-4 mx-1"
-                            href="/karyawan-settings/{{ $user->slug }}">Settings</a>
-                    </li>
+                    @if ($user && $user->slug) 
+                        <li class="nav-item my-1">
+                            <a class="btn btn-sm btn-color-gray-600 bg-state-body btn-active-color-gray-800 fw-bolder fw-bold fs-6 fs-lg-base nav-link px-3 px-lg-4 mx-1 active"
+                                href="/profile">Overview</a>
+                        </li>
+                        <!--end::Nav item-->
+                        <!--begin::Nav item-->
+                        <li class="nav-item my-1">
+                            <a class="btn btn-sm btn-color-gray-600 bg-state-body btn-active-color-gray-800 fw-bolder fw-bold fs-6 fs-lg-base nav-link px-3 px-lg-4 mx-1"
+                                href="/profile/{{ $user->slug }}">Settings</a>
+                        </li>
+                    @endif
                     <!--end::Nav item-->
                 </ul>
                 <!--end::Nav-->
@@ -97,9 +101,6 @@
                         <h3 class="fw-bold m-0">Profile Details</h3>
                     </div>
                     <!--end::Card title-->
-                    <!--begin::Action-->
-                    <a href="account/settings.html" class="btn btn-sm btn-primary align-self-center">Edit Profile</a>
-                    <!--end::Action-->
                 </div>
                 <!--begin::Card header-->
                 <!--begin::Card body-->
@@ -111,7 +112,7 @@
                         <!--end::Label-->
                         <!--begin::Col-->
                         <div class="col-lg-8">
-                            <span class="fw-bold fs-6 text-gray-800">{{ $user->nama }}</span>
+                            <span class="fw-bold fs-6 text-gray-800">{{ $user->username }}</span>
                         </div>
                         <!--end::Col-->
                     </div>
@@ -123,7 +124,7 @@
                         <!--end::Label-->
                         <!--begin::Col-->
                         <div class="col-lg-8 fv-row">
-                            <span class="fw-semibold text-gray-800 fs-6">{{ $user->users->email }}</span>
+                            <span class="fw-semibold text-gray-800 fs-6">{{ $user?->email }}</span>
                         </div>
                         <!--end::Col-->
                     </div>
@@ -142,7 +143,7 @@
                         <!--end::Label-->
                         <!--begin::Col-->
                         <div class="col-lg-8 d-flex align-items-center">
-                            <span class="fw-bold fs-6 text-gray-800 me-2">{{ $user->no_telp }}</span>
+                            <span class="fw-bold fs-6 text-gray-800 me-2">{{ $user->no_telp ?? '-' }}</span>
                             <span class="badge badge-success">Verified</span>
                         </div>
                         <!--end::Col-->
@@ -155,7 +156,7 @@
                         <!--end::Label-->
                         <!--begin::Col-->
                         <div class="col-lg-8">
-                            <a href="#"class="fw-semibold fs-6 text-gray-800 text-hover-primary">{{ $user->alamat }}</a>
+                            <a href="#"class="fw-semibold fs-6 text-gray-800 text-hover-primary">{{ $user->alamat ?? '-' }}</a>
                         </div>
                         <!--end::Col-->
                     </div>
@@ -169,7 +170,7 @@
                         <!--end::Label-->
                         <!--begin::Col-->
                         <div class="col-lg-8">
-                            <span class="fw-bold fs-6 text-gray-800">{{ $user->tempat_lahir }}</span>
+                            <span class="fw-bold fs-6 text-gray-800">{{ $user->tempat_lahir ?? '-' }}</span>
                         </div>
                         <!--end::Col-->
                     </div>

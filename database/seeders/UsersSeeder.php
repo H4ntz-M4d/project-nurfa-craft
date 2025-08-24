@@ -16,7 +16,8 @@ class UsersSeeder extends Seeder
                 'email' => 'estiawanjailani@perum.org',
                 'password' => 'hashed_password',
                 'role' => 'customers',
-                'slug' => 'dongorankunthara-1'
+                'slug' => 'dongorankunthara-1',
+                'created_at' => '2024-06-01 10:00:00',
             ],
             [
                 'id' => 3,
@@ -24,7 +25,8 @@ class UsersSeeder extends Seeder
                 'email' => 'galang35@gmail.com',
                 'password' => 'hashed_password',
                 'role' => 'customers',
-                'slug' => 'adinata26-2'
+                'slug' => 'adinata26-2',
+                'created_at' => '2024-06-04 10:00:00',
             ],
             [
                 'id' => 4,
@@ -32,7 +34,8 @@ class UsersSeeder extends Seeder
                 'email' => 'gunawantina@ud.int',
                 'password' => 'hashed_password',
                 'role' => 'customers',
-                'slug' => 'restu95-3'
+                'slug' => 'restu95-3',
+                'created_at' => '2024-06-06 10:00:00',
             ],
             [
                 'id' => 5,
@@ -40,7 +43,8 @@ class UsersSeeder extends Seeder
                 'email' => 'yessisimbolon@gmail.com',
                 'password' => 'hashed_password',
                 'role' => 'customers',
-                'slug' => 'wahyuwibowo-4'
+                'slug' => 'wahyuwibowo-4',
+                'created_at' => '2024-06-06 10:00:00',
             ],
             [
                 'id' => 6,
@@ -48,7 +52,8 @@ class UsersSeeder extends Seeder
                 'email' => 'laila69@ud.net',
                 'password' => 'hashed_password',
                 'role' => 'customers',
-                'slug' => 'kartamandala-5'
+                'slug' => 'kartamandala-5',
+                'created_at' => '2024-06-07 10:00:00',
             ],
             [
                 'id' => 7,
@@ -56,7 +61,8 @@ class UsersSeeder extends Seeder
                 'email' => 'darmana46@gmail.com',
                 'password' => 'hashed_password',
                 'role' => 'customers',
-                'slug' => 'zulaikadartono-6'
+                'slug' => 'zulaikadartono-6',
+                'created_at' => '2024-06-10 10:00:00',
             ],
             [
                 'id' => 8,
@@ -64,7 +70,8 @@ class UsersSeeder extends Seeder
                 'email' => 'aisyah01@ud.id',
                 'password' => 'hashed_password',
                 'role' => 'customers',
-                'slug' => 'gaman88-7'
+                'slug' => 'gaman88-7',
+                'created_at' => '2024-06-22 10:00:00',
             ],
             [
                 'id' => 9,
@@ -72,7 +79,8 @@ class UsersSeeder extends Seeder
                 'email' => 'raditya57@pt.co.id',
                 'password' => 'hashed_password',
                 'role' => 'customers',
-                'slug' => 'iprabowo-8'
+                'slug' => 'iprabowo-8',
+                'created_at' => '2024-06-22 10:00:00',
             ],
             [
                 'id' => 10,
@@ -80,7 +88,8 @@ class UsersSeeder extends Seeder
                 'email' => 'ghaliyatimustofa@hotmail.com',
                 'password' => 'hashed_password',
                 'role' => 'customers',
-                'slug' => 'kalimwinarsih-9'
+                'slug' => 'kalimwinarsih-9',
+                'created_at' => '2024-06-25 10:00:00',
             ],
             [
                 'id' => 11,
@@ -88,7 +97,8 @@ class UsersSeeder extends Seeder
                 'email' => 'prayogaharjo@gmail.com',
                 'password' => 'hashed_password',
                 'role' => 'customers',
-                'slug' => 'halimreksa-10'
+                'slug' => 'halimreksa-10',
+                'created_at' => '2024-06-25 10:00:00',
             ],
             [
                 'id' => 12,
@@ -96,7 +106,8 @@ class UsersSeeder extends Seeder
                 'email' => 'elaksita@pd.go.id',
                 'password' => 'hashed_password',
                 'role' => 'customers',
-                'slug' => 'iswahyudijasmani-11'
+                'slug' => 'iswahyudijasmani-11',
+                'created_at' => '2024-07-15 10:00:00',
             ],
             [
                 'id' => 13,
@@ -104,7 +115,8 @@ class UsersSeeder extends Seeder
                 'email' => 'hmardhiyah@pt.gov',
                 'password' => 'hashed_password',
                 'role' => 'customers',
-                'slug' => 'sihotangbalijan-12'
+                'slug' => 'sihotangbalijan-12',
+                'created_at' => '2024-07-15 10:00:00',
             ],
             [
                 'id' => 14,
@@ -112,7 +124,8 @@ class UsersSeeder extends Seeder
                 'email' => 'prima24@ud.web.id',
                 'password' => 'hashed_password',
                 'role' => 'customers',
-                'slug' => 'karman35-13'
+                'slug' => 'karman35-13',
+                'created_at' => '2024-07-18 10:00:00',
             ],
             [
                 'id' => 15,
@@ -120,7 +133,8 @@ class UsersSeeder extends Seeder
                 'email' => 'mansurkarsana@gmail.com',
                 'password' => 'hashed_password',
                 'role' => 'customers',
-                'slug' => 'padma80-14'
+                'slug' => 'padma80-14',
+                'created_at' => '2024-07-18 10:00:00',
             ],
             [
                 'id' => 16,
@@ -128,7 +142,8 @@ class UsersSeeder extends Seeder
                 'email' => 'adriansyahmulyanto@gmail.com',
                 'password' => 'hashed_password',
                 'role' => 'customers',
-                'slug' => 'baktiono16-15'
+                'slug' => 'baktiono16-15',
+                'created_at' => '2024-07-27 10:00:00',
             ],
             [
                 'id' => 17,
@@ -136,7 +151,8 @@ class UsersSeeder extends Seeder
                 'email' => 'bakdasamosir@yahoo.com',
                 'password' => 'hashed_password',
                 'role' => 'customers',
-                'slug' => 'lalita82-16'
+                'slug' => 'lalita82-16',
+                'created_at' => '2024-07-27 10:00:00',
             ],
             [
                 'id' => 18,
@@ -144,7 +160,8 @@ class UsersSeeder extends Seeder
                 'email' => 'kasusramanullang@hotmail.com',
                 'password' => 'hashed_password',
                 'role' => 'customers',
-                'slug' => 'nugrohomulya-17'
+                'slug' => 'nugrohomulya-17',
+                'created_at' => now(),
             ],
             [
                 'id' => 19,
@@ -152,7 +169,8 @@ class UsersSeeder extends Seeder
                 'email' => 'iwastuti@yahoo.com',
                 'password' => 'hashed_password',
                 'role' => 'customers',
-                'slug' => 'kalim14-18'
+                'slug' => 'kalim14-18',
+                'created_at' => now(),
             ],
             [
                 'id' => 20,
@@ -160,7 +178,8 @@ class UsersSeeder extends Seeder
                 'email' => 'bakidin60@ud.co.id',
                 'password' => 'hashed_password',
                 'role' => 'customers',
-                'slug' => 'winarnokeisha-19'
+                'slug' => 'winarnokeisha-19',
+                'created_at' => now(),
             ],
             [
                 'id' => 21,
@@ -168,7 +187,8 @@ class UsersSeeder extends Seeder
                 'email' => 'rosman80@ud.sch.id',
                 'password' => 'hashed_password',
                 'role' => 'customers',
-                'slug' => 'vwastuti-20'
+                'slug' => 'vwastuti-20',
+                'created_at' => now(),
             ],
             [
                 'id' => 22,
@@ -176,7 +196,8 @@ class UsersSeeder extends Seeder
                 'email' => 'hastamaulana@gmail.com',
                 'password' => 'hashed_password',
                 'role' => 'customers',
-                'slug' => 'prakasavanya-21'
+                'slug' => 'prakasavanya-21',
+                'created_at' => now(),
             ],
             [
                 'id' => 23,
@@ -184,7 +205,8 @@ class UsersSeeder extends Seeder
                 'email' => 'zulaikhamaryati@pt.my.id',
                 'password' => 'hashed_password',
                 'role' => 'customers',
-                'slug' => 'kurniawansoleh-22'
+                'slug' => 'kurniawansoleh-22',
+                'created_at' => now(),
             ],
             [
                 'id' => 24,
@@ -192,7 +214,8 @@ class UsersSeeder extends Seeder
                 'email' => 'wrajata@gmail.com',
                 'password' => 'hashed_password',
                 'role' => 'customers',
-                'slug' => 'vmanullang-23'
+                'slug' => 'vmanullang-23',
+                'created_at' => now(),
             ],
             [
                 'id' => 25,
@@ -200,7 +223,8 @@ class UsersSeeder extends Seeder
                 'email' => 'ikhsanharyanto@yahoo.com',
                 'password' => 'hashed_password',
                 'role' => 'customers',
-                'slug' => 'gadapradipta-24'
+                'slug' => 'gadapradipta-24',
+                'created_at' => now(),
             ],
             [
                 'id' => 26,
@@ -208,7 +232,8 @@ class UsersSeeder extends Seeder
                 'email' => 'vnasyiah@hotmail.com',
                 'password' => 'hashed_password',
                 'role' => 'customers',
-                'slug' => 'thamrinlembah-25'
+                'slug' => 'thamrinlembah-25',
+                'created_at' => now(),
             ],
             [
                 'id' => 27,
@@ -216,7 +241,8 @@ class UsersSeeder extends Seeder
                 'email' => 'krahayu@pt.mil.id',
                 'password' => 'hashed_password',
                 'role' => 'customers',
-                'slug' => 'putrinasyidah-26'
+                'slug' => 'putrinasyidah-26',
+                'created_at' => now(),
             ],
             [
                 'id' => 28,
@@ -224,7 +250,8 @@ class UsersSeeder extends Seeder
                 'email' => 'namagabala@yahoo.com',
                 'password' => 'hashed_password',
                 'role' => 'customers',
-                'slug' => 'saiful41-27'
+                'slug' => 'saiful41-27',
+                'created_at' => now(),
             ],
             [
                 'id' => 29,
@@ -232,7 +259,8 @@ class UsersSeeder extends Seeder
                 'email' => 'okto29@hotmail.com',
                 'password' => 'hashed_password',
                 'role' => 'customers',
-                'slug' => 'pratiwiibrani-28'
+                'slug' => 'pratiwiibrani-28',
+                'created_at' => now(),
             ],
             [
                 'id' => 30,
@@ -240,7 +268,8 @@ class UsersSeeder extends Seeder
                 'email' => 'situmorangfarah@ud.com',
                 'password' => 'hashed_password',
                 'role' => 'customers',
-                'slug' => 'damusihombing-29'
+                'slug' => 'damusihombing-29',
+                'created_at' => now(),
             ],
             [
                 'id' => 31,
@@ -248,7 +277,8 @@ class UsersSeeder extends Seeder
                 'email' => 'joko14@yahoo.com',
                 'password' => 'hashed_password',
                 'role' => 'customers',
-                'slug' => 'bhastuti-30'
+                'slug' => 'bhastuti-30',
+                'created_at' => now(),
             ],
             [
                 'id' => 32,
@@ -256,7 +286,8 @@ class UsersSeeder extends Seeder
                 'email' => 'cawisonopermadi@pd.net.id',
                 'password' => 'hashed_password',
                 'role' => 'customers',
-                'slug' => 'kurnia94-31'
+                'slug' => 'kurnia94-31',
+                'created_at' => now(),
             ],
             [
                 'id' => 33,
@@ -264,7 +295,8 @@ class UsersSeeder extends Seeder
                 'email' => 'tsaputra@yahoo.com',
                 'password' => 'hashed_password',
                 'role' => 'customers',
-                'slug' => 'soleh85-32'
+                'slug' => 'soleh85-32',
+                'created_at' => now(),
             ],
             [
                 'id' => 34,
@@ -272,7 +304,8 @@ class UsersSeeder extends Seeder
                 'email' => 'gatot40@ud.ponpes.id',
                 'password' => 'hashed_password',
                 'role' => 'customers',
-                'slug' => 'daliono34-33'
+                'slug' => 'daliono34-33',
+                'created_at' => now(),
             ],
             [
                 'id' => 35,
@@ -280,7 +313,8 @@ class UsersSeeder extends Seeder
                 'email' => 'khidayanto@hotmail.com',
                 'password' => 'hashed_password',
                 'role' => 'customers',
-                'slug' => 'yahya11-34'
+                'slug' => 'yahya11-34',
+                'created_at' => now(),
             ],
             [
                 'id' => 36,
@@ -288,7 +322,8 @@ class UsersSeeder extends Seeder
                 'email' => 'ksamosir@hotmail.com',
                 'password' => 'hashed_password',
                 'role' => 'customers',
-                'slug' => 'chartati-35'
+                'slug' => 'chartati-35',
+                'created_at' => now(),
             ],
             [
                 'id' => 37,
@@ -296,7 +331,8 @@ class UsersSeeder extends Seeder
                 'email' => 'atmaja34@hotmail.com',
                 'password' => 'hashed_password',
                 'role' => 'customers',
-                'slug' => 'shartati-36'
+                'slug' => 'shartati-36',
+                'created_at' => now(),
             ],
             [
                 'id' => 38,
@@ -304,7 +340,8 @@ class UsersSeeder extends Seeder
                 'email' => 'mila94@pt.ac.id',
                 'password' => 'hashed_password',
                 'role' => 'customers',
-                'slug' => 'edi10-37'
+                'slug' => 'edi10-37',
+                'created_at' => now(),
             ],
             [
                 'id' => 39,
@@ -312,7 +349,8 @@ class UsersSeeder extends Seeder
                 'email' => 'wagemaryati@ud.net.id',
                 'password' => 'hashed_password',
                 'role' => 'customers',
-                'slug' => 'wulandarikawaya-38'
+                'slug' => 'wulandarikawaya-38',
+                'created_at' => now(),
             ],
             [
                 'id' => 40,
@@ -320,7 +358,8 @@ class UsersSeeder extends Seeder
                 'email' => 'marsudi16@hotmail.com',
                 'password' => 'hashed_password',
                 'role' => 'customers',
-                'slug' => 'hasanahcecep-39'
+                'slug' => 'hasanahcecep-39',
+                'created_at' => now(),
             ],
             [
                 'id' => 41,
@@ -328,7 +367,8 @@ class UsersSeeder extends Seeder
                 'email' => 'bmaheswara@hotmail.com',
                 'password' => 'hashed_password',
                 'role' => 'customers',
-                'slug' => 'hasna24-40'
+                'slug' => 'hasna24-40',
+                'created_at' => now(),
             ],
             [
                 'id' => 42,
@@ -336,7 +376,8 @@ class UsersSeeder extends Seeder
                 'email' => 'elaksmiwati@gmail.com',
                 'password' => 'hashed_password',
                 'role' => 'customers',
-                'slug' => 'gsiregar-41'
+                'slug' => 'gsiregar-41',
+                'created_at' => now(),
             ],
             [
                 'id' => 43,
@@ -344,7 +385,8 @@ class UsersSeeder extends Seeder
                 'email' => 'tugimannasyiah@yahoo.com',
                 'password' => 'hashed_password',
                 'role' => 'customers',
-                'slug' => 'adhiarja44-42'
+                'slug' => 'adhiarja44-42',
+                'created_at' => now(),
             ],
             [
                 'id' => 44,
@@ -352,7 +394,8 @@ class UsersSeeder extends Seeder
                 'email' => 'qwinarno@hotmail.com',
                 'password' => 'hashed_password',
                 'role' => 'customers',
-                'slug' => 'ugunawan-43'
+                'slug' => 'ugunawan-43',
+                'created_at' => now(),
             ],
             [
                 'id' => 45,
@@ -360,7 +403,8 @@ class UsersSeeder extends Seeder
                 'email' => 'halimahkarta@perum.co.id',
                 'password' => 'hashed_password',
                 'role' => 'customers',
-                'slug' => 'rezayolanda-44'
+                'slug' => 'rezayolanda-44',
+                'created_at' => now(),
             ],
             [
                 'id' => 46,
@@ -368,7 +412,8 @@ class UsersSeeder extends Seeder
                 'email' => 'zulfasalahudin@gmail.com',
                 'password' => 'hashed_password',
                 'role' => 'customers',
-                'slug' => 'usadadaliono-45'
+                'slug' => 'usadadaliono-45',
+                'created_at' => now(),
             ],
             [
                 'id' => 47,
@@ -376,7 +421,8 @@ class UsersSeeder extends Seeder
                 'email' => 'almirapadmasari@gmail.com',
                 'password' => 'hashed_password',
                 'role' => 'customers',
-                'slug' => 'candrakantasuryatmi-46'
+                'slug' => 'candrakantasuryatmi-46',
+                'created_at' => now(),
             ],
             [
                 'id' => 48,
@@ -384,7 +430,8 @@ class UsersSeeder extends Seeder
                 'email' => 'hasta67@gmail.com',
                 'password' => 'hashed_password',
                 'role' => 'customers',
-                'slug' => 'sari64-47'
+                'slug' => 'sari64-47',
+                'created_at' => now(),
             ],
             [
                 'id' => 49,
@@ -392,7 +439,8 @@ class UsersSeeder extends Seeder
                 'email' => 'ismail39@cv.org',
                 'password' => 'hashed_password',
                 'role' => 'customers',
-                'slug' => 'xsuwarno-48'
+                'slug' => 'xsuwarno-48',
+                'created_at' => now(),
             ],
             [
                 'id' => 50,
@@ -400,7 +448,8 @@ class UsersSeeder extends Seeder
                 'email' => 'kamidinlaksmiwati@yahoo.com',
                 'password' => 'hashed_password',
                 'role' => 'customers',
-                'slug' => 'ghaliyatiutama-49'
+                'slug' => 'ghaliyatiutama-49',
+                'created_at' => now(),
             ],
             [
                 'id' => 51,
@@ -408,7 +457,8 @@ class UsersSeeder extends Seeder
                 'email' => 'xuyainah@gmail.com',
                 'password' => 'hashed_password',
                 'role' => 'customers',
-                'slug' => 'hasanahokto-50'
+                'slug' => 'hasanahokto-50',
+                'created_at' => now(),
             ]
         ]);
     }

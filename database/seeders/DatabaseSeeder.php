@@ -35,6 +35,20 @@ class DatabaseSeeder extends Seeder
             'updated_at' => now(),
         ]);
 
+        DB::table('karyawan')->insert([
+            'id_karyawan' => '1',
+            'id_user' => '1',
+            'nama' => 'Super Admin',
+            'jkel' => 'pria',
+            'no_telp' => '08983689868',
+            'alamat' => '-',
+            'tempat_lahir' => '-',
+            'tgl_lahir' => now(),
+            'slug' => Hash::make('super admin nurfa'),
+            'created_at' => now(),
+            'updated_at' => now(),
+        ]);
+
         $this->call([
             UsersSeeder::class,
             CustomersSeeder::class,

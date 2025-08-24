@@ -15,7 +15,7 @@
                                 <span class="path1"></span>
                                 <span class="path2"></span>
                             </i>
-                            <input type="text" data-kt-stocks-table-filter="search" class="form-control form-control-solid w-250px ps-13" placeholder="Search Kategori" />
+                            <input type="text" data-kt-stocks-table-filter="search" class="form-control form-control-solid w-250px ps-13" placeholder="Search Stok" />
                         </div>
                         <!--end::Search-->
                     </div>
@@ -105,7 +105,7 @@
                                 <label class="required fs-6 fw-semibold mb-2">Stok Awal</label>
                                 <!--end::Label-->
                                 <!--begin::Input-->
-                                <input type="text" class="form-control form-control-solid" placeholder="Nama Variant"
+                                <input type="text" class="form-control form-control-solid" placeholder="Stok Awal"
                                     name="stok_awal" id="stok_awal" readonly />
                                 <!--end::Input-->
                             </div>
@@ -116,7 +116,7 @@
                                 <label class="required fs-6 fw-semibold mb-2">Stok Masuk</label>
                                 <!--end::Label-->
                                 <!--begin::Input-->
-                                <input type="number" onwheel="this.blur()" class="form-control form-control-solid" placeholder="Nama Variant"
+                                <input type="number" onwheel="this.blur()" class="form-control form-control-solid" placeholder="Masukkan stok baru"
                                     name="stok_masuk" id="stok_masuk" required />
                                 <!--end::Input-->
                             </div>
@@ -127,7 +127,7 @@
                                 <label class="required fs-6 fw-semibold mb-2">Total Stok</label>
                                 <!--end::Label-->
                                 <!--begin::Input-->
-                                <input type="text" class="form-control form-control-solid" placeholder="Nama Variant"
+                                <input type="text" class="form-control form-control-solid" placeholder="Total Stok"
                                     name="stok_akhir" id="stok_akhir" readonly />
                                 <!--end::Input-->
                             </div>

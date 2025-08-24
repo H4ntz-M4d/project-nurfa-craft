@@ -221,12 +221,12 @@ var KTOrderList = (function () {
                     .appendTo($("#kt_pesanan_report_views_export")),
                     document
                         .querySelectorAll(
-                            "#kt_pesanan_report_views_export_menu [data-kt-transactions-export]"
+                            "#kt_pesanan_report_views_export_menu [data-kt-pesanan-export]"
                         )
                         .forEach((t) => {
                             t.addEventListener("click", (t) => {
                                 t.preventDefault();
-                                const e = t.target.getAttribute("data-kt-transactions-export");
+                                const e = t.target.getAttribute("data-kt-pesanan-export");
                                 document.querySelector(".dt-buttons .buttons-" + e).click();
                             });
                         });

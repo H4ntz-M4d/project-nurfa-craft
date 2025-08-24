@@ -16,7 +16,8 @@ class CustomersSeeder extends Seeder
                 'nama' => 'Bakiman Pratama',
                 'no_telp' => '+62-0890-838-6379',
                 'jkel' => 'pria',
-                'slug' => 'customer-1'
+                'slug' => 'customer-1',
+                'created_at' => '2024-06-01 10:00:00',
             ],
             [
                 'id_customers' => 2,
@@ -24,7 +25,8 @@ class CustomersSeeder extends Seeder
                 'nama' => 'Harjasa Kuswoyo',
                 'no_telp' => '+62 (594) 078-1618',
                 'jkel' => 'pria',
-                'slug' => 'customer-2'
+                'slug' => 'customer-2',
+                'created_at' => '2024-06-04 10:00:00',
             ],
             [
                 'id_customers' => 3,
@@ -32,7 +34,8 @@ class CustomersSeeder extends Seeder
                 'nama' => 'Indah Hasanah',
                 'no_telp' => '+62 (255) 341-9283',
                 'jkel' => 'wanita',
-                'slug' => 'customer-3'
+                'slug' => 'customer-3',
+                'created_at' => '2024-06-06 10:00:00',
             ],
             [
                 'id_customers' => 4,
@@ -40,7 +43,8 @@ class CustomersSeeder extends Seeder
                 'nama' => 'Rizki Firmansyah',
                 'no_telp' => '+62 (641) 395 3767',
                 'jkel' => 'pria',
-                'slug' => 'customer-4'
+                'slug' => 'customer-4',
+                'created_at' => '2024-06-06 10:00:00',
             ],
             [
                 'id_customers' => 5,
@@ -48,7 +52,8 @@ class CustomersSeeder extends Seeder
                 'nama' => 'Dt. Satya Kusumo S.E.I',
                 'no_telp' => '+62 (69) 166-9784',
                 'jkel' => 'pria',
-                'slug' => 'customer-5'
+                'slug' => 'customer-5',
+                'created_at' => '2024-06-07 10:00:00',
             ],
             [
                 'id_customers' => 6,
@@ -56,7 +61,8 @@ class CustomersSeeder extends Seeder
                 'nama' => 'Ade Saptono',
                 'no_telp' => '082 814 8932',
                 'jkel' => 'pria',
-                'slug' => 'customer-6'
+                'slug' => 'customer-6',
+                'created_at' => '2024-06-10 10:00:00',
             ],
             [
                 'id_customers' => 7,
@@ -64,7 +70,8 @@ class CustomersSeeder extends Seeder
                 'nama' => 'Puti Chelsea Laksita',
                 'no_telp' => '+62 (082) 278 2489',
                 'jkel' => 'wanita',
-                'slug' => 'customer-7'
+                'slug' => 'customer-7',
+                'created_at' => '2024-06-22 10:00:00',
             ],
             [
                 'id_customers' => 8,
@@ -72,7 +79,8 @@ class CustomersSeeder extends Seeder
                 'nama' => 'Lanjar Puspasari',
                 'no_telp' => '+62-0930-103-1051',
                 'jkel' => 'pria',
-                'slug' => 'customer-8'
+                'slug' => 'customer-8',
+                'created_at' => '2024-06-22 10:00:00',
             ],
             [
                 'id_customers' => 9,
@@ -80,7 +88,8 @@ class CustomersSeeder extends Seeder
                 'nama' => 'Ir. Nabila Prasasta',
                 'no_telp' => '(0631) 165-6670',
                 'jkel' => 'wanita',
-                'slug' => 'customer-9'
+                'slug' => 'customer-9',
+                'created_at' => '2024-06-25 10:00:00',
             ],
             [
                 'id_customers' => 10,
@@ -88,7 +97,8 @@ class CustomersSeeder extends Seeder
                 'nama' => 'drg. Cahyono Anggraini',
                 'no_telp' => '+62 (47) 317-8108',
                 'jkel' => 'pria',
-                'slug' => 'customer-10'
+                'slug' => 'customer-10',
+                'created_at' => '2024-06-25 10:00:00',
             ],
             [
                 'id_customers' => 11,
@@ -96,7 +106,8 @@ class CustomersSeeder extends Seeder
                 'nama' => 'Harsaya Saptono',
                 'no_telp' => '(0468) 723 4309',
                 'jkel' => 'pria',
-                'slug' => 'customer-11'
+                'slug' => 'customer-11',
+                'created_at' => '2024-07-15 10:00:00',
             ],
             [
                 'id_customers' => 12,
@@ -104,7 +115,8 @@ class CustomersSeeder extends Seeder
                 'nama' => 'Legawa Hidayat',
                 'no_telp' => '+62-0619-399-0916',
                 'jkel' => 'pria',
-                'slug' => 'customer-12'
+                'slug' => 'customer-12',
+                'created_at' => '2024-07-15 10:00:00',
             ],
             [
                 'id_customers' => 13,
@@ -112,7 +124,8 @@ class CustomersSeeder extends Seeder
                 'nama' => 'Puti Belinda Nasyiah',
                 'no_telp' => '+62-842-513-5427',
                 'jkel' => 'wanita',
-                'slug' => 'customer-13'
+                'slug' => 'customer-13',
+                'created_at' => '2024-07-18 10:00:00',
             ],
             [
                 'id_customers' => 14,
@@ -120,7 +133,8 @@ class CustomersSeeder extends Seeder
                 'nama' => 'Paiman Puspasari',
                 'no_telp' => '+62 (44) 935 3487',
                 'jkel' => 'pria',
-                'slug' => 'customer-14'
+                'slug' => 'customer-14',
+                'created_at' => '2024-07-18 10:00:00',
             ],
             [
                 'id_customers' => 15,
@@ -128,7 +142,8 @@ class CustomersSeeder extends Seeder
                 'nama' => 'Eluh Marpaung M.M.',
                 'no_telp' => '+62 (033) 456-7890',
                 'jkel' => 'pria',
-                'slug' => 'customer-15'
+                'slug' => 'customer-15',
+                'created_at' => '2024-07-27 10:00:00',
             ],
             [
                 'id_customers' => 16,
@@ -136,7 +151,8 @@ class CustomersSeeder extends Seeder
                 'nama' => 'Dt. Uda Tamba S.Kom',
                 'no_telp' => '+62-0158-692-3226',
                 'jkel' => 'pria',
-                'slug' => 'customer-16'
+                'slug' => 'customer-16',
+                'created_at' => '2024-07-27 10:00:00',
             ],
             [
                 'id_customers' => 17,
@@ -144,7 +160,8 @@ class CustomersSeeder extends Seeder
                 'nama' => 'Harjaya Firgantoro',
                 'no_telp' => '(0337) 543-3036',
                 'jkel' => 'wanita',
-                'slug' => 'customer-17'
+                'slug' => 'customer-17',
+                'created_at' => now(),
             ],
             [
                 'id_customers' => 18,
@@ -152,7 +169,8 @@ class CustomersSeeder extends Seeder
                 'nama' => 'Bambang Rajata',
                 'no_telp' => '+62 (94) 019-6556',
                 'jkel' => 'pria',
-                'slug' => 'customer-18'
+                'slug' => 'customer-18',
+                'created_at' => now(),
             ],
             [
                 'id_customers' => 19,
@@ -160,7 +178,8 @@ class CustomersSeeder extends Seeder
                 'nama' => 'dr. Salimah Maheswara',
                 'no_telp' => '+62 (0846) 564-8236',
                 'jkel' => 'wanita',
-                'slug' => 'customer-19'
+                'slug' => 'customer-19',
+                'created_at' => now(),
             ],
             [
                 'id_customers' => 20,
@@ -168,7 +187,8 @@ class CustomersSeeder extends Seeder
                 'nama' => 'Hj. Janet Hastuti',
                 'no_telp' => '(0738) 721 4895',
                 'jkel' => 'wanita',
-                'slug' => 'customer-20'
+                'slug' => 'customer-20',
+                'created_at' => now(),
             ],
             [
                 'id_customers' => 21,
@@ -176,7 +196,8 @@ class CustomersSeeder extends Seeder
                 'nama' => 'Dipa Kusmawati',
                 'no_telp' => '+62 (076) 936 7632',
                 'jkel' => 'pria',
-                'slug' => 'customer-21'
+                'slug' => 'customer-21',
+                'created_at' => now(),
             ],
             [
                 'id_customers' => 22,
@@ -184,7 +205,8 @@ class CustomersSeeder extends Seeder
                 'nama' => 'Rama Hariyah',
                 'no_telp' => '088 957 9868',
                 'jkel' => 'pria',
-                'slug' => 'customer-22'
+                'slug' => 'customer-22',
+                'created_at' => now(),
             ],
             [
                 'id_customers' => 23,
@@ -192,7 +214,8 @@ class CustomersSeeder extends Seeder
                 'nama' => 'Hj. Ika Nurdiyanti M.Kom.',
                 'no_telp' => '+62-0471-434-5581',
                 'jkel' => 'wanita',
-                'slug' => 'customer-23'
+                'slug' => 'customer-23',
+                'created_at' => now(),
             ],
             [
                 'id_customers' => 24,
@@ -200,7 +223,8 @@ class CustomersSeeder extends Seeder
                 'nama' => 'Julia Namaga',
                 'no_telp' => '(0603) 669 0967',
                 'jkel' => 'wanita',
-                'slug' => 'customer-24'
+                'slug' => 'customer-24',
+                'created_at' => now(),
             ],
             [
                 'id_customers' => 25,
@@ -208,7 +232,8 @@ class CustomersSeeder extends Seeder
                 'nama' => 'KH. Luhung Prasetya',
                 'no_telp' => '(0346) 706-5627',
                 'jkel' => 'pria',
-                'slug' => 'customer-25'
+                'slug' => 'customer-25',
+                'created_at' => now(),
             ],
             [
                 'id_customers' => 26,
@@ -216,7 +241,8 @@ class CustomersSeeder extends Seeder
                 'nama' => 'Sakti Hariyah',
                 'no_telp' => '+62 (04) 653-7556',
                 'jkel' => 'pria',
-                'slug' => 'customer-26'
+                'slug' => 'customer-26',
+                'created_at' => now(),
             ],
             [
                 'id_customers' => 27,
@@ -224,7 +250,8 @@ class CustomersSeeder extends Seeder
                 'nama' => 'Martaka Hidayat',
                 'no_telp' => '+62-003-309-2327',
                 'jkel' => 'pria',
-                'slug' => 'customer-27'
+                'slug' => 'customer-27',
+                'created_at' => now(),
             ],
             [
                 'id_customers' => 28,
@@ -232,7 +259,8 @@ class CustomersSeeder extends Seeder
                 'nama' => 'Tina Latupono S.E.',
                 'no_telp' => '+62 (0190) 496-6319',
                 'jkel' => 'wanita',
-                'slug' => 'customer-28'
+                'slug' => 'customer-28',
+                'created_at' => now(),
             ],
             [
                 'id_customers' => 29,
@@ -240,7 +268,8 @@ class CustomersSeeder extends Seeder
                 'nama' => 'drg. Yuni Lestari S.IP',
                 'no_telp' => '(057) 262-8498',
                 'jkel' => 'wanita',
-                'slug' => 'customer-29'
+                'slug' => 'customer-29',
+                'created_at' => now(),
             ],
             [
                 'id_customers' => 30,
@@ -248,7 +277,8 @@ class CustomersSeeder extends Seeder
                 'nama' => 'Pardi Hariyah',
                 'no_telp' => '(050) 752 7354',
                 'jkel' => 'pria',
-                'slug' => 'customer-30'
+                'slug' => 'customer-30',
+                'created_at' => now(),
             ],
             [
                 'id_customers' => 31,
@@ -256,7 +286,8 @@ class CustomersSeeder extends Seeder
                 'nama' => 'Widya Budiyanto',
                 'no_telp' => '+62 (043) 634 9578',
                 'jkel' => 'wanita',
-                'slug' => 'customer-31'
+                'slug' => 'customer-31',
+                'created_at' => now(),
             ],
             [
                 'id_customers' => 32,
@@ -264,7 +295,8 @@ class CustomersSeeder extends Seeder
                 'nama' => 'Banawa Nababan',
                 'no_telp' => '+62 (182) 337 4989',
                 'jkel' => 'pria',
-                'slug' => 'customer-32'
+                'slug' => 'customer-32',
+                'created_at' => now(),
             ],
             [
                 'id_customers' => 33,
@@ -272,7 +304,8 @@ class CustomersSeeder extends Seeder
                 'nama' => 'Tami Mahendra',
                 'no_telp' => '(0109) 477-7520',
                 'jkel' => 'wanita',
-                'slug' => 'customer-33'
+                'slug' => 'customer-33',
+                'created_at' => now(),
             ],
             [
                 'id_customers' => 34,
@@ -280,7 +313,8 @@ class CustomersSeeder extends Seeder
                 'nama' => 'Asmadi Maryadi S.E.I',
                 'no_telp' => '+62 (0131) 869-9938',
                 'jkel' => 'pria',
-                'slug' => 'customer-34'
+                'slug' => 'customer-34',
+                'created_at' => now(),
             ],
             [
                 'id_customers' => 35,
@@ -288,7 +322,8 @@ class CustomersSeeder extends Seeder
                 'nama' => 'Lurhur Januar',
                 'no_telp' => '+62-341-232-8120',
                 'jkel' => 'wanita',
-                'slug' => 'customer-35'
+                'slug' => 'customer-35',
+                'created_at' => now(),
             ],
             [
                 'id_customers' => 36,
@@ -296,7 +331,8 @@ class CustomersSeeder extends Seeder
                 'nama' => 'Tira Hasanah',
                 'no_telp' => '+62 (034) 936 1832',
                 'jkel' => 'pria',
-                'slug' => 'customer-36'
+                'slug' => 'customer-36',
+                'created_at' => now(),
             ],
             [
                 'id_customers' => 37,
@@ -304,7 +340,8 @@ class CustomersSeeder extends Seeder
                 'nama' => 'Dr. Jumadi Farida',
                 'no_telp' => '+62 (090) 659 4013',
                 'jkel' => 'wanita',
-                'slug' => 'customer-37'
+                'slug' => 'customer-37',
+                'created_at' => now(),
             ],
             [
                 'id_customers' => 38,
@@ -312,7 +349,8 @@ class CustomersSeeder extends Seeder
                 'nama' => 'Jarwadi Tampubolon',
                 'no_telp' => '(055) 125-6746',
                 'jkel' => 'pria',
-                'slug' => 'customer-38'
+                'slug' => 'customer-38',
+                'created_at' => now(),
             ],
             [
                 'id_customers' => 39,
@@ -320,7 +358,8 @@ class CustomersSeeder extends Seeder
                 'nama' => 'Cut Sakura Namaga M.M.',
                 'no_telp' => '(003) 859-7703',
                 'jkel' => 'wanita',
-                'slug' => 'customer-39'
+                'slug' => 'customer-39',
+                'created_at' => now(),
             ],
             [
                 'id_customers' => 40,
@@ -328,7 +367,8 @@ class CustomersSeeder extends Seeder
                 'nama' => 'R.A. Titin Manullang',
                 'no_telp' => '+62 (0808) 613-1712',
                 'jkel' => 'wanita',
-                'slug' => 'customer-40'
+                'slug' => 'customer-40',
+                'created_at' => now(),
             ],
             [
                 'id_customers' => 41,
@@ -336,7 +376,8 @@ class CustomersSeeder extends Seeder
                 'nama' => 'Puspa Maulana',
                 'no_telp' => '(039) 821 4658',
                 'jkel' => 'wanita',
-                'slug' => 'customer-41'
+                'slug' => 'customer-41',
+                'created_at' => now(),
             ],
             [
                 'id_customers' => 42,
@@ -344,7 +385,8 @@ class CustomersSeeder extends Seeder
                 'nama' => 'Juli Puspasari',
                 'no_telp' => '0867533963',
                 'jkel' => 'wanita',
-                'slug' => 'customer-42'
+                'slug' => 'customer-42',
+                'created_at' => now(),
             ],
             [
                 'id_customers' => 43,
@@ -352,7 +394,8 @@ class CustomersSeeder extends Seeder
                 'nama' => 'Jumari Firgantoro',
                 'no_telp' => '+62 (89) 517 1870',
                 'jkel' => 'pria',
-                'slug' => 'customer-43'
+                'slug' => 'customer-43',
+                'created_at' => now(),
             ],
             [
                 'id_customers' => 44,
@@ -360,7 +403,8 @@ class CustomersSeeder extends Seeder
                 'nama' => 'Hj. Zamira Nasyidah S.Sos',
                 'no_telp' => '+62 (780) 913 4316',
                 'jkel' => 'wanita',
-                'slug' => 'customer-44'
+                'slug' => 'customer-44',
+                'created_at' => now(),
             ],
             [
                 'id_customers' => 45,
@@ -368,7 +412,8 @@ class CustomersSeeder extends Seeder
                 'nama' => 'Gamani Hakim',
                 'no_telp' => '+62 (0556) 238-6922',
                 'jkel' => 'pria',
-                'slug' => 'customer-45'
+                'slug' => 'customer-45',
+                'created_at' => now(),
             ],
             [
                 'id_customers' => 46,
@@ -376,7 +421,8 @@ class CustomersSeeder extends Seeder
                 'nama' => 'Jail Uyainah',
                 'no_telp' => '+62 (0740) 748 2175',
                 'jkel' => 'pria',
-                'slug' => 'customer-46'
+                'slug' => 'customer-46',
+                'created_at' => now(),
             ],
             [
                 'id_customers' => 47,
@@ -384,7 +430,8 @@ class CustomersSeeder extends Seeder
                 'nama' => 'Harjaya Pertiwi',
                 'no_telp' => '+62 (944) 064-0909',
                 'jkel' => 'wanita',
-                'slug' => 'customer-47'
+                'slug' => 'customer-47',
+                'created_at' => now(),
             ],
             [
                 'id_customers' => 48,
@@ -392,7 +439,8 @@ class CustomersSeeder extends Seeder
                 'nama' => 'Winda Farida',
                 'no_telp' => '+62-095-214-5623',
                 'jkel' => 'wanita',
-                'slug' => 'customer-48'
+                'slug' => 'customer-48',
+                'created_at' => now(),
             ],
             [
                 'id_customers' => 49,
@@ -400,7 +448,8 @@ class CustomersSeeder extends Seeder
                 'nama' => 'Jessica Latupono M.M.',
                 'no_telp' => '+62 (023) 685 1604',
                 'jkel' => 'wanita',
-                'slug' => 'customer-49'
+                'slug' => 'customer-49',
+                'created_at' => now(),
             ],
             [
                 'id_customers' => 50,
@@ -408,7 +457,8 @@ class CustomersSeeder extends Seeder
                 'nama' => 'Daruna Halimah',
                 'no_telp' => '0859317461',
                 'jkel' => 'pria',
-                'slug' => 'customer-50'
+                'slug' => 'customer-50',
+                'created_at' => now(),
             ]
         ]);
     }

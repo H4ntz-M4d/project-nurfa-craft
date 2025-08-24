@@ -15,7 +15,7 @@
                                 <span class="path1"></span>
                                 <span class="path2"></span>
                             </i>
-                            <input type="text" data-kt-transactions-table-filter="search" class="form-control form-control-solid w-250px ps-13" placeholder="Search Kategori" />
+                            <input type="text" data-kt-transactions-table-filter="search" class="form-control form-control-solid w-250px ps-13" placeholder="Search Transaksi" />
                         </div>
                         <!--end::Search-->
                         <!--begin::Export buttons-->
